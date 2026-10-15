@@ -1,0 +1,5 @@
+export type { CheckInitializedInput, CheckInitializedOutput, MarshalInput, MarshalInputFlags, MarshalOutput, MergeInput, MergeOutput, MergeOutputFlags, Methods, SizeInput, SizeOutput, SupportFlags, UnmarshalInput, UnmarshalInputFlags, UnmarshalOutput, UnmarshalOutputFlags } from "./methods.gs.ts"
+export type { MessageV1 } from "./legacy.gs.ts"
+export { ExtensionRangeV1 } from "./legacy.gs.ts"
+export { MarshalDeterministic, MarshalUseCachedSize, MergeComplete, SupportMarshalDeterministic, SupportUnmarshalDiscardUnknown, UnmarshalDiscardUnknown, UnmarshalInitialized } from "./methods.gs.ts"
+import "./legacy.gs.ts"

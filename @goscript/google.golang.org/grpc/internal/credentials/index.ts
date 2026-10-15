@@ -1,0 +1,5 @@
+export type { sysConn } from "./syscallconn.gs.ts"
+export { AppendH2ToNextProtos, CloneTLSConfig } from "./util.gs.ts"
+export { ClientHandshakeInfoFromContext, NewClientHandshakeInfoContext, NewRequestInfoContext, RequestInfoFromContext, clientHandshakeInfoKey, requestInfoKey } from "./credentials.gs.ts"
+export { SPIFFEIDFromCert, SPIFFEIDFromState } from "./spiffe.gs.ts"
+export { WrapSyscallConn, syscallConn } from "./syscallconn.gs.ts"

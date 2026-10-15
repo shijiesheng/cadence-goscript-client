@@ -1,0 +1,7 @@
+export type { ByteRef, BytesRef, Uint16Ref, Uint32Ref, Uint64Ref } from "./buffer.gs.ts"
+export type { intBuffer } from "./writer.gs.ts"
+export { ByteRef_Update, BytesRef_Update, BytesRef_UpdateString, ErrBufferFull, ErrEOF, NewReadBuffer, NewWriteBuffer, NewWriteBufferWithSize, ReadBuffer, Uint16Ref_Update, Uint32Ref_Update, Uint64Ref_Update, WriteBuffer, __goscript_set_ErrBufferFull, __goscript_set_ErrEOF } from "./buffer.gs.ts"
+export { NewReader, Reader } from "./reader.gs.ts"
+export { NewWriter, Writer } from "./writer.gs.ts"
+import "./buffer.gs.ts"
+import "./writer.gs.ts"

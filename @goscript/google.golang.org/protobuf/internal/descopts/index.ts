@@ -1,0 +1,1 @@
+export { Enum, EnumValue, ExtensionRange, Field, File, Message, Method, Oneof, Service, __goscript_set_Enum, __goscript_set_EnumValue, __goscript_set_ExtensionRange, __goscript_set_Field, __goscript_set_File, __goscript_set_Message, __goscript_set_Method, __goscript_set_Oneof, __goscript_set_Service } from "./options.gs.ts"

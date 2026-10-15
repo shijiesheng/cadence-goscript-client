@@ -1,0 +1,87 @@
+import * as $ from '@goscript/builtin/index.js'
+
+// uintptr Essential type aliases.
+export type uintptr = number
+
+// Errno is a named numeric Go type. Constants use object values so they can
+// satisfy error interfaces, while generated zero values may still be numbers.
+export type Errno = number | ErrnoObject
+
+export interface ErrnoObject {
+  Error(): string
+  Is(target: $.GoError): boolean
+  Temporary?(): boolean
+  Timeout?(): boolean
+  Errno(): number
+}
+
+// RawConn interface - stub implementation for JavaScript environment.
+export interface RawConn {
+  Control(f: (fd: uintptr) => void): $.GoError
+  Read(f: (fd: uintptr) => boolean): $.GoError
+  Write(f: (fd: uintptr) => boolean): $.GoError
+}
+
+export interface Sockaddr {}
+
+export class SockaddrInet4 implements Sockaddr {
+  public Port: number = 0
+  public Addr: Uint8Array = new Uint8Array(4)
+
+  constructor(init?: Partial<SockaddrInet4>) {
+    if (init) {
+      Object.assign(this, init)
+    }
+  }
+
+  public clone(): SockaddrInet4 {
+    return new SockaddrInet4({
+      Port: this.Port,
+      Addr: new Uint8Array(this.Addr),
+    })
+  }
+}
+
+export class SockaddrInet6 implements Sockaddr {
+  public Port: number = 0
+  public ZoneId: number = 0
+  public Addr: Uint8Array = new Uint8Array(16)
+
+  constructor(init?: Partial<SockaddrInet6>) {
+    if (init) {
+      Object.assign(this, init)
+    }
+  }
+
+  public clone(): SockaddrInet6 {
+    return new SockaddrInet6({
+      Port: this.Port,
+      ZoneId: this.ZoneId,
+      Addr: new Uint8Array(this.Addr),
+    })
+  }
+}
+
+export class SockaddrUnix implements Sockaddr {
+  public Name: string = ''
+
+  constructor(init?: Partial<SockaddrUnix>) {
+    if (init) {
+      Object.assign(this, init)
+    }
+  }
+
+  public clone(): SockaddrUnix {
+    return new SockaddrUnix({ Name: this.Name })
+  }
+}
+
+export class Iovec {}
+
+// SysProcAttr holds optional, operating system-specific attributes for
+// starting a process, of which there are none for js.
+export class SysProcAttr {
+  public clone(): SysProcAttr {
+    return new SysProcAttr()
+  }
+}

@@ -1,0 +1,12 @@
+export type { Resolver, importSet } from "./desc.gs.ts"
+export type { descsByName } from "./desc_init.gs.ts"
+export type { partialName } from "./desc_resolve.gs.ts"
+export { FileOptions, NewFile, NewFiles } from "./desc.gs.ts"
+export { ToDescriptorProto, ToEnumDescriptorProto, ToEnumValueDescriptorProto, ToFieldDescriptorProto, ToFileDescriptorProto, ToMethodDescriptorProto, ToOneofDescriptorProto, ToServiceDescriptorProto } from "./proto.gs.ts"
+export { partialName_FullName, partialName_IsFull, partialName_IsValid, resolver } from "./desc_resolve.gs.ts"
+import "./desc.gs.ts"
+import "./desc_init.gs.ts"
+import "./desc_resolve.gs.ts"
+import "./editions.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()

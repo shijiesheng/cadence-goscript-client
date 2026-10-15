@@ -1,0 +1,170 @@
+// Generated file based on rand.go
+// Updated when compliance tests are re-run, DO NOT EDIT!
+
+import * as $ from "@goscript/builtin/index.js"
+
+import * as fips140 from "@goscript/crypto/internal/fips140/index.js"
+
+import * as sysrand from "@goscript/crypto/internal/sysrand/index.js"
+
+import * as io from "@goscript/io/index.js"
+
+import * as sync from "@goscript/sync/index.js"
+
+import * as atomic from "@goscript/sync/atomic/index.js"
+
+import * as aes from "@goscript/crypto/internal/fips140/aes/index.js"
+
+import * as __goscript_ctrdrbg from "./ctrdrbg.gs.ts"
+
+import * as __goscript_entropy_wasm from "./entropy_wasm.gs.ts"
+import "@goscript/crypto/internal/fips140/index.js"
+import "@goscript/crypto/internal/sysrand/index.js"
+import "@goscript/io/index.js"
+import "@goscript/sync/index.js"
+import "@goscript/sync/atomic/index.js"
+import "@goscript/crypto/internal/fips140/aes/index.js"
+import "./ctrdrbg.gs.ts"
+import "./entropy_wasm.gs.ts"
+
+$.registerTypePackagePath("crypto/internal/fips140/drbg", ["drbg.DefaultReader"])
+
+export class DefaultReader {
+	public _fields: {
+	}
+
+	constructor(init?: Partial<{}>, __goscriptValue?: boolean) {
+		this._fields = {
+		}
+		;(this as any)[$.structValueMarker] = __goscriptValue === true
+	}
+
+	public clone(): DefaultReader {
+		return new DefaultReader(this, true)
+	}
+
+	public __goscriptAssign(source: DefaultReader): void {
+	}
+
+	public defaultReader(): void {
+		const d = this;
+	}
+
+	static __typeInfo = $.registerStructType(
+		"drbg.DefaultReader",
+		() => new DefaultReader(),
+		() => [$.methodSignature("defaultReader")],
+		DefaultReader,
+		() => []
+	)
+}
+
+export let drbgInstance: $.VarRef<atomic.Pointer<__goscript_ctrdrbg.Counter>> = $.varRef($.markAsStructValue(new atomic.Pointer<__goscript_ctrdrbg.Counter>()))
+
+export function __goscript_set_drbgInstance(__goscriptValue: atomic.Pointer<__goscript_ctrdrbg.Counter>): void {
+	$.assignStruct(drbgInstance.value, __goscriptValue)
+}
+
+export var drbgPool: $.VarRef<sync.Pool>
+
+export function __goscript_init_drbgPool(): void {
+	if (((drbgPool) as any) === undefined) {
+		drbgPool = $.varRef($.markAsStructValue(new sync.Pool({New: $.functionValue((): any => {
+	return $.interfaceValue(__goscript_ctrdrbg.NewCounter(__goscript_entropy_wasm.getEntropy()), "*drbg.Counter", /* @__PURE__ */ $.pointerType("drbg.Counter"))
+}, ({ kind: $.TypeKind.Function, params: [], results: [{ kind: $.TypeKind.Interface, methods: [] }] } as $.FunctionTypeInfo))})))
+	}
+}
+
+export function __goscript_get_drbgPool(): $.VarRef<sync.Pool> {
+	if (((drbgPool) as any) === undefined) {
+		__goscript_init_drbgPool()
+	}
+	return drbgPool
+}
+
+export function __goscript_set_drbgPool(__goscriptValue: sync.Pool): void {
+	$.assignStruct(__goscript_get_drbgPool().value, __goscriptValue)
+}
+
+export async function Read(b: $.Slice<number>): globalThis.Promise<void> {
+	using __defer = new $.DisposableStack()
+	if (testingReader != null) {
+		fips140.RecordNonApproved()
+		// Avoid letting b escape in the non-testing case.
+		let bb: $.Slice<number> = $.makeSlice<number>($.sliceLen(b), undefined, "byte")
+		await (testingReader !== null && (testingReader as any).__isVarRef !== true && (testingReader as any).__goValue === undefined ? (testingReader as Exclude<io.Reader, null>) : $.pointerValue<Exclude<io.Reader, null>>(testingReader)).Read(bb)
+		$.copy(b, bb)
+		return
+	}
+
+	if (!fips140.Enabled) {
+		await sysrand.Read(b)
+		return
+	}
+
+	// At every read, 128 random bits from the operating system are mixed as
+	// additional input, to make the output as strong as non-FIPS randomness.
+	// This is not credited as entropy for FIPS purposes, as allowed by Section
+	// 8.7.2: "Note that a DRBG does not rely on additional input to provide
+	// entropy, even though entropy could be provided in the additional input".
+	let additionalInput: $.VarRef<Uint8Array> | null = $.varRef<Uint8Array>($.arrayValue(new Uint8Array(48)))
+	await sysrand.Read($.goSlice($.pointerValue<Uint8Array>(additionalInput), undefined, 16))
+
+	let drbg: __goscript_ctrdrbg.Counter | $.VarRef<__goscript_ctrdrbg.Counter> | null = (drbgInstance.value.Swap(null) as __goscript_ctrdrbg.Counter | $.VarRef<__goscript_ctrdrbg.Counter> | null)
+	if (drbg == null) {
+		drbg = $.mustTypeAssert<__goscript_ctrdrbg.Counter | $.VarRef<__goscript_ctrdrbg.Counter> | null>(await $.pointerValue<sync.Pool>(__goscript_get_drbgPool()).Get(), /* @__PURE__ */ $.pointerType("drbg.Counter"))
+	}
+	__defer.defer(() => { ((): void => {
+		if (!drbgInstance.value.CompareAndSwap(null, drbg)) {
+			$.pointerValue<sync.Pool>(__goscript_get_drbgPool()).Put($.interfaceValue(drbg, "*drbg.Counter", /* @__PURE__ */ $.pointerType("drbg.Counter")))
+		}
+	})() })
+
+	while ($.sliceLen(b) > 0) {
+		let size: number = $.min($.sliceLen(b), 65536)
+		{
+			let reseedRequired = (drbg !== null && (drbg as any).__isVarRef !== true && (drbg as any).__goValue === undefined ? ((drbg as any) as __goscript_ctrdrbg.Counter).Generate($.goSlice(b, undefined, size), additionalInput) : __goscript_ctrdrbg.Counter.prototype.Generate.call(drbg, $.goSlice(b, undefined, size), additionalInput))
+			if (reseedRequired) {
+				// See SP 800-90A Rev. 1, Section 9.3.1, Steps 6-8, as explained in
+				// Section 9.3.2: if Generate reports a reseed is required, the
+				// additional input is passed to Reseed along with the entropy and
+				// then nulled before the next Generate call.
+				void (drbg !== null && (drbg as any).__isVarRef !== true && (drbg as any).__goValue === undefined ? ((drbg as any) as __goscript_ctrdrbg.Counter).Reseed(__goscript_entropy_wasm.getEntropy(), additionalInput) : __goscript_ctrdrbg.Counter.prototype.Reseed.call(drbg, __goscript_entropy_wasm.getEntropy(), additionalInput))
+				additionalInput = null
+				continue
+			}
+		}
+		b = $.goSlice(b, size, undefined)
+	}
+}
+
+export let testingReader: io.Reader | null = null! as io.Reader | null
+
+export function __goscript_set_testingReader(__goscriptValue: io.Reader | null): void {
+	testingReader = __goscriptValue
+}
+
+export function SetTestingReader(r: io.Reader | null): void {
+	testingReader = r
+}
+
+export function IsDefaultReader(r: io.Reader | null): boolean {
+	let [, ok] = $.typeAssertTuple<any>(r, { kind: $.TypeKind.Interface, methods: [{ name: "defaultReader", args: [], returns: [] }] })
+	return ok
+}
+
+export async function ReadWithReader(r: io.Reader | null, b: $.Slice<number>): globalThis.Promise<$.GoError> {
+	if (IsDefaultReader(r)) {
+		await Read(b)
+		return null
+	}
+
+	fips140.RecordNonApproved()
+	let [, err] = await io.ReadFull($.pointerValueOrNil(r)!, b)
+	return err
+}
+
+var __goscriptStatic0$value: any
+function __goscriptStatic0(): any {
+	return __goscriptStatic0$value ??= ({[$.genericTypeArgsMarker]: $.genericTypeArgsBrand, T: { type: "drbg.Counter", zero: () => new __goscript_ctrdrbg.Counter(undefined, true) }})
+}

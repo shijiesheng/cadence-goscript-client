@@ -1,0 +1,5 @@
+export type { Invoke, Invoker, errorGroup } from "./error.gs.ts"
+export type { multipleErrors } from "./error_post_go120.gs.ts"
+export { Append, AppendFunc, AppendInto, AppendInvoke, Close, Combine, Errors, Every, Invoke_Invoke, inspectResult, multiError } from "./error.gs.ts"
+import "./error.gs.ts"
+import "./error_post_go120.gs.ts"

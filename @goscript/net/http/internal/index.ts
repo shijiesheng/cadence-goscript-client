@@ -1,0 +1,5 @@
+export type { htmlSig, sniffSig } from "./sniff.gs.ts"
+export { DetectContentType, SniffLen, exactSig, maskedSig, mp4Sig, textSig } from "./sniff.gs.ts"
+export { ErrAbortHandler, ErrBodyNotAllowed, ErrRequestCanceled, ErrSkipAltProtocol, __goscript_set_ErrAbortHandler, __goscript_set_ErrBodyNotAllowed, __goscript_set_ErrRequestCanceled, __goscript_set_ErrSkipAltProtocol } from "./common.gs.ts"
+export { ErrLineTooLong, FlushAfterChunkWriter, NewChunkedReader, NewChunkedWriter, __goscript_set_ErrLineTooLong, chunkedReader, chunkedWriter } from "./chunked.gs.ts"
+import "./sniff.gs.ts"

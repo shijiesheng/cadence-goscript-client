@@ -1,0 +1,11 @@
+export type { Option, joinState, runeError } from "./idna10.0.0.gs.ts"
+export type { category, info } from "./trieval.gs.ts"
+export { BidiRule, CheckHyphens, CheckJoiners, Display, Lookup, MapForLookup, New, Profile, Punycode, Registration, RemoveLeadingDots, StrictDomainName, ToASCII, ToUnicode, Transitional, ValidateForRegistration, ValidateLabels, VerifyDNSLength, __goscript_get_Display, __goscript_get_Lookup, __goscript_get_Punycode, __goscript_get_Registration, __goscript_init_Display, __goscript_init_Lookup, __goscript_init_Punycode, __goscript_init_Registration, __goscript_set_Display, __goscript_set_Lookup, __goscript_set_Punycode, __goscript_set_Registration, labelError, labelIter, options, runeError_Error } from "./idna10.0.0.gs.ts"
+export { UnicodeVersion, idnaTrie } from "./tables15.0.0.gs.ts"
+export { sparseBlocks, valueRange } from "./trie.gs.ts"
+import "./idna10.0.0.gs.ts"
+import "./tables15.0.0.gs.ts"
+import "./trie.gs.ts"
+import "./trieval.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()

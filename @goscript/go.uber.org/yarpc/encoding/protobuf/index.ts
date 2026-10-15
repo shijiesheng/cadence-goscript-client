@@ -1,0 +1,13 @@
+export type { Client, ClientOption, StreamClient } from "./protobuf.gs.ts"
+export type { Codec } from "./codec_registry.gs.ts"
+export { BuildProcedures, BuildProceduresOnewayHandlerParams, BuildProceduresParams, BuildProceduresStreamHandlerParams, BuildProceduresUnaryHandlerParams, CastError, ClientBuilderOptions, ClientParams, ClientStream, Encoding, JSONEncoding, NewClient, NewOnewayHandler, NewStreamClient, NewStreamHandler, NewUnaryHandler, OnewayHandlerParams, ServerStream, StreamHandlerParams, UnaryHandlerParams, UseJSON, __goscript_set_UseJSON, useJSON } from "./protobuf.gs.ts"
+export { ErrorOption, GetErrorDetails, NewError, WithErrorDetails, pberror } from "./error.gs.ts"
+export { GetCodecForEncoding, GetCodecNames, RegisterCodec, jsonCodec, protoCodec } from "./codec_registry.gs.ts"
+export { bufferReadCloser, poolWrapper } from "./stream.gs.ts"
+export { client } from "./outbound.gs.ts"
+export { codec } from "./marshal.gs.ts"
+export { onewayHandler, streamHandler, unaryHandler } from "./inbound.gs.ts"
+import "./codec_registry.gs.ts"
+import "./protobuf.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()

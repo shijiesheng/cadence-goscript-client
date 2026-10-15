@@ -1,0 +1,11 @@
+export type { InvalidIndexError, indexType } from "./hpack.gs.ts"
+export type { incomparable } from "./huffman.gs.ts"
+export { AppendHuffmanString, ErrInvalidHuffman, HuffmanDecode, HuffmanDecodeToString, HuffmanEncodeLength, __goscript_set_ErrInvalidHuffman, node } from "./huffman.gs.ts"
+export { Decoder, DecodingError, ErrStringLength, HeaderField, InvalidIndexError_Error, NewDecoder, __goscript_set_ErrStringLength, dynamicTable, undecodedString } from "./hpack.gs.ts"
+export { Encoder, NewEncoder } from "./encode.gs.ts"
+export { headerFieldTable, pairNameValue } from "./tables.gs.ts"
+import "./hpack.gs.ts"
+import "./huffman.gs.ts"
+import "./static_table.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()

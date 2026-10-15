@@ -1,0 +1,192 @@
+import * as $ from "@goscript/builtin/index.js";
+import { ErrUnimplemented } from "./error.gs.js";
+
+import * as errors from "@goscript/errors/index.js"
+import * as syscall from "@goscript/syscall/index.js"
+
+export let ErrProcessDone: $.GoError = errors.New("os: process already finished")
+export let ErrNoHandle: $.GoError = errors.New("os: process handle unavailable")
+
+// Process Simplified Process class for JavaScript environment.
+export class Process {
+	public get Pid(): number {
+		return this._fields.Pid
+	}
+	public set Pid(value: number) {
+		this._fields.Pid = value
+	}
+
+	public _fields: {
+		Pid: number;
+	}
+
+	constructor(init?: Partial<{Pid?: number}>) {
+		this._fields = {
+			Pid: init?.Pid ?? -1
+		}
+	}
+
+	public clone(): Process {
+		const cloned = new Process()
+		cloned._fields = {
+			Pid: this._fields.Pid
+		}
+		return cloned
+	}
+
+	// All process operations return ErrUnimplemented in JavaScript
+	public Release(): $.GoError {
+		return ErrUnimplemented
+	}
+
+	public Kill(): $.GoError {
+		return ErrUnimplemented
+	}
+
+	public Wait(): [ProcessState | null, $.GoError] {
+		return [null, ErrUnimplemented]
+	}
+
+	public Signal(sig: Signal): $.GoError {
+		return ErrUnimplemented
+	}
+
+	// Register this type with the runtime type system
+	static __typeInfo = $.registerStructType(
+		'Process',
+		new Process(),
+		[
+			{ name: "Release", args: [], returns: [{ type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] },
+			{ name: "Kill", args: [], returns: [{ type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] },
+			{ name: "Wait", args: [], returns: [{ type: { kind: $.TypeKind.Pointer, elemType: "ProcessState" } }, { type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] },
+			{ name: "Signal", args: [{ name: "sig", type: "Signal" }], returns: [{ type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] }
+		],
+		Process,
+		[{ name: "Pid", key: "Pid", type: { kind: $.TypeKind.Basic, name: "number" } }]
+	);
+}
+
+// ProcAttr Simplified ProcAttr class for JavaScript environment.
+export class ProcAttr {
+	public get Dir(): string {
+		return this._fields.Dir
+	}
+	public set Dir(value: string) {
+		this._fields.Dir = value
+	}
+
+	public get Env(): $.Slice<string> {
+		return this._fields.Env
+	}
+	public set Env(value: $.Slice<string>) {
+		this._fields.Env = value
+	}
+
+	public get Files(): $.Slice<any> {
+		return this._fields.Files
+	}
+	public set Files(value: $.Slice<any>) {
+		this._fields.Files = value
+	}
+
+	public get Sys(): any {
+		return this._fields.Sys
+	}
+	public set Sys(value: any) {
+		this._fields.Sys = value
+	}
+
+	public _fields: {
+		Dir: string;
+		Env: $.Slice<string>;
+		Files: $.Slice<any>;
+		Sys: any;
+	}
+
+	constructor(init?: Partial<{Dir?: string, Env?: $.Slice<string>, Files?: $.Slice<any>, Sys?: any}>) {
+		this._fields = {
+			Dir: init?.Dir ?? "",
+			Env: init?.Env ?? null,
+			Files: init?.Files ?? null,
+			Sys: init?.Sys ?? null
+		}
+	}
+
+	public clone(): ProcAttr {
+		const cloned = new ProcAttr()
+		cloned._fields = {
+			Dir: this._fields.Dir,
+			Env: this._fields.Env,
+			Files: this._fields.Files,
+			Sys: this._fields.Sys
+		}
+		return cloned
+	}
+
+	// Register this type with the runtime type system
+	static __typeInfo = $.registerStructType(
+		'ProcAttr',
+		new ProcAttr(),
+		[],
+		ProcAttr,
+		[{ name: "Dir", key: "Dir", type: { kind: $.TypeKind.Basic, name: "string" } }, { name: "Env", key: "Env", type: { kind: $.TypeKind.Slice, elemType: { kind: $.TypeKind.Basic, name: "string" } } }, { name: "Files", key: "Files", type: { kind: $.TypeKind.Slice, elemType: { kind: $.TypeKind.Basic, name: "any" } } }, { name: "Sys", key: "Sys", type: { kind: $.TypeKind.Basic, name: "any" } }]
+	);
+}
+
+// ProcessState mirrors the minimal JavaScript process surface.
+export class ProcessState {
+	public _fields: {}
+
+	constructor() {
+		this._fields = {}
+	}
+
+	public clone(): ProcessState {
+		return new ProcessState()
+	}
+
+	// Register this type with the runtime type system
+	static __typeInfo = $.registerStructType(
+		'ProcessState',
+		new ProcessState(),
+		[],
+		ProcessState,
+		[]
+	);
+}
+
+// Signal matches the Go signal interface shape when available.
+export type Signal = null | {
+	Signal(): void
+	String(): string
+}
+export const Signal = null as any;
+
+export function Getpid(): number {
+	return -1 // Not available in JavaScript
+}
+
+export function Getppid(): number {
+	return -1 // Not available in JavaScript
+}
+
+export function FindProcess(pid: number): [Process | null, $.GoError] {
+	return [null, ErrUnimplemented]
+}
+
+export function StartProcess(name: string, argv: $.Slice<string>, attr: ProcAttr | null): [Process | null, $.GoError] {
+	return [null, ErrUnimplemented]
+}
+
+// newDoneProcess Internal functions used by exec_unix.gs.ts.
+export function newDoneProcess(pid: number): Process {
+	return new Process({Pid: pid})
+}
+
+export function newHandleProcess(pid: number, handle: number): Process {
+	return new Process({Pid: pid})
+}
+
+export function newPIDProcess(pid: number): Process {
+	return new Process({Pid: pid})
+}

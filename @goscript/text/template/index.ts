@@ -1,0 +1,11 @@
+export type { FuncMap, kind } from "./funcs.gs.ts"
+export type { missingKeyAction } from "./option.gs.ts"
+export { ExecError, IsTrue, missingValType, state, variable, writeError } from "./exec.gs.ts"
+export { HTMLEscape, HTMLEscapeString, HTMLEscaper, JSEscape, JSEscapeString, JSEscaper, URLQueryEscaper } from "./funcs.gs.ts"
+export { Must, ParseFS, ParseFiles, ParseGlob } from "./helper.gs.ts"
+export { New, Template, common } from "./template.gs.ts"
+export { option } from "./option.gs.ts"
+import "./exec.gs.ts"
+import "./funcs.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()

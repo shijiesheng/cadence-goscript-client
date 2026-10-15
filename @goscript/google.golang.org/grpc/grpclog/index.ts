@@ -1,0 +1,11 @@
+export type { DepthLoggerV2, LoggerV2 } from "./loggerv2.gs.ts"
+export type { Logger } from "./logger.gs.ts"
+export { Component, componentData } from "./component.gs.ts"
+export { Error, ErrorDepth, Errorf, Errorln, Fatal, FatalDepth, Fatalf, Fatalln, Info, InfoDepth, Infof, Infoln, Print, Printf, Println, V, Warning, WarningDepth, Warningf, Warningln } from "./grpclog.gs.ts"
+export { NewLoggerV2, NewLoggerV2WithVerbosity, SetLoggerV2 } from "./loggerv2.gs.ts"
+export { SetLogger } from "./logger.gs.ts"
+import "./grpclog.gs.ts"
+import "./logger.gs.ts"
+import "./loggerv2.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()

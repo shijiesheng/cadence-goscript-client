@@ -1,0 +1,1426 @@
+import { GoSlice, isArrayOrGoSlice } from './slice.js'
+import type { Slice, SliceProxy, StringHeaderData } from './slice.js'
+import {
+  arrayValueTypeInfo,
+  cloneArrayValue,
+  isArrayValue,
+  isTypeInfoComparable,
+  pointerIdentityEqual,
+  resolveTypeInfo,
+  structFieldRuntimeKey,
+  structValueTypeInfo,
+  TypeKind,
+  type GenericTypeArgs,
+  type TypeInfo,
+  namedValueBoxMarker,
+} from './type.js'
+import { writeHostStdoutText } from './hostio.js'
+import { runtimePanic } from './panic.js'
+import { formatPrintedArgs } from './print.js'
+import { isSliceProxy, runeToString } from './slice.js'
+import { isVarRef, type VarRef } from './varRef.js'
+
+/**
+ * print writes formatted operands, awaiting asynchronous string methods.
+ */
+export async function print(...args: any[]): Promise<void> {
+  writeHostStdoutText(args.length === 0 ? '' : await formatPrintedArgs(args))
+}
+
+/**
+ * println writes formatted operands followed by a newline.
+ */
+export async function println(...args: any[]): Promise<void> {
+  const message =
+    (args.length === 0 ? '' : await formatPrintedArgs(args)) + '\n'
+  writeHostStdoutText(message)
+}
+
+/**
+ * clear zeroes slice elements or removes every map entry.
+ */
+export function clear<T>(v: Slice<T> | Map<unknown, unknown> | null): void {
+  // A nil slice or map has nothing to clear.
+  if (v === null || v === undefined) {
+    return
+  }
+
+  // A map loses its entries, and a byte slice is zeroed in place.
+  if (v instanceof Map) {
+    v.clear()
+    return
+  }
+  if (v instanceof Uint8Array) {
+    v.fill(0)
+    return
+  }
+
+  // A window zeroes its part of the backing array.
+  if (isSliceProxy(v)) {
+    const meta = v.__meta__
+    const zero = clearZeroValue(meta.backing as T[])
+    for (let i = 0; i < meta.length; i++) {
+      meta.backing[meta.offset + i] = zero
+    }
+    return
+  }
+
+  // An array is zeroed in place.
+  if (Array.isArray(v)) {
+    v.fill(clearZeroValue(v))
+    return
+  }
+}
+
+function clearZeroValue<T>(v: T[]): T {
+  for (const item of v) {
+    if (item !== null && item !== undefined) {
+      switch (typeof item) {
+        case 'number':
+          return 0 as T
+        case 'string':
+          return '' as T
+        case 'boolean':
+          return false as T
+      }
+      break
+    }
+  }
+  return null as T
+}
+
+/**
+ * assignStruct copies a prepared struct value into existing storage. Nested
+ * structs and arrays retain their addresses; pointer and slice fields receive
+ * the source references. The compiler snapshots the right-hand side first.
+ * It returns target, which the compiler assigns back to a local variable so
+ * that TypeScript forgets what it narrowed about the old field values.
+ */
+export function assignStruct<T>(
+  target: T,
+  source: T,
+  typeInfo?: TypeInfo | string,
+): T {
+  if (
+    target === null ||
+    target === undefined ||
+    source === null ||
+    source === undefined
+  ) {
+    return target
+  }
+
+  // A generated struct class copies the fields of a value of its own type
+  // directly, which is much faster than copying them by their type info.
+  if (
+    (target as any).constructor === (source as any).constructor &&
+    typeof (target as any).__goscriptAssign === 'function' &&
+    (source as any)._fields !== undefined
+  ) {
+    ;(target as any).__goscriptAssign(source)
+    return target
+  }
+
+  // The value identifies its layout even when package names collide.
+  const targetFields = (target as any)._fields
+  const sourceFields = (source as any)._fields
+  const info = structValueTypeInfo(source) ?? typeInfo
+  const resolved = resolveTypeInfo(info)
+
+  // A registered struct without field descriptors or a _fields map (such as
+  // time.Time) keeps its state in private properties, copied by clone below.
+  const opaque =
+    resolved?.kind === TypeKind.Struct &&
+    resolved.fields.length === 0 &&
+    !sourceFields
+  if (resolved?.kind === TypeKind.Struct && !opaque) {
+    const destination = targetFields ?? target
+    const values = sourceFields ?? source
+    for (const field of resolved.fields) {
+      const key = structFieldRuntimeKey(field)
+      destination[key] = assignFieldValue(
+        destination[key],
+        values[key],
+        field.type,
+      )
+    }
+    return target
+  }
+  if (!targetFields || !sourceFields) {
+    // Structs without a _fields map (e.g. bound protobuf messages) carry their
+    // data as plain enumerable properties. Copy a clone when the value defines
+    // one, otherwise copy the value's own properties directly.
+    const cloneable = source as {
+      __goscriptClone?: () => T
+      clone?: () => T
+    }
+    const copied =
+      cloneable.__goscriptClone?.() ?? cloneable.clone?.() ?? source
+    Object.assign(target as object, copied as object)
+    return target
+  }
+  for (const key of Object.keys(sourceFields)) {
+    targetFields[key] = sourceFields[key]
+  }
+  return target
+}
+
+/** assignFieldValue preserves aggregate storage while replacing reference values. */
+export function assignFieldValue(
+  target: any,
+  source: any,
+  typeInfo?: TypeInfo | string,
+): any {
+  const info = resolveTypeInfo(typeInfo)
+  if (info?.kind === TypeKind.Struct) {
+    assignStruct(target, source, info)
+    return target
+  }
+  if (info?.kind === TypeKind.Array) {
+    for (let i = 0; i < info.length; i++) {
+      target[i] = assignFieldValue(target[i], source[i], info.elemType)
+    }
+    return target
+  }
+
+  // An array whose type is not resolved is still copied.
+  if (isArrayValue(source)) {
+    return cloneArrayValue(source, arrayValueTypeInfo(source))
+  }
+  return source
+}
+
+/**
+ * genericPointerRef returns the storage of a pointer to a type parameter, for
+ * assignments through it such as *p = v. A pointer to a struct is the struct
+ * instance itself, so storing a value copies its fields into the instance;
+ * any other pointer is a VarRef.
+ */
+export function genericPointerRef<T>(
+  pointer: T | VarRef<T> | null | undefined,
+): VarRef<T> {
+  if (pointer === null || pointer === undefined) {
+    runtimePanic(
+      'runtime error: invalid memory address or nil pointer dereference',
+    )
+  }
+  if (isVarRef(pointer)) {
+    return pointer as VarRef<T>
+  }
+  const target = pointer as T
+  return {
+    get value(): T {
+      return target
+    },
+    set value(source: T) {
+      assignStruct(target, source)
+    },
+  }
+}
+
+/**
+ * pointerValue unwraps a Go pointer value for generated field, method, and
+ * dereference access. Struct pointers may be represented directly as class
+ * instances or indirectly as VarRef values when the pointer came from taking a
+ * variable's address.
+ */
+export function pointerValue<T>(value: T | VarRef<T> | null | undefined): T {
+  if (value === null || value === undefined) {
+    runtimePanic(
+      'runtime error: invalid memory address or nil pointer dereference',
+    )
+  }
+
+  // A variable reference holds its value, and a struct that is not a boxed
+  // pointer is its own target. These property reads are much faster than
+  // the type and 'in' checks below, on the many kinds of objects seen here.
+  if ((value as any).__isVarRef === true) {
+    return (value as VarRef<T>).value
+  }
+  if ((value as any).__goValue === undefined) {
+    return value as T
+  }
+
+  // A boxed pointer is unwrapped to its target.
+  const boxed =
+    typeof value === 'object' && value !== null && '__goValue' in value ?
+      (value as { __goType?: unknown; __goValue: T | VarRef<T> })
+    : null
+  if (
+    boxed !== null &&
+    typeof boxed.__goType === 'string' &&
+    boxed.__goType.startsWith('*') &&
+    !hasGoMethodSurface(value)
+  ) {
+    return pointerValue(boxed.__goValue)
+  }
+  return value as T
+}
+
+// nilPointerTarget stands for the struct that a nil pointer points to: any
+// property access panics as a nil pointer dereference does.
+const nilPointerTarget: object = new Proxy(
+  {},
+  {
+    get(): never {
+      runtimePanic(
+        'runtime error: invalid memory address or nil pointer dereference',
+      )
+    },
+    set(): never {
+      runtimePanic(
+        'runtime error: invalid memory address or nil pointer dereference',
+      )
+    },
+  },
+)
+
+/**
+ * pointerTarget returns the struct that a pointer points to, for a function
+ * that reads it once and then accesses its fields: a nil pointer returns an
+ * object whose field accesses panic, so that the panic happens at a field
+ * access, as in Go, rather than here.
+ */
+export function pointerTarget<T>(value: T | VarRef<T> | null | undefined): T {
+  if (value === null || value === undefined) {
+    return nilPointerTarget as T
+  }
+  return pointerValue(value)
+}
+
+export function pointerValueOrNil<T>(
+  value: T | VarRef<T> | null | undefined,
+): T | null {
+  if (value === null || value === undefined) {
+    return null
+  }
+  if (isVarRef(value)) {
+    return value.value as T
+  }
+  const boxed =
+    typeof value === 'object' && value !== null && '__goValue' in value ?
+      (value as { __goType?: unknown; __goValue: T | VarRef<T> })
+    : null
+  if (
+    boxed !== null &&
+    typeof boxed.__goType === 'string' &&
+    boxed.__goType.startsWith('*') &&
+    !hasGoMethodSurface(value)
+  ) {
+    return pointerValueOrNil(boxed.__goValue)
+  }
+  return value
+}
+
+const reflectTypeIdentities = new WeakMap<object, string>()
+
+export function markReflectTypeIdentity(value: object, identity: string): void {
+  reflectTypeIdentities.set(value, identity)
+}
+
+export function arrayEqual(a: unknown, b: unknown): boolean {
+  return comparableEqual(a, b)
+}
+
+export function comparableEqual(a: unknown, b: unknown): boolean {
+  if (
+    hasGoType(a) &&
+    hasGoType(b) &&
+    a.__isTypedNil === true &&
+    b.__isTypedNil === true &&
+    a.__goType === b.__goType
+  ) {
+    const typeInfo = a.__goTypeInfo ?? b.__goTypeInfo
+    if (typeInfo !== undefined && !isTypeInfoComparable(typeInfo)) {
+      runtimePanic(`runtime error: comparing uncomparable type ${a.__goType}`)
+    }
+  }
+  if (a === b) {
+    return true
+  }
+  if (a === null || a === undefined || b === null || b === undefined) {
+    return false
+  }
+  if (
+    typeof a === 'object' &&
+    typeof b === 'object' &&
+    pointerIdentityEqual(a, b)
+  ) {
+    return true
+  }
+  if (typeof a === 'object' && typeof b === 'object') {
+    const aType = reflectTypeIdentities.get(a)
+    const bType = reflectTypeIdentities.get(b)
+    if (aType !== undefined || bType !== undefined) {
+      return aType !== undefined && aType === bType
+    }
+  }
+  if (isArrayLike(a) && isArrayLike(b)) {
+    if (a.length !== b.length) {
+      return false
+    }
+    for (let i = 0; i < a.length; i++) {
+      if (!comparableEqual(a[i], b[i])) {
+        return false
+      }
+    }
+    return true
+  }
+  if (isComplexValue(a) || isComplexValue(b)) {
+    return (
+      isComplexValue(a) &&
+      isComplexValue(b) &&
+      a.real === b.real &&
+      a.imag === b.imag
+    )
+  }
+  if (hasGoType(a) || hasGoType(b)) {
+    if (!hasGoType(a) || !hasGoType(b) || a.__goType !== b.__goType) {
+      return false
+    }
+    if (a.__isTypedNil || b.__isTypedNil) {
+      return a.__isTypedNil === true && b.__isTypedNil === true
+    }
+    if (a.__goType.startsWith('*')) {
+      return false
+    }
+    if (hasGoValue(a) || hasGoValue(b)) {
+      return (
+        hasGoValue(a) &&
+        hasGoValue(b) &&
+        comparableEqual(a.__goValue, b.__goValue)
+      )
+    }
+  }
+  if (isStructValue(a) && isStructValue(b)) {
+    return fieldsEqual(a._fields, b._fields)
+  }
+  return false
+}
+
+/**
+ * structEqual compares two values of the same struct type, as for == on
+ * operands whose static type is that struct, by comparing their fields.
+ * It ignores the dynamic type that interfaceValue records on a struct
+ * object, since a pointer to a struct is the struct object itself, so a
+ * struct that was passed as a pointer in an interface carries a pointer type.
+ */
+export function structEqual(
+  a: unknown,
+  b: unknown,
+  typeInfo?: TypeInfo | string,
+): boolean {
+  if (a === b) {
+    return true
+  }
+  if (!isStructValue(a) || !isStructValue(b)) {
+    return comparableEqual(a, b)
+  }
+  const info = structValueTypeInfo(a) ?? typeInfo
+  const resolved = resolveTypeInfo(info)
+  if (resolved?.kind !== TypeKind.Struct) {
+    return fieldsEqual(a._fields, b._fields)
+  }
+  for (const field of resolved.fields) {
+    const key = structFieldRuntimeKey(field)
+    const fieldType = resolveTypeInfo(field.type)
+    const equal =
+      fieldType?.kind === TypeKind.Struct ?
+        structEqual(a._fields[key], b._fields[key], fieldType)
+      : comparableEqual(a._fields[key], b._fields[key])
+    if (!equal) {
+      return false
+    }
+  }
+  return true
+}
+
+function isArrayLike(value: unknown): value is ArrayLike<unknown> {
+  return isArrayOrGoSlice(value) || value instanceof Uint8Array
+}
+
+function hasGoType(value: unknown): value is {
+  __goType: string
+  __goTypeInfo?: TypeInfo | string
+  __isTypedNil?: boolean
+} {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    typeof (value as { __goType?: unknown }).__goType === 'string'
+  )
+}
+
+function hasGoValue(value: unknown): value is {
+  __goValue: unknown
+} {
+  return typeof value === 'object' && value !== null && '__goValue' in value
+}
+
+function hasGoMethodSurface(value: unknown): boolean {
+  if (typeof value !== 'object' || value === null) {
+    return false
+  }
+  const proto = Object.getPrototypeOf(value)
+  if (proto !== null && proto[namedValueBoxMarker] === true) {
+    return Object.keys(proto).some(
+      (key) =>
+        key !== 'valueOf' &&
+        key !== 'toString' &&
+        typeof proto[key] === 'function',
+    )
+  }
+  return Object.keys(value).some((key) => {
+    return (
+      key !== '__goType' &&
+      key !== '__goValue' &&
+      key !== 'valueOf' &&
+      key !== 'toString' &&
+      typeof (value as Record<string, unknown>)[key] === 'function'
+    )
+  })
+}
+
+function isStructValue(value: unknown): value is {
+  _fields: Record<string, unknown>
+} {
+  const fields =
+    typeof value === 'object' && value !== null ?
+      (value as { _fields?: unknown })._fields
+    : undefined
+  return (
+    typeof fields === 'object' && fields !== null && !isArrayOrGoSlice(fields)
+  )
+}
+
+function fieldsEqual(
+  a: Record<string, unknown>,
+  b: Record<string, unknown>,
+): boolean {
+  const aKeys = Object.keys(a)
+  const bKeys = Object.keys(b)
+  if (aKeys.length !== bKeys.length) {
+    return false
+  }
+  for (const key of aKeys) {
+    if (!(key in b) || !comparableEqual(a[key], b[key])) {
+      return false
+    }
+  }
+  return true
+}
+
+export interface Complex {
+  real: number
+  imag: number
+}
+
+function isComplexValue(value: unknown): value is Complex {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    typeof (value as { real?: unknown }).real === 'number' &&
+    typeof (value as { imag?: unknown }).imag === 'number'
+  )
+}
+
+export function complex(real: number, imag: number): Complex {
+  return { real, imag }
+}
+
+export function float32(value: number | bigint): number {
+  return Math.fround(Number(value))
+}
+
+export function complex64(value: Complex): Complex
+export function complex64(real: number | bigint, imag: number | bigint): Complex
+export function complex64(
+  valueOrReal: Complex | number | bigint,
+  imag: number | bigint = 0,
+): Complex {
+  if (typeof valueOrReal === 'object') {
+    return { real: float32(valueOrReal.real), imag: float32(valueOrReal.imag) }
+  }
+  return { real: float32(valueOrReal), imag: float32(imag) }
+}
+
+export function real(value: number | Complex | null | undefined): number {
+  value = unwrapGoValue(value)
+  if (typeof value === 'number') {
+    return value
+  }
+  return value?.real ?? 0
+}
+
+export function imag(value: number | Complex | null | undefined): number {
+  value = unwrapGoValue(value)
+  if (typeof value === 'number') {
+    return 0
+  }
+  return value?.imag ?? 0
+}
+
+function unwrapGoValue<T>(value: T): T {
+  if (
+    value !== null &&
+    value !== undefined &&
+    typeof value === 'object' &&
+    '__goValue' in value
+  ) {
+    return (value as { __goValue: T }).__goValue
+  }
+  return value
+}
+
+// Bytes represents Go byte slices, including nil and array-backed slices.
+export type Bytes = Uint8Array | Slice<number>
+type ByteData = Uint8Array | number[] | SliceProxy<number>
+
+const maxUint64BigInt = 0xffffffffffffffffn
+
+// maxSafeUintBigInt is the largest unsigned value JS number represents exactly.
+// uint/uintptr are typed number but carry a runtime bigint above this bound so
+// full 64-bit width (e.g. ^uint(0)) survives; see uint().
+const maxSafeUintBigInt = BigInt(Number.MAX_SAFE_INTEGER)
+
+// int truncates a numeric value, wrapping signed values at an explicit width.
+export function int(value: number | bigint | string, bits = 0): number {
+  // A finite number of a narrow width wraps with the bitwise operators.
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    // The JavaScript bitwise operators truncate a finite number and wrap it to
+    // 32 bits as Go's conversions do.
+    if (bits === 32) {
+      return value | 0
+    }
+    if (bits === 16) {
+      return (value << 16) >> 16
+    }
+    if (bits === 8) {
+      return (value << 24) >> 24
+    }
+  }
+  if (typeof value === 'string') {
+    value = BigInt(value)
+  }
+  if (typeof value === 'bigint') {
+    if (bits > 0 && bits <= 64) {
+      return Number(BigInt.asIntN(bits, value))
+    }
+    return Number(value)
+  }
+  if (bits > 0 && bits < 64) {
+    const modulo = 2 ** bits
+    const sign = 2 ** (bits - 1)
+    let truncated = Math.trunc(value)
+    if (!Number.isFinite(truncated)) {
+      return truncated
+    }
+    truncated %= modulo
+    if (truncated < 0) {
+      truncated += modulo
+    }
+    if (truncated >= sign) {
+      truncated -= modulo
+    }
+    return truncated
+  }
+  return Math.trunc(value)
+}
+
+// uint converts a value to an unsigned Go integer width.
+export function uint(value: number | bigint | string, bits?: number): number
+export function uint(
+  value: number | StringHeaderData,
+  bits?: number,
+): number | StringHeaderData
+export function uint(
+  value: number | bigint | string | StringHeaderData,
+  bits?: number,
+): number | bigint | StringHeaderData
+export function uint(
+  value: number | bigint | string | StringHeaderData,
+  bits = 64,
+): number | bigint | StringHeaderData {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    if (bits === 8) {
+      return value & 0xff
+    }
+    if (bits === 16) {
+      return value & 0xffff
+    }
+    if (bits === 32) {
+      return value >>> 0
+    }
+  }
+  return uintGeneral(value, bits)
+}
+
+// uintGeneral normalizes values outside the common finite-number widths.
+function uintGeneral(
+  value: number | bigint | string | StringHeaderData,
+  bits: number,
+): number | bigint | StringHeaderData {
+  if (typeof value === 'object') {
+    return value
+  }
+  if (typeof value === 'string') {
+    value = BigInt(value)
+  }
+  if (typeof value === 'bigint') {
+    const normalized = BigInt.asUintN(Math.min(bits, 64), value)
+    // Above 2^53 the value cannot round-trip through number, so keep the bigint
+    // to preserve full 64-bit width; uint arithmetic routes through the
+    // int64*/uint64* helpers, which accept number | bigint.
+    if (bits >= 64 && normalized > maxSafeUintBigInt) {
+      return normalized
+    }
+    return Number(normalized)
+  }
+  if (!Number.isFinite(value)) {
+    return value
+  }
+  if (bits >= 64) {
+    const truncated = Math.trunc(value)
+    if (truncated >= 0 && truncated <= Number.MAX_SAFE_INTEGER) {
+      return truncated
+    }
+    // Out of safe range: normalize through bigint and keep full width.
+    return uint(BigInt(truncated), 64)
+  }
+  const modulo = 2 ** bits
+  let truncated = Math.trunc(value)
+  truncated %= modulo
+  if (truncated < 0) {
+    truncated += modulo
+  }
+  return truncated
+}
+
+// genericConvert converts a value to the named type argument, as in the Go
+// conversion T(x) where T is a type parameter. A numeric value takes the
+// representation and width of the type argument's underlying basic type,
+// such as a bigint for int64; any other value is unchanged.
+export function genericConvert<T>(
+  typeArgs: GenericTypeArgs | undefined,
+  name: string,
+  value: unknown,
+): T {
+  const type = typeArgs?.[name]?.type
+  const info = resolveTypeInfo(type)
+  if (
+    info?.kind !== TypeKind.Basic ||
+    (typeof value !== 'number' && typeof value !== 'bigint')
+  ) {
+    return value as T
+  }
+  switch (info.name) {
+    case 'int64':
+      return int64(value) as T
+    case 'uint64':
+    case 'uintptr':
+      return uint64(value) as T
+    case 'int8':
+      return int(value, 8) as T
+    case 'int16':
+      return int(value, 16) as T
+    case 'int32':
+    case 'rune':
+      return int(value, 32) as T
+    case 'int':
+      return int(value) as T
+    case 'uint8':
+    case 'byte':
+      return uint(value, 8) as T
+    case 'uint16':
+      return uint(value, 16) as T
+    case 'uint32':
+      return uint(value, 32) as T
+    case 'uint':
+      return uint(value, 64) as T
+    case 'float32':
+      return float32(value) as T
+    case 'float64':
+      return Number(value) as T
+    default:
+      return value as T
+  }
+}
+
+// int64 converts a value to a Go int64, preserving the full 64-bit range as a
+// bigint with two's-complement wraparound. int64 and uint64 are the Go types
+// GoScript represents as TypeScript bigint; narrower ints stay number.
+export function int64(value: number | bigint | string): bigint {
+  if (typeof value === 'string') {
+    value = BigInt(value)
+  }
+  return int64Result(int64Value(value))
+}
+
+// uint64 converts a value to a Go uint64, preserving the full 64-bit range as a
+// bigint with modular wraparound.
+export function uint64(value: number | bigint | string): bigint {
+  if (typeof value === 'string') {
+    value = BigInt(value)
+  }
+  return uint64Result(uint64Value(value))
+}
+
+// wideShiftAmount converts a Go shift count into the JavaScript bigint domain.
+// Only counts below 64 can affect a 64-bit result, so Number preserves every
+// behaviorally relevant count exactly before the bigint shift.
+function wideShiftAmount(shift: number | bigint): bigint {
+  return BigInt(Math.trunc(Number(shift)))
+}
+
+export function uint64Shl(
+  value: number | bigint,
+  shift: number | bigint,
+): bigint {
+  return uint64Result(uint64Value(value) << wideShiftAmount(shift))
+}
+
+export function uint64Shr(
+  value: number | bigint,
+  shift: number | bigint,
+): bigint {
+  return uint64Value(value) >> wideShiftAmount(shift)
+}
+
+export function int64Shl(
+  value: number | bigint,
+  shift: number | bigint,
+): bigint {
+  return int64Result(int64Value(value) << wideShiftAmount(shift))
+}
+
+export function int64Shr(
+  value: number | bigint,
+  shift: number | bigint,
+): bigint {
+  return int64Result(int64Value(value) >> wideShiftAmount(shift))
+}
+
+export function uintShr(
+  value: number | bigint,
+  shift: number | bigint,
+  bits = 32,
+): number {
+  const width = Math.min(bits, 32)
+  const amount = Math.trunc(Number(shift))
+  if (amount < 0) {
+    runtimePanic('runtime error: negative shift amount')
+  }
+  if (amount >= width) {
+    return 0
+  }
+  return Number(uint(value, width)) >>> amount
+}
+
+export function uint64Mul(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return uint64Result(uint64Value(left) * uint64Value(right))
+}
+
+export function int64Mul(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return int64Result(int64Value(left) * int64Value(right))
+}
+
+export function uint64Div(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  const divisor = uint64Value(right)
+  if (divisor === 0n) {
+    runtimePanic('runtime error: integer divide by zero')
+  }
+  return uint64Result(uint64Value(left) / divisor)
+}
+
+export function int64Div(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  const divisor = int64Value(right)
+  if (divisor === 0n) {
+    runtimePanic('runtime error: integer divide by zero')
+  }
+  return int64Result(int64Value(left) / divisor)
+}
+
+export function uint64Mod(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  const divisor = uint64Value(right)
+  if (divisor === 0n) {
+    runtimePanic('runtime error: integer divide by zero')
+  }
+  return uint64Result(uint64Value(left) % divisor)
+}
+
+export function int64Mod(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  const divisor = int64Value(right)
+  if (divisor === 0n) {
+    runtimePanic('runtime error: integer divide by zero')
+  }
+  return int64Result(int64Value(left) % divisor)
+}
+
+export function uint64Add(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return uint64Result(uint64Value(left) + uint64Value(right))
+}
+
+export function int64Add(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return int64Result(int64Value(left) + int64Value(right))
+}
+
+export function uint64Sub(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return uint64Result(uint64Value(left) - uint64Value(right))
+}
+
+export function int64Sub(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return int64Result(int64Value(left) - int64Value(right))
+}
+
+export function uint64And(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return uint64Result(uint64Value(left) & uint64Value(right))
+}
+
+export function int64And(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return int64Result(int64Value(left) & int64Value(right))
+}
+
+export function uint64AndNot(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return uint64Result(uint64Value(left) & ~uint64Value(right))
+}
+
+export function int64AndNot(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return int64Result(int64Value(left) & ~int64Value(right))
+}
+
+export function uint64Or(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return uint64Result(uint64Value(left) | uint64Value(right))
+}
+
+export function int64Or(left: number | bigint, right: number | bigint): bigint {
+  return int64Result(int64Value(left) | int64Value(right))
+}
+
+export function uint64Xor(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return uint64Result(uint64Value(left) ^ uint64Value(right))
+}
+
+export function int64Xor(
+  left: number | bigint,
+  right: number | bigint,
+): bigint {
+  return int64Result(int64Value(left) ^ int64Value(right))
+}
+
+function int64Value(value: number | bigint): bigint {
+  if (typeof value === 'bigint') {
+    if (value >= -0x8000000000000000n && value <= 0x7fffffffffffffffn) {
+      return value
+    }
+    return BigInt.asIntN(64, value)
+  }
+  if (Number.isFinite(value)) {
+    const truncated = Math.trunc(value)
+    if (
+      truncated >= Number.MIN_SAFE_INTEGER &&
+      truncated <= Number.MAX_SAFE_INTEGER
+    ) {
+      return BigInt(truncated)
+    }
+  }
+  return BigInt.asIntN(64, BigInt(Math.trunc(value)))
+}
+
+function int64Result(value: bigint): bigint {
+  if (value >= -0x8000000000000000n && value <= 0x7fffffffffffffffn) {
+    return value
+  }
+  return BigInt.asIntN(64, value)
+}
+
+function uint64Value(value: number | bigint): bigint {
+  if (typeof value === 'bigint') {
+    if (value >= 0n && value <= maxUint64BigInt) {
+      return value
+    }
+    return BigInt.asUintN(64, value)
+  }
+  if (Number.isFinite(value)) {
+    const truncated = Math.trunc(value)
+    if (truncated >= 0 && truncated <= Number.MAX_SAFE_INTEGER) {
+      return BigInt(truncated)
+    }
+  }
+  return BigInt.asUintN(64, BigInt(Math.trunc(value)))
+}
+
+function uint64Result(value: bigint): bigint {
+  if (value >= 0n && value <= maxUint64BigInt) {
+    return value
+  }
+  return BigInt.asUintN(64, value)
+}
+
+/**
+ * normalizeBytes preserves byte arrays and converts number arrays or data fields.
+ * Null inputs produce an empty byte array; unsupported inputs throw.
+ */
+export function normalizeBytes(
+  bytes:
+    | Uint8Array
+    | number[]
+    | SliceProxy<number>
+    | null
+    | undefined
+    | { data: number[] },
+): Uint8Array {
+  // Nil is empty, and a byte array is kept as it is.
+  if (bytes === null || bytes === undefined) {
+    return new Uint8Array(0)
+  }
+  if (bytes instanceof Uint8Array) {
+    return bytes
+  }
+
+  // An object with a data array copies the data.
+  if (
+    bytes &&
+    typeof bytes === 'object' &&
+    'data' in bytes &&
+    isArrayOrGoSlice(bytes.data)
+  ) {
+    return new Uint8Array(bytes.data)
+  }
+
+  // An array or a window copies its elements.
+  if (Array.isArray(bytes)) {
+    return new Uint8Array(bytes)
+  }
+  if (bytes instanceof GoSlice) {
+    return new Uint8Array(bytes.window())
+  }
+
+  // Nothing else holds bytes.
+  throw new Error(`Cannot normalize bytes of type ${typeof bytes}: ${bytes}`)
+}
+
+/**
+ * sortSlice sorts the current backing window in ascending order.
+ */
+export function sortSlice<T extends string | number | bigint>(
+  s: Slice<T>,
+): void {
+  if (s === null || s === undefined) {
+    return
+  }
+
+  // SliceProxy targets are arrays too, so handle metadata-backed slices before
+  // the plain Array path. Sorting the sparse proxy target would leave backing
+  // storage unchanged.
+  if (isSliceProxy(s)) {
+    const proxy = s as SliceProxy<T>
+    const meta = proxy.__meta__
+    const section = meta.backing.slice(meta.offset, meta.offset + meta.length)
+    section.sort(ascendingOrdered)
+    for (let i = 0; i < section.length; i++) {
+      meta.backing[meta.offset + i] = section[i]
+    }
+    return
+  }
+
+  if (isArrayOrGoSlice(s)) {
+    s.sort(ascendingOrdered)
+    return
+  }
+
+  if (s instanceof Uint8Array) {
+    s.sort()
+    return
+  }
+}
+
+// ascendingOrdered compares two ordered values for an ascending sort. Numbers
+// and bigints order numerically (the default Array.sort would order them
+// lexically by string form); strings order lexically.
+function ascendingOrdered<T extends string | number | bigint>(
+  a: T,
+  b: T,
+): number {
+  if (a < b) {
+    return -1
+  }
+  if (a > b) {
+    return 1
+  }
+  return 0
+}
+
+/**
+ * bytesEqual compares byte values across slice representations.
+ */
+export function bytesEqual(a: Bytes | null, b: Bytes | null): boolean {
+  if (a === b) return true
+
+  const aLen = a === null ? 0 : bytesLen(a)
+  const bLen = b === null ? 0 : bytesLen(b)
+  if (aLen !== bLen) return false
+  if (aLen === 0) return true
+
+  for (let i = 0; i < aLen; i++) {
+    if (byteAt(a as ByteData, i) !== byteAt(b as ByteData, i)) return false
+  }
+
+  return true
+}
+
+/**
+ * bytesCompare compares two byte slices lexicographically.
+ * Returns -1 if a < b, 0 if a == b, +1 if a > b.
+ */
+export function bytesCompare(a: Bytes | null, b: Bytes | null): number {
+  if (a === null && b === null) return 0
+  if (a === null) return -1
+  if (b === null) return 1
+
+  const aLen = bytesLen(a)
+  const bLen = bytesLen(b)
+  const minLen = Math.min(aLen, bLen)
+
+  for (let i = 0; i < minLen; i++) {
+    const av = byteAt(a, i)
+    const bv = byteAt(b, i)
+    if (av < bv) return -1
+    if (av > bv) return 1
+  }
+
+  if (aLen < bLen) return -1
+  if (aLen > bLen) return 1
+  return 0
+}
+
+function bytesLen(bytes: ByteData): number {
+  if (bytes instanceof Uint8Array) {
+    return bytes.length
+  }
+  if (isSliceProxy(bytes)) {
+    return (bytes as SliceProxy<number>).__meta__.length
+  }
+  return bytes.length
+}
+
+function byteAt(bytes: ByteData, index: number): number {
+  if (bytes instanceof Uint8Array || Array.isArray(bytes)) {
+    return bytes[index] ?? 0
+  }
+  const meta = (bytes as SliceProxy<number>).__meta__
+  return meta.backing[meta.offset + index] ?? 0
+}
+
+/**
+ * bytesToArray converts any Bytes representation to a number array.
+ */
+export function bytesToArray(bytes: Bytes | null): number[] {
+  bytes = bytesValue(bytes) as Bytes | null
+  if (bytes === null) return []
+
+  if (bytes instanceof Uint8Array) {
+    return Array.from(bytes)
+  }
+
+  if (isSliceProxy(bytes)) {
+    const proxy = bytes as SliceProxy<number>
+    const meta = proxy.__meta__
+    return meta.backing.slice(meta.offset, meta.offset + meta.length)
+  }
+
+  if (isArrayOrGoSlice(bytes)) {
+    return bytes
+  }
+
+  throw new Error(`Cannot convert bytes of type ${typeof bytes} to array`)
+}
+
+/**
+ * bytesToUint8Array converts any Bytes representation to a Uint8Array.
+ */
+export function bytesToUint8Array(bytes: Bytes | null): Uint8Array {
+  bytes = bytesValue(bytes) as Bytes | null
+  if (bytes === null) return new Uint8Array(0)
+
+  if (bytes instanceof Uint8Array) {
+    if ((bytes as Uint8Array & { __meta__?: unknown }).__meta__ !== undefined) {
+      return bytes.subarray(0)
+    }
+    return bytes
+  }
+
+  return new Uint8Array(bytesToArray(bytes))
+}
+
+function bytesValue(value: unknown): unknown {
+  if (isVarRef(value)) {
+    return bytesValue(value.value)
+  }
+  if (
+    typeof value === 'object' &&
+    value !== null &&
+    typeof (value as { __goType?: unknown }).__goType === 'string' &&
+    '__goValue' in value
+  ) {
+    return bytesValue((value as { __goValue: unknown }).__goValue)
+  }
+  return value
+}
+
+// ByteView is a window of bytes in a backing array, which the byte search
+// functions read in place instead of copying the bytes to an array.
+interface ByteView {
+  data: ArrayLike<number>
+  off: number
+  len: number
+}
+
+const emptyByteView: ByteView = { data: [], off: 0, len: 0 }
+
+// byteView returns the view of the given bytes, without copying them.
+function byteView(bytes: Bytes | null): ByteView {
+  // A slice of a named byte type is read as its bytes.
+  bytes = bytesValue(bytes) as Bytes | null
+  if (bytes === null) return emptyByteView
+  if (bytes instanceof Uint8Array) {
+    return { data: bytes, off: 0, len: bytes.length }
+  }
+  if (isSliceProxy(bytes)) {
+    const meta = (bytes as SliceProxy<number>).__meta__
+    return { data: meta.backing, off: meta.offset, len: meta.length }
+  }
+  if (isArrayOrGoSlice(bytes)) {
+    return { data: bytes, off: 0, len: bytes.length }
+  }
+  throw new Error(`Cannot convert bytes of type ${typeof bytes} to array`)
+}
+
+// byteViewMatches reports whether the needle occurs in the haystack at the
+// given position, which must leave room for the whole needle.
+function byteViewMatches(h: ByteView, pos: number, n: ByteView): boolean {
+  // The backing arrays are read directly.
+  const hd = h.data
+  const nd = n.data
+  const ho = h.off + pos
+  for (let j = 0; j < n.len; j++) {
+    if (hd[ho + j] !== nd[n.off + j]) {
+      return false
+    }
+  }
+  return true
+}
+
+/**
+ * bytesIndexOf finds the first occurrence of subslice in bytes.
+ * Returns -1 if not found.
+ */
+export function bytesIndexOf(
+  bytes: Bytes | null,
+  subslice: Bytes | null,
+): number {
+  if (bytes === null || subslice === null) return -1
+
+  // The search reads both byte sequences in place.
+  const haystack = byteView(bytes)
+  const needle = byteView(subslice)
+
+  // An empty needle matches at the start, and a single byte has a fast path.
+  if (needle.len === 0) return 0
+  if (needle.len > haystack.len) return -1
+  if (needle.len === 1) {
+    return bytesIndexByteView(haystack, needle.data[needle.off])
+  }
+
+  // A position is tried only when its first byte matches.
+  const first = needle.data[needle.off]
+  const hd = haystack.data
+  for (let i = 0; i <= haystack.len - needle.len; i++) {
+    if (
+      hd[haystack.off + i] === first &&
+      byteViewMatches(haystack, i, needle)
+    ) {
+      return i
+    }
+  }
+
+  return -1
+}
+
+/**
+ * bytesLastIndexOf finds the last occurrence of subslice in bytes.
+ * Returns -1 if not found.
+ */
+export function bytesLastIndexOf(
+  bytes: Bytes | null,
+  subslice: Bytes | null,
+): number {
+  if (bytes === null || subslice === null) return -1
+
+  // The search reads both byte sequences in place.
+  const haystack = byteView(bytes)
+  const needle = byteView(subslice)
+
+  // An empty needle matches at the end.
+  if (needle.len === 0) return haystack.len
+  if (needle.len > haystack.len) return -1
+
+  // The last match is the first one found scanning backwards.
+  for (let i = haystack.len - needle.len; i >= 0; i--) {
+    if (byteViewMatches(haystack, i, needle)) return i
+  }
+
+  return -1
+}
+
+// bytesIndexByteView returns the index of the first byte c in the view.
+function bytesIndexByteView(v: ByteView, c: number): number {
+  // A Uint8Array is searched natively.
+  const d = v.data
+  if (d instanceof Uint8Array) {
+    return d.subarray(v.off, v.off + v.len).indexOf(c)
+  }
+
+  // Any other backing array is scanned.
+  const end = v.off + v.len
+  for (let i = v.off; i < end; i++) {
+    if (d[i] === c) return i - v.off
+  }
+  return -1
+}
+
+/**
+ * bytesIndexByte finds the first occurrence of byte c in bytes.
+ * Returns -1 if not found.
+ */
+export function bytesIndexByte(bytes: Bytes | null, c: number): number {
+  if (bytes === null) return -1
+  return bytesIndexByteView(byteView(bytes), c)
+}
+
+/**
+ * bytesLastIndexByte finds the last occurrence of byte c in bytes.
+ * Returns -1 if not found.
+ */
+export function bytesLastIndexByte(bytes: Bytes | null, c: number): number {
+  if (bytes === null) return -1
+
+  // The backing array is scanned from the end of the window.
+  const v = byteView(bytes)
+  const d = v.data
+  for (let i = v.off + v.len - 1; i >= v.off; i--) {
+    if (d[i] === c) return i - v.off
+  }
+  return -1
+}
+
+/**
+ * bytesCount counts non-overlapping instances of sep in bytes.
+ */
+export function bytesCount(bytes: Bytes | null, sep: Bytes | null): number {
+  if (bytes === null || sep === null) return 0
+
+  // The search reads both byte sequences in place.
+  const haystack = byteView(bytes)
+  const needle = byteView(sep)
+
+  // An empty separator counts the positions between bytes.
+  if (needle.len === 0) {
+    // Empty separators count byte positions, including both ends.
+    return haystack.len + 1
+  }
+
+  // Matches do not overlap, so the scan skips past each one.
+  let count = 0
+  let pos = 0
+  while (pos <= haystack.len - needle.len) {
+    if (byteViewMatches(haystack, pos, needle)) {
+      count++
+      pos += needle.len
+    } else {
+      pos++
+    }
+  }
+
+  return count
+}
+
+// min Math functions needed by various packages. Generic over number and bigint so
+// the Go builtins min/max work for int64/uint64 operands as well; number keeps
+// Math.min/Math.max NaN semantics.
+export function min<T extends number | bigint>(a: T, b: T): T {
+  // Check both operands: Math.min throws on any bigint argument, so a mixed
+  // number/bigint pair (from inconsistent int64/uint64 lowering of the same Go
+  // type) must take the relational path. JS relational operators compare bigint
+  // and number across types, and integers have no NaN to preserve.
+  if (typeof a === 'bigint' || typeof b === 'bigint') {
+    return (a as bigint) < (b as bigint) ? a : b
+  }
+  return Math.min(a as number, b as number) as T
+}
+
+export function max<T extends number | bigint>(a: T, b: T): T {
+  // See min: route any bigint operand through relational comparison; keep
+  // Math.max only for the pure-number case so Go float NaN semantics survive.
+  if (typeof a === 'bigint' || typeof b === 'bigint') {
+    return (a as bigint) > (b as bigint) ? a : b
+  }
+  return Math.max(a as number, b as number) as T
+}
+
+/**
+ * runeOrStringToString preserves strings and encodes numeric Unicode scalars.
+ */
+export function runeOrStringToString(runeOrString: number | string): string {
+  if (typeof runeOrString === 'string') {
+    return runeOrString
+  }
+  return runeToString(runeOrString)
+}

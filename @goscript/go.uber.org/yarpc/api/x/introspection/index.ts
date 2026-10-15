@@ -1,0 +1,11 @@
+export type { IntrospectableChooser } from "./chooser.gs.ts"
+export type { IntrospectableInbound } from "./inbound.gs.ts"
+export type { IntrospectableOutbound } from "./outbound.gs.ts"
+export { ChooserStatus, PeerStatus } from "./chooser.gs.ts"
+export { InboundStatus } from "./inbound.gs.ts"
+export { OutboundStatus, OutboundStatusNotSupported, __goscript_get_OutboundStatusNotSupported, __goscript_init_OutboundStatusNotSupported, __goscript_set_OutboundStatusNotSupported } from "./outbound.gs.ts"
+import "./chooser.gs.ts"
+import "./inbound.gs.ts"
+import "./outbound.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()

@@ -1,0 +1,8 @@
+export type { BufferPool } from "./reverseproxy.gs.ts"
+export type { neverEnding } from "./dump.gs.ts"
+export { ClientConn, ErrClosed, ErrPersistEOF, ErrPipeline, NewClientConn, NewProxyClientConn, NewServerConn, ServerConn, __goscript_set_ErrClosed, __goscript_set_ErrPersistEOF, __goscript_set_ErrPipeline } from "./persist.gs.ts"
+export { DumpRequest, DumpRequestOut, DumpResponse, delegateReader, dumpConn, failureToReadBody, neverEnding_Read } from "./dump.gs.ts"
+export { ErrLineTooLong, NewChunkedReader, NewChunkedWriter, __goscript_set_ErrLineTooLong } from "./httputil.gs.ts"
+export { NewSingleHostReverseProxy, ProxyRequest, ReverseProxy, maxLatencyWriter, switchProtocolCopier } from "./reverseproxy.gs.ts"
+import "./dump.gs.ts"
+import "./reverseproxy.gs.ts"

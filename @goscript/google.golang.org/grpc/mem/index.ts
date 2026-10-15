@@ -1,0 +1,11 @@
+export type { Buffer, SliceBuffer } from "./buffers.gs.ts"
+export type { BufferPool } from "./buffer_pool.gs.ts"
+export type { BufferSlice, Reader } from "./buffer_slice.gs.ts"
+export { BufferSlice_CopyTo, BufferSlice_Free, BufferSlice_Len, BufferSlice_Materialize, BufferSlice_MaterializeToBuffer, BufferSlice_Reader, BufferSlice_Ref, NewWriter, sliceReader, writer } from "./buffer_slice.gs.ts"
+export { Copy, IsBelowBufferPoolingThreshold, NewBuffer, ReadUnsafe, SliceBuffer_Free, SliceBuffer_Len, SliceBuffer_ReadOnlyData, SliceBuffer_Ref, SliceBuffer_read, SliceBuffer_split, SplitUnsafe, buffer, emptyBuffer } from "./buffers.gs.ts"
+export { DefaultBufferPool, NewTieredBufferPool, NopBufferPool, simpleBufferPool, sizedBufferPool, tieredBufferPool } from "./buffer_pool.gs.ts"
+import "./buffer_pool.gs.ts"
+import "./buffer_slice.gs.ts"
+import "./buffers.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()

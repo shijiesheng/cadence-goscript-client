@@ -1,0 +1,345 @@
+import * as $ from "@goscript/builtin/index.js";
+import { ErrUnimplemented } from "./error.gs.js";
+import { callbackFSErr, callbackFSInvoke, callbackFSResult, createFileInfo, createHostFile, File, getDeno, getNodeFS, getPlatform, newHostError } from "./types_js.gs.js";
+import { callbackFSPath, getCallbackFS, type CallbackStat } from "./callbackfs.js";
+import { O_APPEND, O_CREATE, O_EXCL, O_RDONLY, O_RDWR, O_SYNC, O_TRUNC, O_WRONLY } from "./file_constants_js.gs.js";
+import { FileInfoToDirEntry } from "@goscript/io/fs/readdir.js"
+
+import * as fs from "@goscript/io/fs/index.js"
+
+function getDevNullPath(): string {
+	return getPlatform() === "win32" ? "NUL" : "/dev/null"
+}
+
+function openOptionsFromFlags(flag: number): {
+	append: boolean
+	create: boolean
+	createNew: boolean
+	read: boolean
+	truncate: boolean
+	write: boolean
+} {
+	const readWrite = (flag & O_RDWR) !== 0
+	const writeOnly = !readWrite && (flag & O_WRONLY) !== 0
+	const write = readWrite || writeOnly
+	const read = readWrite || !writeOnly
+	return {
+		append: (flag & O_APPEND) !== 0,
+		create: (flag & O_CREATE) !== 0,
+		createNew: (flag & O_CREATE) !== 0 && (flag & O_EXCL) !== 0,
+		read,
+		truncate: (flag & O_TRUNC) !== 0,
+		write,
+	}
+}
+
+// DevNull Device null path for the host platform.
+export const DevNull = getDevNullPath()
+
+const standardInputFD = 0
+const standardOutputFD = 1
+const standardErrorFD = 2
+
+// Stdin, Stdout, and Stderr expose the host process standard streams.
+// They are variables in Go, so programs may replace them.
+export let Stdin: File | null = NewFile(standardInputFD, "/dev/stdin")
+export let Stdout: File | null = NewFile(standardOutputFD, "/dev/stdout")
+export let Stderr: File | null = NewFile(standardErrorFD, "/dev/stderr")
+
+export function __goscript_set_Stdin(value: File | $.VarRef<File> | null): void {
+	Stdin = $.pointerValueOrNil(value)
+}
+
+export function __goscript_set_Stdout(value: File | $.VarRef<File> | null): void {
+	Stdout = $.pointerValueOrNil(value)
+}
+
+export function __goscript_set_Stderr(value: File | $.VarRef<File> | null): void {
+	Stderr = $.pointerValueOrNil(value)
+}
+
+// NewFile creates a File from a file descriptor.
+export function NewFile(fd: number, name: string): File | null {
+	if (!Number.isInteger(fd) || fd < 0) {
+		return null
+	}
+	return createHostFile(name, fd)
+}
+
+export async function Remove(name: string): Promise<$.GoError> {
+	const denoObj = getDeno()
+	if (denoObj?.removeSync) {
+		try {
+			denoObj.removeSync(name)
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	const nodeFS = getNodeFS()
+	if (nodeFS?.rmSync) {
+		try {
+			nodeFS.rmSync(name)
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	if (nodeFS?.unlinkSync) {
+		try {
+			nodeFS.unlinkSync(name)
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	if (getCallbackFS() !== null) {
+		// Remove a file, or else an empty directory, as Go does on Unix.
+		const err = await callbackFSErr("unlink", name)
+		if (err === null) {
+			return null
+		}
+		const dirErr = await callbackFSErr("rmdir", name)
+		return dirErr === null ? null : err
+	}
+	return ErrUnimplemented
+}
+
+export async function Link(oldname: string, newname: string): Promise<$.GoError> {
+	const denoObj = getDeno()
+	if (denoObj?.linkSync) {
+		try {
+			denoObj.linkSync(oldname, newname)
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	const nodeFS = getNodeFS()
+	if (nodeFS?.linkSync) {
+		try {
+			nodeFS.linkSync(oldname, newname)
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	if (getCallbackFS() !== null) {
+		return callbackFSErr("link", oldname, callbackFSPath(newname))
+	}
+	return ErrUnimplemented
+}
+
+export async function Symlink(oldname: string, newname: string): Promise<$.GoError> {
+	const denoObj = getDeno()
+	if (denoObj?.symlinkSync) {
+		try {
+			denoObj.symlinkSync(oldname, newname)
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	const nodeFS = getNodeFS()
+	if (nodeFS?.symlinkSync) {
+		try {
+			nodeFS.symlinkSync(oldname, newname)
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	if (getCallbackFS() !== null) {
+		// The link target is stored as given, so it is not resolved.
+		const [, err] = await callbackFSInvoke("symlink", oldname, callbackFSPath(newname))
+		return err
+	}
+	return ErrUnimplemented
+}
+
+export async function Truncate(name: string, size: bigint): Promise<$.GoError> {
+	const denoObj = getDeno()
+	if (denoObj?.truncateSync) {
+		try {
+			denoObj.truncateSync(name, Number(size))
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	const nodeFS = getNodeFS()
+	if (nodeFS?.truncateSync) {
+		try {
+			nodeFS.truncateSync(name, Number(size))
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	return callbackFSErr("truncate", name, Number(size))
+}
+
+export async function rename(oldname: string, newname: string): Promise<$.GoError> {
+	const denoObj = getDeno()
+	if (denoObj?.renameSync) {
+		try {
+			denoObj.renameSync(oldname, newname)
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	const nodeFS = getNodeFS()
+	if (nodeFS?.renameSync) {
+		try {
+			nodeFS.renameSync(oldname, newname)
+			return null
+		} catch (err) {
+			return newHostError(err)
+		}
+	}
+	return callbackFSErr("rename", oldname, callbackFSPath(newname))
+}
+
+// hostOpenFlags converts Go open flags, which use the Linux values, to the
+// flags of the host, which differ on other platforms such as macOS
+// (where O_TRUNC is 0x400 and 0x200 is O_CREAT).
+function hostOpenFlags(
+	flag: number,
+	constants: Record<string, number> | undefined,
+): number {
+	if (!constants) {
+		return flag
+	}
+	const pairs: [number, string][] = [
+		[O_WRONLY, "O_WRONLY"],
+		[O_RDWR, "O_RDWR"],
+		[O_APPEND, "O_APPEND"],
+		[O_CREATE, "O_CREAT"],
+		[O_EXCL, "O_EXCL"],
+		[O_SYNC, "O_SYNC"],
+		[O_TRUNC, "O_TRUNC"],
+	]
+	let host = constants.O_RDONLY ?? 0
+	for (const [goFlag, name] of pairs) {
+		if ((flag & goFlag) === goFlag && constants[name] !== undefined) {
+			host |= constants[name]
+		}
+	}
+	return host
+}
+
+export async function openFileNolog(name: string, flag: number, perm: number): Promise<[File | null, $.GoError]> {
+	const denoObj = getDeno()
+	if (denoObj?.openSync) {
+		try {
+			const handle = denoObj.openSync(name, {
+				...openOptionsFromFlags(flag),
+				mode: perm,
+			})
+			return [createHostFile(name, handle?.rid ?? -1, handle), null]
+		} catch (err) {
+			return [null, newHostError(err)]
+		}
+	}
+	const nodeFS = getNodeFS()
+	if (nodeFS?.openSync) {
+		try {
+			const fd = nodeFS.openSync(name, hostOpenFlags(flag, nodeFS.constants), perm)
+			return [createHostFile(name, fd), null]
+		} catch (err) {
+			return [null, newHostError(err)]
+		}
+	}
+	const cbfs = getCallbackFS()
+	if (cbfs !== null) {
+		const [fd, err] = await callbackFSResult("open", name, hostOpenFlags(flag, cbfs.constants), perm)
+		if (err !== null) {
+			return [null, err]
+		}
+		const f = createHostFile(name, Number(fd))
+		f.callback = { append: (flag & O_APPEND) !== 0, pos: 0 }
+		return [f, null]
+	}
+	return [null, ErrUnimplemented]
+}
+
+export function openDirNolog(name: string): Promise<[File | null, $.GoError]> {
+	return openFileNolog(name, O_RDONLY, 0)
+}
+
+export async function Readlink(name: string): Promise<[string, $.GoError]> {
+	const denoObj = getDeno()
+	if (denoObj?.readLinkSync) {
+		try {
+			return [denoObj.readLinkSync(name), null]
+		} catch (err) {
+			return ["", newHostError(err)]
+		}
+	}
+	const nodeFS = getNodeFS()
+	if (nodeFS?.readlinkSync) {
+		try {
+			return [nodeFS.readlinkSync(name), null]
+		} catch (err) {
+			return ["", newHostError(err)]
+		}
+	}
+	if (getCallbackFS() !== null) {
+		const [target, err] = await callbackFSResult("readlink", name)
+		return err !== null ? ["", err] : [String(target), null]
+	}
+	return ["", ErrUnimplemented]
+}
+
+export function fixLongPath(path: string): string {
+	return path
+}
+
+export function sigpipe(): void {
+	// No-op in JavaScript
+}
+
+export function epipecheck(file: File | null, e: $.GoError): void {
+	// No-op in JavaScript  
+}
+
+export interface dirInfo {
+	close(): void
+}
+
+export function net_newUnixFile(fd: number, name: string): File | null {
+	return NewFile(fd, name)
+}
+
+// newFileKind File kind enum for compatibility.
+export type newFileKind = number
+
+export function newFile(fd: number, name: string, _kind: newFileKind, _nonBlocking: boolean): File | null {
+	return NewFile(fd, name)
+}
+
+export async function newUnixDirent(parent: string, name: string, _typ: number): Promise<[fs.DirEntry | null, $.GoError]> {
+	const fullName = parent === "" || parent === "." ? name : parent.replace(/\/+$/, "") + "/" + name
+	const denoObj = getDeno()
+	if (denoObj?.lstatSync) {
+		try {
+			return [FileInfoToDirEntry(createFileInfo(name, denoObj.lstatSync(fullName))), null]
+		} catch (err) {
+			return [null, newHostError(err)]
+		}
+	}
+	const nodeFS = getNodeFS()
+	if (nodeFS?.lstatSync) {
+		try {
+			return [FileInfoToDirEntry(createFileInfo(name, nodeFS.lstatSync(fullName))), null]
+		} catch (err) {
+			return [null, newHostError(err)]
+		}
+	}
+	if (getCallbackFS() !== null) {
+		const [stat, err] = await callbackFSResult("lstat", fullName)
+		return err !== null ? [null, err] : [FileInfoToDirEntry(createFileInfo(name, stat as CallbackStat)), null]
+	}
+	return [null, ErrUnimplemented]
+} 

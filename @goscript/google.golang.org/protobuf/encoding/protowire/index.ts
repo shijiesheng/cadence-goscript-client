@@ -1,0 +1,3 @@
+export type { Number, Type } from "./wire.gs.ts"
+export { AppendBytes, AppendFixed32, AppendFixed64, AppendGroup, AppendString, AppendTag, AppendVarint, BytesType, ConsumeBytes, ConsumeField, ConsumeFieldValue, ConsumeFixed32, ConsumeFixed64, ConsumeGroup, ConsumeString, ConsumeTag, ConsumeVarint, DecodeBool, DecodeTag, DecodeZigZag, DefaultRecursionLimit, EncodeBool, EncodeTag, EncodeZigZag, EndGroupType, FirstReservedNumber, Fixed32Type, Fixed64Type, LastReservedNumber, MaxValidNumber, MinValidNumber, Number_IsValid, ParseError, SizeBytes, SizeFixed32, SizeFixed64, SizeGroup, SizeTag, SizeVarint, StartGroupType, VarintType } from "./wire.gs.ts"
+import "./wire.gs.ts"

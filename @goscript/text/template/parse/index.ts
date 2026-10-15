@@ -1,0 +1,10 @@
+export type { Mode } from "./parse.gs.ts"
+export type { Node, NodeType, Pos } from "./node.gs.ts"
+export type { itemType, stateFn } from "./lex.gs.ts"
+export { ActionNode, BoolNode, BranchNode, BreakNode, ChainNode, CommandNode, CommentNode, ContinueNode, DotNode, FieldNode, IdentifierNode, IfNode, ListNode, NewIdentifier, NilNode, NodeAction, NodeBool, NodeBreak, NodeChain, NodeCommand, NodeComment, NodeContinue, NodeDot, NodeField, NodeIdentifier, NodeIf, NodeList, NodeNil, NodeNumber, NodePipe, NodeRange, NodeString, NodeTemplate, NodeText, NodeType_Type, NodeVariable, NodeWith, NumberNode, PipeNode, Pos_Position, RangeNode, StringNode, TemplateNode, TextNode, VariableNode, WithNode, elseNode, endNode } from "./node.gs.ts"
+export { IsEmptyTree, New, Parse, ParseComments, SkipFuncCheck, Tree } from "./parse.gs.ts"
+export { item, lexOptions, lexer } from "./lex.gs.ts"
+import "./node.gs.ts"
+import "./parse.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()

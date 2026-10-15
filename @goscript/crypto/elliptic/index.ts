@@ -1,0 +1,9 @@
+export type { Curve, unmarshaler } from "./elliptic.gs.ts"
+export type { nistPoint } from "./nistec.gs.ts"
+export { CurveParams } from "./params.gs.ts"
+export { GenerateKey, Marshal, MarshalCompressed, P224, P256, P384, P521, Unmarshal, UnmarshalCompressed } from "./elliptic.gs.ts"
+export { nistCurve } from "./nistec.gs.ts"
+import "./elliptic.gs.ts"
+import "./nistec.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()

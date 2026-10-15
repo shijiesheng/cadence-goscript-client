@@ -1,0 +1,7 @@
+export type { DepthLoggerV2, LoggerV2 } from "./loggerv2.gs.ts"
+export type { Logger } from "./logger.gs.ts"
+export { DepthLoggerV2Impl, LoggerV2Impl, __goscript_set_DepthLoggerV2Impl, __goscript_set_LoggerV2Impl } from "./grpclog.gs.ts"
+export { LoggerV2Config, NewLoggerV2, loggerT } from "./loggerv2.gs.ts"
+export { LoggerWrapper } from "./logger.gs.ts"
+import "./logger.gs.ts"
+import "./loggerv2.gs.ts"

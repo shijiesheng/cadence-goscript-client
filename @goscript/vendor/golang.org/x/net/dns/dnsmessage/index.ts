@@ -1,0 +1,6 @@
+export type { Class, OpCode, RCode, ResourceBody, Type, section } from "./message.gs.ts"
+export type { SVCParamKey } from "./svcb.gs.ts"
+export { AAAAResource, AResource, Builder, CNAMEResource, ClassANY, ClassCHAOS, ClassCSNET, ClassHESIOD, ClassINET, Class_GoString, Class_String, ErrNotStarted, ErrSectionDone, Header, MXResource, Message, MustNewName, NSResource, Name, NewBuilder, NewName, OPTResource, OpCode_GoString, Option, PTRResource, Parser, Question, RCodeFormatError, RCodeNameError, RCodeNotImplemented, RCodeRefused, RCodeServerFailure, RCodeSuccess, RCode_GoString, RCode_String, Resource, ResourceHeader, SOAResource, SRVResource, TXTResource, TypeA, TypeAAAA, TypeALL, TypeAXFR, TypeCNAME, TypeHINFO, TypeHTTPS, TypeMINFO, TypeMX, TypeNS, TypeOPT, TypePTR, TypeSOA, TypeSRV, TypeSVCB, TypeTXT, TypeWKS, Type_GoString, Type_String, UnknownResource, __goscript_set_ErrNotStarted, __goscript_set_ErrSectionDone, header, nestedError } from "./message.gs.ts"
+export { HTTPSResource, SVCBResource, SVCParam, SVCParamALPN, SVCParamDOHPath, SVCParamECH, SVCParamIPv4Hint, SVCParamIPv6Hint, SVCParamKey_GoString, SVCParamKey_String, SVCParamMandatory, SVCParamNoDefaultALPN, SVCParamOHTTP, SVCParamPort, SVCParamTLSSupportedGroups } from "./svcb.gs.ts"
+import "./message.gs.ts"
+import "./svcb.gs.ts"

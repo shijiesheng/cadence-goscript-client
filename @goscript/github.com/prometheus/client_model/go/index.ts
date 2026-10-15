@@ -1,0 +1,3 @@
+export type { MetricType } from "./metrics.pb.gs.ts"
+export { Bucket, BucketSpan, Counter, Exemplar, File_io_prometheus_client_metrics_proto, Gauge, Histogram, LabelPair, Metric, MetricFamily, MetricType_COUNTER, MetricType_Descriptor, MetricType_Enum, MetricType_EnumDescriptor, MetricType_GAUGE, MetricType_GAUGE_HISTOGRAM, MetricType_HISTOGRAM, MetricType_Number, MetricType_SUMMARY, MetricType_String, MetricType_Type, MetricType_UNTYPED, MetricType_UnmarshalJSON, MetricType_name, MetricType_value, Quantile, Summary, Untyped, __goscript_set_File_io_prometheus_client_metrics_proto, __goscript_set_MetricType_name, __goscript_set_MetricType_value } from "./metrics.pb.gs.ts"
+import "./metrics.pb.gs.ts"

@@ -1,0 +1,454 @@
+import * as $ from '@goscript/builtin/index.js'
+
+import * as io from '@goscript/io/index.js'
+
+import * as utf8 from '@goscript/unicode/utf8/index.js'
+
+export class Reader {
+  public get s(): string {
+    return this._fields.s
+  }
+  public set s(value: string) {
+    this._fields.s = value
+  }
+
+  // current reading index
+  public get i(): number {
+    return this._fields.i
+  }
+  public set i(value: number) {
+    this._fields.i = value
+  }
+
+  // index of previous rune; or < 0
+  public get prevRune(): number {
+    return this._fields.prevRune
+  }
+  public set prevRune(value: number) {
+    this._fields.prevRune = value
+  }
+
+  public _fields: {
+    s: string
+    i: number
+    prevRune: number
+  }
+
+  constructor(init?: Partial<{ i?: number; prevRune?: number; s?: string }>) {
+    this._fields = {
+      s: init?.s ?? '',
+      i: init?.i ?? 0,
+      prevRune: init?.prevRune ?? 0,
+    }
+  }
+
+  public clone(): Reader {
+    const cloned = new Reader()
+    cloned._fields = {
+      s: this._fields.s,
+      i: this._fields.i,
+      prevRune: this._fields.prevRune,
+    }
+    return cloned
+  }
+
+  // Len returns the number of bytes of the unread portion of the
+  // string.
+  public Len(): number {
+    const r = this
+    if (r!.i >= ($.len(r!.s) as number)) {
+      return 0
+    }
+    return (($.len(r!.s) as number) - r!.i) as number
+  }
+
+  // Size returns the original length of the underlying string.
+  // Size is the number of bytes available for reading via [Reader.ReadAt].
+  // The returned value is always the same and is not affected by calls
+  // to any other method.
+  public Size(): bigint {
+    const r = this
+    return BigInt($.len(r!.s) as number)
+  }
+
+  // Read implements the [io.Reader] interface.
+  public Read(b: $.Bytes): [number, $.GoError] {
+    const r = this
+    if (r!.i >= ($.len(r!.s) as number)) {
+      return [0, io.EOF]
+    }
+    r!.prevRune = -1
+    let n = $.copy(b, $.sliceString(r!.s, r!.i, undefined))
+    r!.i += n as number
+    let err: $.GoError = null
+    return [n, err]
+  }
+
+  // ReadAt implements the [io.ReaderAt] interface.
+  public ReadAt(b: Uint8Array, off: bigint): [number, $.GoError] {
+    const r = this
+    const offset = Number(off)
+    if (offset < 0) {
+      return [0, $.newError('strings.Reader.ReadAt: negative offset')]
+    }
+    if (offset >= ($.len(r!.s) as number)) {
+      return [0, io.EOF]
+    }
+    let n = $.copy(b, $.sliceString(r!.s, offset, undefined))
+    let err: $.GoError = null
+    if (n < $.len(b)) {
+      err = io.EOF
+    }
+    return [n, err]
+  }
+
+  // ReadByte implements the [io.ByteReader] interface.
+  public ReadByte(): [number, $.GoError] {
+    const r = this
+    r!.prevRune = -1
+    if (r!.i >= ($.len(r!.s) as number)) {
+      return [0, io.EOF]
+    }
+    let b = $.indexString(r!.s, r!.i)
+    r!.i++
+    return [b, null]
+  }
+
+  // UnreadByte implements the [io.ByteScanner] interface.
+  public UnreadByte(): $.GoError {
+    const r = this
+    if (r!.i <= 0) {
+      return $.newError('strings.Reader.UnreadByte: at beginning of string')
+    }
+    r!.prevRune = -1
+    r!.i--
+    return null
+  }
+
+  // ReadRune implements the [io.RuneReader] interface.
+  public ReadRune(): [number, number, $.GoError] {
+    const r = this
+    if (r!.i >= ($.len(r!.s) as number)) {
+      r!.prevRune = -1
+      return [0, 0, io.EOF]
+    }
+    r!.prevRune = r!.i as number
+    {
+      let c = $.indexString(r!.s, r!.i)
+      if (c < utf8.RuneSelf) {
+        r!.i++
+        return [c as number, 1, null]
+      }
+    }
+    let ch: number, size: number
+    ;[ch, size] = utf8.DecodeRuneInString($.sliceString(r!.s, r!.i, undefined))
+    r!.i += size as number
+    return [ch, size, null]
+  }
+
+  // UnreadRune implements the [io.RuneScanner] interface.
+  public UnreadRune(): $.GoError {
+    const r = this
+    if (r!.i <= 0) {
+      return $.newError('strings.Reader.UnreadRune: at beginning of string')
+    }
+    if (r!.prevRune < 0) {
+      return $.newError(
+        'strings.Reader.UnreadRune: previous operation was not ReadRune',
+      )
+    }
+    r!.i = r!.prevRune as number
+    r!.prevRune = -1
+    return null
+  }
+
+  // Seek implements the [io.Seeker] interface. offset is a Go int64 (bigint);
+  // the internal read index stays a number for string slicing.
+  public Seek(offset: bigint, whence: number): [bigint, $.GoError] {
+    const r = this
+    r!.prevRune = -1
+    let abs: number
+    switch (whence) {
+      case io.SeekStart:
+        abs = Number(offset)
+        break
+      case io.SeekCurrent:
+        abs = r!.i + Number(offset)
+        break
+      case io.SeekEnd:
+        abs = ($.len(r!.s) as number) + Number(offset)
+        break
+      default:
+        return [0n, $.newError('strings.Reader.Seek: invalid whence')]
+    }
+    if (abs < 0) {
+      return [0n, $.newError('strings.Reader.Seek: negative position')]
+    }
+    r!.i = abs
+    return [BigInt(abs), null]
+  }
+
+  // WriteTo implements the [io.WriterTo] interface.
+  public async WriteTo(w: io.Writer): Promise<[bigint, $.GoError]> {
+    const r = this
+    r!.prevRune = -1
+    if (r!.i >= ($.len(r!.s) as number)) {
+      return [0n, null]
+    }
+    let s = $.sliceString(r!.s, r!.i, undefined)
+    let m: number
+    let err: $.GoError
+    ;[m, err] = await io.WriteString(w, s)
+    if (m > $.len(s)) {
+      $.panic('strings.Reader.WriteTo: invalid WriteString count')
+    }
+    r!.i += m as number
+    let n = BigInt(m as number)
+    if (m != $.len(s) && err == null) {
+      err = io.ErrShortWrite
+    }
+    return [n, err]
+  }
+
+  // Reset resets the [Reader] to be reading from s.
+  public Reset(s: string): void {
+    const r = this
+    r!.s = s
+    r!.i = 0
+    r!.prevRune = -1
+  }
+
+  // Register this type with the runtime type system
+  static __typeInfo = $.registerStructType(
+    'Reader',
+    new Reader(),
+    [
+      {
+        name: 'Len',
+        args: [],
+        returns: [{ type: { kind: $.TypeKind.Basic, name: 'number' } }],
+      },
+      {
+        name: 'Size',
+        args: [],
+        returns: [{ type: { kind: $.TypeKind.Basic, name: 'int64' } }],
+      },
+      {
+        name: 'Read',
+        args: [
+          {
+            name: 'b',
+            type: {
+              kind: $.TypeKind.Slice,
+              elemType: { kind: $.TypeKind.Basic, name: 'number' },
+            },
+          },
+        ],
+        returns: [
+          { type: { kind: $.TypeKind.Basic, name: 'number' } },
+          {
+            type: {
+              kind: $.TypeKind.Interface,
+              name: 'GoError',
+              methods: [
+                {
+                  name: 'Error',
+                  args: [],
+                  returns: [
+                    { type: { kind: $.TypeKind.Basic, name: 'string' } },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        name: 'ReadAt',
+        args: [
+          {
+            name: 'b',
+            type: {
+              kind: $.TypeKind.Slice,
+              elemType: { kind: $.TypeKind.Basic, name: 'number' },
+            },
+          },
+          { name: 'off', type: { kind: $.TypeKind.Basic, name: 'int64' } },
+        ],
+        returns: [
+          { type: { kind: $.TypeKind.Basic, name: 'number' } },
+          {
+            type: {
+              kind: $.TypeKind.Interface,
+              name: 'GoError',
+              methods: [
+                {
+                  name: 'Error',
+                  args: [],
+                  returns: [
+                    { type: { kind: $.TypeKind.Basic, name: 'string' } },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        name: 'ReadByte',
+        args: [],
+        returns: [
+          { type: { kind: $.TypeKind.Basic, name: 'number' } },
+          {
+            type: {
+              kind: $.TypeKind.Interface,
+              name: 'GoError',
+              methods: [
+                {
+                  name: 'Error',
+                  args: [],
+                  returns: [
+                    { type: { kind: $.TypeKind.Basic, name: 'string' } },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        name: 'UnreadByte',
+        args: [],
+        returns: [
+          {
+            type: {
+              kind: $.TypeKind.Interface,
+              name: 'GoError',
+              methods: [
+                {
+                  name: 'Error',
+                  args: [],
+                  returns: [
+                    { type: { kind: $.TypeKind.Basic, name: 'string' } },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        name: 'ReadRune',
+        args: [],
+        returns: [
+          { type: { kind: $.TypeKind.Basic, name: 'number' } },
+          { type: { kind: $.TypeKind.Basic, name: 'number' } },
+          {
+            type: {
+              kind: $.TypeKind.Interface,
+              name: 'GoError',
+              methods: [
+                {
+                  name: 'Error',
+                  args: [],
+                  returns: [
+                    { type: { kind: $.TypeKind.Basic, name: 'string' } },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        name: 'UnreadRune',
+        args: [],
+        returns: [
+          {
+            type: {
+              kind: $.TypeKind.Interface,
+              name: 'GoError',
+              methods: [
+                {
+                  name: 'Error',
+                  args: [],
+                  returns: [
+                    { type: { kind: $.TypeKind.Basic, name: 'string' } },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        name: 'Seek',
+        args: [
+          { name: 'offset', type: { kind: $.TypeKind.Basic, name: 'int64' } },
+          { name: 'whence', type: { kind: $.TypeKind.Basic, name: 'number' } },
+        ],
+        returns: [
+          { type: { kind: $.TypeKind.Basic, name: 'int64' } },
+          {
+            type: {
+              kind: $.TypeKind.Interface,
+              name: 'GoError',
+              methods: [
+                {
+                  name: 'Error',
+                  args: [],
+                  returns: [
+                    { type: { kind: $.TypeKind.Basic, name: 'string' } },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        name: 'WriteTo',
+        args: [{ name: 'w', type: 'Writer' }],
+        returns: [
+          { type: { kind: $.TypeKind.Basic, name: 'int64' } },
+          {
+            type: {
+              kind: $.TypeKind.Interface,
+              name: 'GoError',
+              methods: [
+                {
+                  name: 'Error',
+                  args: [],
+                  returns: [
+                    { type: { kind: $.TypeKind.Basic, name: 'string' } },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        name: 'Reset',
+        args: [{ name: 's', type: { kind: $.TypeKind.Basic, name: 'string' } }],
+        returns: [],
+      },
+    ],
+    Reader,
+    [
+      { name: 's', key: 's', type: { kind: $.TypeKind.Basic, name: 'string' } },
+      { name: 'i', key: 'i', type: { kind: $.TypeKind.Basic, name: 'number' } },
+      {
+        name: 'prevRune',
+        key: 'prevRune',
+        type: { kind: $.TypeKind.Basic, name: 'number' },
+      },
+    ],
+  )
+}
+
+// NewReader returns a new [Reader] reading from s.
+// It is similar to [bytes.NewBufferString] but more efficient and non-writable.
+export function NewReader(s: string): Reader | null {
+  return new Reader({ s: s })
+}

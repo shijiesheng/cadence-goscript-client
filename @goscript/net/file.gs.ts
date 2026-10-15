@@ -1,0 +1,88 @@
+// Generated file based on file.go
+// Updated when compliance tests are re-run, DO NOT EDIT!
+
+import * as $ from "@goscript/builtin/index.js"
+
+import * as os from "@goscript/os/index.js"
+
+import type * as time from "@goscript/time/index.js"
+
+import * as __goscript_file_stub from "./file_stub.gs.ts"
+
+import * as __goscript_net from "./net.gs.ts"
+import "@goscript/os/index.js"
+import "./file_stub.gs.ts"
+import "./net.gs.ts"
+
+export type fileAddr = string
+
+$.registerNamedValueType(
+	"net.fileAddr",
+	{Network: (receiver: any, ...args: any[]) => (fileAddr_Network as any)(($.isVarRef(receiver) ? receiver.value : receiver), ...$.stripGenericTypeArgs(args)), String: (receiver: any, ...args: any[]) => (fileAddr_String as any)(($.isVarRef(receiver) ? receiver.value : receiver), ...$.stripGenericTypeArgs(args))},
+	[$.methodSignature("Network", [], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")])]
+);
+
+$.registerNamedValueType(
+	"*net.fileAddr",
+	{Network: (receiver: any, ...args: any[]) => (fileAddr_Network as any)($.pointerValue(receiver), ...$.stripGenericTypeArgs(args)), String: (receiver: any, ...args: any[]) => (fileAddr_String as any)($.pointerValue(receiver), ...$.stripGenericTypeArgs(args))},
+	[$.methodSignature("Network", [], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")])]
+);
+
+export function fileAddr_Network(recv: fileAddr): string {
+	return "file+net"
+}
+
+export function fileAddr_String(f: fileAddr): string {
+	return f
+}
+
+export function FileConn(f: os.File | $.VarRef<os.File> | null): [__goscript_net.Conn | null, $.GoError] {
+	let c: __goscript_net.Conn | null = null! as __goscript_net.Conn | null
+	let err: $.GoError = null! as $.GoError
+	let __goscriptTuple0: any = __goscript_file_stub.fileConn(f)
+	c = __goscriptTuple0[0]
+	err = __goscriptTuple0[1]
+	if (err != null) {
+		err = $.interfaceValue<$.GoError>((() => { const __goscriptLiteralField0 = $.namedValueInterfaceValue<__goscript_net.Addr | null>(os.File.prototype.Name.call($.pointerValue<os.File>(f)), "net.fileAddr", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()); return new __goscript_net.OpError({Op: "file", Net: "file+net", Source: null, Addr: __goscriptLiteralField0, Err: err}) })(), "*net.OpError", /* @__PURE__ */ $.pointerType("net.OpError"))
+	}
+	return [c, err]
+}
+
+export function FileListener(f: os.File | $.VarRef<os.File> | null): [__goscript_net.Listener | null, $.GoError] {
+	let ln: __goscript_net.Listener | null = null! as __goscript_net.Listener | null
+	let err: $.GoError = null! as $.GoError
+	let __goscriptTuple1: any = __goscript_file_stub.fileListener(f)
+	ln = __goscriptTuple1[0]
+	err = __goscriptTuple1[1]
+	if (err != null) {
+		err = $.interfaceValue<$.GoError>((() => { const __goscriptLiteralField1 = $.namedValueInterfaceValue<__goscript_net.Addr | null>(os.File.prototype.Name.call($.pointerValue<os.File>(f)), "net.fileAddr", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()); return new __goscript_net.OpError({Op: "file", Net: "file+net", Source: null, Addr: __goscriptLiteralField1, Err: err}) })(), "*net.OpError", /* @__PURE__ */ $.pointerType("net.OpError"))
+	}
+	return [ln, err]
+}
+
+export function FilePacketConn(f: os.File | $.VarRef<os.File> | null): [__goscript_net.PacketConn | null, $.GoError] {
+	let c: __goscript_net.PacketConn | null = null! as __goscript_net.PacketConn | null
+	let err: $.GoError = null! as $.GoError
+	let __goscriptTuple2: any = __goscript_file_stub.filePacketConn(f)
+	c = __goscriptTuple2[0]
+	err = __goscriptTuple2[1]
+	if (err != null) {
+		err = $.interfaceValue<$.GoError>((() => { const __goscriptLiteralField2 = $.namedValueInterfaceValue<__goscript_net.Addr | null>(os.File.prototype.Name.call($.pointerValue<os.File>(f)), "net.fileAddr", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()); return new __goscript_net.OpError({Op: "file", Net: "file+net", Source: null, Addr: __goscriptLiteralField2, Err: err}) })(), "*net.OpError", /* @__PURE__ */ $.pointerType("net.OpError"))
+	}
+	return [c, err]
+}
+
+var __goscriptStatic0$value: any
+function __goscriptStatic0(): any {
+	return __goscriptStatic0$value ??= ({Network: (receiver: any, ...args: any[]) => (fileAddr_Network as any)(($.isVarRef(receiver) ? receiver.value : receiver), ...$.stripGenericTypeArgs(args)), String: (receiver: any, ...args: any[]) => (fileAddr_String as any)(($.isVarRef(receiver) ? receiver.value : receiver), ...$.stripGenericTypeArgs(args))})
+}
+
+var __goscriptStatic1$value: any
+function __goscriptStatic1(): any {
+	return __goscriptStatic1$value ??= (/* @__PURE__ */ $.basicType("string", "net.fileAddr"))
+}
+
+var __goscriptStatic2$value: any
+function __goscriptStatic2(): any {
+	return __goscriptStatic2$value ??= ([$.methodSignature("Network", [], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")])])
+}

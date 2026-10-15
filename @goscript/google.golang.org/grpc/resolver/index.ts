@@ -1,0 +1,6 @@
+export type { AuthorityOverrider, Builder, ClientConn, Resolver } from "./resolver.gs.ts"
+export type { addressMapEntryList } from "./map.gs.ts"
+export { Address, BuildOptions, Endpoint, Get, GetDefaultScheme, Register, ResolveNowOptions, SetDefaultScheme, State, Target } from "./resolver.gs.ts"
+export { AddressMap, EndpointMap, NewAddressMap, NewEndpointMap, addressMapEntry, endpointNode } from "./map.gs.ts"
+import "./map.gs.ts"
+import "./resolver.gs.ts"

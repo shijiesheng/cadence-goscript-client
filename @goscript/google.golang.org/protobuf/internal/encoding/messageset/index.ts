@@ -1,0 +1,1 @@
+export { AppendFieldEnd, AppendFieldStart, AppendUnknown, ConsumeFieldValue, ExtensionName, FieldItem, FieldMessage, FieldTypeID, IsMessageSet, IsMessageSetExtension, SizeField, SizeUnknown, Unmarshal } from "./messageset.gs.ts"

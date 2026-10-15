@@ -1,0 +1,6 @@
+export type { Codec, Compressor } from "./encoding.gs.ts"
+export type { CodecV2 } from "./encoding_v2.gs.ts"
+export { GetCodec, GetCompressor, Identity, RegisterCodec, RegisterCompressor } from "./encoding.gs.ts"
+export { GetCodecV2, RegisterCodecV2 } from "./encoding_v2.gs.ts"
+import "./encoding.gs.ts"
+import "./encoding_v2.gs.ts"

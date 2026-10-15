@@ -1,0 +1,232 @@
+import * as $ from "@goscript/builtin/index.js";
+const { copy } = $;
+
+import * as errors from "@goscript/errors/index.js"
+
+import * as io from "@goscript/io/index.js"
+
+import * as utf8 from "@goscript/unicode/utf8/index.js"
+
+export class Reader {
+	public get s(): $.Bytes {
+		return this._fields.s
+	}
+	public set s(value: $.Bytes) {
+		this._fields.s = value
+	}
+
+	// current reading index
+	public get i(): number {
+		return this._fields.i
+	}
+	public set i(value: number) {
+		this._fields.i = value
+	}
+
+	// index of previous rune; or < 0
+	public get prevRune(): number {
+		return this._fields.prevRune
+	}
+	public set prevRune(value: number) {
+		this._fields.prevRune = value
+	}
+
+	public _fields: {
+		s: $.Bytes;
+		i: number;
+		prevRune: number;
+	}
+
+	constructor(init?: Partial<{i?: number, prevRune?: number, s?: $.Bytes}>) {
+		this._fields = {
+			s: init?.s ?? new Uint8Array(0),
+			i: init?.i ?? 0,
+			prevRune: init?.prevRune ?? 0
+		}
+	}
+
+	public clone(): Reader {
+		const cloned = new Reader()
+		cloned._fields = {
+			s: this._fields.s,
+			i: this._fields.i,
+			prevRune: this._fields.prevRune
+		}
+		return cloned
+	}
+
+	// Len returns the number of bytes of the unread portion of the
+	// slice.
+	public Len(): number {
+		const r = this
+		if (r.i >= ($.len(r.s) as number)) {
+			return 0
+		}
+		return $.int(($.len(r.s) as number) - r.i)
+	}
+
+	// Size returns the original length of the underlying byte slice.
+	// Size is the number of bytes available for reading via [Reader.ReadAt].
+	// The result is unaffected by any method calls except [Reader.Reset].
+	public Size(): bigint {
+		const r = this
+		return BigInt($.len(r.s) as number)
+	}
+
+	// Read implements the [io.Reader] interface.
+	public Read(b: $.Bytes): [number, $.GoError] {
+		const r = this
+		if (r.i >= ($.len(r.s) as number)) {
+			return [0, io.EOF]
+		}
+		r.prevRune = -1
+		const n = $.copy(b, $.goSlice(r.s, r.i, undefined))
+		r.i += (n as number)
+		return [n, null]
+	}
+
+	// ReadAt implements the [io.ReaderAt] interface.
+	public ReadAt(b: $.Bytes, off: bigint): [number, $.GoError] {
+		const r = this
+		const offset = Number(off)
+		if (offset < 0) {
+			return [0, errors.New("bytes.Reader.ReadAt: negative offset")]
+		}
+		if (offset >= ($.len(r.s) as number)) {
+			return [0, io.EOF]
+		}
+		const n = $.copy(b, $.goSlice(r.s, offset, undefined))
+		let err: $.GoError = null
+		if (n < $.len(b)) {
+			err = io.EOF
+		}
+		return [n, err]
+	}
+
+	// ReadByte implements the [io.ByteReader] interface.
+	public ReadByte(): [number, $.GoError] {
+		const r = this
+		r.prevRune = -1
+		if (r.i >= ($.len(r.s) as number)) {
+			return [0, io.EOF]
+		}
+		let b = $.arrayIndex(r.s!, r.i)
+		r.i++
+		return [b, null]
+	}
+
+	// UnreadByte complements [Reader.ReadByte] in implementing the [io.ByteScanner] interface.
+	public UnreadByte(): $.GoError {
+		const r = this
+		if (r.i <= 0) {
+			return errors.New("bytes.Reader.UnreadByte: at beginning of slice")
+		}
+		r.prevRune = -1
+		r.i--
+		return null
+	}
+
+	// ReadRune implements the [io.RuneReader] interface.
+	public ReadRune(): [number, number, $.GoError] {
+		const r = this
+		if (r.i >= ($.len(r.s) as number)) {
+			r.prevRune = -1
+			return [0, 0, io.EOF]
+		}
+		r.prevRune = $.int(r.i)
+		{
+			let c = $.arrayIndex(r.s!, r.i)
+			if (c < utf8.RuneSelf) {
+				r.i++
+				return [(c as number), 1, null]
+			}
+		}
+		const [ch, size] = utf8.DecodeRune($.goSlice(r.s, r.i, undefined))
+		r.i += (size as number)
+		return [ch, size, null]
+	}
+
+	// UnreadRune complements [Reader.ReadRune] in implementing the [io.RuneScanner] interface.
+	public UnreadRune(): $.GoError {
+		const r = this
+		if (r.i <= 0) {
+			return errors.New("bytes.Reader.UnreadRune: at beginning of slice")
+		}
+		if (r.prevRune < 0) {
+			return errors.New("bytes.Reader.UnreadRune: previous operation was not ReadRune")
+		}
+		r.i = (r.prevRune as number)
+		r.prevRune = -1
+		return null
+	}
+
+	// Seek implements the [io.Seeker] interface.
+	public Seek(offset: bigint, whence: number): [bigint, $.GoError] {
+		const r = this
+		r.prevRune = -1
+		let abs: number = 0
+		switch (whence) {
+			case io.SeekStart:
+				abs = Number(offset)
+				break
+			case io.SeekCurrent:
+				abs = r.i + Number(offset)
+				break
+			case io.SeekEnd:
+				abs = ($.len(r.s) as number) + Number(offset)
+				break
+			default:
+				return [0n, errors.New("bytes.Reader.Seek: invalid whence")]
+		}
+		if (abs < 0) {
+			return [0n, errors.New("bytes.Reader.Seek: negative position")]
+		}
+		r.i = abs
+		return [BigInt(abs), null]
+	}
+
+	// WriteTo implements the [io.WriterTo] interface.
+	public WriteTo(w: io.Writer): [bigint, $.GoError] {
+		const writePromise = (async (): Promise<[bigint, $.GoError]> => {
+			const r = this
+			r.prevRune = -1
+			if (r.i >= ($.len(r.s) as number)) {
+				return [0n, null]
+			}
+			const b = $.goSlice(r.s, r.i, undefined)
+			const [m, err] = await (w!.Write($.bytesToUint8Array(b)) as Promise<[number, $.GoError]> | [number, $.GoError])
+			if (m > $.len(b)) {
+				$.panic("bytes.Reader.WriteTo: invalid Write count")
+			}
+			r.i += (m as number)
+			const n = BigInt(m as number)
+			if (m != $.len(b) && err == null) {
+				return [n, io.ErrShortWrite]
+			}
+			return [n, err]
+		})()
+		return $.awaitedResult(writePromise)
+	}
+
+	// Reset resets the [Reader] to be reading from b.
+	public Reset(b: $.Bytes): void {
+		const r = this
+		r.s = b
+		r.i = 0
+		r.prevRune = -1
+	}
+
+	// Register this type with the runtime type system
+	static __typeInfo = $.registerStructType(
+	  'Reader',
+	  new Reader(),
+	  [{ name: "Len", args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: "number" } }] }, { name: "Size", args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: "int64" } }] }, { name: "Read", args: [{ name: "b", type: { kind: $.TypeKind.Slice, elemType: { kind: $.TypeKind.Basic, name: "number" } } }], returns: [{ type: { kind: $.TypeKind.Basic, name: "number" } }, { type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] }, { name: "ReadAt", args: [{ name: "b", type: { kind: $.TypeKind.Slice, elemType: { kind: $.TypeKind.Basic, name: "number" } } }, { name: "off", type: { kind: $.TypeKind.Basic, name: "int64" } }], returns: [{ type: { kind: $.TypeKind.Basic, name: "number" } }, { type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] }, { name: "ReadByte", args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: "number" } }, { type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] }, { name: "UnreadByte", args: [], returns: [{ type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] }, { name: "ReadRune", args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: "number" } }, { type: { kind: $.TypeKind.Basic, name: "number" } }, { type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] }, { name: "UnreadRune", args: [], returns: [{ type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] }, { name: "Seek", args: [{ name: "offset", type: { kind: $.TypeKind.Basic, name: "int64" } }, { name: "whence", type: { kind: $.TypeKind.Basic, name: "number" } }], returns: [{ type: { kind: $.TypeKind.Basic, name: "int64" } }, { type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] }, { name: "WriteTo", args: [{ name: "w", type: "Writer" }], returns: [{ type: { kind: $.TypeKind.Basic, name: "int64" } }, { type: { kind: $.TypeKind.Interface, name: 'GoError', methods: [{ name: 'Error', args: [], returns: [{ type: { kind: $.TypeKind.Basic, name: 'string' } }] }] } }] }, { name: "Reset", args: [{ name: "b", type: { kind: $.TypeKind.Slice, elemType: { kind: $.TypeKind.Basic, name: "number" } } }], returns: [] }],
+	  Reader,
+	  [{ name: "s", key: "s", type: { kind: $.TypeKind.Slice, elemType: { kind: $.TypeKind.Basic, name: "number" } } }, { name: "i", key: "i", type: { kind: $.TypeKind.Basic, name: "number" } }, { name: "prevRune", key: "prevRune", type: { kind: $.TypeKind.Basic, name: "number" } }]
+	);
+}
+
+// NewReader returns a new [Reader] reading from b.
+export function NewReader(b: $.Bytes): Reader {
+	return new Reader({s: $.normalizeBytes(b), i: 0, prevRune: -1})
+}

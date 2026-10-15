@@ -1,0 +1,10 @@
+export type { input } from "./regexp.gs.ts"
+export type { lazyFlag } from "./exec.gs.ts"
+export { Compile, CompilePOSIX, Match, MatchReader, MatchString, MustCompile, MustCompilePOSIX, QuoteMeta, Regexp, inputBytes, inputReader, inputString } from "./regexp.gs.ts"
+export { bitState, job } from "./backtrack.gs.ts"
+export { entry, inputs, machine, onePassMachine, queue, thread } from "./exec.gs.ts"
+export { onePassInst, onePassProg, queueOnePass } from "./onepass.gs.ts"
+import "./exec.gs.ts"
+import "./regexp.gs.ts"
+import { __goscript_package_init } from "./__goscript_package_init.gs.ts"
+await __goscript_package_init()
