@@ -33,18 +33,18 @@ import "./protosize.gs.ts"
 $.registerTypePackagePath("github.com/gogo/protobuf/types", ["types.Empty", "types.randyEmpty"])
 
 export type randyEmpty = {
-	Float32(): number | globalThis.Promise<number>
-	Float64(): number | globalThis.Promise<number>
-	Int31(): number | globalThis.Promise<number>
-	Int63(): bigint | globalThis.Promise<bigint>
-	Intn(n: number): number | globalThis.Promise<number>
-	Uint32(): number | globalThis.Promise<number>
+	Float32(): number
+	Float64(): number
+	Int31(): number
+	Int63(): bigint
+	Intn(n: number): number
+	Uint32(): number
 }
 
 $.registerInterfaceType(
 	"types.randyEmpty",
 	null,
-	[$.methodSignature("Float32", [], [/* @__PURE__ */ $.basicType("float32")]), $.methodSignature("Float64", [], [/* @__PURE__ */ $.basicType("float64")]), $.methodSignature("Int31", [], [/* @__PURE__ */ $.basicType("int32")]), $.methodSignature("Int63", [], [/* @__PURE__ */ $.basicType("int64")]), $.methodSignature("Intn", [["n", /* @__PURE__ */ $.basicType("int")]], [/* @__PURE__ */ $.basicType("int")]), $.methodSignature("Uint32", [], [/* @__PURE__ */ $.basicType("uint32")])]
+	[{ name: "Float32", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float32") }] }, { name: "Float64", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }] }, { name: "Int31", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }] }, { name: "Int63", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64") }] }, { name: "Intn", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }] }, { name: "Uint32", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint32") }] }]
 );
 
 export class Empty {
@@ -260,7 +260,7 @@ export class Empty {
 		if (_this == null) {
 			return "nil"
 		}
-		let s = strings.Join($.arrayToSlice<string>(["&Empty{", $.concatString(($.concatString("XXX_unrecognized:", await fmt.Sprintf("%v", $.interfaceValue($.pointerValue<Empty>(_this).XXX_unrecognized, "[]byte", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))))), ","), "}"]), "")
+		let s = strings.Join($.arrayToSlice<string>(["&Empty{", $.concatString(($.concatString("XXX_unrecognized:", fmt.Sprintf("%v", $.interfaceValue($.pointerValue<Empty>(_this).XXX_unrecognized, "[]byte", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))))), ","), "}"]), "")
 		return s
 	}
 
@@ -321,12 +321,12 @@ export class Empty {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: Empty | $.VarRef<Empty> | null = this;
-		await xxx_messageInfo_Empty.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*types.Empty", /* @__PURE__ */ $.pointerType("types.Empty")))
+		xxx_messageInfo_Empty.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*types.Empty", /* @__PURE__ */ $.pointerType("types.Empty")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: Empty | $.VarRef<Empty> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_Empty.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*types.Empty", /* @__PURE__ */ $.pointerType("types.Empty")), deterministic)
@@ -341,9 +341,9 @@ export class Empty {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: Empty | $.VarRef<Empty> | null = this;
-		await xxx_messageInfo_Empty.value.Merge($.interfaceValue<proto.Message | null>(m, "*types.Empty", /* @__PURE__ */ $.pointerType("types.Empty")), src)
+		xxx_messageInfo_Empty.value.Merge($.interfaceValue<proto.Message | null>(m, "*types.Empty", /* @__PURE__ */ $.pointerType("types.Empty")), src)
 	}
 
 	public XXX_MessageName(): string {
@@ -367,9 +367,9 @@ export class Empty {
 	static __typeInfo = $.registerStructType(
 		"types.Empty",
 		() => new Empty(),
-		() => [$.methodSignature("Compare", [["that", { kind: $.TypeKind.Interface, methods: [] }]], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("Equal", [["that", { kind: $.TypeKind.Interface, methods: [] }]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GoString", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoSize", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_MessageName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_WellKnownType", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Compare", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "Equal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GoString", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoSize", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_MessageName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_WellKnownType", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Empty,
-		() => [/* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [0], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [1], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [2], 24, true, { tag: "json:\"-\"" })]
+		() => [{ name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -379,11 +379,11 @@ export function __goscript_set_xxx_messageInfo_Empty(__goscriptValue: proto.Inte
 	$.assignStruct(xxx_messageInfo_Empty.value, __goscriptValue)
 }
 
-async function __goscriptInit0(): globalThis.Promise<void> {
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*types.Empty", /* @__PURE__ */ $.pointerType("types.Empty")), "google.protobuf.Empty")
+function __goscriptInit0(): void {
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*types.Empty", /* @__PURE__ */ $.pointerType("types.Empty")), "google.protobuf.Empty")
 }
 
-async function __goscriptInit1(): globalThis.Promise<void> {
+function __goscriptInit1(): void {
 	proto.RegisterFile("google/protobuf/empty.proto", fileDescriptor_900544acb223d5b8)
 }
 

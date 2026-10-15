@@ -21,8 +21,6 @@ import * as protoregistry from "@goscript/google.golang.org/protobuf/reflect/pro
 
 import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 
-import type * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
 import * as __goscript_checkinit from "./checkinit.gs.ts"
 
 import * as __goscript_codec_extension from "./codec_extension.gs.ts"
@@ -111,7 +109,7 @@ export class errInvalidUTF8 {
 	static __typeInfo = $.registerStructType(
 		"impl.errInvalidUTF8",
 		() => new errInvalidUTF8(),
-		() => [$.methodSignature("Error", [], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("InvalidUTF8", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("Unwrap", [], ["error"])],
+		() => [{ name: "Error", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "InvalidUTF8", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "Unwrap", args: [], returns: [{ type: "error" }] }],
 		errInvalidUTF8,
 		() => []
 	)
@@ -123,7 +121,7 @@ export function makeWeakMessageFieldCoder(fd: protoreflect.FieldDescriptor | nul
 	let lazyInit: (() => void) | null = $.functionValue(async (): globalThis.Promise<void> => {
 		await once.value.Do($.functionValue(async (): globalThis.Promise<void> => {
 			let messageName = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.MessageDescriptor, null>>((__goscriptAwait = (fd !== null && (fd as any).__isVarRef !== true && (fd as any).__goValue === undefined ? (fd as Exclude<protoreflect.FieldDescriptor, null>) : $.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(fd)).Message(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
-			let __goscriptTuple0: any = await protoregistry.Types.prototype.FindMessageByName.call(protoregistry.GlobalTypes, messageName)
+			let __goscriptTuple0: any = protoregistry.Types.prototype.FindMessageByName.call(protoregistry.GlobalTypes, messageName)
 			messageType = __goscriptTuple0[0]
 		}, ({ kind: $.TypeKind.Function, params: [], results: [] } as $.FunctionTypeInfo)))
 	}, ({ kind: $.TypeKind.Function, params: [], results: [] } as $.FunctionTypeInfo))
@@ -160,12 +158,12 @@ export function makeWeakMessageFieldCoder(fd: protoreflect.FieldDescriptor | nul
 			__goscript_weak.weakFields__set(fs, $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).num, m)
 		}
 		return consumeMessage(b, m, wtyp, opts)
-	}, ({ kind: $.TypeKind.Function, params: [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "impl.pointer", /* @__PURE__ */ $.basicType("int8", "protowire.Type"), /* @__PURE__ */ $.pointerType("impl.coderFieldInfo"), "impl.unmarshalOptions"], results: ["impl.unmarshalOutput", "error"] } as $.FunctionTypeInfo)), isInit: $.functionValue(async (p: __goscript_pointer_reflect.pointer, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null): globalThis.Promise<$.GoError> => {
+	}, ({ kind: $.TypeKind.Function, params: [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "impl.pointer", /* @__PURE__ */ $.basicType("int8", "protowire.Type"), /* @__PURE__ */ $.pointerType("impl.coderFieldInfo"), "impl.unmarshalOptions"], results: ["impl.unmarshalOutput", "error"] } as $.FunctionTypeInfo)), isInit: $.functionValue((p: __goscript_pointer_reflect.pointer, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null): $.GoError => {
 		let [m, ok] = __goscript_weak.weakFields__get($.pointerValue<__goscript_weak.weakFields>(p.WeakFields()), $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).num)
 		if (!ok) {
 			return null
 		}
-		return await proto.CheckInitialized(m)
+		return proto.CheckInitialized(m)
 	}, ({ kind: $.TypeKind.Function, params: ["impl.pointer", /* @__PURE__ */ $.pointerType("impl.coderFieldInfo")], results: ["error"] } as $.FunctionTypeInfo)), merge: $.functionValue(async (dst: __goscript_pointer_reflect.pointer, src: __goscript_pointer_reflect.pointer, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null, opts: __goscript_merge.mergeOptions): globalThis.Promise<void> => {
 		let [sm, ok] = __goscript_weak.weakFields__get($.pointerValue<__goscript_weak.weakFields>(src.WeakFields()), $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).num)
 		if (!ok) {
@@ -182,7 +180,7 @@ export function makeWeakMessageFieldCoder(fd: protoreflect.FieldDescriptor | nul
 			dm = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((__goscriptAwait = (messageType !== null && (messageType as any).__isVarRef !== true && (messageType as any).__goValue === undefined ? (messageType as Exclude<protoreflect.MessageType, null>) : $.pointerValue<Exclude<protoreflect.MessageType, null>>(messageType)).New(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 			__goscript_weak.weakFields__set(dst.WeakFields(), $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).num, dm)
 		}
-		await opts.Merge(dm, sm)
+		opts.Merge(dm, sm)
 	}, ({ kind: $.TypeKind.Function, params: ["impl.pointer", "impl.pointer", /* @__PURE__ */ $.pointerType("impl.coderFieldInfo"), "impl.mergeOptions"], results: [] } as $.FunctionTypeInfo))}, true)
 }
 
@@ -198,10 +196,10 @@ export async function makeMessageFieldCoder(fd: protoreflect.FieldDescriptor | n
 		} else {
 			return new __goscript_codec_tables.pointerCoderFuncs({size: $.functionValue(async (p: __goscript_pointer_reflect.pointer, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> => {
 				let m = await asMessage($.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue((await p.AsValueOf(ft)))).Elem())))
-				return await sizeMessage(m, $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).tagsize, opts)
+				return sizeMessage(m, $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).tagsize, opts)
 			}, ({ kind: $.TypeKind.Function, params: ["impl.pointer", /* @__PURE__ */ $.pointerType("impl.coderFieldInfo"), "impl.marshalOptions"], results: [/* @__PURE__ */ $.basicType("int")] } as $.FunctionTypeInfo)), marshal: $.functionValue(async (b: $.Slice<number>, p: __goscript_pointer_reflect.pointer, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> => {
 				let m = await asMessage($.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue((await p.AsValueOf(ft)))).Elem())))
-				return await appendMessage(b, m, $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).wiretag, opts)
+				return appendMessage(b, m, $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).wiretag, opts)
 			}, ({ kind: $.TypeKind.Function, params: [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "impl.pointer", /* @__PURE__ */ $.pointerType("impl.coderFieldInfo"), "impl.marshalOptions"], results: [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"] } as $.FunctionTypeInfo)), unmarshal: $.functionValue(async (b: $.Slice<number>, p: __goscript_pointer_reflect.pointer, wtyp: protowire.Type, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[__goscript_decode.unmarshalOutput, $.GoError]> => {
 				let mp = $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue((await p.AsValueOf(ft)))).Elem()))
 				if ($.markAsStructValue($.cloneStructValue(mp)).IsNil()) {
@@ -210,7 +208,7 @@ export async function makeMessageFieldCoder(fd: protoreflect.FieldDescriptor | n
 				return consumeMessage(b, await asMessage(mp), wtyp, opts)
 			}, ({ kind: $.TypeKind.Function, params: [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "impl.pointer", /* @__PURE__ */ $.basicType("int8", "protowire.Type"), /* @__PURE__ */ $.pointerType("impl.coderFieldInfo"), "impl.unmarshalOptions"], results: ["impl.unmarshalOutput", "error"] } as $.FunctionTypeInfo)), isInit: $.functionValue(async (p: __goscript_pointer_reflect.pointer, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null): globalThis.Promise<$.GoError> => {
 				let m = await asMessage($.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue((await p.AsValueOf(ft)))).Elem())))
-				return await proto.CheckInitialized(m)
+				return proto.CheckInitialized(m)
 			}, ({ kind: $.TypeKind.Function, params: ["impl.pointer", /* @__PURE__ */ $.pointerType("impl.coderFieldInfo")], results: ["error"] } as $.FunctionTypeInfo)), merge: __goscript_merge.mergeMessage}, true)
 		}
 	}
@@ -271,17 +269,17 @@ export async function isInitMessageInfo(p: __goscript_pointer_reflect.pointer, f
 	return __goscript_message.MessageInfo.prototype.checkInitializedPointer.call($.pointerValue<__goscript_codec_message.coderFieldInfo>(f).mi, p.Elem())
 }
 
-export async function sizeMessage(m: proto.Message | null, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return protowire.SizeBytes(await $.markAsStructValue($.cloneStructValue(opts.Options())).Size(m)) + tagsize
+export function sizeMessage(m: proto.Message | null, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return protowire.SizeBytes($.markAsStructValue($.cloneStructValue(opts.Options())).Size(m)) + tagsize
 }
 
-export async function appendMessage(b: $.Slice<number>, m: proto.Message | null, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendMessage(b: $.Slice<number>, m: proto.Message | null, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	let mopts = opts.Options()
-	let calculatedSize = await mopts.Size(m)
+	let calculatedSize = $.markAsStructValue($.cloneStructValue(mopts)).Size(m)
 	b = protowire.AppendVarint(b, wiretag)
 	b = protowire.AppendVarint(b, $.uint64(calculatedSize))
 	let before = $.sliceLen(b)
-	let __goscriptTuple5: any = await mopts.MarshalAppend(b, m)
+	let __goscriptTuple5: any = $.markAsStructValue($.cloneStructValue(mopts)).MarshalAppend(b, m)
 	b = __goscriptTuple5[0]
 	let err = __goscriptTuple5[1]
 	{
@@ -305,7 +303,7 @@ export async function consumeMessage(b: $.Slice<number>, m: proto.Message | null
 	if (n < 0) {
 		return [(out).clone(), __goscript_decode.errDecode]
 	}
-	let __goscriptTuple7: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (new pragma.NoUnkeyedLiterals(undefined, true) as pragma.NoUnkeyedLiterals), Message: (__goscriptAwait = (m !== null && (m as any).__isVarRef !== true && (m as any).__goValue === undefined ? (m as Exclude<protoreflect.ProtoMessage, null>) : $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>(m)).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), Buf: v, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
+	let __goscriptTuple7: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (undefined as any as any), Message: (__goscriptAwait = (m !== null && (m as any).__isVarRef !== true && (m as any).__goValue === undefined ? (m as Exclude<protoreflect.ProtoMessage, null>) : $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>(m)).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), Buf: v, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
 	let o = __goscriptTuple7[0]
 	err = __goscriptTuple7[1]
 	if (err != null) {
@@ -317,23 +315,27 @@ export async function consumeMessage(b: $.Slice<number>, m: proto.Message | null
 }
 
 export async function sizeMessageValue(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await v.Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+	let message = await $.markAsStructValue($.cloneStructValue(v)).Message()
+	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>(message).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	return sizeMessage(m, tagsize, opts)
 }
 
 export async function appendMessageValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await v.Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+	let message = await $.markAsStructValue($.cloneStructValue(v)).Message()
+	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>(message).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	return appendMessage(b, m, wiretag, opts)
 }
 
 export async function consumeMessageValue(b: $.Slice<number>, v: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
-	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await v.Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+	let message = await $.markAsStructValue($.cloneStructValue(v)).Message()
+	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>(message).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	let [out, err] = await consumeMessage(b, m, wtyp, opts)
 	return [(v).clone(), (out).clone(), err]
 }
 
 export async function isInitMessageValue(v: protoreflect.Value): globalThis.Promise<$.GoError> {
-	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await v.Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+	let message = await $.markAsStructValue($.cloneStructValue(v)).Message()
+	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>(message).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	return proto.CheckInitialized(m)
 }
 
@@ -357,17 +359,17 @@ export function __goscript_set_coderMessageValue(__goscriptValue: __goscript_cod
 }
 
 export async function sizeGroupValue(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await v.Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>($.markAsStructValue($.cloneStructValue(v)).Message()).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	return sizeGroup(m, tagsize, opts)
 }
 
 export async function appendGroupValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await v.Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>($.markAsStructValue($.cloneStructValue(v)).Message()).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	return appendGroup(b, m, wiretag, opts)
 }
 
 export async function consumeGroupValue(b: $.Slice<number>, v: protoreflect.Value, num: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
-	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await v.Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+	let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>($.markAsStructValue($.cloneStructValue(v)).Message()).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	let [out, err] = await consumeGroup(b, m, num, wtyp, opts)
 	return [(v).clone(), (out).clone(), err]
 }
@@ -404,10 +406,10 @@ export async function makeGroupFieldCoder(fd: protoreflect.FieldDescriptor | nul
 		} else {
 			return new __goscript_codec_tables.pointerCoderFuncs({size: $.functionValue(async (p: __goscript_pointer_reflect.pointer, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> => {
 				let m = await asMessage($.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue((await p.AsValueOf(ft)))).Elem())))
-				return await sizeGroup(m, $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).tagsize, opts)
+				return sizeGroup(m, $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).tagsize, opts)
 			}, ({ kind: $.TypeKind.Function, params: ["impl.pointer", /* @__PURE__ */ $.pointerType("impl.coderFieldInfo"), "impl.marshalOptions"], results: [/* @__PURE__ */ $.basicType("int")] } as $.FunctionTypeInfo)), marshal: $.functionValue(async (b: $.Slice<number>, p: __goscript_pointer_reflect.pointer, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> => {
 				let m = await asMessage($.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue((await p.AsValueOf(ft)))).Elem())))
-				return await appendGroup(b, m, $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).wiretag, opts)
+				return appendGroup(b, m, $.pointerValue<__goscript_codec_message.coderFieldInfo>(f).wiretag, opts)
 			}, ({ kind: $.TypeKind.Function, params: [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "impl.pointer", /* @__PURE__ */ $.pointerType("impl.coderFieldInfo"), "impl.marshalOptions"], results: [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"] } as $.FunctionTypeInfo)), unmarshal: $.functionValue(async (b: $.Slice<number>, p: __goscript_pointer_reflect.pointer, wtyp: protowire.Type, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[__goscript_decode.unmarshalOutput, $.GoError]> => {
 				let mp = $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue((await p.AsValueOf(ft)))).Elem()))
 				if ($.markAsStructValue($.cloneStructValue(mp)).IsNil()) {
@@ -416,7 +418,7 @@ export async function makeGroupFieldCoder(fd: protoreflect.FieldDescriptor | nul
 				return consumeGroup(b, await asMessage(mp), num, wtyp, opts)
 			}, ({ kind: $.TypeKind.Function, params: [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "impl.pointer", /* @__PURE__ */ $.basicType("int8", "protowire.Type"), /* @__PURE__ */ $.pointerType("impl.coderFieldInfo"), "impl.unmarshalOptions"], results: ["impl.unmarshalOutput", "error"] } as $.FunctionTypeInfo)), isInit: $.functionValue(async (p: __goscript_pointer_reflect.pointer, f: __goscript_codec_message.coderFieldInfo | $.VarRef<__goscript_codec_message.coderFieldInfo> | null): globalThis.Promise<$.GoError> => {
 				let m = await asMessage($.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue((await p.AsValueOf(ft)))).Elem())))
-				return await proto.CheckInitialized(m)
+				return proto.CheckInitialized(m)
 			}, ({ kind: $.TypeKind.Function, params: ["impl.pointer", /* @__PURE__ */ $.pointerType("impl.coderFieldInfo")], results: ["error"] } as $.FunctionTypeInfo)), merge: __goscript_merge.mergeMessage}, true)
 		}
 	}
@@ -451,13 +453,13 @@ export async function consumeGroupType(b: $.Slice<number>, p: __goscript_pointer
 	return __goscript_message.MessageInfo.prototype.unmarshalPointer.call((f$ as __goscript_codec_message.coderFieldInfo).mi, b, p.Elem(), (f$ as __goscript_codec_message.coderFieldInfo).num, (opts).clone())
 }
 
-export async function sizeGroup(m: proto.Message | null, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return (2 * tagsize) + await $.markAsStructValue($.cloneStructValue(opts.Options())).Size(m)
+export function sizeGroup(m: proto.Message | null, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return (2 * tagsize) + $.markAsStructValue($.cloneStructValue(opts.Options())).Size(m)
 }
 
-export async function appendGroup(b: $.Slice<number>, m: proto.Message | null, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendGroup(b: $.Slice<number>, m: proto.Message | null, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	let __goscriptTuple9: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).MarshalAppend(b, m)
+	let __goscriptTuple9: any = $.markAsStructValue($.cloneStructValue(opts.Options())).MarshalAppend(b, m)
 	b = __goscriptTuple9[0]
 	let err = __goscriptTuple9[1]
 	b = protowire.AppendVarint(b, $.uint64Add(wiretag, 1n))
@@ -476,7 +478,7 @@ export async function consumeGroup(b: $.Slice<number>, m: proto.Message | null, 
 	if (n < 0) {
 		return [(out).clone(), __goscript_decode.errDecode]
 	}
-	let __goscriptTuple11: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (new pragma.NoUnkeyedLiterals(undefined, true) as pragma.NoUnkeyedLiterals), Message: (__goscriptAwait = (m !== null && (m as any).__isVarRef !== true && (m as any).__goValue === undefined ? (m as Exclude<protoreflect.ProtoMessage, null>) : $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>(m)).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), Buf: b, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
+	let __goscriptTuple11: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (undefined as any as any), Message: (__goscriptAwait = (m !== null && (m as any).__isVarRef !== true && (m as any).__goValue === undefined ? (m as Exclude<protoreflect.ProtoMessage, null>) : $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>(m)).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), Buf: b, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
 	let o = __goscriptTuple11[0]
 	err = __goscriptTuple11[1]
 	if (err != null) {
@@ -594,7 +596,7 @@ export async function sizeMessageSlice(p: __goscript_pointer_reflect.pointer, go
 	for (let __goscriptRangeTarget3 = s, __goscriptRangeWindow3 = $.sliceRange(__goscriptRangeTarget3), __rangeIndex = 0; __rangeIndex < __goscriptRangeWindow3.length; __rangeIndex++) {
 		let v = ((__goscriptRangeWindow3.backing[__goscriptRangeWindow3.offset + __rangeIndex] as __goscript_pointer_reflect.pointer)).clone()
 		let m = await asMessage(await $.markAsStructValue($.cloneStructValue(v)).AsValueOf((__goscriptAwait = (goType !== null && (goType as any).__isVarRef !== true && (goType as any).__goValue === undefined ? (goType as Exclude<reflect.Type, null>) : $.pointerValue<Exclude<reflect.Type, null>>(goType)).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)))
-		n = n + (protowire.SizeBytes(await mopts.Size(m)) + tagsize)
+		n = n + (protowire.SizeBytes($.markAsStructValue($.cloneStructValue(mopts)).Size(m)) + tagsize)
 	}
 	return n
 }
@@ -607,10 +609,10 @@ export async function appendMessageSlice(b: $.Slice<number>, p: __goscript_point
 		let v = ((__goscriptRangeWindow4.backing[__goscriptRangeWindow4.offset + __rangeIndex] as __goscript_pointer_reflect.pointer)).clone()
 		let m = await asMessage(await $.markAsStructValue($.cloneStructValue(v)).AsValueOf((__goscriptAwait = (goType !== null && (goType as any).__isVarRef !== true && (goType as any).__goValue === undefined ? (goType as Exclude<reflect.Type, null>) : $.pointerValue<Exclude<reflect.Type, null>>(goType)).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)))
 		b = protowire.AppendVarint(b, wiretag)
-		let siz = await mopts.Size(m)
+		let siz = $.markAsStructValue($.cloneStructValue(mopts)).Size(m)
 		b = protowire.AppendVarint(b, $.uint64(siz))
 		let before = $.sliceLen(b)
-		let __goscriptTuple15: any = await mopts.MarshalAppend(b, m)
+		let __goscriptTuple15: any = $.markAsStructValue($.cloneStructValue(mopts)).MarshalAppend(b, m)
 		b = __goscriptTuple15[0]
 		err = __goscriptTuple15[1]
 		if (err != null) {
@@ -639,7 +641,7 @@ export async function consumeMessageSlice(b: $.Slice<number>, p: __goscript_poin
 		return [(out).clone(), __goscript_decode.errDecode]
 	}
 	let mp = $.markAsStructValue($.cloneStructValue(reflect.New($.pointerValueOrNil((__goscriptAwait = (goType !== null && (goType as any).__isVarRef !== true && (goType as any).__goValue === undefined ? (goType as Exclude<reflect.Type, null>) : $.pointerValue<Exclude<reflect.Type, null>>(goType)).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))!)))
-	let __goscriptTuple17: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (new pragma.NoUnkeyedLiterals(undefined, true) as pragma.NoUnkeyedLiterals), Message: (__goscriptAwait = $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>((await asMessage(mp))).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), Buf: v, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
+	let __goscriptTuple17: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (undefined as any as any), Message: (__goscriptAwait = $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>((await asMessage(mp))).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), Buf: v, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
 	let o = __goscriptTuple17[0]
 	err = __goscriptTuple17[1]
 	if (err != null) {
@@ -657,7 +659,7 @@ export async function isInitMessageSlice(p: __goscript_pointer_reflect.pointer, 
 		let v = ((__goscriptRangeWindow5.backing[__goscriptRangeWindow5.offset + __rangeIndex] as __goscript_pointer_reflect.pointer)).clone()
 		let m = await asMessage(await $.markAsStructValue($.cloneStructValue(v)).AsValueOf((__goscriptAwait = (goType !== null && (goType as any).__isVarRef !== true && (goType as any).__goValue === undefined ? (goType as Exclude<reflect.Type, null>) : $.pointerValue<Exclude<reflect.Type, null>>(goType)).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)))
 		{
-			let err = await proto.CheckInitialized(m)
+			let err = proto.CheckInitialized(m)
 			if (err != null) {
 				return err
 			}
@@ -668,26 +670,26 @@ export async function isInitMessageSlice(p: __goscript_pointer_reflect.pointer, 
 
 export async function sizeMessageSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let mopts = opts.Options()
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let n = 0
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
-		let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
-		n = n + (protowire.SizeBytes(await mopts.Size(m)) + tagsize)
+		let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>($.markAsStructValue($.cloneStructValue(((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message()).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+		n = n + (protowire.SizeBytes($.markAsStructValue($.cloneStructValue(mopts)).Size(m)) + tagsize)
 	}
 	return n
 }
 
 export async function appendMessageSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let mopts = opts.Options()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
-		let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+		let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>($.markAsStructValue($.cloneStructValue(((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message()).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 		b = protowire.AppendVarint(b, wiretag)
-		let siz = await mopts.Size(m)
+		let siz = $.markAsStructValue($.cloneStructValue(mopts)).Size(m)
 		b = protowire.AppendVarint(b, $.uint64(siz))
 		let before = $.sliceLen(b)
 		let err: $.GoError = null! as $.GoError
-		let __goscriptTuple18: any = await mopts.MarshalAppend(b, m)
+		let __goscriptTuple18: any = $.markAsStructValue($.cloneStructValue(mopts)).MarshalAppend(b, m)
 		b = __goscriptTuple18[0]
 		err = __goscriptTuple18[1]
 		if (err != null) {
@@ -706,7 +708,7 @@ export async function appendMessageSliceValue(b: $.Slice<number>, listv: protore
 export async function consumeMessageSliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp != 2) {
 		return [new protoreflect.Value(undefined, true), (out).clone(), __goscript_decode.errUnknown]
 	}
@@ -717,7 +719,7 @@ export async function consumeMessageSliceValue(b: $.Slice<number>, listv: protor
 		return [new protoreflect.Value(undefined, true), (out).clone(), __goscript_decode.errDecode]
 	}
 	let m = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).NewElement(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-	let __goscriptTuple20: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (new pragma.NoUnkeyedLiterals(undefined, true) as pragma.NoUnkeyedLiterals), Message: await m.Message(), Buf: v, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
+	let __goscriptTuple20: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (undefined as any as any), Message: $.markAsStructValue($.cloneStructValue(m)).Message(), Buf: v, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
 	let o = __goscriptTuple20[0]
 	err = __goscriptTuple20[1]
 	if (err != null) {
@@ -730,11 +732,11 @@ export async function consumeMessageSliceValue(b: $.Slice<number>, listv: protor
 }
 
 export async function isInitMessageSliceValue(listv: protoreflect.Value): globalThis.Promise<$.GoError> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
-		let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+		let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>($.markAsStructValue($.cloneStructValue(((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message()).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 		{
-			let err = await proto.CheckInitialized(m)
+			let err = proto.CheckInitialized(m)
 			if (err != null) {
 				return err
 			}
@@ -764,23 +766,23 @@ export function __goscript_set_coderMessageSliceValue(__goscriptValue: __goscrip
 
 export async function sizeGroupSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let mopts = opts.Options()
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let n = 0
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
-		let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
-		n = n + ((2 * tagsize) + await mopts.Size(m))
+		let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>($.markAsStructValue($.cloneStructValue(((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message()).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+		n = n + ((2 * tagsize) + $.markAsStructValue($.cloneStructValue(mopts)).Size(m))
 	}
 	return n
 }
 
 export async function appendGroupSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let mopts = opts.Options()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
-		let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+		let m = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>($.markAsStructValue($.cloneStructValue(((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message()).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 		b = protowire.AppendVarint(b, wiretag)
 		let err: $.GoError = null! as $.GoError
-		let __goscriptTuple21: any = await mopts.MarshalAppend(b, m)
+		let __goscriptTuple21: any = $.markAsStructValue($.cloneStructValue(mopts)).MarshalAppend(b, m)
 		b = __goscriptTuple21[0]
 		err = __goscriptTuple21[1]
 		if (err != null) {
@@ -794,7 +796,7 @@ export async function appendGroupSliceValue(b: $.Slice<number>, listv: protorefl
 export async function consumeGroupSliceValue(b: $.Slice<number>, listv: protoreflect.Value, num: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp != 3) {
 		return [new protoreflect.Value(undefined, true), (out).clone(), __goscript_decode.errUnknown]
 	}
@@ -805,7 +807,7 @@ export async function consumeGroupSliceValue(b: $.Slice<number>, listv: protoref
 		return [new protoreflect.Value(undefined, true), (out).clone(), __goscript_decode.errDecode]
 	}
 	let m = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).NewElement(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-	let __goscriptTuple23: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (new pragma.NoUnkeyedLiterals(undefined, true) as pragma.NoUnkeyedLiterals), Message: await m.Message(), Buf: b, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
+	let __goscriptTuple23: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (undefined as any as any), Message: $.markAsStructValue($.cloneStructValue(m)).Message(), Buf: b, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
 	let o = __goscriptTuple23[0]
 	err = __goscriptTuple23[1]
 	if (err != null) {
@@ -866,7 +868,7 @@ export async function sizeGroupSlice(p: __goscript_pointer_reflect.pointer, mess
 	for (let __goscriptRangeTarget6 = s, __goscriptRangeWindow6 = $.sliceRange(__goscriptRangeTarget6), __rangeIndex = 0; __rangeIndex < __goscriptRangeWindow6.length; __rangeIndex++) {
 		let v = ((__goscriptRangeWindow6.backing[__goscriptRangeWindow6.offset + __rangeIndex] as __goscript_pointer_reflect.pointer)).clone()
 		let m = await asMessage(await $.markAsStructValue($.cloneStructValue(v)).AsValueOf((__goscriptAwait = (messageType !== null && (messageType as any).__isVarRef !== true && (messageType as any).__goValue === undefined ? (messageType as Exclude<reflect.Type, null>) : $.pointerValue<Exclude<reflect.Type, null>>(messageType)).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)))
-		n = n + ((2 * tagsize) + await mopts.Size(m))
+		n = n + ((2 * tagsize) + $.markAsStructValue($.cloneStructValue(mopts)).Size(m))
 	}
 	return n
 }
@@ -878,7 +880,7 @@ export async function appendGroupSlice(b: $.Slice<number>, p: __goscript_pointer
 		let v = ((__goscriptRangeWindow7.backing[__goscriptRangeWindow7.offset + __rangeIndex] as __goscript_pointer_reflect.pointer)).clone()
 		let m = await asMessage(await $.markAsStructValue($.cloneStructValue(v)).AsValueOf((__goscriptAwait = (messageType !== null && (messageType as any).__isVarRef !== true && (messageType as any).__goValue === undefined ? (messageType as Exclude<reflect.Type, null>) : $.pointerValue<Exclude<reflect.Type, null>>(messageType)).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)))
 		b = protowire.AppendVarint(b, wiretag)
-		let __goscriptTuple24: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).MarshalAppend(b, m)
+		let __goscriptTuple24: any = $.markAsStructValue($.cloneStructValue(opts.Options())).MarshalAppend(b, m)
 		b = __goscriptTuple24[0]
 		err = __goscriptTuple24[1]
 		if (err != null) {
@@ -902,7 +904,7 @@ export async function consumeGroupSlice(b: $.Slice<number>, p: __goscript_pointe
 		return [(out).clone(), __goscript_decode.errDecode]
 	}
 	let mp = $.markAsStructValue($.cloneStructValue(reflect.New($.pointerValueOrNil((__goscriptAwait = (goType !== null && (goType as any).__isVarRef !== true && (goType as any).__goValue === undefined ? (goType as Exclude<reflect.Type, null>) : $.pointerValue<Exclude<reflect.Type, null>>(goType)).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))!)))
-	let __goscriptTuple26: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (new pragma.NoUnkeyedLiterals(undefined, true) as pragma.NoUnkeyedLiterals), Message: (__goscriptAwait = $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>((await asMessage(mp))).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), Buf: b, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
+	let __goscriptTuple26: any = await $.markAsStructValue($.cloneStructValue(opts.Options())).UnmarshalState($.anonymousStructValue({NoUnkeyedLiterals: (undefined as any as any), Message: (__goscriptAwait = $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>((await asMessage(mp))).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), Buf: b, Flags: (0 as protoiface.UnmarshalInputFlags), Resolver: (null as any), Depth: (0 as number)}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Message", "protoreflect.Message", [1], 0, true), /* @__PURE__ */ $.structField("Buf", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [3], 40, true), /* @__PURE__ */ $.structField("Resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [4], 48, true), /* @__PURE__ */ $.structField("Depth", /* @__PURE__ */ $.basicType("int"), [5], 64, true)] }))
 	let o = __goscriptTuple26[0]
 	err = __goscriptTuple26[1]
 	if (err != null) {

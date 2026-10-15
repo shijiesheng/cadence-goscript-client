@@ -14,21 +14,12 @@ import * as reflect from "@goscript/reflect/index.js"
 import * as sync from "@goscript/sync/index.js"
 
 import * as time from "@goscript/time/index.js"
-
-import * as filedesc from "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-
-import * as filetype from "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-
-import * as impl from "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoimpl/index.js"
 import "@goscript/math/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/sync/index.js"
 import "@goscript/time/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-import "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 
 $.registerTypePackagePath("google.golang.org/protobuf/types/known/durationpb", ["durationpb.Duration", "durationpb.x"])
 
@@ -92,7 +83,7 @@ export class Duration {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Seconds?: bigint, Nanos?: number}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Seconds: init?.Seconds ?? (0n as bigint),
@@ -108,7 +99,7 @@ export class Duration {
 	public __goscriptAssign(source: Duration): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Seconds = values.Seconds
@@ -141,32 +132,32 @@ export class Duration {
 		return d
 	}
 
-	public async CheckValid(): globalThis.Promise<$.GoError> {
+	public CheckValid(): $.GoError {
 		const x: Duration | $.VarRef<Duration> | null = this;
 		switch ((x !== null && (x as any).__isVarRef !== true && (x as any).__goValue === undefined ? ((x as any) as Duration).check() : Duration.prototype.check.call(x))) {
 			case 1:
 			{
-				return $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).NewError("invalid nil Duration", null)
+				return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).NewError("invalid nil Duration", null)
 				break
 			}
 			case 2:
 			{
-				return $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).NewError("duration (%v) exceeds -10000 years", $.arrayToSlice<any>([$.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration"))]))
+				return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).NewError("duration (%v) exceeds -10000 years", $.arrayToSlice<any>([$.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration"))]))
 				break
 			}
 			case 3:
 			{
-				return $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).NewError("duration (%v) exceeds +10000 years", $.arrayToSlice<any>([$.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration"))]))
+				return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).NewError("duration (%v) exceeds +10000 years", $.arrayToSlice<any>([$.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration"))]))
 				break
 			}
 			case 4:
 			{
-				return $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).NewError("duration (%v) has out-of-range nanos", $.arrayToSlice<any>([$.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration"))]))
+				return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).NewError("duration (%v) has out-of-range nanos", $.arrayToSlice<any>([$.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration"))]))
 				break
 			}
 			case 5:
 			{
-				return $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).NewError("duration (%v) has seconds and nanos with different signs", $.arrayToSlice<any>([$.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration"))]))
+				return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).NewError("duration (%v) has seconds and nanos with different signs", $.arrayToSlice<any>([$.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration"))]))
 				break
 			}
 			default:
@@ -206,32 +197,32 @@ export class Duration {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Duration | $.VarRef<Duration> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_duration_proto_msgTypes!, 0)
+		let mi: any = $.indexRef(file_google_protobuf_duration_proto_msgTypes!, 0)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration"))))
+		return mi.MessageOf($.interfaceValue(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration")))
 	}
 
 	public Reset(): void {
 		let x: Duration | $.VarRef<Duration> | null = this;
 		$.assignStruct($.pointerValue<Duration>(x), $.markAsStructValue(new Duration()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_duration_proto_msgTypes!, 0)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_duration_proto_msgTypes!, 0)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Duration | $.VarRef<Duration> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*durationpb.Duration", /* @__PURE__ */ $.pointerType("durationpb.Duration")))
 	}
 
 	public check(): number {
@@ -277,9 +268,9 @@ export class Duration {
 	static __typeInfo = $.registerStructType(
 		"durationpb.Duration",
 		() => new Duration(),
-		() => [$.methodSignature("AsDuration", [], [/* @__PURE__ */ $.basicType("int64", "time.Duration")], true), $.methodSignature("CheckValid", [], ["error"], true), $.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetNanos", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetSeconds", [], [/* @__PURE__ */ $.basicType("int64")], true), $.methodSignature("IsValid", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("check", [], [/* @__PURE__ */ $.basicType("uint")], true)],
+		() => [{ name: "AsDuration", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64", "time.Duration") }], pointerReceiver: true }, { name: "CheckValid", args: [], returns: [{ type: "error" }], pointerReceiver: true }, { name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetNanos", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetSeconds", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64") }], pointerReceiver: true }, { name: "IsValid", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "check", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint") }], pointerReceiver: true }],
 		Duration,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/known/durationpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/known/durationpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/known/durationpb" }), /* @__PURE__ */ $.structField("Seconds", /* @__PURE__ */ $.basicType("int64"), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=seconds,proto3\" json:\"seconds,omitempty\"" }), /* @__PURE__ */ $.structField("Nanos", /* @__PURE__ */ $.basicType("int32"), [4], 48, true, { tag: "protobuf:\"varint,2,opt,name=nanos,proto3\" json:\"nanos,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Seconds", key: "Seconds", type: /* @__PURE__ */ $.basicType("int64"), tag: "protobuf:\"varint,1,opt,name=seconds,proto3\" json:\"seconds,omitempty\"" }, { name: "Nanos", key: "Nanos", type: /* @__PURE__ */ $.basicType("int32"), tag: "protobuf:\"varint,2,opt,name=nanos,proto3\" json:\"nanos,omitempty\"" }]
 	)
 }
 
@@ -326,12 +317,12 @@ export function __goscript_set_file_google_protobuf_duration_proto_rawDescData(_
 
 export async function file_google_protobuf_duration_proto_rawDescGZIP(): globalThis.Promise<$.Slice<number>> {
 	await file_google_protobuf_duration_proto_rawDescOnce.value.Do($.functionValue((): void => {
-		file_google_protobuf_duration_proto_rawDescData = $.pointerValue<impl.Export>(protoimpl.X).CompressGZIP(file_google_protobuf_duration_proto_rawDescData)
+		file_google_protobuf_duration_proto_rawDescData = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).CompressGZIP(file_google_protobuf_duration_proto_rawDescData)
 	}, ({ kind: $.TypeKind.Function, params: [], results: [] } as $.FunctionTypeInfo)))
 	return file_google_protobuf_duration_proto_rawDescData
 }
 
-export let file_google_protobuf_duration_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(1, undefined, undefined, () => new impl.MessageInfo(undefined, true))
+export let file_google_protobuf_duration_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(1, undefined, undefined, () => new protoimpl.MessageInfo(undefined, true))
 
 export function __goscript_set_file_google_protobuf_duration_proto_msgTypes(__goscriptValue: $.Slice<protoimpl.MessageInfo>): void {
 	file_google_protobuf_duration_proto_msgTypes = __goscriptValue
@@ -411,7 +402,7 @@ export async function file_google_protobuf_duration_proto_init(): globalThis.Pro
 			() => []
 		)
 	}
-	let out = await $.markAsStructValue($.cloneStructValue(new filetype.Builder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "durationpb.x", "durationpb.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new filedesc.Builder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_google_protobuf_duration_proto_rawDesc, NumEnums: 0, NumMessages: 1, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_google_protobuf_duration_proto_goTypes, DependencyIndexes: file_google_protobuf_duration_proto_depIdxs, MessageInfos: file_google_protobuf_duration_proto_msgTypes}, true))).Build()
+	let out = await $.markAsStructValue($.cloneStructValue(new protoimpl.TypeBuilder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "durationpb.x", "durationpb.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new protoimpl.DescBuilder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_google_protobuf_duration_proto_rawDesc, NumEnums: 0, NumMessages: 1, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_google_protobuf_duration_proto_goTypes, DependencyIndexes: file_google_protobuf_duration_proto_depIdxs, MessageInfos: file_google_protobuf_duration_proto_msgTypes}, true))).Build()
 	File_google_protobuf_duration_proto = out.File
 	file_google_protobuf_duration_proto_rawDesc = null
 	file_google_protobuf_duration_proto_goTypes = null

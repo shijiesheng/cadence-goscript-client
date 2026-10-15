@@ -3,6 +3,8 @@
 
 import * as $ from "@goscript/builtin/index.js"
 
+import { createConnection, type Socket } from "node:net"
+
 import * as context from "@goscript/context/index.js"
 
 import * as errors from "@goscript/errors/index.js"
@@ -66,6 +68,121 @@ import "./udpsock.gs.ts"
 import "./udpsock_posix.gs.ts"
 import "./unixsock.gs.ts"
 import "./unixsock_posix.gs.ts"
+
+type nativeSocketState = {
+	socket: Socket
+	chunks: Uint8Array[]
+	chunkOffset: number
+	ended: boolean
+	error: globalThis.Error | null
+	readWaiters: Array<() => void>
+}
+
+const nativeSockets = new WeakMap<fakeNetFD, nativeSocketState>()
+
+function wakeNativeReaders(state: nativeSocketState): void {
+	const waiters = state.readWaiters.splice(0)
+	for (const wake of waiters) {
+		wake()
+	}
+}
+
+function nativeSocketError(err: unknown): $.GoError {
+	return errors.New(err instanceof globalThis.Error ? err.message : globalThis.String(err))
+}
+
+async function connectNativeSocket(ffd: fakeNetFD, address: string): globalThis.Promise<$.GoError> {
+	const bracketed = /^\[([^\]]+)\]:(\d+)$/.exec(address)
+	const plain = /^(.+):(\d+)$/.exec(address)
+	const match = bracketed ?? plain
+	if (match == null) {
+		return errors.New(`invalid TCP address ${address}`)
+	}
+
+	const socket = createConnection({host: match[1], port: globalThis.Number(match[2])})
+	const state: nativeSocketState = {
+		socket,
+		chunks: [],
+		chunkOffset: 0,
+		ended: false,
+		error: null,
+		readWaiters: [],
+	}
+	nativeSockets.set(ffd, state)
+
+	socket.on("data", (chunk: Uint8Array) => {
+		state.chunks.push(Uint8Array.from(chunk))
+		wakeNativeReaders(state)
+	})
+	socket.on("end", () => {
+		state.ended = true
+		wakeNativeReaders(state)
+	})
+	socket.on("close", () => {
+		state.ended = true
+		wakeNativeReaders(state)
+	})
+	socket.on("error", (err: globalThis.Error) => {
+		state.error = err
+		wakeNativeReaders(state)
+	})
+
+	try {
+		await new globalThis.Promise<void>((resolve, reject) => {
+			socket.once("connect", resolve)
+			socket.once("error", reject)
+		})
+		return null
+	} catch (err) {
+		nativeSockets.delete(ffd)
+		socket.destroy()
+		return nativeSocketError(err)
+	}
+}
+
+async function readNativeSocket(state: nativeSocketState, p: $.Slice<number>): globalThis.Promise<[number, $.GoError]> {
+	if ($.sliceLen(p) == 0) {
+		return [0, null]
+	}
+	if (state.chunks.length > 0) {
+		const chunk = state.chunks[0]
+		const remaining = chunk.subarray(state.chunkOffset)
+		const n = $.copy(p, remaining)
+		state.chunkOffset += n
+		if (state.chunkOffset == chunk.length) {
+			state.chunks.shift()
+			state.chunkOffset = 0
+		}
+		return [n, null]
+	}
+	if (state.error != null) {
+		return [0, nativeSocketError(state.error)]
+	}
+	if (state.ended) {
+		return [0, io.EOF]
+	}
+
+	await new globalThis.Promise<void>((resolve) => state.readWaiters.push(resolve))
+	return readNativeSocket(state, p)
+}
+
+async function writeNativeSocket(state: nativeSocketState, p: $.Slice<number>): globalThis.Promise<[number, $.GoError]> {
+	const bytes = Uint8Array.from($.asArray(p))
+	try {
+		await new globalThis.Promise<void>((resolve, reject) => {
+			state.socket.write(bytes, (err?: globalThis.Error | null) => {
+				if (err != null) {
+					reject(err)
+				} else {
+					resolve()
+				}
+			})
+		})
+		return [bytes.length, null]
+	} catch (err) {
+		return [0, nativeSocketError(err)]
+	}
+}
 
 export class fakeSockAddr {
 	public get family(): number {
@@ -252,6 +369,14 @@ export class fakeNetFD {
 		const ffd: fakeNetFD | $.VarRef<fakeNetFD> | null = this;
 		let err: $.GoError = null! as $.GoError
 		const ffd$: fakeNetFD = ffd == null ? $.pointerTarget<fakeNetFD>(ffd) : (ffd as any).__isVarRef === true ? (ffd as any).value : (ffd as any).__goValue === undefined ? (ffd as any) : $.pointerTarget<fakeNetFD>(ffd)
+		const nativeState = nativeSockets.get(ffd$)
+		if (nativeState != null) {
+			nativeSockets.delete(ffd$)
+			nativeState.ended = true
+			nativeState.socket.destroy()
+			wakeNativeReaders(nativeState)
+			return null
+		}
 		if (!$.structEqual((ffd$ as fakeNetFD).fakeAddr, (new fakeSockAddr(undefined, true)))) {
 			await sockets.value.CompareAndDelete($.interfaceValue(((ffd$ as fakeNetFD).fakeAddr).clone(), "net.fakeSockAddr", "net.fakeSockAddr"), $.interfaceValue((ffd$ as fakeNetFD).fd, "*net.netFD", /* @__PURE__ */ $.pointerType("net.netFD")))
 		}
@@ -334,6 +459,10 @@ export class fakeNetFD {
 		let n: number = 0
 		let err: $.GoError = null! as $.GoError
 		const ffd$: fakeNetFD = ffd == null ? $.pointerTarget<fakeNetFD>(ffd) : (ffd as any).__isVarRef === true ? (ffd as any).value : (ffd as any).__goValue === undefined ? (ffd as any) : $.pointerTarget<fakeNetFD>(ffd)
+		const nativeState = nativeSockets.get(ffd$)
+		if (nativeState != null) {
+			return readNativeSocket(nativeState, p)
+		}
 		let __goscriptTuple3: any = await packetQueue.prototype.recvfrom.call((ffd$ as fakeNetFD).queue, (ffd$ as fakeNetFD).readDeadline.Load(), p, false, (null as ((_p0: __goscript_sockaddr_posix.sockaddr | null) => $.GoError | globalThis.Promise<$.GoError>) | null))
 		n = __goscriptTuple3[0]
 		err = __goscriptTuple3[2]
@@ -375,6 +504,10 @@ export class fakeNetFD {
 		let nn: number = 0
 		let err: $.GoError = null! as $.GoError
 		const ffd$: fakeNetFD = ffd == null ? $.pointerTarget<fakeNetFD>(ffd) : (ffd as any).__isVarRef === true ? (ffd as any).value : (ffd as any).__goValue === undefined ? (ffd as any) : $.pointerTarget<fakeNetFD>(ffd)
+		const nativeState = nativeSockets.get(ffd$)
+		if (nativeState != null) {
+			return writeNativeSocket(nativeState, p)
+		}
 		let peer: __goscript_fd_fake.netFD | $.VarRef<__goscript_fd_fake.netFD> | null = (ffd$ as fakeNetFD).peer
 		if (peer == null) {
 			if ($.pointerValue<__goscript_fd_fake.netFD>((ffd$ as fakeNetFD).fd).raddr == null) {
@@ -704,12 +837,23 @@ export class fakeNetFD {
 
 	public async closeRead(): globalThis.Promise<$.GoError> {
 		const ffd: fakeNetFD | $.VarRef<fakeNetFD> | null = this;
+		const ffd$: fakeNetFD = ffd == null ? $.pointerTarget<fakeNetFD>(ffd) : (ffd as any).__isVarRef === true ? (ffd as any).value : (ffd as any).__goValue === undefined ? (ffd as any) : $.pointerTarget<fakeNetFD>(ffd)
+		const nativeState = nativeSockets.get(ffd$)
+		if (nativeState != null) {
+			nativeState.socket.pause()
+			return null
+		}
 		return packetQueue.prototype.closeRead.call($.pointerValue<fakeNetFD>(ffd).queue)
 	}
 
 	public async closeWrite(): globalThis.Promise<$.GoError> {
 		const ffd: fakeNetFD | $.VarRef<fakeNetFD> | null = this;
 		const ffd$: fakeNetFD = ffd == null ? $.pointerTarget<fakeNetFD>(ffd) : (ffd as any).__isVarRef === true ? (ffd as any).value : (ffd as any).__goValue === undefined ? (ffd as any) : $.pointerTarget<fakeNetFD>(ffd)
+		const nativeState = nativeSockets.get(ffd$)
+		if (nativeState != null) {
+			nativeState.socket.end()
+			return null
+		}
 		if ((ffd$ as fakeNetFD).peer == null) {
 			return os.NewSyscallError("closeWrite", $.namedValueInterfaceValue<$.GoError>(syscall.ENOTCONN, "syscall.Errno", {"Error": syscall.Errno_Error}, /* @__PURE__ */ $.basicType("uintptr", "syscall.Errno"))!)
 		}
@@ -2174,6 +2318,14 @@ export async function fakeConnect(ctx: context.Context | null, fd: __goscript_fd
 	let fa = await fakeAddr(raddr)
 	let [lni, ok] = await sockets.value.Load($.interfaceValue((fa).clone(), "net.fakeSockAddr", "net.fakeSockAddr"))
 	if (!ok) {
+		if (((fd$ as __goscript_fd_fake.netFD).sotype == syscall.SOCK_STREAM) && ((fd$ as __goscript_fd_fake.netFD).family == syscall.AF_INET || (fd$ as __goscript_fd_fake.netFD).family == syscall.AF_INET6)) {
+			let nativeErr = await connectNativeSocket($.pointerValue<fakeNetFD>((fd$ as __goscript_fd_fake.netFD).fakeNetFD), fa.address)
+			if (nativeErr != null) {
+				return wrapErr!(nativeErr)
+			}
+			;(fd$ as __goscript_fd_fake.netFD).isConnected = true
+			return null
+		}
 		return wrapErr!($.namedValueInterfaceValue<$.GoError>(syscall.ECONNREFUSED, "syscall.Errno", {"Error": syscall.Errno_Error}, /* @__PURE__ */ $.basicType("uintptr", "syscall.Errno")))
 	}
 	let ln: __goscript_fd_fake.netFD | $.VarRef<__goscript_fd_fake.netFD> | null = ((lni as any)?.__goType === "*net.netFD" && (lni as any).__goValue === undefined && (lni as any).__isTypedNil !== true ? ((lni as any) as __goscript_fd_fake.netFD | $.VarRef<__goscript_fd_fake.netFD> | null) : $.mustTypeAssert<__goscript_fd_fake.netFD | $.VarRef<__goscript_fd_fake.netFD> | null>(lni, /* @__PURE__ */ $.pointerType("net.netFD")))

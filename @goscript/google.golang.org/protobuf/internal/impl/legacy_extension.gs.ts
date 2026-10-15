@@ -21,10 +21,6 @@ import * as protoregistry from "@goscript/google.golang.org/protobuf/reflect/pro
 
 import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 
-import * as protowire from "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-
-import type * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
-
 import * as sync from "@goscript/sync/index.js"
 
 import * as __goscript_api_export from "./api_export.gs.ts"
@@ -79,7 +75,6 @@ import "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoregistry/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
 import "@goscript/sync/index.js"
 import "./api_export.gs.ts"
 import "./checkinit.gs.ts"
@@ -273,7 +268,7 @@ export class placeholderExtension {
 
 	public Options(): protoreflect.ProtoMessage | null {
 		const x = this;
-		return descopts.Field.value
+		return descopts.Field
 	}
 
 	public Parent(): protoreflect.Descriptor | null {
@@ -309,8 +304,8 @@ export class placeholderExtension {
 	static __typeInfo = $.registerStructType(
 		"impl.placeholderExtension",
 		() => new placeholderExtension(),
-		() => [$.methodSignature("Cardinality", [], [/* @__PURE__ */ $.basicType("int8", "protoreflect.Cardinality")]), $.methodSignature("ContainingMessage", [], ["protoreflect.MessageDescriptor"]), $.methodSignature("ContainingOneof", [], ["protoreflect.OneofDescriptor"]), $.methodSignature("Default", [], ["protoreflect.Value"]), $.methodSignature("DefaultEnumValue", [], ["protoreflect.EnumValueDescriptor"]), $.methodSignature("Enum", [], ["protoreflect.EnumDescriptor"]), $.methodSignature("FullName", [], [/* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]), $.methodSignature("HasDefault", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("HasJSONName", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("HasOptionalKeyword", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("HasPresence", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("Index", [], [/* @__PURE__ */ $.basicType("int")]), $.methodSignature("IsExtension", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsList", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsMap", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsPacked", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsPlaceholder", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsWeak", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("JSONName", [], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("Kind", [], [/* @__PURE__ */ $.basicType("int8", "protoreflect.Kind")]), $.methodSignature("MapKey", [], ["protoreflect.FieldDescriptor"]), $.methodSignature("MapValue", [], ["protoreflect.FieldDescriptor"]), $.methodSignature("Message", [], ["protoreflect.MessageDescriptor"]), $.methodSignature("Name", [], [/* @__PURE__ */ $.basicType("string", "protoreflect.Name")]), $.methodSignature("Number", [], [/* @__PURE__ */ $.basicType("int32", "protowire.Number")]), $.methodSignature("Options", [], ["protoreflect.ProtoMessage"]), $.methodSignature("Parent", [], ["protoreflect.Descriptor"]), $.methodSignature("ParentFile", [], ["protoreflect.FileDescriptor"]), $.methodSignature("ProtoInternal", ["pragma.DoNotImplement"]), $.methodSignature("ProtoType", ["protoreflect.FieldDescriptor"]), $.methodSignature("Syntax", [], [/* @__PURE__ */ $.basicType("int8", "protoreflect.Syntax")]), $.methodSignature("TextName", [], [/* @__PURE__ */ $.basicType("string")])],
+		() => [{ name: "Cardinality", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int8", "protoreflect.Cardinality") }] }, { name: "ContainingMessage", args: [], returns: [{ type: "protoreflect.MessageDescriptor" }] }, { name: "ContainingOneof", args: [], returns: [{ type: "protoreflect.OneofDescriptor" }] }, { name: "Default", args: [], returns: [{ type: "protoreflect.Value" }] }, { name: "DefaultEnumValue", args: [], returns: [{ type: "protoreflect.EnumValueDescriptor" }] }, { name: "Enum", args: [], returns: [{ type: "protoreflect.EnumDescriptor" }] }, { name: "FullName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string", "protoreflect.FullName") }] }, { name: "HasDefault", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "HasJSONName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "HasOptionalKeyword", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "HasPresence", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "Index", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }] }, { name: "IsExtension", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsList", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsMap", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsPacked", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsPlaceholder", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsWeak", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "JSONName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "Kind", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int8", "protoreflect.Kind") }] }, { name: "MapKey", args: [], returns: [{ type: "protoreflect.FieldDescriptor" }] }, { name: "MapValue", args: [], returns: [{ type: "protoreflect.FieldDescriptor" }] }, { name: "Message", args: [], returns: [{ type: "protoreflect.MessageDescriptor" }] }, { name: "Name", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string", "protoreflect.Name") }] }, { name: "Number", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "protowire.Number") }] }, { name: "Options", args: [], returns: [{ type: "protoreflect.ProtoMessage" }] }, { name: "Parent", args: [], returns: [{ type: "protoreflect.Descriptor" }] }, { name: "ParentFile", args: [], returns: [{ type: "protoreflect.FileDescriptor" }] }, { name: "ProtoInternal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "ProtoType", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "Syntax", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int8", "protoreflect.Syntax") }] }, { name: "TextName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }],
 		placeholderExtension,
-		() => [/* @__PURE__ */ $.structField("name", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName"), [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("number", /* @__PURE__ */ $.basicType("int32", "protowire.Number"), [1], 16, false, { key: "_number", pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "name", key: "name", type: /* @__PURE__ */ $.basicType("string", "protoreflect.FullName") }, { name: "number", key: "_number", type: /* @__PURE__ */ $.basicType("int32", "protowire.Number") }]
 	)
 }

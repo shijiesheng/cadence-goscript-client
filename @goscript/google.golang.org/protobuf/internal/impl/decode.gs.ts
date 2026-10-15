@@ -19,8 +19,6 @@ import * as protoregistry from "@goscript/google.golang.org/protobuf/reflect/pro
 
 import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 
-import * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
 import * as reflect from "@goscript/reflect/index.js"
 
 import * as sync from "@goscript/sync/index.js"
@@ -62,7 +60,6 @@ import "@goscript/google.golang.org/protobuf/proto/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoregistry/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-import "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/sync/index.js"
 import "./checkinit.gs.ts"
@@ -152,9 +149,9 @@ export class unmarshalOptions {
 	static __typeInfo = $.registerStructType(
 		"impl.unmarshalOptions",
 		() => new unmarshalOptions(),
-		() => [$.methodSignature("DiscardUnknown", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsDefault", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("Options", [], ["proto.UnmarshalOptions"])],
+		() => [{ name: "DiscardUnknown", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsDefault", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "Options", args: [], returns: [{ type: "proto.UnmarshalOptions" }] }],
 		unmarshalOptions,
-		() => [/* @__PURE__ */ $.structField("flags", /* @__PURE__ */ $.basicType("uint8"), [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("resolver", { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] }, [1], 8, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("depth", /* @__PURE__ */ $.basicType("int"), [2], 24, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "flags", key: "flags", type: /* @__PURE__ */ $.basicType("uint8") }, { name: "resolver", key: "resolver", type: { kind: $.TypeKind.Interface, methods: [$.methodSignature("FindExtensionByName", [["field", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ExtensionType", "error"]), $.methodSignature("FindExtensionByNumber", [["message", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["field", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], ["protoreflect.ExtensionType", "error"])] } }, { name: "depth", key: "depth", type: /* @__PURE__ */ $.basicType("int") }]
 	)
 }
 
@@ -204,7 +201,7 @@ export class unmarshalOutput {
 		() => new unmarshalOutput(),
 		() => [],
 		unmarshalOutput,
-		() => [/* @__PURE__ */ $.structField("n", /* @__PURE__ */ $.basicType("int"), [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("initialized", /* @__PURE__ */ $.basicType("bool"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "n", key: "n", type: /* @__PURE__ */ $.basicType("int") }, { name: "initialized", key: "initialized", type: /* @__PURE__ */ $.basicType("bool") }]
 	)
 }
 

@@ -12,22 +12,11 @@ import * as descriptorpb from "@goscript/google.golang.org/protobuf/types/descri
 import * as reflect from "@goscript/reflect/index.js"
 
 import * as sync from "@goscript/sync/index.js"
-
-import * as filedesc from "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-
-import * as filetype from "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-
-import * as impl from "@goscript/google.golang.org/protobuf/internal/impl/index.js"
-
-import type * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoimpl/index.js"
 import "@goscript/google.golang.org/protobuf/types/descriptorpb/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/sync/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-import "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 
 $.registerTypePackagePath("google.golang.org/protobuf/types/gofeaturespb", ["gofeaturespb.GoFeatures", "gofeaturespb.x"])
 
@@ -74,7 +63,7 @@ export class GoFeatures {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, LegacyUnmarshalJsonEnum?: $.VarRef<boolean> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			LegacyUnmarshalJsonEnum: init?.LegacyUnmarshalJsonEnum ?? (null! as $.VarRef<boolean> | null)
@@ -89,7 +78,7 @@ export class GoFeatures {
 	public __goscriptAssign(source: GoFeatures): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.LegacyUnmarshalJsonEnum = values.LegacyUnmarshalJsonEnum
@@ -111,52 +100,52 @@ export class GoFeatures {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: GoFeatures | $.VarRef<GoFeatures> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_go_features_proto_msgTypes!, 0)
+		let mi: any = $.indexRef(file_google_protobuf_go_features_proto_msgTypes!, 0)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures"))))
+		return mi.MessageOf($.interfaceValue(x, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures")))
 	}
 
 	public Reset(): void {
 		let x: GoFeatures | $.VarRef<GoFeatures> | null = this;
 		$.assignStruct($.pointerValue<GoFeatures>(x), $.markAsStructValue(new GoFeatures()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_go_features_proto_msgTypes!, 0)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_go_features_proto_msgTypes!, 0)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: GoFeatures | $.VarRef<GoFeatures> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"gofeaturespb.GoFeatures",
 		() => new GoFeatures(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetLegacyUnmarshalJsonEnum", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetLegacyUnmarshalJsonEnum", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		GoFeatures,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/gofeaturespb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/gofeaturespb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/gofeaturespb" }), /* @__PURE__ */ $.structField("LegacyUnmarshalJsonEnum", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=legacy_unmarshal_json_enum,json=legacyUnmarshalJsonEnum\" json:\"legacy_unmarshal_json_enum,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "LegacyUnmarshalJsonEnum", key: "LegacyUnmarshalJsonEnum", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,1,opt,name=legacy_unmarshal_json_enum,json=legacyUnmarshalJsonEnum\" json:\"legacy_unmarshal_json_enum,omitempty\"" }]
 	)
 }
 
-export let file_google_protobuf_go_features_proto_extTypes: $.Slice<protoimpl.ExtensionInfo> = $.arrayToSlice<protoimpl.ExtensionInfo>([new impl.ExtensionInfo({ExtendedType: $.interfaceValue<protoiface.MessageV1 | null>(null, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")), ExtensionType: $.interfaceValue(null, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures")), Field: 1002, Name: "pb.go", Tag: "bytes,1002,opt,name=go", Filename: "google/protobuf/go_features.proto"}, true)])
+export let file_google_protobuf_go_features_proto_extTypes: $.Slice<protoimpl.ExtensionInfo> = $.arrayToSlice<protoimpl.ExtensionInfo>([new protoimpl.ExtensionInfo({ExtendedType: $.interfaceValue(null, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")), ExtensionType: $.interfaceValue(null, "*gofeaturespb.GoFeatures", /* @__PURE__ */ $.pointerType("gofeaturespb.GoFeatures")), Field: 1002, Name: "pb.go", Tag: "bytes,1002,opt,name=go", Filename: "google/protobuf/go_features.proto"}, true)])
 
 export function __goscript_set_file_google_protobuf_go_features_proto_extTypes(__goscriptValue: $.Slice<protoimpl.ExtensionInfo>): void {
 	file_google_protobuf_go_features_proto_extTypes = __goscriptValue
 }
 
-export let E_Go: impl.ExtensionInfo | $.VarRef<impl.ExtensionInfo> | null = $.indexRef(file_google_protobuf_go_features_proto_extTypes!, 0)
+export let E_Go: any = $.indexRef(file_google_protobuf_go_features_proto_extTypes!, 0)
 
-export function __goscript_set_E_Go(__goscriptValue: impl.ExtensionInfo | $.VarRef<impl.ExtensionInfo> | null): void {
+export function __goscript_set_E_Go(__goscriptValue: any): void {
 	E_Go = __goscriptValue
 }
 
@@ -186,12 +175,12 @@ export function __goscript_set_file_google_protobuf_go_features_proto_rawDescDat
 
 export async function file_google_protobuf_go_features_proto_rawDescGZIP(): globalThis.Promise<$.Slice<number>> {
 	await file_google_protobuf_go_features_proto_rawDescOnce.value.Do($.functionValue((): void => {
-		file_google_protobuf_go_features_proto_rawDescData = $.pointerValue<impl.Export>(protoimpl.X).CompressGZIP(file_google_protobuf_go_features_proto_rawDescData)
+		file_google_protobuf_go_features_proto_rawDescData = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).CompressGZIP(file_google_protobuf_go_features_proto_rawDescData)
 	}, ({ kind: $.TypeKind.Function, params: [], results: [] } as $.FunctionTypeInfo)))
 	return file_google_protobuf_go_features_proto_rawDescData
 }
 
-export let file_google_protobuf_go_features_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(1, undefined, undefined, () => new impl.MessageInfo(undefined, true))
+export let file_google_protobuf_go_features_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(1, undefined, undefined, () => new protoimpl.MessageInfo(undefined, true))
 
 export function __goscript_set_file_google_protobuf_go_features_proto_msgTypes(__goscriptValue: $.Slice<protoimpl.MessageInfo>): void {
 	file_google_protobuf_go_features_proto_msgTypes = __goscriptValue
@@ -271,7 +260,7 @@ export async function file_google_protobuf_go_features_proto_init(): globalThis.
 			() => []
 		)
 	}
-	let out = await $.markAsStructValue($.cloneStructValue(new filetype.Builder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "gofeaturespb.x", "gofeaturespb.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new filedesc.Builder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_google_protobuf_go_features_proto_rawDesc, NumEnums: 0, NumMessages: 1, NumExtensions: 1, NumServices: 0}, true) })()), GoTypes: file_google_protobuf_go_features_proto_goTypes, DependencyIndexes: file_google_protobuf_go_features_proto_depIdxs, MessageInfos: file_google_protobuf_go_features_proto_msgTypes, ExtensionInfos: file_google_protobuf_go_features_proto_extTypes}, true))).Build()
+	let out = await $.markAsStructValue($.cloneStructValue(new protoimpl.TypeBuilder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "gofeaturespb.x", "gofeaturespb.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new protoimpl.DescBuilder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_google_protobuf_go_features_proto_rawDesc, NumEnums: 0, NumMessages: 1, NumExtensions: 1, NumServices: 0}, true) })()), GoTypes: file_google_protobuf_go_features_proto_goTypes, DependencyIndexes: file_google_protobuf_go_features_proto_depIdxs, MessageInfos: file_google_protobuf_go_features_proto_msgTypes, ExtensionInfos: file_google_protobuf_go_features_proto_extTypes}, true))).Build()
 	File_google_protobuf_go_features_proto = out.File
 	file_google_protobuf_go_features_proto_rawDesc = null
 	file_google_protobuf_go_features_proto_goTypes = null

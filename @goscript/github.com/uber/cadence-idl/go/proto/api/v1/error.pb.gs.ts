@@ -196,7 +196,7 @@ export class WorkflowExecutionAlreadyStartedError {
 
 	public String(): string {
 		const m: WorkflowExecutionAlreadyStartedError | $.VarRef<WorkflowExecutionAlreadyStartedError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyStartedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyStartedError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyStartedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyStartedError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -326,12 +326,12 @@ export class WorkflowExecutionAlreadyStartedError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: WorkflowExecutionAlreadyStartedError | $.VarRef<WorkflowExecutionAlreadyStartedError> | null = this;
-		await xxx_messageInfo_WorkflowExecutionAlreadyStartedError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyStartedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyStartedError")))
+		xxx_messageInfo_WorkflowExecutionAlreadyStartedError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyStartedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyStartedError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: WorkflowExecutionAlreadyStartedError | $.VarRef<WorkflowExecutionAlreadyStartedError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_WorkflowExecutionAlreadyStartedError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyStartedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyStartedError")), deterministic)
@@ -346,9 +346,9 @@ export class WorkflowExecutionAlreadyStartedError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: WorkflowExecutionAlreadyStartedError | $.VarRef<WorkflowExecutionAlreadyStartedError> | null = this;
-		await xxx_messageInfo_WorkflowExecutionAlreadyStartedError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyStartedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyStartedError")), src)
+		xxx_messageInfo_WorkflowExecutionAlreadyStartedError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyStartedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyStartedError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -364,9 +364,9 @@ export class WorkflowExecutionAlreadyStartedError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.WorkflowExecutionAlreadyStartedError",
 		() => new WorkflowExecutionAlreadyStartedError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetRunId", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetStartRequestId", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetRunId", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetStartRequestId", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		WorkflowExecutionAlreadyStartedError,
-		() => [/* @__PURE__ */ $.structField("StartRequestId", /* @__PURE__ */ $.basicType("string"), [0], 0, true, { tag: "protobuf:\"bytes,1,opt,name=start_request_id,json=startRequestId,proto3\" json:\"start_request_id,omitempty\"" }), /* @__PURE__ */ $.structField("RunId", /* @__PURE__ */ $.basicType("string"), [1], 16, true, { tag: "protobuf:\"bytes,2,opt,name=run_id,json=runId,proto3\" json:\"run_id,omitempty\"" }), /* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [2], 32, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [3], 32, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [4], 56, true, { tag: "json:\"-\"" })]
+		() => [{ name: "StartRequestId", key: "StartRequestId", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,1,opt,name=start_request_id,json=startRequestId,proto3\" json:\"start_request_id,omitempty\"" }, { name: "RunId", key: "RunId", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,2,opt,name=run_id,json=runId,proto3\" json:\"run_id,omitempty\"" }, { name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -581,7 +581,7 @@ export class EntityNotExistsError {
 
 	public String(): string {
 		const m: EntityNotExistsError | $.VarRef<EntityNotExistsError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.EntityNotExistsError", /* @__PURE__ */ $.pointerType("apiv1.EntityNotExistsError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.EntityNotExistsError", /* @__PURE__ */ $.pointerType("apiv1.EntityNotExistsError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -746,12 +746,12 @@ export class EntityNotExistsError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: EntityNotExistsError | $.VarRef<EntityNotExistsError> | null = this;
-		await xxx_messageInfo_EntityNotExistsError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.EntityNotExistsError", /* @__PURE__ */ $.pointerType("apiv1.EntityNotExistsError")))
+		xxx_messageInfo_EntityNotExistsError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.EntityNotExistsError", /* @__PURE__ */ $.pointerType("apiv1.EntityNotExistsError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: EntityNotExistsError | $.VarRef<EntityNotExistsError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_EntityNotExistsError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.EntityNotExistsError", /* @__PURE__ */ $.pointerType("apiv1.EntityNotExistsError")), deterministic)
@@ -766,9 +766,9 @@ export class EntityNotExistsError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: EntityNotExistsError | $.VarRef<EntityNotExistsError> | null = this;
-		await xxx_messageInfo_EntityNotExistsError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.EntityNotExistsError", /* @__PURE__ */ $.pointerType("apiv1.EntityNotExistsError")), src)
+		xxx_messageInfo_EntityNotExistsError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.EntityNotExistsError", /* @__PURE__ */ $.pointerType("apiv1.EntityNotExistsError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -784,9 +784,9 @@ export class EntityNotExistsError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.EntityNotExistsError",
 		() => new EntityNotExistsError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetActiveCluster", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetActiveClusters", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string"))], true), $.methodSignature("GetCurrentCluster", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetActiveCluster", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetActiveClusters", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")) }], pointerReceiver: true }, { name: "GetCurrentCluster", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		EntityNotExistsError,
-		() => [/* @__PURE__ */ $.structField("CurrentCluster", /* @__PURE__ */ $.basicType("string"), [0], 0, true, { tag: "protobuf:\"bytes,1,opt,name=current_cluster,json=currentCluster,proto3\" json:\"current_cluster,omitempty\"" }), /* @__PURE__ */ $.structField("ActiveCluster", /* @__PURE__ */ $.basicType("string"), [1], 16, true, { tag: "protobuf:\"bytes,2,opt,name=active_cluster,json=activeCluster,proto3\" json:\"active_cluster,omitempty\"" }), /* @__PURE__ */ $.structField("ActiveClusters", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), [2], 32, true, { tag: "protobuf:\"bytes,3,rep,name=active_clusters,json=activeClusters,proto3\" json:\"active_clusters,omitempty\"" }), /* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [3], 56, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [4], 56, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [5], 80, true, { tag: "json:\"-\"" })]
+		() => [{ name: "CurrentCluster", key: "CurrentCluster", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,1,opt,name=current_cluster,json=currentCluster,proto3\" json:\"current_cluster,omitempty\"" }, { name: "ActiveCluster", key: "ActiveCluster", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,2,opt,name=active_cluster,json=activeCluster,proto3\" json:\"active_cluster,omitempty\"" }, { name: "ActiveClusters", key: "ActiveClusters", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,3,rep,name=active_clusters,json=activeClusters,proto3\" json:\"active_clusters,omitempty\"" }, { name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -906,7 +906,7 @@ export class WorkflowExecutionAlreadyCompletedError {
 
 	public String(): string {
 		const m: WorkflowExecutionAlreadyCompletedError | $.VarRef<WorkflowExecutionAlreadyCompletedError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyCompletedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyCompletedError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyCompletedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyCompletedError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -966,12 +966,12 @@ export class WorkflowExecutionAlreadyCompletedError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: WorkflowExecutionAlreadyCompletedError | $.VarRef<WorkflowExecutionAlreadyCompletedError> | null = this;
-		await xxx_messageInfo_WorkflowExecutionAlreadyCompletedError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyCompletedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyCompletedError")))
+		xxx_messageInfo_WorkflowExecutionAlreadyCompletedError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyCompletedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyCompletedError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: WorkflowExecutionAlreadyCompletedError | $.VarRef<WorkflowExecutionAlreadyCompletedError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_WorkflowExecutionAlreadyCompletedError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyCompletedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyCompletedError")), deterministic)
@@ -986,9 +986,9 @@ export class WorkflowExecutionAlreadyCompletedError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: WorkflowExecutionAlreadyCompletedError | $.VarRef<WorkflowExecutionAlreadyCompletedError> | null = this;
-		await xxx_messageInfo_WorkflowExecutionAlreadyCompletedError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyCompletedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyCompletedError")), src)
+		xxx_messageInfo_WorkflowExecutionAlreadyCompletedError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.WorkflowExecutionAlreadyCompletedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyCompletedError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -1004,9 +1004,9 @@ export class WorkflowExecutionAlreadyCompletedError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.WorkflowExecutionAlreadyCompletedError",
 		() => new WorkflowExecutionAlreadyCompletedError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		WorkflowExecutionAlreadyCompletedError,
-		() => [/* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [0], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [1], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [2], 24, true, { tag: "json:\"-\"" })]
+		() => [{ name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -1251,7 +1251,7 @@ export class DomainNotActiveError {
 
 	public String(): string {
 		const m: DomainNotActiveError | $.VarRef<DomainNotActiveError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainNotActiveError", /* @__PURE__ */ $.pointerType("apiv1.DomainNotActiveError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainNotActiveError", /* @__PURE__ */ $.pointerType("apiv1.DomainNotActiveError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -1451,12 +1451,12 @@ export class DomainNotActiveError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: DomainNotActiveError | $.VarRef<DomainNotActiveError> | null = this;
-		await xxx_messageInfo_DomainNotActiveError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainNotActiveError", /* @__PURE__ */ $.pointerType("apiv1.DomainNotActiveError")))
+		xxx_messageInfo_DomainNotActiveError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainNotActiveError", /* @__PURE__ */ $.pointerType("apiv1.DomainNotActiveError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: DomainNotActiveError | $.VarRef<DomainNotActiveError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_DomainNotActiveError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.DomainNotActiveError", /* @__PURE__ */ $.pointerType("apiv1.DomainNotActiveError")), deterministic)
@@ -1471,9 +1471,9 @@ export class DomainNotActiveError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: DomainNotActiveError | $.VarRef<DomainNotActiveError> | null = this;
-		await xxx_messageInfo_DomainNotActiveError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainNotActiveError", /* @__PURE__ */ $.pointerType("apiv1.DomainNotActiveError")), src)
+		xxx_messageInfo_DomainNotActiveError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainNotActiveError", /* @__PURE__ */ $.pointerType("apiv1.DomainNotActiveError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -1489,9 +1489,9 @@ export class DomainNotActiveError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.DomainNotActiveError",
 		() => new DomainNotActiveError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetActiveCluster", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetActiveClusters", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string"))], true), $.methodSignature("GetCurrentCluster", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetDomain", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetActiveCluster", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetActiveClusters", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")) }], pointerReceiver: true }, { name: "GetCurrentCluster", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetDomain", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		DomainNotActiveError,
-		() => [/* @__PURE__ */ $.structField("Domain", /* @__PURE__ */ $.basicType("string"), [0], 0, true, { tag: "protobuf:\"bytes,1,opt,name=domain,proto3\" json:\"domain,omitempty\"" }), /* @__PURE__ */ $.structField("CurrentCluster", /* @__PURE__ */ $.basicType("string"), [1], 16, true, { tag: "protobuf:\"bytes,2,opt,name=current_cluster,json=currentCluster,proto3\" json:\"current_cluster,omitempty\"" }), /* @__PURE__ */ $.structField("ActiveCluster", /* @__PURE__ */ $.basicType("string"), [2], 32, true, { tag: "protobuf:\"bytes,3,opt,name=active_cluster,json=activeCluster,proto3\" json:\"active_cluster,omitempty\"" }), /* @__PURE__ */ $.structField("ActiveClusters", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), [3], 48, true, { tag: "protobuf:\"bytes,4,rep,name=active_clusters,json=activeClusters,proto3\" json:\"active_clusters,omitempty\"" }), /* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [4], 72, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [5], 72, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [6], 96, true, { tag: "json:\"-\"" })]
+		() => [{ name: "Domain", key: "Domain", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,1,opt,name=domain,proto3\" json:\"domain,omitempty\"" }, { name: "CurrentCluster", key: "CurrentCluster", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,2,opt,name=current_cluster,json=currentCluster,proto3\" json:\"current_cluster,omitempty\"" }, { name: "ActiveCluster", key: "ActiveCluster", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,3,opt,name=active_cluster,json=activeCluster,proto3\" json:\"active_cluster,omitempty\"" }, { name: "ActiveClusters", key: "ActiveClusters", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,4,rep,name=active_clusters,json=activeClusters,proto3\" json:\"active_clusters,omitempty\"" }, { name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -1701,7 +1701,7 @@ export class ClientVersionNotSupportedError {
 
 	public String(): string {
 		const m: ClientVersionNotSupportedError | $.VarRef<ClientVersionNotSupportedError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.ClientVersionNotSupportedError", /* @__PURE__ */ $.pointerType("apiv1.ClientVersionNotSupportedError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.ClientVersionNotSupportedError", /* @__PURE__ */ $.pointerType("apiv1.ClientVersionNotSupportedError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -1866,12 +1866,12 @@ export class ClientVersionNotSupportedError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: ClientVersionNotSupportedError | $.VarRef<ClientVersionNotSupportedError> | null = this;
-		await xxx_messageInfo_ClientVersionNotSupportedError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.ClientVersionNotSupportedError", /* @__PURE__ */ $.pointerType("apiv1.ClientVersionNotSupportedError")))
+		xxx_messageInfo_ClientVersionNotSupportedError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.ClientVersionNotSupportedError", /* @__PURE__ */ $.pointerType("apiv1.ClientVersionNotSupportedError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: ClientVersionNotSupportedError | $.VarRef<ClientVersionNotSupportedError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_ClientVersionNotSupportedError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.ClientVersionNotSupportedError", /* @__PURE__ */ $.pointerType("apiv1.ClientVersionNotSupportedError")), deterministic)
@@ -1886,9 +1886,9 @@ export class ClientVersionNotSupportedError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: ClientVersionNotSupportedError | $.VarRef<ClientVersionNotSupportedError> | null = this;
-		await xxx_messageInfo_ClientVersionNotSupportedError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.ClientVersionNotSupportedError", /* @__PURE__ */ $.pointerType("apiv1.ClientVersionNotSupportedError")), src)
+		xxx_messageInfo_ClientVersionNotSupportedError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.ClientVersionNotSupportedError", /* @__PURE__ */ $.pointerType("apiv1.ClientVersionNotSupportedError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -1904,9 +1904,9 @@ export class ClientVersionNotSupportedError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.ClientVersionNotSupportedError",
 		() => new ClientVersionNotSupportedError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetClientImpl", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetFeatureVersion", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetSupportedVersions", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetClientImpl", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetFeatureVersion", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetSupportedVersions", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		ClientVersionNotSupportedError,
-		() => [/* @__PURE__ */ $.structField("FeatureVersion", /* @__PURE__ */ $.basicType("string"), [0], 0, true, { tag: "protobuf:\"bytes,1,opt,name=feature_version,json=featureVersion,proto3\" json:\"feature_version,omitempty\"" }), /* @__PURE__ */ $.structField("ClientImpl", /* @__PURE__ */ $.basicType("string"), [1], 16, true, { tag: "protobuf:\"bytes,2,opt,name=client_impl,json=clientImpl,proto3\" json:\"client_impl,omitempty\"" }), /* @__PURE__ */ $.structField("SupportedVersions", /* @__PURE__ */ $.basicType("string"), [2], 32, true, { tag: "protobuf:\"bytes,3,opt,name=supported_versions,json=supportedVersions,proto3\" json:\"supported_versions,omitempty\"" }), /* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [3], 48, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [4], 48, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [5], 72, true, { tag: "json:\"-\"" })]
+		() => [{ name: "FeatureVersion", key: "FeatureVersion", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,1,opt,name=feature_version,json=featureVersion,proto3\" json:\"feature_version,omitempty\"" }, { name: "ClientImpl", key: "ClientImpl", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,2,opt,name=client_impl,json=clientImpl,proto3\" json:\"client_impl,omitempty\"" }, { name: "SupportedVersions", key: "SupportedVersions", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,3,opt,name=supported_versions,json=supportedVersions,proto3\" json:\"supported_versions,omitempty\"" }, { name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -2056,7 +2056,7 @@ export class FeatureNotEnabledError {
 
 	public String(): string {
 		const m: FeatureNotEnabledError | $.VarRef<FeatureNotEnabledError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.FeatureNotEnabledError", /* @__PURE__ */ $.pointerType("apiv1.FeatureNotEnabledError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.FeatureNotEnabledError", /* @__PURE__ */ $.pointerType("apiv1.FeatureNotEnabledError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -2151,12 +2151,12 @@ export class FeatureNotEnabledError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: FeatureNotEnabledError | $.VarRef<FeatureNotEnabledError> | null = this;
-		await xxx_messageInfo_FeatureNotEnabledError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.FeatureNotEnabledError", /* @__PURE__ */ $.pointerType("apiv1.FeatureNotEnabledError")))
+		xxx_messageInfo_FeatureNotEnabledError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.FeatureNotEnabledError", /* @__PURE__ */ $.pointerType("apiv1.FeatureNotEnabledError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: FeatureNotEnabledError | $.VarRef<FeatureNotEnabledError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_FeatureNotEnabledError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.FeatureNotEnabledError", /* @__PURE__ */ $.pointerType("apiv1.FeatureNotEnabledError")), deterministic)
@@ -2171,9 +2171,9 @@ export class FeatureNotEnabledError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: FeatureNotEnabledError | $.VarRef<FeatureNotEnabledError> | null = this;
-		await xxx_messageInfo_FeatureNotEnabledError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.FeatureNotEnabledError", /* @__PURE__ */ $.pointerType("apiv1.FeatureNotEnabledError")), src)
+		xxx_messageInfo_FeatureNotEnabledError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.FeatureNotEnabledError", /* @__PURE__ */ $.pointerType("apiv1.FeatureNotEnabledError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -2189,9 +2189,9 @@ export class FeatureNotEnabledError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.FeatureNotEnabledError",
 		() => new FeatureNotEnabledError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetFeatureFlag", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetFeatureFlag", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		FeatureNotEnabledError,
-		() => [/* @__PURE__ */ $.structField("FeatureFlag", /* @__PURE__ */ $.basicType("string"), [0], 0, true, { tag: "protobuf:\"bytes,1,opt,name=feature_flag,json=featureFlag,proto3\" json:\"feature_flag,omitempty\"" }), /* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [1], 16, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [3], 40, true, { tag: "json:\"-\"" })]
+		() => [{ name: "FeatureFlag", key: "FeatureFlag", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,1,opt,name=feature_flag,json=featureFlag,proto3\" json:\"feature_flag,omitempty\"" }, { name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -2311,7 +2311,7 @@ export class CancellationAlreadyRequestedError {
 
 	public String(): string {
 		const m: CancellationAlreadyRequestedError | $.VarRef<CancellationAlreadyRequestedError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.CancellationAlreadyRequestedError", /* @__PURE__ */ $.pointerType("apiv1.CancellationAlreadyRequestedError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.CancellationAlreadyRequestedError", /* @__PURE__ */ $.pointerType("apiv1.CancellationAlreadyRequestedError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -2371,12 +2371,12 @@ export class CancellationAlreadyRequestedError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: CancellationAlreadyRequestedError | $.VarRef<CancellationAlreadyRequestedError> | null = this;
-		await xxx_messageInfo_CancellationAlreadyRequestedError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.CancellationAlreadyRequestedError", /* @__PURE__ */ $.pointerType("apiv1.CancellationAlreadyRequestedError")))
+		xxx_messageInfo_CancellationAlreadyRequestedError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.CancellationAlreadyRequestedError", /* @__PURE__ */ $.pointerType("apiv1.CancellationAlreadyRequestedError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: CancellationAlreadyRequestedError | $.VarRef<CancellationAlreadyRequestedError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_CancellationAlreadyRequestedError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.CancellationAlreadyRequestedError", /* @__PURE__ */ $.pointerType("apiv1.CancellationAlreadyRequestedError")), deterministic)
@@ -2391,9 +2391,9 @@ export class CancellationAlreadyRequestedError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: CancellationAlreadyRequestedError | $.VarRef<CancellationAlreadyRequestedError> | null = this;
-		await xxx_messageInfo_CancellationAlreadyRequestedError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.CancellationAlreadyRequestedError", /* @__PURE__ */ $.pointerType("apiv1.CancellationAlreadyRequestedError")), src)
+		xxx_messageInfo_CancellationAlreadyRequestedError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.CancellationAlreadyRequestedError", /* @__PURE__ */ $.pointerType("apiv1.CancellationAlreadyRequestedError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -2409,9 +2409,9 @@ export class CancellationAlreadyRequestedError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.CancellationAlreadyRequestedError",
 		() => new CancellationAlreadyRequestedError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		CancellationAlreadyRequestedError,
-		() => [/* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [0], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [1], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [2], 24, true, { tag: "json:\"-\"" })]
+		() => [{ name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -2531,7 +2531,7 @@ export class DomainAlreadyExistsError {
 
 	public String(): string {
 		const m: DomainAlreadyExistsError | $.VarRef<DomainAlreadyExistsError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainAlreadyExistsError", /* @__PURE__ */ $.pointerType("apiv1.DomainAlreadyExistsError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainAlreadyExistsError", /* @__PURE__ */ $.pointerType("apiv1.DomainAlreadyExistsError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -2591,12 +2591,12 @@ export class DomainAlreadyExistsError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: DomainAlreadyExistsError | $.VarRef<DomainAlreadyExistsError> | null = this;
-		await xxx_messageInfo_DomainAlreadyExistsError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainAlreadyExistsError", /* @__PURE__ */ $.pointerType("apiv1.DomainAlreadyExistsError")))
+		xxx_messageInfo_DomainAlreadyExistsError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainAlreadyExistsError", /* @__PURE__ */ $.pointerType("apiv1.DomainAlreadyExistsError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: DomainAlreadyExistsError | $.VarRef<DomainAlreadyExistsError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_DomainAlreadyExistsError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.DomainAlreadyExistsError", /* @__PURE__ */ $.pointerType("apiv1.DomainAlreadyExistsError")), deterministic)
@@ -2611,9 +2611,9 @@ export class DomainAlreadyExistsError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: DomainAlreadyExistsError | $.VarRef<DomainAlreadyExistsError> | null = this;
-		await xxx_messageInfo_DomainAlreadyExistsError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainAlreadyExistsError", /* @__PURE__ */ $.pointerType("apiv1.DomainAlreadyExistsError")), src)
+		xxx_messageInfo_DomainAlreadyExistsError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.DomainAlreadyExistsError", /* @__PURE__ */ $.pointerType("apiv1.DomainAlreadyExistsError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -2629,9 +2629,9 @@ export class DomainAlreadyExistsError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.DomainAlreadyExistsError",
 		() => new DomainAlreadyExistsError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		DomainAlreadyExistsError,
-		() => [/* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [0], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [1], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [2], 24, true, { tag: "json:\"-\"" })]
+		() => [{ name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -2751,7 +2751,7 @@ export class LimitExceededError {
 
 	public String(): string {
 		const m: LimitExceededError | $.VarRef<LimitExceededError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.LimitExceededError", /* @__PURE__ */ $.pointerType("apiv1.LimitExceededError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.LimitExceededError", /* @__PURE__ */ $.pointerType("apiv1.LimitExceededError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -2811,12 +2811,12 @@ export class LimitExceededError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: LimitExceededError | $.VarRef<LimitExceededError> | null = this;
-		await xxx_messageInfo_LimitExceededError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.LimitExceededError", /* @__PURE__ */ $.pointerType("apiv1.LimitExceededError")))
+		xxx_messageInfo_LimitExceededError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.LimitExceededError", /* @__PURE__ */ $.pointerType("apiv1.LimitExceededError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: LimitExceededError | $.VarRef<LimitExceededError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_LimitExceededError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.LimitExceededError", /* @__PURE__ */ $.pointerType("apiv1.LimitExceededError")), deterministic)
@@ -2831,9 +2831,9 @@ export class LimitExceededError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: LimitExceededError | $.VarRef<LimitExceededError> | null = this;
-		await xxx_messageInfo_LimitExceededError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.LimitExceededError", /* @__PURE__ */ $.pointerType("apiv1.LimitExceededError")), src)
+		xxx_messageInfo_LimitExceededError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.LimitExceededError", /* @__PURE__ */ $.pointerType("apiv1.LimitExceededError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -2849,9 +2849,9 @@ export class LimitExceededError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.LimitExceededError",
 		() => new LimitExceededError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		LimitExceededError,
-		() => [/* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [0], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [1], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [2], 24, true, { tag: "json:\"-\"" })]
+		() => [{ name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -2971,7 +2971,7 @@ export class QueryFailedError {
 
 	public String(): string {
 		const m: QueryFailedError | $.VarRef<QueryFailedError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.QueryFailedError", /* @__PURE__ */ $.pointerType("apiv1.QueryFailedError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.QueryFailedError", /* @__PURE__ */ $.pointerType("apiv1.QueryFailedError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -3031,12 +3031,12 @@ export class QueryFailedError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: QueryFailedError | $.VarRef<QueryFailedError> | null = this;
-		await xxx_messageInfo_QueryFailedError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.QueryFailedError", /* @__PURE__ */ $.pointerType("apiv1.QueryFailedError")))
+		xxx_messageInfo_QueryFailedError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.QueryFailedError", /* @__PURE__ */ $.pointerType("apiv1.QueryFailedError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: QueryFailedError | $.VarRef<QueryFailedError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_QueryFailedError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.QueryFailedError", /* @__PURE__ */ $.pointerType("apiv1.QueryFailedError")), deterministic)
@@ -3051,9 +3051,9 @@ export class QueryFailedError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: QueryFailedError | $.VarRef<QueryFailedError> | null = this;
-		await xxx_messageInfo_QueryFailedError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.QueryFailedError", /* @__PURE__ */ $.pointerType("apiv1.QueryFailedError")), src)
+		xxx_messageInfo_QueryFailedError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.QueryFailedError", /* @__PURE__ */ $.pointerType("apiv1.QueryFailedError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -3069,9 +3069,9 @@ export class QueryFailedError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.QueryFailedError",
 		() => new QueryFailedError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		QueryFailedError,
-		() => [/* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [0], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [1], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [2], 24, true, { tag: "json:\"-\"" })]
+		() => [{ name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -3221,7 +3221,7 @@ export class ServiceBusyError {
 
 	public String(): string {
 		const m: ServiceBusyError | $.VarRef<ServiceBusyError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.ServiceBusyError", /* @__PURE__ */ $.pointerType("apiv1.ServiceBusyError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.ServiceBusyError", /* @__PURE__ */ $.pointerType("apiv1.ServiceBusyError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -3316,12 +3316,12 @@ export class ServiceBusyError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: ServiceBusyError | $.VarRef<ServiceBusyError> | null = this;
-		await xxx_messageInfo_ServiceBusyError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.ServiceBusyError", /* @__PURE__ */ $.pointerType("apiv1.ServiceBusyError")))
+		xxx_messageInfo_ServiceBusyError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.ServiceBusyError", /* @__PURE__ */ $.pointerType("apiv1.ServiceBusyError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: ServiceBusyError | $.VarRef<ServiceBusyError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_ServiceBusyError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.ServiceBusyError", /* @__PURE__ */ $.pointerType("apiv1.ServiceBusyError")), deterministic)
@@ -3336,9 +3336,9 @@ export class ServiceBusyError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: ServiceBusyError | $.VarRef<ServiceBusyError> | null = this;
-		await xxx_messageInfo_ServiceBusyError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.ServiceBusyError", /* @__PURE__ */ $.pointerType("apiv1.ServiceBusyError")), src)
+		xxx_messageInfo_ServiceBusyError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.ServiceBusyError", /* @__PURE__ */ $.pointerType("apiv1.ServiceBusyError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -3354,9 +3354,9 @@ export class ServiceBusyError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.ServiceBusyError",
 		() => new ServiceBusyError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetReason", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetReason", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		ServiceBusyError,
-		() => [/* @__PURE__ */ $.structField("Reason", /* @__PURE__ */ $.basicType("string"), [0], 0, true, { tag: "protobuf:\"bytes,1,opt,name=reason,proto3\" json:\"reason,omitempty\"" }), /* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [1], 16, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [3], 40, true, { tag: "json:\"-\"" })]
+		() => [{ name: "Reason", key: "Reason", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,1,opt,name=reason,proto3\" json:\"reason,omitempty\"" }, { name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -3476,7 +3476,7 @@ export class StickyWorkerUnavailableError {
 
 	public String(): string {
 		const m: StickyWorkerUnavailableError | $.VarRef<StickyWorkerUnavailableError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.StickyWorkerUnavailableError", /* @__PURE__ */ $.pointerType("apiv1.StickyWorkerUnavailableError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.StickyWorkerUnavailableError", /* @__PURE__ */ $.pointerType("apiv1.StickyWorkerUnavailableError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -3536,12 +3536,12 @@ export class StickyWorkerUnavailableError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: StickyWorkerUnavailableError | $.VarRef<StickyWorkerUnavailableError> | null = this;
-		await xxx_messageInfo_StickyWorkerUnavailableError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.StickyWorkerUnavailableError", /* @__PURE__ */ $.pointerType("apiv1.StickyWorkerUnavailableError")))
+		xxx_messageInfo_StickyWorkerUnavailableError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.StickyWorkerUnavailableError", /* @__PURE__ */ $.pointerType("apiv1.StickyWorkerUnavailableError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: StickyWorkerUnavailableError | $.VarRef<StickyWorkerUnavailableError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_StickyWorkerUnavailableError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.StickyWorkerUnavailableError", /* @__PURE__ */ $.pointerType("apiv1.StickyWorkerUnavailableError")), deterministic)
@@ -3556,9 +3556,9 @@ export class StickyWorkerUnavailableError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: StickyWorkerUnavailableError | $.VarRef<StickyWorkerUnavailableError> | null = this;
-		await xxx_messageInfo_StickyWorkerUnavailableError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.StickyWorkerUnavailableError", /* @__PURE__ */ $.pointerType("apiv1.StickyWorkerUnavailableError")), src)
+		xxx_messageInfo_StickyWorkerUnavailableError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.StickyWorkerUnavailableError", /* @__PURE__ */ $.pointerType("apiv1.StickyWorkerUnavailableError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -3574,9 +3574,9 @@ export class StickyWorkerUnavailableError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.StickyWorkerUnavailableError",
 		() => new StickyWorkerUnavailableError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		StickyWorkerUnavailableError,
-		() => [/* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [0], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [1], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [2], 24, true, { tag: "json:\"-\"" })]
+		() => [{ name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -3696,7 +3696,7 @@ export class ReadOnlyPartitionError {
 
 	public String(): string {
 		const m: ReadOnlyPartitionError | $.VarRef<ReadOnlyPartitionError> | null = this;
-		return await proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.ReadOnlyPartitionError", /* @__PURE__ */ $.pointerType("apiv1.ReadOnlyPartitionError")))
+		return proto.CompactTextString($.interfaceValue<proto.Message | null>(m, "*apiv1.ReadOnlyPartitionError", /* @__PURE__ */ $.pointerType("apiv1.ReadOnlyPartitionError")))
 	}
 
 	public Unmarshal(dAtA: $.Slice<number>): $.GoError {
@@ -3756,12 +3756,12 @@ export class ReadOnlyPartitionError {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: ReadOnlyPartitionError | $.VarRef<ReadOnlyPartitionError> | null = this;
-		await xxx_messageInfo_ReadOnlyPartitionError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.ReadOnlyPartitionError", /* @__PURE__ */ $.pointerType("apiv1.ReadOnlyPartitionError")))
+		xxx_messageInfo_ReadOnlyPartitionError.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*apiv1.ReadOnlyPartitionError", /* @__PURE__ */ $.pointerType("apiv1.ReadOnlyPartitionError")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: ReadOnlyPartitionError | $.VarRef<ReadOnlyPartitionError> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_ReadOnlyPartitionError.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*apiv1.ReadOnlyPartitionError", /* @__PURE__ */ $.pointerType("apiv1.ReadOnlyPartitionError")), deterministic)
@@ -3776,9 +3776,9 @@ export class ReadOnlyPartitionError {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: ReadOnlyPartitionError | $.VarRef<ReadOnlyPartitionError> | null = this;
-		await xxx_messageInfo_ReadOnlyPartitionError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.ReadOnlyPartitionError", /* @__PURE__ */ $.pointerType("apiv1.ReadOnlyPartitionError")), src)
+		xxx_messageInfo_ReadOnlyPartitionError.value.Merge($.interfaceValue<proto.Message | null>(m, "*apiv1.ReadOnlyPartitionError", /* @__PURE__ */ $.pointerType("apiv1.ReadOnlyPartitionError")), src)
 	}
 
 	public XXX_Size(): number {
@@ -3794,9 +3794,9 @@ export class ReadOnlyPartitionError {
 	static __typeInfo = $.registerStructType(
 		"apiv1.ReadOnlyPartitionError",
 		() => new ReadOnlyPartitionError(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		ReadOnlyPartitionError,
-		() => [/* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [0], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [1], 0, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [2], 24, true, { tag: "json:\"-\"" })]
+		() => [{ name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -3878,23 +3878,23 @@ export function __goscript_set_xxx_messageInfo_ReadOnlyPartitionError(__goscript
 	$.assignStruct(xxx_messageInfo_ReadOnlyPartitionError.value, __goscriptValue)
 }
 
-async function __goscriptInit0(): globalThis.Promise<void> {
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.WorkflowExecutionAlreadyStartedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyStartedError")), "uber.cadence.api.v1.WorkflowExecutionAlreadyStartedError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.EntityNotExistsError", /* @__PURE__ */ $.pointerType("apiv1.EntityNotExistsError")), "uber.cadence.api.v1.EntityNotExistsError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.WorkflowExecutionAlreadyCompletedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyCompletedError")), "uber.cadence.api.v1.WorkflowExecutionAlreadyCompletedError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.DomainNotActiveError", /* @__PURE__ */ $.pointerType("apiv1.DomainNotActiveError")), "uber.cadence.api.v1.DomainNotActiveError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.ClientVersionNotSupportedError", /* @__PURE__ */ $.pointerType("apiv1.ClientVersionNotSupportedError")), "uber.cadence.api.v1.ClientVersionNotSupportedError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.FeatureNotEnabledError", /* @__PURE__ */ $.pointerType("apiv1.FeatureNotEnabledError")), "uber.cadence.api.v1.FeatureNotEnabledError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.CancellationAlreadyRequestedError", /* @__PURE__ */ $.pointerType("apiv1.CancellationAlreadyRequestedError")), "uber.cadence.api.v1.CancellationAlreadyRequestedError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.DomainAlreadyExistsError", /* @__PURE__ */ $.pointerType("apiv1.DomainAlreadyExistsError")), "uber.cadence.api.v1.DomainAlreadyExistsError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.LimitExceededError", /* @__PURE__ */ $.pointerType("apiv1.LimitExceededError")), "uber.cadence.api.v1.LimitExceededError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.QueryFailedError", /* @__PURE__ */ $.pointerType("apiv1.QueryFailedError")), "uber.cadence.api.v1.QueryFailedError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.ServiceBusyError", /* @__PURE__ */ $.pointerType("apiv1.ServiceBusyError")), "uber.cadence.api.v1.ServiceBusyError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.StickyWorkerUnavailableError", /* @__PURE__ */ $.pointerType("apiv1.StickyWorkerUnavailableError")), "uber.cadence.api.v1.StickyWorkerUnavailableError")
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.ReadOnlyPartitionError", /* @__PURE__ */ $.pointerType("apiv1.ReadOnlyPartitionError")), "uber.cadence.api.v1.ReadOnlyPartitionError")
+function __goscriptInit0(): void {
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.WorkflowExecutionAlreadyStartedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyStartedError")), "uber.cadence.api.v1.WorkflowExecutionAlreadyStartedError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.EntityNotExistsError", /* @__PURE__ */ $.pointerType("apiv1.EntityNotExistsError")), "uber.cadence.api.v1.EntityNotExistsError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.WorkflowExecutionAlreadyCompletedError", /* @__PURE__ */ $.pointerType("apiv1.WorkflowExecutionAlreadyCompletedError")), "uber.cadence.api.v1.WorkflowExecutionAlreadyCompletedError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.DomainNotActiveError", /* @__PURE__ */ $.pointerType("apiv1.DomainNotActiveError")), "uber.cadence.api.v1.DomainNotActiveError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.ClientVersionNotSupportedError", /* @__PURE__ */ $.pointerType("apiv1.ClientVersionNotSupportedError")), "uber.cadence.api.v1.ClientVersionNotSupportedError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.FeatureNotEnabledError", /* @__PURE__ */ $.pointerType("apiv1.FeatureNotEnabledError")), "uber.cadence.api.v1.FeatureNotEnabledError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.CancellationAlreadyRequestedError", /* @__PURE__ */ $.pointerType("apiv1.CancellationAlreadyRequestedError")), "uber.cadence.api.v1.CancellationAlreadyRequestedError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.DomainAlreadyExistsError", /* @__PURE__ */ $.pointerType("apiv1.DomainAlreadyExistsError")), "uber.cadence.api.v1.DomainAlreadyExistsError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.LimitExceededError", /* @__PURE__ */ $.pointerType("apiv1.LimitExceededError")), "uber.cadence.api.v1.LimitExceededError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.QueryFailedError", /* @__PURE__ */ $.pointerType("apiv1.QueryFailedError")), "uber.cadence.api.v1.QueryFailedError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.ServiceBusyError", /* @__PURE__ */ $.pointerType("apiv1.ServiceBusyError")), "uber.cadence.api.v1.ServiceBusyError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.StickyWorkerUnavailableError", /* @__PURE__ */ $.pointerType("apiv1.StickyWorkerUnavailableError")), "uber.cadence.api.v1.StickyWorkerUnavailableError")
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*apiv1.ReadOnlyPartitionError", /* @__PURE__ */ $.pointerType("apiv1.ReadOnlyPartitionError")), "uber.cadence.api.v1.ReadOnlyPartitionError")
 }
 
-async function __goscriptInit1(): globalThis.Promise<void> {
+function __goscriptInit1(): void {
 	proto.RegisterFile("uber/cadence/api/v1/error.proto", fileDescriptor_c8f91786c9aff272)
 }
 

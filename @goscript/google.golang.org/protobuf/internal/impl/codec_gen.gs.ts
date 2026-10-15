@@ -11,12 +11,6 @@ import * as protowire from "@goscript/google.golang.org/protobuf/encoding/protow
 
 import * as protoreflect from "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 
-import type * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
-import type * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
-
-import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-
 import * as reflect from "@goscript/reflect/index.js"
 
 import * as sync from "@goscript/sync/index.js"
@@ -56,7 +50,6 @@ import "@goscript/math/index.js"
 import "@goscript/unicode/utf8/index.js"
 import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
-import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/sync/index.js"
 import "./checkinit.gs.ts"
@@ -405,13 +398,13 @@ export function __goscript_set_coderBoolPackedSlice(__goscriptValue: __goscript_
 	$.assignStruct(coderBoolPackedSlice, __goscriptValue)
 }
 
-export async function sizeBoolValue(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return tagsize + protowire.SizeVarint(protowire.EncodeBool(await v.Bool()))
+export function sizeBoolValue(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return tagsize + protowire.SizeVarint(protowire.EncodeBool($.markAsStructValue($.cloneStructValue(v)).Bool()))
 }
 
-export async function appendBoolValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendBoolValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendVarint(b, protowire.EncodeBool(await v.Bool()))
+	b = protowire.AppendVarint(b, protowire.EncodeBool($.markAsStructValue($.cloneStructValue(v)).Bool()))
 	return [b, null]
 }
 
@@ -464,20 +457,20 @@ export function __goscript_set_coderBoolValue(__goscriptValue: __goscript_codec_
 
 export async function sizeBoolSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		size = size + (tagsize + protowire.SizeVarint(protowire.EncodeBool(await v.Bool())))
+		size = size + (tagsize + protowire.SizeVarint(protowire.EncodeBool($.markAsStructValue($.cloneStructValue(v)).Bool())))
 	}
 	return size
 }
 
 export async function appendBoolSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendVarint(b, protowire.EncodeBool(await v.Bool()))
+		b = protowire.AppendVarint(b, protowire.EncodeBool($.markAsStructValue($.cloneStructValue(v)).Bool()))
 	}
 	return [b, null]
 }
@@ -485,7 +478,7 @@ export async function appendBoolSliceValue(b: $.Slice<number>, listv: protorefle
 export async function consumeBoolSliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow3 = b
 		let __goscriptTuple6: any = protowire.ConsumeBytes(__goscriptShadow3)
@@ -566,7 +559,7 @@ export function __goscript_set_coderBoolSliceValue(__goscriptValue: __goscript_c
 
 export async function sizeBoolPackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -576,14 +569,14 @@ export async function sizeBoolPackedSliceValue(listv: protoreflect.Value, tagsiz
 		let __goscriptShadow6 = llen
 		for (let i = 0, __goscriptShadow7 = __goscriptShadow6; i < __goscriptShadow7; i++) {
 			let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-			n = n + (protowire.SizeVarint(protowire.EncodeBool(await v.Bool())))
+			n = n + (protowire.SizeVarint(protowire.EncodeBool($.markAsStructValue($.cloneStructValue(v)).Bool())))
 		}
 	}
 	return tagsize + protowire.SizeBytes(n)
 }
 
 export async function appendBoolPackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -592,12 +585,12 @@ export async function appendBoolPackedSliceValue(b: $.Slice<number>, listv: prot
 	let n = 0
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		n = n + (protowire.SizeVarint(protowire.EncodeBool(await v.Bool())))
+		n = n + (protowire.SizeVarint(protowire.EncodeBool($.markAsStructValue($.cloneStructValue(v)).Bool())))
 	}
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendVarint(b, protowire.EncodeBool(await v.Bool()))
+		b = protowire.AppendVarint(b, protowire.EncodeBool($.markAsStructValue($.cloneStructValue(v)).Bool()))
 	}
 	return [b, null]
 }
@@ -621,13 +614,13 @@ export function __goscript_set_coderBoolPackedSliceValue(__goscriptValue: __gosc
 	$.assignStruct(coderBoolPackedSliceValue, __goscriptValue)
 }
 
-export async function sizeEnumValue(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return tagsize + protowire.SizeVarint($.uint64(await v.Enum()))
+export function sizeEnumValue(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return tagsize + protowire.SizeVarint($.uint64($.markAsStructValue($.cloneStructValue(v)).Enum()))
 }
 
-export async function appendEnumValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendEnumValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendVarint(b, $.uint64(await v.Enum()))
+	b = protowire.AppendVarint(b, $.uint64($.markAsStructValue($.cloneStructValue(v)).Enum()))
 	return [b, null]
 }
 
@@ -680,20 +673,20 @@ export function __goscript_set_coderEnumValue(__goscriptValue: __goscript_codec_
 
 export async function sizeEnumSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		size = size + (tagsize + protowire.SizeVarint($.uint64(await v.Enum())))
+		size = size + (tagsize + protowire.SizeVarint($.uint64($.markAsStructValue($.cloneStructValue(v)).Enum())))
 	}
 	return size
 }
 
 export async function appendEnumSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendVarint(b, $.uint64(await v.Enum()))
+		b = protowire.AppendVarint(b, $.uint64($.markAsStructValue($.cloneStructValue(v)).Enum()))
 	}
 	return [b, null]
 }
@@ -701,7 +694,7 @@ export async function appendEnumSliceValue(b: $.Slice<number>, listv: protorefle
 export async function consumeEnumSliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow8 = b
 		let __goscriptTuple10: any = protowire.ConsumeBytes(__goscriptShadow8)
@@ -782,7 +775,7 @@ export function __goscript_set_coderEnumSliceValue(__goscriptValue: __goscript_c
 
 export async function sizeEnumPackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -792,14 +785,14 @@ export async function sizeEnumPackedSliceValue(listv: protoreflect.Value, tagsiz
 		let __goscriptShadow11 = llen
 		for (let i = 0, __goscriptShadow12 = __goscriptShadow11; i < __goscriptShadow12; i++) {
 			let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-			n = n + (protowire.SizeVarint($.uint64(await v.Enum())))
+			n = n + (protowire.SizeVarint($.uint64($.markAsStructValue($.cloneStructValue(v)).Enum())))
 		}
 	}
 	return tagsize + protowire.SizeBytes(n)
 }
 
 export async function appendEnumPackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -808,12 +801,12 @@ export async function appendEnumPackedSliceValue(b: $.Slice<number>, listv: prot
 	let n = 0
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		n = n + (protowire.SizeVarint($.uint64(await v.Enum())))
+		n = n + (protowire.SizeVarint($.uint64($.markAsStructValue($.cloneStructValue(v)).Enum())))
 	}
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendVarint(b, $.uint64(await v.Enum()))
+		b = protowire.AppendVarint(b, $.uint64($.markAsStructValue($.cloneStructValue(v)).Enum()))
 	}
 	return [b, null]
 }
@@ -1167,13 +1160,13 @@ export function __goscript_set_coderInt32PackedSlice(__goscriptValue: __goscript
 	$.assignStruct(coderInt32PackedSlice, __goscriptValue)
 }
 
-export async function sizeInt32Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return tagsize + protowire.SizeVarint($.uint64($.int(await v.Int(), 32)))
+export function sizeInt32Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return tagsize + protowire.SizeVarint($.uint64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32)))
 }
 
-export async function appendInt32Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendInt32Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendVarint(b, $.uint64($.int(await v.Int(), 32)))
+	b = protowire.AppendVarint(b, $.uint64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32)))
 	return [b, null]
 }
 
@@ -1226,20 +1219,20 @@ export function __goscript_set_coderInt32Value(__goscriptValue: __goscript_codec
 
 export async function sizeInt32SliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		size = size + (tagsize + protowire.SizeVarint($.uint64($.int(await v.Int(), 32))))
+		size = size + (tagsize + protowire.SizeVarint($.uint64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32))))
 	}
 	return size
 }
 
 export async function appendInt32SliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendVarint(b, $.uint64($.int(await v.Int(), 32)))
+		b = protowire.AppendVarint(b, $.uint64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32)))
 	}
 	return [b, null]
 }
@@ -1247,7 +1240,7 @@ export async function appendInt32SliceValue(b: $.Slice<number>, listv: protorefl
 export async function consumeInt32SliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow16 = b
 		let __goscriptTuple19: any = protowire.ConsumeBytes(__goscriptShadow16)
@@ -1328,7 +1321,7 @@ export function __goscript_set_coderInt32SliceValue(__goscriptValue: __goscript_
 
 export async function sizeInt32PackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -1338,14 +1331,14 @@ export async function sizeInt32PackedSliceValue(listv: protoreflect.Value, tagsi
 		let __goscriptShadow19 = llen
 		for (let i = 0, __goscriptShadow20 = __goscriptShadow19; i < __goscriptShadow20; i++) {
 			let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-			n = n + (protowire.SizeVarint($.uint64($.int(await v.Int(), 32))))
+			n = n + (protowire.SizeVarint($.uint64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32))))
 		}
 	}
 	return tagsize + protowire.SizeBytes(n)
 }
 
 export async function appendInt32PackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -1354,12 +1347,12 @@ export async function appendInt32PackedSliceValue(b: $.Slice<number>, listv: pro
 	let n = 0
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		n = n + (protowire.SizeVarint($.uint64($.int(await v.Int(), 32))))
+		n = n + (protowire.SizeVarint($.uint64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32))))
 	}
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendVarint(b, $.uint64($.int(await v.Int(), 32)))
+		b = protowire.AppendVarint(b, $.uint64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32)))
 	}
 	return [b, null]
 }
@@ -1713,13 +1706,13 @@ export function __goscript_set_coderSint32PackedSlice(__goscriptValue: __goscrip
 	$.assignStruct(coderSint32PackedSlice, __goscriptValue)
 }
 
-export async function sizeSint32Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return tagsize + protowire.SizeVarint(protowire.EncodeZigZag($.int64($.int(await v.Int(), 32))))
+export function sizeSint32Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return tagsize + protowire.SizeVarint(protowire.EncodeZigZag($.int64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32))))
 }
 
-export async function appendSint32Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendSint32Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendVarint(b, protowire.EncodeZigZag($.int64($.int(await v.Int(), 32))))
+	b = protowire.AppendVarint(b, protowire.EncodeZigZag($.int64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32))))
 	return [b, null]
 }
 
@@ -1772,20 +1765,20 @@ export function __goscript_set_coderSint32Value(__goscriptValue: __goscript_code
 
 export async function sizeSint32SliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		size = size + (tagsize + protowire.SizeVarint(protowire.EncodeZigZag($.int64($.int(await v.Int(), 32)))))
+		size = size + (tagsize + protowire.SizeVarint(protowire.EncodeZigZag($.int64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32)))))
 	}
 	return size
 }
 
 export async function appendSint32SliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendVarint(b, protowire.EncodeZigZag($.int64($.int(await v.Int(), 32))))
+		b = protowire.AppendVarint(b, protowire.EncodeZigZag($.int64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32))))
 	}
 	return [b, null]
 }
@@ -1793,7 +1786,7 @@ export async function appendSint32SliceValue(b: $.Slice<number>, listv: protoref
 export async function consumeSint32SliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow24 = b
 		let __goscriptTuple28: any = protowire.ConsumeBytes(__goscriptShadow24)
@@ -1874,7 +1867,7 @@ export function __goscript_set_coderSint32SliceValue(__goscriptValue: __goscript
 
 export async function sizeSint32PackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -1884,14 +1877,14 @@ export async function sizeSint32PackedSliceValue(listv: protoreflect.Value, tags
 		let __goscriptShadow27 = llen
 		for (let i = 0, __goscriptShadow28 = __goscriptShadow27; i < __goscriptShadow28; i++) {
 			let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-			n = n + (protowire.SizeVarint(protowire.EncodeZigZag($.int64($.int(await v.Int(), 32)))))
+			n = n + (protowire.SizeVarint(protowire.EncodeZigZag($.int64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32)))))
 		}
 	}
 	return tagsize + protowire.SizeBytes(n)
 }
 
 export async function appendSint32PackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -1900,12 +1893,12 @@ export async function appendSint32PackedSliceValue(b: $.Slice<number>, listv: pr
 	let n = 0
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		n = n + (protowire.SizeVarint(protowire.EncodeZigZag($.int64($.int(await v.Int(), 32)))))
+		n = n + (protowire.SizeVarint(protowire.EncodeZigZag($.int64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32)))))
 	}
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendVarint(b, protowire.EncodeZigZag($.int64($.int(await v.Int(), 32))))
+		b = protowire.AppendVarint(b, protowire.EncodeZigZag($.int64($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32))))
 	}
 	return [b, null]
 }
@@ -2259,13 +2252,13 @@ export function __goscript_set_coderUint32PackedSlice(__goscriptValue: __goscrip
 	$.assignStruct(coderUint32PackedSlice, __goscriptValue)
 }
 
-export async function sizeUint32Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return tagsize + protowire.SizeVarint($.uint64($.uint(await v.Uint(), 32)))
+export function sizeUint32Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return tagsize + protowire.SizeVarint($.uint64($.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32)))
 }
 
-export async function appendUint32Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendUint32Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendVarint(b, $.uint64($.uint(await v.Uint(), 32)))
+	b = protowire.AppendVarint(b, $.uint64($.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32)))
 	return [b, null]
 }
 
@@ -2318,20 +2311,20 @@ export function __goscript_set_coderUint32Value(__goscriptValue: __goscript_code
 
 export async function sizeUint32SliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		size = size + (tagsize + protowire.SizeVarint($.uint64($.uint(await v.Uint(), 32))))
+		size = size + (tagsize + protowire.SizeVarint($.uint64($.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32))))
 	}
 	return size
 }
 
 export async function appendUint32SliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendVarint(b, $.uint64($.uint(await v.Uint(), 32)))
+		b = protowire.AppendVarint(b, $.uint64($.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32)))
 	}
 	return [b, null]
 }
@@ -2339,7 +2332,7 @@ export async function appendUint32SliceValue(b: $.Slice<number>, listv: protoref
 export async function consumeUint32SliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow32 = b
 		let __goscriptTuple37: any = protowire.ConsumeBytes(__goscriptShadow32)
@@ -2420,7 +2413,7 @@ export function __goscript_set_coderUint32SliceValue(__goscriptValue: __goscript
 
 export async function sizeUint32PackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -2430,14 +2423,14 @@ export async function sizeUint32PackedSliceValue(listv: protoreflect.Value, tags
 		let __goscriptShadow35 = llen
 		for (let i = 0, __goscriptShadow36 = __goscriptShadow35; i < __goscriptShadow36; i++) {
 			let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-			n = n + (protowire.SizeVarint($.uint64($.uint(await v.Uint(), 32))))
+			n = n + (protowire.SizeVarint($.uint64($.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32))))
 		}
 	}
 	return tagsize + protowire.SizeBytes(n)
 }
 
 export async function appendUint32PackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -2446,12 +2439,12 @@ export async function appendUint32PackedSliceValue(b: $.Slice<number>, listv: pr
 	let n = 0
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		n = n + (protowire.SizeVarint($.uint64($.uint(await v.Uint(), 32))))
+		n = n + (protowire.SizeVarint($.uint64($.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32))))
 	}
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendVarint(b, $.uint64($.uint(await v.Uint(), 32)))
+		b = protowire.AppendVarint(b, $.uint64($.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32)))
 	}
 	return [b, null]
 }
@@ -2805,13 +2798,13 @@ export function __goscript_set_coderInt64PackedSlice(__goscriptValue: __goscript
 	$.assignStruct(coderInt64PackedSlice, __goscriptValue)
 }
 
-export async function sizeInt64Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return tagsize + protowire.SizeVarint($.uint64(await v.Int()))
+export function sizeInt64Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return tagsize + protowire.SizeVarint($.uint64($.markAsStructValue($.cloneStructValue(v)).Int()))
 }
 
-export async function appendInt64Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendInt64Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendVarint(b, $.uint64(await v.Int()))
+	b = protowire.AppendVarint(b, $.uint64($.markAsStructValue($.cloneStructValue(v)).Int()))
 	return [b, null]
 }
 
@@ -2864,20 +2857,20 @@ export function __goscript_set_coderInt64Value(__goscriptValue: __goscript_codec
 
 export async function sizeInt64SliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		size = size + (tagsize + protowire.SizeVarint($.uint64(await v.Int())))
+		size = size + (tagsize + protowire.SizeVarint($.uint64($.markAsStructValue($.cloneStructValue(v)).Int())))
 	}
 	return size
 }
 
 export async function appendInt64SliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendVarint(b, $.uint64(await v.Int()))
+		b = protowire.AppendVarint(b, $.uint64($.markAsStructValue($.cloneStructValue(v)).Int()))
 	}
 	return [b, null]
 }
@@ -2885,7 +2878,7 @@ export async function appendInt64SliceValue(b: $.Slice<number>, listv: protorefl
 export async function consumeInt64SliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow40 = b
 		let __goscriptTuple46: any = protowire.ConsumeBytes(__goscriptShadow40)
@@ -2966,7 +2959,7 @@ export function __goscript_set_coderInt64SliceValue(__goscriptValue: __goscript_
 
 export async function sizeInt64PackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -2976,14 +2969,14 @@ export async function sizeInt64PackedSliceValue(listv: protoreflect.Value, tagsi
 		let __goscriptShadow43 = llen
 		for (let i = 0, __goscriptShadow44 = __goscriptShadow43; i < __goscriptShadow44; i++) {
 			let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-			n = n + (protowire.SizeVarint($.uint64(await v.Int())))
+			n = n + (protowire.SizeVarint($.uint64($.markAsStructValue($.cloneStructValue(v)).Int())))
 		}
 	}
 	return tagsize + protowire.SizeBytes(n)
 }
 
 export async function appendInt64PackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -2992,12 +2985,12 @@ export async function appendInt64PackedSliceValue(b: $.Slice<number>, listv: pro
 	let n = 0
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		n = n + (protowire.SizeVarint($.uint64(await v.Int())))
+		n = n + (protowire.SizeVarint($.uint64($.markAsStructValue($.cloneStructValue(v)).Int())))
 	}
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendVarint(b, $.uint64(await v.Int()))
+		b = protowire.AppendVarint(b, $.uint64($.markAsStructValue($.cloneStructValue(v)).Int()))
 	}
 	return [b, null]
 }
@@ -3351,13 +3344,13 @@ export function __goscript_set_coderSint64PackedSlice(__goscriptValue: __goscrip
 	$.assignStruct(coderSint64PackedSlice, __goscriptValue)
 }
 
-export async function sizeSint64Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return tagsize + protowire.SizeVarint(protowire.EncodeZigZag(await v.Int()))
+export function sizeSint64Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return tagsize + protowire.SizeVarint(protowire.EncodeZigZag($.markAsStructValue($.cloneStructValue(v)).Int()))
 }
 
-export async function appendSint64Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendSint64Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendVarint(b, protowire.EncodeZigZag(await v.Int()))
+	b = protowire.AppendVarint(b, protowire.EncodeZigZag($.markAsStructValue($.cloneStructValue(v)).Int()))
 	return [b, null]
 }
 
@@ -3410,20 +3403,20 @@ export function __goscript_set_coderSint64Value(__goscriptValue: __goscript_code
 
 export async function sizeSint64SliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		size = size + (tagsize + protowire.SizeVarint(protowire.EncodeZigZag(await v.Int())))
+		size = size + (tagsize + protowire.SizeVarint(protowire.EncodeZigZag($.markAsStructValue($.cloneStructValue(v)).Int())))
 	}
 	return size
 }
 
 export async function appendSint64SliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendVarint(b, protowire.EncodeZigZag(await v.Int()))
+		b = protowire.AppendVarint(b, protowire.EncodeZigZag($.markAsStructValue($.cloneStructValue(v)).Int()))
 	}
 	return [b, null]
 }
@@ -3431,7 +3424,7 @@ export async function appendSint64SliceValue(b: $.Slice<number>, listv: protoref
 export async function consumeSint64SliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow48 = b
 		let __goscriptTuple55: any = protowire.ConsumeBytes(__goscriptShadow48)
@@ -3512,7 +3505,7 @@ export function __goscript_set_coderSint64SliceValue(__goscriptValue: __goscript
 
 export async function sizeSint64PackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -3522,14 +3515,14 @@ export async function sizeSint64PackedSliceValue(listv: protoreflect.Value, tags
 		let __goscriptShadow51 = llen
 		for (let i = 0, __goscriptShadow52 = __goscriptShadow51; i < __goscriptShadow52; i++) {
 			let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-			n = n + (protowire.SizeVarint(protowire.EncodeZigZag(await v.Int())))
+			n = n + (protowire.SizeVarint(protowire.EncodeZigZag($.markAsStructValue($.cloneStructValue(v)).Int())))
 		}
 	}
 	return tagsize + protowire.SizeBytes(n)
 }
 
 export async function appendSint64PackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -3538,12 +3531,12 @@ export async function appendSint64PackedSliceValue(b: $.Slice<number>, listv: pr
 	let n = 0
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		n = n + (protowire.SizeVarint(protowire.EncodeZigZag(await v.Int())))
+		n = n + (protowire.SizeVarint(protowire.EncodeZigZag($.markAsStructValue($.cloneStructValue(v)).Int())))
 	}
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendVarint(b, protowire.EncodeZigZag(await v.Int()))
+		b = protowire.AppendVarint(b, protowire.EncodeZigZag($.markAsStructValue($.cloneStructValue(v)).Int()))
 	}
 	return [b, null]
 }
@@ -3897,13 +3890,13 @@ export function __goscript_set_coderUint64PackedSlice(__goscriptValue: __goscrip
 	$.assignStruct(coderUint64PackedSlice, __goscriptValue)
 }
 
-export async function sizeUint64Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return tagsize + protowire.SizeVarint(await v.Uint())
+export function sizeUint64Value(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return tagsize + protowire.SizeVarint($.markAsStructValue($.cloneStructValue(v)).Uint())
 }
 
-export async function appendUint64Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendUint64Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendVarint(b, await v.Uint())
+	b = protowire.AppendVarint(b, $.markAsStructValue($.cloneStructValue(v)).Uint())
 	return [b, null]
 }
 
@@ -3956,20 +3949,20 @@ export function __goscript_set_coderUint64Value(__goscriptValue: __goscript_code
 
 export async function sizeUint64SliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		size = size + (tagsize + protowire.SizeVarint(await v.Uint()))
+		size = size + (tagsize + protowire.SizeVarint($.markAsStructValue($.cloneStructValue(v)).Uint()))
 	}
 	return size
 }
 
 export async function appendUint64SliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendVarint(b, await v.Uint())
+		b = protowire.AppendVarint(b, $.markAsStructValue($.cloneStructValue(v)).Uint())
 	}
 	return [b, null]
 }
@@ -3977,7 +3970,7 @@ export async function appendUint64SliceValue(b: $.Slice<number>, listv: protoref
 export async function consumeUint64SliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow56 = b
 		let __goscriptTuple64: any = protowire.ConsumeBytes(__goscriptShadow56)
@@ -4058,7 +4051,7 @@ export function __goscript_set_coderUint64SliceValue(__goscriptValue: __goscript
 
 export async function sizeUint64PackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -4068,14 +4061,14 @@ export async function sizeUint64PackedSliceValue(listv: protoreflect.Value, tags
 		let __goscriptShadow59 = llen
 		for (let i = 0, __goscriptShadow60 = __goscriptShadow59; i < __goscriptShadow60; i++) {
 			let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-			n = n + (protowire.SizeVarint(await v.Uint()))
+			n = n + (protowire.SizeVarint($.markAsStructValue($.cloneStructValue(v)).Uint()))
 		}
 	}
 	return tagsize + protowire.SizeBytes(n)
 }
 
 export async function appendUint64PackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -4084,12 +4077,12 @@ export async function appendUint64PackedSliceValue(b: $.Slice<number>, listv: pr
 	let n = 0
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		n = n + (protowire.SizeVarint(await v.Uint()))
+		n = n + (protowire.SizeVarint($.markAsStructValue($.cloneStructValue(v)).Uint()))
 	}
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendVarint(b, await v.Uint())
+		b = protowire.AppendVarint(b, $.markAsStructValue($.cloneStructValue(v)).Uint())
 	}
 	return [b, null]
 }
@@ -4373,9 +4366,9 @@ export function sizeSfixed32Value(v: protoreflect.Value, tagsize: number, opts: 
 	return tagsize + protowire.SizeFixed32()
 }
 
-export async function appendSfixed32Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendSfixed32Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendFixed32(b, $.uint(await v.Int(), 32))
+	b = protowire.AppendFixed32(b, $.uint($.markAsStructValue($.cloneStructValue(v)).Int(), 32))
 	return [b, null]
 }
 
@@ -4414,17 +4407,17 @@ export function __goscript_set_coderSfixed32Value(__goscriptValue: __goscript_co
 
 export async function sizeSfixed32SliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	size = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) * (tagsize + protowire.SizeFixed32())
 	return size
 }
 
 export async function appendSfixed32SliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendFixed32(b, $.uint(await v.Int(), 32))
+		b = protowire.AppendFixed32(b, $.uint($.markAsStructValue($.cloneStructValue(v)).Int(), 32))
 	}
 	return [b, null]
 }
@@ -4432,7 +4425,7 @@ export async function appendSfixed32SliceValue(b: $.Slice<number>, listv: protor
 export async function consumeSfixed32SliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow64 = b
 		let __goscriptTuple68: any = protowire.ConsumeBytes(__goscriptShadow64)
@@ -4485,7 +4478,7 @@ export function __goscript_set_coderSfixed32SliceValue(__goscriptValue: __goscri
 
 export async function sizeSfixed32PackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -4495,7 +4488,7 @@ export async function sizeSfixed32PackedSliceValue(listv: protoreflect.Value, ta
 }
 
 export async function appendSfixed32PackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -4505,7 +4498,7 @@ export async function appendSfixed32PackedSliceValue(b: $.Slice<number>, listv: 
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendFixed32(b, $.uint(await v.Int(), 32))
+		b = protowire.AppendFixed32(b, $.uint($.markAsStructValue($.cloneStructValue(v)).Int(), 32))
 	}
 	return [b, null]
 }
@@ -4789,9 +4782,9 @@ export function sizeFixed32Value(v: protoreflect.Value, tagsize: number, opts: _
 	return tagsize + protowire.SizeFixed32()
 }
 
-export async function appendFixed32Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendFixed32Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendFixed32(b, $.uint(await v.Uint(), 32))
+	b = protowire.AppendFixed32(b, $.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32))
 	return [b, null]
 }
 
@@ -4830,17 +4823,17 @@ export function __goscript_set_coderFixed32Value(__goscriptValue: __goscript_cod
 
 export async function sizeFixed32SliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	size = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) * (tagsize + protowire.SizeFixed32())
 	return size
 }
 
 export async function appendFixed32SliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendFixed32(b, $.uint(await v.Uint(), 32))
+		b = protowire.AppendFixed32(b, $.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32))
 	}
 	return [b, null]
 }
@@ -4848,7 +4841,7 @@ export async function appendFixed32SliceValue(b: $.Slice<number>, listv: protore
 export async function consumeFixed32SliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow70 = b
 		let __goscriptTuple70: any = protowire.ConsumeBytes(__goscriptShadow70)
@@ -4901,7 +4894,7 @@ export function __goscript_set_coderFixed32SliceValue(__goscriptValue: __goscrip
 
 export async function sizeFixed32PackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -4911,7 +4904,7 @@ export async function sizeFixed32PackedSliceValue(listv: protoreflect.Value, tag
 }
 
 export async function appendFixed32PackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -4921,7 +4914,7 @@ export async function appendFixed32PackedSliceValue(b: $.Slice<number>, listv: p
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendFixed32(b, $.uint(await v.Uint(), 32))
+		b = protowire.AppendFixed32(b, $.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32))
 	}
 	return [b, null]
 }
@@ -5205,9 +5198,9 @@ export function sizeFloatValue(v: protoreflect.Value, tagsize: number, opts: __g
 	return tagsize + protowire.SizeFixed32()
 }
 
-export async function appendFloatValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendFloatValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendFixed32(b, math.Float32bits(globalThis.Math.fround(await v.Float())))
+	b = protowire.AppendFixed32(b, math.Float32bits(globalThis.Math.fround($.markAsStructValue($.cloneStructValue(v)).Float())))
 	return [b, null]
 }
 
@@ -5246,17 +5239,17 @@ export function __goscript_set_coderFloatValue(__goscriptValue: __goscript_codec
 
 export async function sizeFloatSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	size = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) * (tagsize + protowire.SizeFixed32())
 	return size
 }
 
 export async function appendFloatSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendFixed32(b, math.Float32bits(globalThis.Math.fround(await v.Float())))
+		b = protowire.AppendFixed32(b, math.Float32bits(globalThis.Math.fround($.markAsStructValue($.cloneStructValue(v)).Float())))
 	}
 	return [b, null]
 }
@@ -5264,7 +5257,7 @@ export async function appendFloatSliceValue(b: $.Slice<number>, listv: protorefl
 export async function consumeFloatSliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow76 = b
 		let __goscriptTuple72: any = protowire.ConsumeBytes(__goscriptShadow76)
@@ -5317,7 +5310,7 @@ export function __goscript_set_coderFloatSliceValue(__goscriptValue: __goscript_
 
 export async function sizeFloatPackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -5327,7 +5320,7 @@ export async function sizeFloatPackedSliceValue(listv: protoreflect.Value, tagsi
 }
 
 export async function appendFloatPackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -5337,7 +5330,7 @@ export async function appendFloatPackedSliceValue(b: $.Slice<number>, listv: pro
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendFixed32(b, math.Float32bits(globalThis.Math.fround(await v.Float())))
+		b = protowire.AppendFixed32(b, math.Float32bits(globalThis.Math.fround($.markAsStructValue($.cloneStructValue(v)).Float())))
 	}
 	return [b, null]
 }
@@ -5621,9 +5614,9 @@ export function sizeSfixed64Value(v: protoreflect.Value, tagsize: number, opts: 
 	return tagsize + protowire.SizeFixed64()
 }
 
-export async function appendSfixed64Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendSfixed64Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendFixed64(b, $.uint64(await v.Int()))
+	b = protowire.AppendFixed64(b, $.uint64($.markAsStructValue($.cloneStructValue(v)).Int()))
 	return [b, null]
 }
 
@@ -5662,17 +5655,17 @@ export function __goscript_set_coderSfixed64Value(__goscriptValue: __goscript_co
 
 export async function sizeSfixed64SliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	size = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) * (tagsize + protowire.SizeFixed64())
 	return size
 }
 
 export async function appendSfixed64SliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendFixed64(b, $.uint64(await v.Int()))
+		b = protowire.AppendFixed64(b, $.uint64($.markAsStructValue($.cloneStructValue(v)).Int()))
 	}
 	return [b, null]
 }
@@ -5680,7 +5673,7 @@ export async function appendSfixed64SliceValue(b: $.Slice<number>, listv: protor
 export async function consumeSfixed64SliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow82 = b
 		let __goscriptTuple74: any = protowire.ConsumeBytes(__goscriptShadow82)
@@ -5733,7 +5726,7 @@ export function __goscript_set_coderSfixed64SliceValue(__goscriptValue: __goscri
 
 export async function sizeSfixed64PackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -5743,7 +5736,7 @@ export async function sizeSfixed64PackedSliceValue(listv: protoreflect.Value, ta
 }
 
 export async function appendSfixed64PackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -5753,7 +5746,7 @@ export async function appendSfixed64PackedSliceValue(b: $.Slice<number>, listv: 
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendFixed64(b, $.uint64(await v.Int()))
+		b = protowire.AppendFixed64(b, $.uint64($.markAsStructValue($.cloneStructValue(v)).Int()))
 	}
 	return [b, null]
 }
@@ -6037,9 +6030,9 @@ export function sizeFixed64Value(v: protoreflect.Value, tagsize: number, opts: _
 	return tagsize + protowire.SizeFixed64()
 }
 
-export async function appendFixed64Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendFixed64Value(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendFixed64(b, await v.Uint())
+	b = protowire.AppendFixed64(b, $.markAsStructValue($.cloneStructValue(v)).Uint())
 	return [b, null]
 }
 
@@ -6078,17 +6071,17 @@ export function __goscript_set_coderFixed64Value(__goscriptValue: __goscript_cod
 
 export async function sizeFixed64SliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	size = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) * (tagsize + protowire.SizeFixed64())
 	return size
 }
 
 export async function appendFixed64SliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendFixed64(b, await v.Uint())
+		b = protowire.AppendFixed64(b, $.markAsStructValue($.cloneStructValue(v)).Uint())
 	}
 	return [b, null]
 }
@@ -6096,7 +6089,7 @@ export async function appendFixed64SliceValue(b: $.Slice<number>, listv: protore
 export async function consumeFixed64SliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow88 = b
 		let __goscriptTuple76: any = protowire.ConsumeBytes(__goscriptShadow88)
@@ -6149,7 +6142,7 @@ export function __goscript_set_coderFixed64SliceValue(__goscriptValue: __goscrip
 
 export async function sizeFixed64PackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -6159,7 +6152,7 @@ export async function sizeFixed64PackedSliceValue(listv: protoreflect.Value, tag
 }
 
 export async function appendFixed64PackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -6169,7 +6162,7 @@ export async function appendFixed64PackedSliceValue(b: $.Slice<number>, listv: p
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendFixed64(b, await v.Uint())
+		b = protowire.AppendFixed64(b, $.markAsStructValue($.cloneStructValue(v)).Uint())
 	}
 	return [b, null]
 }
@@ -6453,9 +6446,9 @@ export function sizeDoubleValue(v: protoreflect.Value, tagsize: number, opts: __
 	return tagsize + protowire.SizeFixed64()
 }
 
-export async function appendDoubleValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendDoubleValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendFixed64(b, math.Float64bits(await v.Float()))
+	b = protowire.AppendFixed64(b, math.Float64bits($.markAsStructValue($.cloneStructValue(v)).Float()))
 	return [b, null]
 }
 
@@ -6494,17 +6487,17 @@ export function __goscript_set_coderDoubleValue(__goscriptValue: __goscript_code
 
 export async function sizeDoubleSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	size = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) * (tagsize + protowire.SizeFixed64())
 	return size
 }
 
 export async function appendDoubleSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendFixed64(b, math.Float64bits(await v.Float()))
+		b = protowire.AppendFixed64(b, math.Float64bits($.markAsStructValue($.cloneStructValue(v)).Float()))
 	}
 	return [b, null]
 }
@@ -6512,7 +6505,7 @@ export async function appendDoubleSliceValue(b: $.Slice<number>, listv: protoref
 export async function consumeDoubleSliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp == 2) {
 		let __goscriptShadow94 = b
 		let __goscriptTuple78: any = protowire.ConsumeBytes(__goscriptShadow94)
@@ -6565,7 +6558,7 @@ export function __goscript_set_coderDoubleSliceValue(__goscriptValue: __goscript
 
 export async function sizeDoublePackedSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return 0
@@ -6575,7 +6568,7 @@ export async function sizeDoublePackedSliceValue(listv: protoreflect.Value, tags
 }
 
 export async function appendDoublePackedSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	let llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	if (llen == 0) {
 		return [b, null]
@@ -6585,7 +6578,7 @@ export async function appendDoublePackedSliceValue(b: $.Slice<number>, listv: pr
 	b = protowire.AppendVarint(b, $.uint64(n))
 	for (let i = 0; i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		b = protowire.AppendFixed64(b, math.Float64bits(await v.Float()))
+		b = protowire.AppendFixed64(b, math.Float64bits($.markAsStructValue($.cloneStructValue(v)).Float()))
 	}
 	return [b, null]
 }
@@ -6993,13 +6986,13 @@ export function __goscript_set_coderStringSliceValidateUTF8(__goscriptValue: __g
 	$.assignStruct(coderStringSliceValidateUTF8, __goscriptValue)
 }
 
-export async function sizeStringValue(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return tagsize + protowire.SizeBytes($.stringLen(await v.String()))
+export function sizeStringValue(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return tagsize + protowire.SizeBytes($.stringLen($.markAsStructValue($.cloneStructValue(v)).String()))
 }
 
-export async function appendStringValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendStringValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendString(b, await v.String())
+	b = protowire.AppendString(b, $.markAsStructValue($.cloneStructValue(v)).String())
 	return [b, null]
 }
 
@@ -7038,10 +7031,10 @@ export function __goscript_set_coderStringValue(__goscriptValue: __goscript_code
 	$.assignStruct(coderStringValue, __goscriptValue)
 }
 
-export async function appendStringValueValidateUTF8(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendStringValueValidateUTF8(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendString(b, await v.String())
-	if (!utf8.ValidString(await v.String())) {
+	b = protowire.AppendString(b, $.markAsStructValue($.cloneStructValue(v)).String())
+	if (!utf8.ValidString($.markAsStructValue($.cloneStructValue(v)).String())) {
 		return [b, $.interfaceValue<$.GoError>(new __goscript_codec_field.errInvalidUTF8(undefined, true), "impl.errInvalidUTF8", "impl.errInvalidUTF8")]
 	}
 	return [b, null]
@@ -7087,20 +7080,20 @@ export function __goscript_set_coderStringValueValidateUTF8(__goscriptValue: __g
 
 export async function sizeStringSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		size = size + (tagsize + protowire.SizeBytes($.stringLen(await v.String())))
+		size = size + (tagsize + protowire.SizeBytes($.stringLen($.markAsStructValue($.cloneStructValue(v)).String())))
 	}
 	return size
 }
 
 export async function appendStringSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendString(b, await v.String())
+		b = protowire.AppendString(b, $.markAsStructValue($.cloneStructValue(v)).String())
 	}
 	return [b, null]
 }
@@ -7108,7 +7101,7 @@ export async function appendStringSliceValue(b: $.Slice<number>, listv: protoref
 export async function consumeStringSliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp != 2) {
 		return [new protoreflect.Value(undefined, true), (out).clone(), __goscript_decode.errUnknown]
 	}
@@ -7457,13 +7450,13 @@ export function __goscript_set_coderBytesSliceValidateUTF8(__goscriptValue: __go
 	$.assignStruct(coderBytesSliceValidateUTF8, __goscriptValue)
 }
 
-export async function sizeBytesValue(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
-	return tagsize + protowire.SizeBytes($.sliceLen(await v.Bytes()))
+export function sizeBytesValue(v: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): number {
+	return tagsize + protowire.SizeBytes($.sliceLen($.markAsStructValue($.cloneStructValue(v)).Bytes()))
 }
 
-export async function appendBytesValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+export function appendBytesValue(b: $.Slice<number>, v: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): [$.Slice<number>, $.GoError] {
 	b = protowire.AppendVarint(b, wiretag)
-	b = protowire.AppendBytes(b, await v.Bytes())
+	b = protowire.AppendBytes(b, $.markAsStructValue($.cloneStructValue(v)).Bytes())
 	return [b, null]
 }
 
@@ -7504,20 +7497,20 @@ export function __goscript_set_coderBytesValue(__goscriptValue: __goscript_codec
 
 export async function sizeBytesSliceValue(listv: protoreflect.Value, tagsize: number, opts: __goscript_encode.marshalOptions): globalThis.Promise<number> {
 	let size: number = 0
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-		size = size + (tagsize + protowire.SizeBytes($.sliceLen(await v.Bytes())))
+		size = size + (tagsize + protowire.SizeBytes($.sliceLen($.markAsStructValue($.cloneStructValue(v)).Bytes())))
 	}
 	return size
 }
 
 export async function appendBytesSliceValue(b: $.Slice<number>, listv: protoreflect.Value, wiretag: bigint, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	for (let i = 0, llen = (__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		let v = (((__goscriptAwait = (list !== null && (list as any).__isVarRef !== true && (list as any).__goValue === undefined ? (list as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(list)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		b = protowire.AppendVarint(b, wiretag)
-		b = protowire.AppendBytes(b, await v.Bytes())
+		b = protowire.AppendBytes(b, $.markAsStructValue($.cloneStructValue(v)).Bytes())
 	}
 	return [b, null]
 }
@@ -7525,7 +7518,7 @@ export async function appendBytesSliceValue(b: $.Slice<number>, listv: protorefl
 export async function consumeBytesSliceValue(b: $.Slice<number>, listv: protoreflect.Value, _p2: protowire.Number, wtyp: protowire.Type, opts: __goscript_decode.unmarshalOptions): globalThis.Promise<[protoreflect.Value, __goscript_decode.unmarshalOutput, $.GoError]> {
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
-	let list = await listv.List()
+	let list = $.markAsStructValue($.cloneStructValue(listv)).List()
 	if (wtyp != 2) {
 		return [new protoreflect.Value(undefined, true), (out).clone(), __goscript_decode.errUnknown]
 	}

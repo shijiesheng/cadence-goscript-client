@@ -12,20 +12,11 @@ import * as protoreflect from "@goscript/google.golang.org/protobuf/reflect/prot
 import * as protoimpl from "@goscript/google.golang.org/protobuf/runtime/protoimpl/index.js"
 
 import * as anypb from "@goscript/google.golang.org/protobuf/types/known/anypb/index.js"
-
-import * as filedesc from "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-
-import * as filetype from "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-
-import * as impl from "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/sync/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoimpl/index.js"
 import "@goscript/google.golang.org/protobuf/types/known/anypb/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-import "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 
 $.registerTypePackagePath("google.golang.org/genproto/googleapis/rpc/status", ["status.Status", "status.x"])
 
@@ -97,7 +88,7 @@ export class Status {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Code?: number, Message?: string, Details?: $.Slice<anypb.Any | $.VarRef<anypb.Any> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Code: init?.Code ?? (0 as number),
@@ -114,7 +105,7 @@ export class Status {
 	public __goscriptAssign(source: Status): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Code = values.Code
@@ -153,40 +144,40 @@ export class Status {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Status | $.VarRef<Status> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_rpc_status_proto_msgTypes!, 0)
+		let mi: any = $.indexRef(file_google_rpc_status_proto_msgTypes!, 0)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*status.Status", /* @__PURE__ */ $.pointerType("status.Status")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*status.Status", /* @__PURE__ */ $.pointerType("status.Status")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*status.Status", /* @__PURE__ */ $.pointerType("status.Status"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*status.Status", /* @__PURE__ */ $.pointerType("status.Status"))))
+		return mi.MessageOf($.interfaceValue(x, "*status.Status", /* @__PURE__ */ $.pointerType("status.Status")))
 	}
 
 	public Reset(): void {
 		let x: Status | $.VarRef<Status> | null = this;
 		$.assignStruct($.pointerValue<Status>(x), $.markAsStructValue(new Status()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_rpc_status_proto_msgTypes!, 0)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*status.Status", /* @__PURE__ */ $.pointerType("status.Status")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_rpc_status_proto_msgTypes!, 0)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*status.Status", /* @__PURE__ */ $.pointerType("status.Status")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Status | $.VarRef<Status> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*status.Status", /* @__PURE__ */ $.pointerType("status.Status")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*status.Status", /* @__PURE__ */ $.pointerType("status.Status")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"status.Status",
 		() => new Status(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetCode", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetDetails", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("anypb.Any"))], true), $.methodSignature("GetMessage", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetCode", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetDetails", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("anypb.Any")) }], pointerReceiver: true }, { name: "GetMessage", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Status,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/genproto/googleapis/rpc/status" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/genproto/googleapis/rpc/status" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/genproto/googleapis/rpc/status" }), /* @__PURE__ */ $.structField("Code", /* @__PURE__ */ $.basicType("int32"), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=code,proto3\" json:\"code,omitempty\"" }), /* @__PURE__ */ $.structField("Message", /* @__PURE__ */ $.basicType("string"), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=message,proto3\" json:\"message,omitempty\"" }), /* @__PURE__ */ $.structField("Details", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("anypb.Any")), [5], 64, true, { tag: "protobuf:\"bytes,3,rep,name=details,proto3\" json:\"details,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Code", key: "Code", type: /* @__PURE__ */ $.basicType("int32"), tag: "protobuf:\"varint,1,opt,name=code,proto3\" json:\"code,omitempty\"" }, { name: "Message", key: "Message", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,2,opt,name=message,proto3\" json:\"message,omitempty\"" }, { name: "Details", key: "Details", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("anypb.Any")), tag: "protobuf:\"bytes,3,rep,name=details,proto3\" json:\"details,omitempty\"" }]
 	)
 }
 
@@ -216,12 +207,12 @@ export function __goscript_set_file_google_rpc_status_proto_rawDescData(__goscri
 
 export async function file_google_rpc_status_proto_rawDescGZIP(): globalThis.Promise<$.Slice<number>> {
 	await file_google_rpc_status_proto_rawDescOnce.value.Do($.functionValue((): void => {
-		file_google_rpc_status_proto_rawDescData = $.pointerValue<impl.Export>(protoimpl.X).CompressGZIP(file_google_rpc_status_proto_rawDescData)
+		file_google_rpc_status_proto_rawDescData = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).CompressGZIP(file_google_rpc_status_proto_rawDescData)
 	}, ({ kind: $.TypeKind.Function, params: [], results: [] } as $.FunctionTypeInfo)))
 	return file_google_rpc_status_proto_rawDescData
 }
 
-export let file_google_rpc_status_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(1, undefined, undefined, () => new impl.MessageInfo(undefined, true))
+export let file_google_rpc_status_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(1, undefined, undefined, () => new protoimpl.MessageInfo(undefined, true))
 
 export function __goscript_set_file_google_rpc_status_proto_msgTypes(__goscriptValue: $.Slice<protoimpl.MessageInfo>): void {
 	file_google_rpc_status_proto_msgTypes = __goscriptValue
@@ -301,7 +292,7 @@ export async function file_google_rpc_status_proto_init(): globalThis.Promise<vo
 			() => []
 		)
 	}
-	let out = await $.markAsStructValue($.cloneStructValue(new filetype.Builder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "status.x", "status.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new filedesc.Builder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_google_rpc_status_proto_rawDesc, NumEnums: 0, NumMessages: 1, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_google_rpc_status_proto_goTypes, DependencyIndexes: file_google_rpc_status_proto_depIdxs, MessageInfos: file_google_rpc_status_proto_msgTypes}, true))).Build()
+	let out = await $.markAsStructValue($.cloneStructValue(new protoimpl.TypeBuilder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "status.x", "status.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new protoimpl.DescBuilder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_google_rpc_status_proto_rawDesc, NumEnums: 0, NumMessages: 1, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_google_rpc_status_proto_goTypes, DependencyIndexes: file_google_rpc_status_proto_depIdxs, MessageInfos: file_google_rpc_status_proto_msgTypes}, true))).Build()
 	File_google_rpc_status_proto = out.File
 	file_google_rpc_status_proto_rawDesc = null
 	file_google_rpc_status_proto_goTypes = null

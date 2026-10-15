@@ -13,10 +13,6 @@ import * as protoreflect from "@goscript/google.golang.org/protobuf/reflect/prot
 
 import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 
-import * as protowire from "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-
-import type * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
 import * as sync from "@goscript/sync/index.js"
 
 import * as __goscript_checkinit from "./checkinit.gs.ts"
@@ -53,7 +49,6 @@ import "@goscript/reflect/index.js"
 import "@goscript/google.golang.org/protobuf/proto/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
 import "@goscript/sync/index.js"
 import "./checkinit.gs.ts"
 import "./codec_extension.gs.ts"
@@ -89,15 +84,15 @@ export class mergeOptions {
 	public __goscriptAssign(source: mergeOptions): void {
 	}
 
-	public async Merge(dst: proto.Message | null, src: proto.Message | null): globalThis.Promise<void> {
+	public Merge(dst: proto.Message | null, src: proto.Message | null): void {
 		const o = this;
-		await proto.Merge(dst, src)
+		proto.Merge(dst, src)
 	}
 
 	static __typeInfo = $.registerStructType(
 		"impl.mergeOptions",
 		() => new mergeOptions(),
-		() => [$.methodSignature("Merge", [["dst", "protoreflect.ProtoMessage"], ["src", "protoreflect.ProtoMessage"]])],
+		() => [{ name: "Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }],
 		mergeOptions,
 		() => []
 	)
@@ -107,13 +102,13 @@ export function mergeScalarValue(dst: protoreflect.Value, src: protoreflect.Valu
 	return (src).clone()
 }
 
-export async function mergeBytesValue(dst: protoreflect.Value, src: protoreflect.Value, opts: mergeOptions): globalThis.Promise<protoreflect.Value> {
-	return protoreflect.ValueOfBytes($.appendSlice($.goSlice(__goscript_codec_gen.emptyBuf, undefined, undefined), await src.Bytes(), $.byteSliceHint))
+export function mergeBytesValue(dst: protoreflect.Value, src: protoreflect.Value, opts: mergeOptions): protoreflect.Value {
+	return protoreflect.ValueOfBytes($.appendSlice($.goSlice(__goscript_codec_gen.emptyBuf, undefined, undefined), $.markAsStructValue($.cloneStructValue(src)).Bytes(), $.byteSliceHint))
 }
 
 export async function mergeListValue(dst: protoreflect.Value, src: protoreflect.Value, opts: mergeOptions): globalThis.Promise<protoreflect.Value> {
-	let dstl = await dst.List()
-	let srcl = await src.List()
+	let dstl = $.markAsStructValue($.cloneStructValue(dst)).List()
+	let srcl = $.markAsStructValue($.cloneStructValue(src)).List()
 	for (let i = 0, llen = (__goscriptAwait = (srcl !== null && (srcl as any).__isVarRef !== true && (srcl as any).__goValue === undefined ? (srcl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(srcl)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
 		void (__goscriptAwait = (dstl !== null && (dstl as any).__isVarRef !== true && (dstl as any).__goValue === undefined ? (dstl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(dstl)).Append((((__goscriptAwait = (srcl !== null && (srcl as any).__isVarRef !== true && (srcl as any).__goValue === undefined ? (srcl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(srcl)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	}
@@ -121,10 +116,10 @@ export async function mergeListValue(dst: protoreflect.Value, src: protoreflect.
 }
 
 export async function mergeBytesListValue(dst: protoreflect.Value, src: protoreflect.Value, opts: mergeOptions): globalThis.Promise<protoreflect.Value> {
-	let dstl = await dst.List()
-	let srcl = await src.List()
+	let dstl = $.markAsStructValue($.cloneStructValue(dst)).List()
+	let srcl = $.markAsStructValue($.cloneStructValue(src)).List()
 	for (let i = 0, llen = (__goscriptAwait = (srcl !== null && (srcl as any).__isVarRef !== true && (srcl as any).__goValue === undefined ? (srcl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(srcl)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
-		let sb: $.Slice<number> = await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = (srcl !== null && (srcl as any).__isVarRef !== true && (srcl as any).__goValue === undefined ? (srcl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(srcl)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Bytes()
+		let sb: $.Slice<number> = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = (srcl !== null && (srcl as any).__isVarRef !== true && (srcl as any).__goValue === undefined ? (srcl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(srcl)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Bytes()
 		let db: $.Slice<number> = $.appendSlice($.goSlice(__goscript_codec_gen.emptyBuf, undefined, undefined), sb, $.byteSliceHint)
 		void (__goscriptAwait = (dstl !== null && (dstl as any).__isVarRef !== true && (dstl as any).__goValue === undefined ? (dstl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(dstl)).Append(protoreflect.ValueOfBytes(db)), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	}
@@ -132,18 +127,18 @@ export async function mergeBytesListValue(dst: protoreflect.Value, src: protoref
 }
 
 export async function mergeMessageListValue(dst: protoreflect.Value, src: protoreflect.Value, opts: mergeOptions): globalThis.Promise<protoreflect.Value> {
-	let dstl = await dst.List()
-	let srcl = await src.List()
+	let dstl = $.markAsStructValue($.cloneStructValue(dst)).List()
+	let srcl = $.markAsStructValue($.cloneStructValue(src)).List()
 	for (let i = 0, llen = (__goscriptAwait = (srcl !== null && (srcl as any).__isVarRef !== true && (srcl as any).__goValue === undefined ? (srcl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(srcl)).Len(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); i < llen; i++) {
-		let sm = await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = (srcl !== null && (srcl as any).__isVarRef !== true && (srcl as any).__goValue === undefined ? (srcl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(srcl)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message()
-		let dm = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>((await proto.Clone((__goscriptAwait = (sm !== null && (sm as any).__isVarRef !== true && (sm as any).__goValue === undefined ? (sm as Exclude<protoreflect.Message, null>) : $.pointerValue<Exclude<protoreflect.Message, null>>(sm)).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)))).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+		let sm = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = (srcl !== null && (srcl as any).__isVarRef !== true && (srcl as any).__goValue === undefined ? (srcl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(srcl)).Get(i), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message()
+		let dm = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>(proto.Clone((__goscriptAwait = (sm !== null && (sm as any).__isVarRef !== true && (sm as any).__goValue === undefined ? (sm as Exclude<protoreflect.Message, null>) : $.pointerValue<Exclude<protoreflect.Message, null>>(sm)).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 		void (__goscriptAwait = (dstl !== null && (dstl as any).__isVarRef !== true && (dstl as any).__goValue === undefined ? (dstl as Exclude<protoreflect.List, null>) : $.pointerValue<Exclude<protoreflect.List, null>>(dstl)).Append(protoreflect.ValueOfMessage(dm)), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 	}
 	return (dst).clone()
 }
 
 export async function mergeMessageValue(dst: protoreflect.Value, src: protoreflect.Value, opts: mergeOptions): globalThis.Promise<protoreflect.Value> {
-	await opts.Merge((__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await dst.Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((await src.Message())).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))
+	opts.Merge((__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>($.markAsStructValue($.cloneStructValue(dst)).Message()).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>($.markAsStructValue($.cloneStructValue(src)).Message()).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))
 	return (dst).clone()
 }
 
@@ -160,7 +155,7 @@ export async function mergeMessage(dst: __goscript_pointer_reflect.pointer, src:
 		if ($.markAsStructValue($.cloneStructValue(dm)).IsNil()) {
 			$.markAsStructValue($.cloneStructValue(dm)).Set($.markAsStructValue($.cloneStructValue(reflect.New($.pointerValueOrNil((__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>((f$ as __goscript_codec_message.coderFieldInfo).ft).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))!))))
 		}
-		await opts.Merge(await __goscript_codec_field.asMessage(dm), await __goscript_codec_field.asMessage(sm))
+		opts.Merge(await __goscript_codec_field.asMessage(dm), await __goscript_codec_field.asMessage(sm))
 	}
 }
 
@@ -172,7 +167,7 @@ export async function mergeMessageSlice(dst: __goscript_pointer_reflect.pointer,
 		if ((f$ as __goscript_codec_message.coderFieldInfo).mi != null) {
 			await __goscript_message.MessageInfo.prototype.mergePointer.call((f$ as __goscript_codec_message.coderFieldInfo).mi, __goscript_pointer_reflect.pointerOfValue(dm), (sp).clone(), opts)
 		} else {
-			await opts.Merge(await __goscript_codec_field.asMessage(dm), await __goscript_codec_field.asMessage(await $.markAsStructValue($.cloneStructValue(sp)).AsValueOf((__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>((__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>((f$ as __goscript_codec_message.coderFieldInfo).ft).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))))
+			opts.Merge(await __goscript_codec_field.asMessage(dm), await __goscript_codec_field.asMessage(await $.markAsStructValue($.cloneStructValue(sp)).AsValueOf((__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>((__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>((f$ as __goscript_codec_message.coderFieldInfo).ft).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).Elem(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))))
 		}
 		dst.AppendPointerSlice(__goscript_pointer_reflect.pointerOfValue(dm))
 	}

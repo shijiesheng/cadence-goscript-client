@@ -232,7 +232,7 @@ export class Status {
 		if (s == null) {
 			return null
 		}
-		return $.mustTypeAssert<rpc.Status | $.VarRef<rpc.Status> | null>(await proto.Clone($.interfaceValue<proto.Message | null>($.pointerValue<Status>(s).s, "*rpc.Status", /* @__PURE__ */ $.pointerType("rpc.Status"))), /* @__PURE__ */ $.pointerType("rpc.Status"))
+		return cloneRPCStatus($.pointerValue<Status>(s).s)
 	}
 
 	public async WithDetails(details: $.Slice<proto.Message | null>): globalThis.Promise<[Status | $.VarRef<Status> | null, $.GoError]> {
@@ -285,8 +285,35 @@ export async function ErrorProto(s: rpc.Status | $.VarRef<rpc.Status> | null): g
 	return Status.prototype.Err.call(await FromProto(s))
 }
 
+function cloneRPCStatus(source: rpc.Status | $.VarRef<rpc.Status> | null): rpc.Status | null {
+	if (source == null) {
+		return null
+	}
+	const sourceValue = $.pointerValue<rpc.Status>(source)
+	let details: $.Slice<types.Any | $.VarRef<types.Any> | null> = null
+	for (let window = $.sliceRange(sourceValue.Details), index = 0; index < window.length; index++) {
+		const detail = window.backing[window.offset + index]
+		if (detail == null) {
+			details = $.appendOne(details, null, $.appendZeros.nil)
+			continue
+		}
+		const detailValue = $.pointerValue<types.Any>(detail)
+		details = $.appendOne(details, new types.Any({
+			TypeUrl: detailValue.TypeUrl,
+			Value: $.appendSlice<number>(null, detailValue.Value),
+			XXX_unrecognized: $.appendSlice<number>(null, detailValue.XXX_unrecognized),
+		}), $.appendZeros.nil)
+	}
+	return new rpc.Status({
+		Code: sourceValue.Code,
+		Message: sourceValue.Message,
+		Details: details,
+		XXX_unrecognized: $.appendSlice<number>(null, sourceValue.XXX_unrecognized),
+	})
+}
+
 export async function FromProto(s: rpc.Status | $.VarRef<rpc.Status> | null): globalThis.Promise<Status | $.VarRef<Status> | null> {
-	return new Status({s: $.mustTypeAssert<rpc.Status | $.VarRef<rpc.Status> | null>(await proto.Clone($.interfaceValue<proto.Message | null>(s, "*rpc.Status", /* @__PURE__ */ $.pointerType("rpc.Status"))), /* @__PURE__ */ $.pointerType("rpc.Status"))})
+	return new Status({s: cloneRPCStatus(s)})
 }
 
 export async function FromError(err: $.GoError): globalThis.Promise<[Status | $.VarRef<Status> | null, boolean]> {
@@ -305,13 +332,13 @@ export async function FromError(err: $.GoError): globalThis.Promise<[Status | $.
 }
 
 export async function FromGRPCStatus(st: status2.Status | $.VarRef<status2.Status> | null): globalThis.Promise<Status | $.VarRef<Status> | null> {
-	let p: spb.Status | $.VarRef<spb.Status> | null = await (st !== null && (st as any).__isVarRef !== true && (st as any).__goValue === undefined ? ((st as any) as status2.Status).Proto() : status2.Status.prototype.Proto.call(st))
-	let pb: rpc.Status | $.VarRef<rpc.Status> | null = (() => { const __goscriptLiteralField4 = (p !== null && (p as any).__isVarRef !== true && (p as any).__goValue === undefined ? ((p as any) as spb.Status).GetCode() : spb.Status.prototype.GetCode.call(p)); const __goscriptLiteralField5 = (p !== null && (p as any).__isVarRef !== true && (p as any).__goValue === undefined ? ((p as any) as spb.Status).GetMessage() : spb.Status.prototype.GetMessage.call(p)); return new rpc.Status({Code: __goscriptLiteralField4, Message: __goscriptLiteralField5}) })()
+	let p: spb.Status | $.VarRef<spb.Status> | null = st == null ? null : $.pointerValue<status2.Status>(st).s
+	let pb: rpc.Status | $.VarRef<rpc.Status> | null = (() => { const __goscriptLiteralField4 = status2.Status.prototype.Code.call(st); const __goscriptLiteralField5 = status2.Status.prototype.Message.call(st); return new rpc.Status({Code: __goscriptLiteralField4, Message: __goscriptLiteralField5}) })()
 	for (let __goscriptRangeTarget3 = (p !== null && (p as any).__isVarRef !== true && (p as any).__goValue === undefined ? ((p as any) as spb.Status).GetDetails() : spb.Status.prototype.GetDetails.call(p)), __goscriptRangeWindow3 = $.sliceRange(__goscriptRangeTarget3), __rangeIndex = 0; __rangeIndex < __goscriptRangeWindow3.length; __rangeIndex++) {
 		let detail = (__goscriptRangeWindow3.backing[__goscriptRangeWindow3.offset + __rangeIndex] as anypb.Any | $.VarRef<anypb.Any> | null)
 		$.pointerValue<rpc.Status>(pb).Details = $.appendOne((pb !== null && (pb as any).__isVarRef !== true && (pb as any).__goValue === undefined ? ((pb as any) as rpc.Status).GetDetails() : rpc.Status.prototype.GetDetails.call(pb)), (() => { const __goscriptLiteralField6 = (detail !== null && (detail as any).__isVarRef !== true && (detail as any).__goValue === undefined ? ((detail as any) as anypb.Any).GetTypeUrl() : anypb.Any.prototype.GetTypeUrl.call(detail)); const __goscriptLiteralField7 = (detail !== null && (detail as any).__isVarRef !== true && (detail as any).__goValue === undefined ? ((detail as any) as anypb.Any).GetValue() : anypb.Any.prototype.GetValue.call(detail)); return new types.Any({TypeUrl: __goscriptLiteralField6, Value: __goscriptLiteralField7}) })(), $.appendZeros.nil)
 	}
-	return FromProto(pb)
+	return new Status({s: pb})
 }
 
 export async function Convert(err: $.GoError): globalThis.Promise<Status | $.VarRef<Status> | null> {

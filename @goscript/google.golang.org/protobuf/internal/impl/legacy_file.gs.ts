@@ -27,23 +27,23 @@ import "@goscript/google.golang.org/protobuf/reflect/protoregistry/index.js"
 $.registerTypePackagePath("google.golang.org/protobuf/internal/impl", ["impl.enumV1", "impl.messageV1", "impl.resolverOnly"])
 
 export type enumV1 = {
-	EnumDescriptor(): [$.Slice<number>, $.Slice<number>] | globalThis.Promise<[$.Slice<number>, $.Slice<number>]>
+	EnumDescriptor(): [$.Slice<number>, $.Slice<number>]
 }
 
 $.registerInterfaceType(
 	"impl.enumV1",
 	null,
-	[$.methodSignature("EnumDescriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))])]
+	[{ name: "EnumDescriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }] }]
 );
 
 export type messageV1 = {
-	Descriptor(): [$.Slice<number>, $.Slice<number>] | globalThis.Promise<[$.Slice<number>, $.Slice<number>]>
+	Descriptor(): [$.Slice<number>, $.Slice<number>]
 }
 
 $.registerInterfaceType(
 	"impl.messageV1",
 	null,
-	[$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))])]
+	[{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }] }]
 );
 
 export class resolverOnly {
@@ -76,12 +76,12 @@ export class resolverOnly {
 		target.reg = values.reg
 	}
 
-	public async FindDescriptorByName(name: protoreflect.FullName): globalThis.Promise<[protoreflect.Descriptor | null, $.GoError]> {
+	public FindDescriptorByName(name: protoreflect.FullName): [protoreflect.Descriptor | null, $.GoError] {
 		const r = this;
 		return protoregistry.Files.prototype.FindDescriptorByName.call(r.reg, name)
 	}
 
-	public async FindFileByPath(path: string): globalThis.Promise<[protoreflect.FileDescriptor | null, $.GoError]> {
+	public FindFileByPath(path: string): [protoreflect.FileDescriptor | null, $.GoError] {
 		const r = this;
 		return protoregistry.Files.prototype.FindFileByPath.call(r.reg, path)
 	}
@@ -93,9 +93,9 @@ export class resolverOnly {
 	static __typeInfo = $.registerStructType(
 		"impl.resolverOnly",
 		() => new resolverOnly(),
-		() => [$.methodSignature("FindDescriptorByName", [["name", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.Descriptor", "error"]), $.methodSignature("FindFileByPath", [["path", /* @__PURE__ */ $.basicType("string")]], ["protoreflect.FileDescriptor", "error"]), $.methodSignature("RegisterFile", ["protoreflect.FileDescriptor"], ["error"])],
+		() => [{ name: "FindDescriptorByName", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Descriptor" }, { type: "error" }] }, { name: "FindFileByPath", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.FileDescriptor" }, { type: "error" }] }, { name: "RegisterFile", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }] }],
 		resolverOnly,
-		() => [/* @__PURE__ */ $.structField("reg", /* @__PURE__ */ $.pointerType("protoregistry.Files"), [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "reg", key: "reg", type: /* @__PURE__ */ $.pointerType("protoregistry.Files") }]
 	)
 }
 
@@ -141,7 +141,7 @@ export async function legacyLoadFileDesc(b: $.Slice<number>): globalThis.Promise
 		$.panic((err as any))
 	}
 
-	let fd = (await $.markAsStructValue($.cloneStructValue(new filedesc.Builder({RawDescriptor: b2, FileRegistry: $.interfaceValue(new resolverOnly({reg: protoregistry.GlobalFiles}, true), "impl.resolverOnly", "impl.resolverOnly")}, true))).Build()).File
+	let fd = $.markAsStructValue($.cloneStructValue(new filedesc.Builder({RawDescriptor: b2, FileRegistry: $.interfaceValue(new resolverOnly({reg: protoregistry.GlobalFiles}, true), "impl.resolverOnly", "impl.resolverOnly")}, true))).Build().File
 	let __goscriptShadow0 = fd
 	{
 		let __goscriptTuple2: any = await $.pointerValue<sync.Map>(__goscript_get_legacyFileDescCache()).LoadOrStore($.interfaceValue($.indexRef(b!, 0), "*byte", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint8"))), (__goscriptShadow0 as any))

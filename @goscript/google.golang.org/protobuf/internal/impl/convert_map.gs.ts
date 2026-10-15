@@ -72,9 +72,9 @@ export class mapConverter {
 		target.valConv = $.assignFieldValue(target.valConv, values.valConv, "impl.Converter")
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: mapConverter | $.VarRef<mapConverter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.pointerValue<mapReflect>($.mustTypeAssert<mapReflect | $.VarRef<mapReflect> | null>(await v.Map(), /* @__PURE__ */ $.pointerType("impl.mapReflect"))).v))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<mapReflect>($.mustTypeAssert<mapReflect | $.VarRef<mapReflect> | null>($.markAsStructValue($.cloneStructValue(v)).Map(), /* @__PURE__ */ $.pointerType("impl.mapReflect"))).v))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -82,9 +82,9 @@ export class mapConverter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<mapConverter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: mapConverter | $.VarRef<mapConverter> | null = this;
-		let __goscriptTuple0: any = $.typeAssertTuple<mapReflect | $.VarRef<mapReflect> | null>(await v.Interface(), /* @__PURE__ */ $.pointerType("impl.mapReflect"))
+		let __goscriptTuple0: any = $.typeAssertTuple<mapReflect | $.VarRef<mapReflect> | null>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.pointerType("impl.mapReflect"))
 		let mapv: mapReflect | $.VarRef<mapReflect> | null = __goscriptTuple0[0]
 		let ok = __goscriptTuple0[1]
 		if (!ok) {
@@ -115,9 +115,9 @@ export class mapConverter {
 	static __typeInfo = $.registerStructType(
 		"impl.mapConverter",
 		() => new mapConverter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		mapConverter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("keyConv", "impl.Converter", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("valConv", "impl.Converter", [2], 32, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "keyConv", key: "keyConv", type: "impl.Converter" }, { name: "valConv", key: "valConv", type: "impl.Converter" }]
 	)
 }
 
@@ -176,14 +176,14 @@ export class mapReflect {
 	public async Clear(k: protoreflect.MapKey): globalThis.Promise<void> {
 		const ms: mapReflect | $.VarRef<mapReflect> | null = this;
 		const ms$: mapReflect = ms == null ? $.pointerTarget<mapReflect>(ms) : (ms as any).__isVarRef === true ? (ms as any).value : (ms as any).__goValue === undefined ? (ms as any) : $.pointerTarget<mapReflect>(ms)
-		let rk = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).keyConv).GoValueOf(k.Value()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value)))
+		let rk = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).keyConv).GoValueOf($.markAsStructValue($.cloneStructValue(k)).Value()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value)))
 		$.markAsStructValue($.cloneStructValue((ms$ as mapReflect).v)).SetMapIndex($.markAsStructValue($.cloneStructValue(rk)), $.markAsStructValue(new reflect.Value()))
 	}
 
 	public async Get(k: protoreflect.MapKey): globalThis.Promise<protoreflect.Value> {
 		const ms: mapReflect | $.VarRef<mapReflect> | null = this;
 		const ms$: mapReflect = ms == null ? $.pointerTarget<mapReflect>(ms) : (ms as any).__isVarRef === true ? (ms as any).value : (ms as any).__goValue === undefined ? (ms as any) : $.pointerTarget<mapReflect>(ms)
-		let rk = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).keyConv).GoValueOf(k.Value()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value)))
+		let rk = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).keyConv).GoValueOf($.markAsStructValue($.cloneStructValue(k)).Value()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value)))
 		let rv = $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue((ms$ as mapReflect).v)).MapIndex($.markAsStructValue($.cloneStructValue(rk)))))
 		if (!$.markAsStructValue($.cloneStructValue(rv)).IsValid()) {
 			return new protoreflect.Value(undefined, true)
@@ -194,7 +194,7 @@ export class mapReflect {
 	public async Has(k: protoreflect.MapKey): globalThis.Promise<boolean> {
 		const ms: mapReflect | $.VarRef<mapReflect> | null = this;
 		const ms$: mapReflect = ms == null ? $.pointerTarget<mapReflect>(ms) : (ms as any).__isVarRef === true ? (ms as any).value : (ms as any).__goValue === undefined ? (ms as any) : $.pointerTarget<mapReflect>(ms)
-		let rk = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).keyConv).GoValueOf(k.Value()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value)))
+		let rk = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).keyConv).GoValueOf($.markAsStructValue($.cloneStructValue(k)).Value()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value)))
 		let rv = $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue((ms$ as mapReflect).v)).MapIndex($.markAsStructValue($.cloneStructValue(rk)))))
 		return $.markAsStructValue($.cloneStructValue(rv)).IsValid()
 	}
@@ -218,7 +218,7 @@ export class mapReflect {
 			}
 		}
 		let v = await (ms !== null && (ms as any).__isVarRef !== true && (ms as any).__goValue === undefined ? ((ms as any) as mapReflect).Get(k) : mapReflect.prototype.Get.call(ms, k))
-		if (!v.IsValid()) {
+		if (!$.markAsStructValue($.cloneStructValue(v)).IsValid()) {
 			v = $.assignStruct(v, await (ms !== null && (ms as any).__isVarRef !== true && (ms as any).__goValue === undefined ? ((ms as any) as mapReflect).NewValue() : mapReflect.prototype.NewValue.call(ms)))
 			await (ms !== null && (ms as any).__isVarRef !== true && (ms as any).__goValue === undefined ? ((ms as any) as mapReflect).Set(k, v) : mapReflect.prototype.Set.call(ms, k, v))
 		}
@@ -235,7 +235,7 @@ export class mapReflect {
 		const ms$: mapReflect = ms == null ? $.pointerTarget<mapReflect>(ms) : (ms as any).__isVarRef === true ? (ms as any).value : (ms as any).__goValue === undefined ? (ms as any) : $.pointerTarget<mapReflect>(ms)
 		let iter: reflect.MapIter | $.VarRef<reflect.MapIter> | null = __goscript_codec_map_go112.mapRange($.markAsStructValue($.cloneStructValue((ms$ as mapReflect).v)))
 		while (reflect.MapIter.prototype.Next.call($.pointerValue<reflect.MapIter>(iter))) {
-			let k = await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).keyConv).PBValueOf($.markAsStructValue($.cloneStructValue(reflect.MapIter.prototype.Key.call($.pointerValue<reflect.MapIter>(iter))))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).MapKey()
+			let k = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).keyConv).PBValueOf($.markAsStructValue($.cloneStructValue(reflect.MapIter.prototype.Key.call($.pointerValue<reflect.MapIter>(iter))))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).MapKey()
 			let v = (((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).valConv).PBValueOf($.markAsStructValue($.cloneStructValue(reflect.MapIter.prototype.Value.call($.pointerValue<reflect.MapIter>(iter))))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 			if (!(__goscriptAwait = f!((k).clone(), (v).clone()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)) {
 				return
@@ -246,7 +246,7 @@ export class mapReflect {
 	public async Set(k: protoreflect.MapKey, v: protoreflect.Value): globalThis.Promise<void> {
 		const ms: mapReflect | $.VarRef<mapReflect> | null = this;
 		const ms$: mapReflect = ms == null ? $.pointerTarget<mapReflect>(ms) : (ms as any).__isVarRef === true ? (ms as any).value : (ms as any).__goValue === undefined ? (ms as any) : $.pointerTarget<mapReflect>(ms)
-		let rk = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).keyConv).GoValueOf(k.Value()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value)))
+		let rk = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).keyConv).GoValueOf($.markAsStructValue($.cloneStructValue(k)).Value()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value)))
 		let rv = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>((ms$ as mapReflect).valConv).GoValueOf((v).clone()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value)))
 		$.markAsStructValue($.cloneStructValue((ms$ as mapReflect).v)).SetMapIndex($.markAsStructValue($.cloneStructValue(rk)), $.markAsStructValue($.cloneStructValue(rv)))
 	}
@@ -259,9 +259,9 @@ export class mapReflect {
 	static __typeInfo = $.registerStructType(
 		"impl.mapReflect",
 		() => new mapReflect(),
-		() => [$.methodSignature("Clear", [["k", "protoreflect.MapKey"]], [], true), $.methodSignature("Get", [["k", "protoreflect.MapKey"]], ["protoreflect.Value"], true), $.methodSignature("Has", [["k", "protoreflect.MapKey"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValid", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("Len", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("Mutable", [["k", "protoreflect.MapKey"]], ["protoreflect.Value"], true), $.methodSignature("NewValue", [], ["protoreflect.Value"], true), $.methodSignature("Range", [["f", ({ kind: $.TypeKind.Function, params: ["protoreflect.MapKey", "protoreflect.Value"], results: [/* @__PURE__ */ $.basicType("bool")] } as $.FunctionTypeInfo)]], [], true), $.methodSignature("Set", [["k", "protoreflect.MapKey"], ["v", "protoreflect.Value"]], [], true), $.methodSignature("protoUnwrap", [], [{ kind: $.TypeKind.Interface, methods: [] }], true)],
+		() => [{ name: "Clear", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "Get", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Has", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValid", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "Len", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "Mutable", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "NewValue", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Range", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "Set", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "protoUnwrap", args: [], returns: [{ type: { kind: $.TypeKind.Interface, methods: [] } }], pointerReceiver: true }],
 		mapReflect,
-		() => [/* @__PURE__ */ $.structField("v", "reflect.Value", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("keyConv", "impl.Converter", [1], 24, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("valConv", "impl.Converter", [2], 40, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "v", key: "v", type: "reflect.Value" }, { name: "keyConv", key: "keyConv", type: "impl.Converter" }, { name: "valConv", key: "valConv", type: "impl.Converter" }]
 	)
 }
 

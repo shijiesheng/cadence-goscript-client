@@ -10,19 +10,10 @@ import * as protoimpl from "@goscript/google.golang.org/protobuf/runtime/protoim
 import * as reflect from "@goscript/reflect/index.js"
 
 import * as sync from "@goscript/sync/index.js"
-
-import * as filedesc from "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-
-import * as filetype from "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-
-import * as impl from "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoimpl/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/sync/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-import "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 
 $.registerTypePackagePath("google.golang.org/protobuf/types/descriptorpb", ["descriptorpb.Edition", "descriptorpb.ExtensionRangeOptions_VerificationState", "descriptorpb.FieldDescriptorProto_Type", "descriptorpb.FieldDescriptorProto_Label", "descriptorpb.FileOptions_OptimizeMode", "descriptorpb.FieldOptions_CType", "descriptorpb.FieldOptions_JSType", "descriptorpb.FieldOptions_OptionRetention", "descriptorpb.FieldOptions_OptionTargetType", "descriptorpb.MethodOptions_IdempotencyLevel", "descriptorpb.FeatureSet_FieldPresence", "descriptorpb.FeatureSet_EnumType", "descriptorpb.FeatureSet_RepeatedFieldEncoding", "descriptorpb.FeatureSet_Utf8Validation", "descriptorpb.FeatureSet_MessageEncoding", "descriptorpb.FeatureSet_JsonFormat", "descriptorpb.GeneratedCodeInfo_Annotation_Semantic", "descriptorpb.FileDescriptorSet", "descriptorpb.FileDescriptorProto", "descriptorpb.DescriptorProto", "descriptorpb.ExtensionRangeOptions", "descriptorpb.FieldDescriptorProto", "descriptorpb.OneofDescriptorProto", "descriptorpb.EnumDescriptorProto", "descriptorpb.EnumValueDescriptorProto", "descriptorpb.ServiceDescriptorProto", "descriptorpb.MethodDescriptorProto", "descriptorpb.FileOptions", "descriptorpb.MessageOptions", "descriptorpb.FieldOptions", "descriptorpb.OneofOptions", "descriptorpb.EnumOptions", "descriptorpb.EnumValueOptions", "descriptorpb.ServiceOptions", "descriptorpb.MethodOptions", "descriptorpb.UninterpretedOption", "descriptorpb.FeatureSet", "descriptorpb.FeatureSetDefaults", "descriptorpb.SourceCodeInfo", "descriptorpb.GeneratedCodeInfo", "descriptorpb.DescriptorProto_ExtensionRange", "descriptorpb.DescriptorProto_ReservedRange", "descriptorpb.ExtensionRangeOptions_Declaration", "descriptorpb.EnumDescriptorProto_EnumReservedRange", "descriptorpb.FieldOptions_EditionDefault", "descriptorpb.FieldOptions_FeatureSupport", "descriptorpb.UninterpretedOption_NamePart", "descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault", "descriptorpb.SourceCodeInfo_Location", "descriptorpb.GeneratedCodeInfo_Annotation", "descriptorpb.x"])
 
@@ -306,7 +297,7 @@ export class FileDescriptorSet {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, File?: $.Slice<FileDescriptorProto | $.VarRef<FileDescriptorProto> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			File: init?.File ?? (null! as $.Slice<FileDescriptorProto | $.VarRef<FileDescriptorProto> | null>)
@@ -321,7 +312,7 @@ export class FileDescriptorSet {
 	public __goscriptAssign(source: FileDescriptorSet): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.File = values.File
@@ -342,40 +333,40 @@ export class FileDescriptorSet {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: FileDescriptorSet | $.VarRef<FileDescriptorSet> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 0)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 0)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileDescriptorSet", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorSet")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileDescriptorSet", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorSet")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.FileDescriptorSet", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorSet"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.FileDescriptorSet", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorSet"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.FileDescriptorSet", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorSet")))
 	}
 
 	public Reset(): void {
 		let x: FileDescriptorSet | $.VarRef<FileDescriptorSet> | null = this;
 		$.assignStruct($.pointerValue<FileDescriptorSet>(x), $.markAsStructValue(new FileDescriptorSet()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 0)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileDescriptorSet", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorSet")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 0)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileDescriptorSet", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorSet")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: FileDescriptorSet | $.VarRef<FileDescriptorSet> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FileDescriptorSet", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorSet")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FileDescriptorSet", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorSet")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.FileDescriptorSet",
 		() => new FileDescriptorSet(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetFile", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetFile", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		FileDescriptorSet,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("File", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")), [3], 40, true, { tag: "protobuf:\"bytes,1,rep,name=file\" json:\"file,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "File", key: "File", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")), tag: "protobuf:\"bytes,1,rep,name=file\" json:\"file,omitempty\"" }]
 	)
 }
 
@@ -543,7 +534,7 @@ export class FileDescriptorProto {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.VarRef<string> | null, Package?: $.VarRef<string> | null, Dependency?: $.Slice<string>, PublicDependency?: $.Slice<number>, WeakDependency?: $.Slice<number>, MessageType?: $.Slice<DescriptorProto | $.VarRef<DescriptorProto> | null>, EnumType?: $.Slice<EnumDescriptorProto | $.VarRef<EnumDescriptorProto> | null>, Service?: $.Slice<ServiceDescriptorProto | $.VarRef<ServiceDescriptorProto> | null>, Extension?: $.Slice<FieldDescriptorProto | $.VarRef<FieldDescriptorProto> | null>, Options?: FileOptions | $.VarRef<FileOptions> | null, SourceCodeInfo?: SourceCodeInfo | $.VarRef<SourceCodeInfo> | null, Syntax?: $.VarRef<string> | null, Edition?: $.VarRef<Edition> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.VarRef<string> | null),
@@ -570,7 +561,7 @@ export class FileDescriptorProto {
 	public __goscriptAssign(source: FileDescriptorProto): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -703,40 +694,40 @@ export class FileDescriptorProto {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: FileDescriptorProto | $.VarRef<FileDescriptorProto> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 1)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 1)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.FileDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.FileDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")))
 	}
 
 	public Reset(): void {
 		let x: FileDescriptorProto | $.VarRef<FileDescriptorProto> | null = this;
 		$.assignStruct($.pointerValue<FileDescriptorProto>(x), $.markAsStructValue(new FileDescriptorProto()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 1)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 1)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: FileDescriptorProto | $.VarRef<FileDescriptorProto> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FileDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FileDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FileDescriptorProto")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.FileDescriptorProto",
 		() => new FileDescriptorProto(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetDependency", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string"))], true), $.methodSignature("GetEdition", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")], true), $.methodSignature("GetEnumType", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto"))], true), $.methodSignature("GetExtension", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto"))], true), $.methodSignature("GetMessageType", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto"))], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetOptions", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FileOptions")], true), $.methodSignature("GetPackage", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetPublicDependency", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32"))], true), $.methodSignature("GetService", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto"))], true), $.methodSignature("GetSourceCodeInfo", [], [/* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo")], true), $.methodSignature("GetSyntax", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetWeakDependency", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetDependency", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")) }], pointerReceiver: true }, { name: "GetEdition", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition") }], pointerReceiver: true }, { name: "GetEnumType", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")) }], pointerReceiver: true }, { name: "GetExtension", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")) }], pointerReceiver: true }, { name: "GetMessageType", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")) }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetOptions", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions") }], pointerReceiver: true }, { name: "GetPackage", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetPublicDependency", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")) }], pointerReceiver: true }, { name: "GetService", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")) }], pointerReceiver: true }, { name: "GetSourceCodeInfo", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo") }], pointerReceiver: true }, { name: "GetSyntax", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetWeakDependency", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		FileDescriptorProto,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("Package", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=package\" json:\"package,omitempty\"" }), /* @__PURE__ */ $.structField("Dependency", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), [5], 56, true, { tag: "protobuf:\"bytes,3,rep,name=dependency\" json:\"dependency,omitempty\"" }), /* @__PURE__ */ $.structField("PublicDependency", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), [6], 80, true, { tag: "protobuf:\"varint,10,rep,name=public_dependency,json=publicDependency\" json:\"public_dependency,omitempty\"" }), /* @__PURE__ */ $.structField("WeakDependency", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), [7], 104, true, { tag: "protobuf:\"varint,11,rep,name=weak_dependency,json=weakDependency\" json:\"weak_dependency,omitempty\"" }), /* @__PURE__ */ $.structField("MessageType", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")), [8], 128, true, { tag: "protobuf:\"bytes,4,rep,name=message_type,json=messageType\" json:\"message_type,omitempty\"" }), /* @__PURE__ */ $.structField("EnumType", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")), [9], 152, true, { tag: "protobuf:\"bytes,5,rep,name=enum_type,json=enumType\" json:\"enum_type,omitempty\"" }), /* @__PURE__ */ $.structField("Service", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")), [10], 176, true, { tag: "protobuf:\"bytes,6,rep,name=service\" json:\"service,omitempty\"" }), /* @__PURE__ */ $.structField("Extension", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")), [11], 200, true, { tag: "protobuf:\"bytes,7,rep,name=extension\" json:\"extension,omitempty\"" }), /* @__PURE__ */ $.structField("Options", /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions"), [12], 224, true, { tag: "protobuf:\"bytes,8,opt,name=options\" json:\"options,omitempty\"" }), /* @__PURE__ */ $.structField("SourceCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo"), [13], 232, true, { tag: "protobuf:\"bytes,9,opt,name=source_code_info,json=sourceCodeInfo\" json:\"source_code_info,omitempty\"" }), /* @__PURE__ */ $.structField("Syntax", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [14], 240, true, { tag: "protobuf:\"bytes,12,opt,name=syntax\" json:\"syntax,omitempty\"" }), /* @__PURE__ */ $.structField("Edition", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), [15], 248, true, { tag: "protobuf:\"varint,14,opt,name=edition,enum=google.protobuf.Edition\" json:\"edition,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }, { name: "Package", key: "Package", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,2,opt,name=package\" json:\"package,omitempty\"" }, { name: "Dependency", key: "Dependency", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,3,rep,name=dependency\" json:\"dependency,omitempty\"" }, { name: "PublicDependency", key: "PublicDependency", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,10,rep,name=public_dependency,json=publicDependency\" json:\"public_dependency,omitempty\"" }, { name: "WeakDependency", key: "WeakDependency", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,11,rep,name=weak_dependency,json=weakDependency\" json:\"weak_dependency,omitempty\"" }, { name: "MessageType", key: "MessageType", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")), tag: "protobuf:\"bytes,4,rep,name=message_type,json=messageType\" json:\"message_type,omitempty\"" }, { name: "EnumType", key: "EnumType", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")), tag: "protobuf:\"bytes,5,rep,name=enum_type,json=enumType\" json:\"enum_type,omitempty\"" }, { name: "Service", key: "Service", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")), tag: "protobuf:\"bytes,6,rep,name=service\" json:\"service,omitempty\"" }, { name: "Extension", key: "Extension", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")), tag: "protobuf:\"bytes,7,rep,name=extension\" json:\"extension,omitempty\"" }, { name: "Options", key: "Options", type: /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions"), tag: "protobuf:\"bytes,8,opt,name=options\" json:\"options,omitempty\"" }, { name: "SourceCodeInfo", key: "SourceCodeInfo", type: /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo"), tag: "protobuf:\"bytes,9,opt,name=source_code_info,json=sourceCodeInfo\" json:\"source_code_info,omitempty\"" }, { name: "Syntax", key: "Syntax", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,12,opt,name=syntax\" json:\"syntax,omitempty\"" }, { name: "Edition", key: "Edition", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), tag: "protobuf:\"varint,14,opt,name=edition,enum=google.protobuf.Edition\" json:\"edition,omitempty\"" }]
 	)
 }
 
@@ -865,7 +856,7 @@ export class DescriptorProto {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.VarRef<string> | null, Field?: $.Slice<FieldDescriptorProto | $.VarRef<FieldDescriptorProto> | null>, Extension?: $.Slice<FieldDescriptorProto | $.VarRef<FieldDescriptorProto> | null>, NestedType?: $.Slice<DescriptorProto | $.VarRef<DescriptorProto> | null>, EnumType?: $.Slice<EnumDescriptorProto | $.VarRef<EnumDescriptorProto> | null>, ExtensionRange?: $.Slice<DescriptorProto_ExtensionRange | $.VarRef<DescriptorProto_ExtensionRange> | null>, OneofDecl?: $.Slice<OneofDescriptorProto | $.VarRef<OneofDescriptorProto> | null>, Options?: MessageOptions | $.VarRef<MessageOptions> | null, ReservedRange?: $.Slice<DescriptorProto_ReservedRange | $.VarRef<DescriptorProto_ReservedRange> | null>, ReservedName?: $.Slice<string>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.VarRef<string> | null),
@@ -889,7 +880,7 @@ export class DescriptorProto {
 	public __goscriptAssign(source: DescriptorProto): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -992,40 +983,40 @@ export class DescriptorProto {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: DescriptorProto | $.VarRef<DescriptorProto> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 2)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 2)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.DescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.DescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.DescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")))
 	}
 
 	public Reset(): void {
 		let x: DescriptorProto | $.VarRef<DescriptorProto> | null = this;
 		$.assignStruct($.pointerValue<DescriptorProto>(x), $.markAsStructValue(new DescriptorProto()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 2)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 2)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: DescriptorProto | $.VarRef<DescriptorProto> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.DescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.DescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.DescriptorProto",
 		() => new DescriptorProto(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetEnumType", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto"))], true), $.methodSignature("GetExtension", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto"))], true), $.methodSignature("GetExtensionRange", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange"))], true), $.methodSignature("GetField", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto"))], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetNestedType", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto"))], true), $.methodSignature("GetOneofDecl", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto"))], true), $.methodSignature("GetOptions", [], [/* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions")], true), $.methodSignature("GetReservedName", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string"))], true), $.methodSignature("GetReservedRange", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetEnumType", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")) }], pointerReceiver: true }, { name: "GetExtension", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")) }], pointerReceiver: true }, { name: "GetExtensionRange", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")) }], pointerReceiver: true }, { name: "GetField", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")) }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetNestedType", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")) }], pointerReceiver: true }, { name: "GetOneofDecl", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")) }], pointerReceiver: true }, { name: "GetOptions", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions") }], pointerReceiver: true }, { name: "GetReservedName", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")) }], pointerReceiver: true }, { name: "GetReservedRange", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		DescriptorProto,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("Field", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")), [4], 48, true, { tag: "protobuf:\"bytes,2,rep,name=field\" json:\"field,omitempty\"" }), /* @__PURE__ */ $.structField("Extension", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")), [5], 72, true, { tag: "protobuf:\"bytes,6,rep,name=extension\" json:\"extension,omitempty\"" }), /* @__PURE__ */ $.structField("NestedType", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")), [6], 96, true, { tag: "protobuf:\"bytes,3,rep,name=nested_type,json=nestedType\" json:\"nested_type,omitempty\"" }), /* @__PURE__ */ $.structField("EnumType", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")), [7], 120, true, { tag: "protobuf:\"bytes,4,rep,name=enum_type,json=enumType\" json:\"enum_type,omitempty\"" }), /* @__PURE__ */ $.structField("ExtensionRange", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")), [8], 144, true, { tag: "protobuf:\"bytes,5,rep,name=extension_range,json=extensionRange\" json:\"extension_range,omitempty\"" }), /* @__PURE__ */ $.structField("OneofDecl", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")), [9], 168, true, { tag: "protobuf:\"bytes,8,rep,name=oneof_decl,json=oneofDecl\" json:\"oneof_decl,omitempty\"" }), /* @__PURE__ */ $.structField("Options", /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions"), [10], 192, true, { tag: "protobuf:\"bytes,7,opt,name=options\" json:\"options,omitempty\"" }), /* @__PURE__ */ $.structField("ReservedRange", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")), [11], 200, true, { tag: "protobuf:\"bytes,9,rep,name=reserved_range,json=reservedRange\" json:\"reserved_range,omitempty\"" }), /* @__PURE__ */ $.structField("ReservedName", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), [12], 224, true, { tag: "protobuf:\"bytes,10,rep,name=reserved_name,json=reservedName\" json:\"reserved_name,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }, { name: "Field", key: "Field", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")), tag: "protobuf:\"bytes,2,rep,name=field\" json:\"field,omitempty\"" }, { name: "Extension", key: "Extension", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")), tag: "protobuf:\"bytes,6,rep,name=extension\" json:\"extension,omitempty\"" }, { name: "NestedType", key: "NestedType", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto")), tag: "protobuf:\"bytes,3,rep,name=nested_type,json=nestedType\" json:\"nested_type,omitempty\"" }, { name: "EnumType", key: "EnumType", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")), tag: "protobuf:\"bytes,4,rep,name=enum_type,json=enumType\" json:\"enum_type,omitempty\"" }, { name: "ExtensionRange", key: "ExtensionRange", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")), tag: "protobuf:\"bytes,5,rep,name=extension_range,json=extensionRange\" json:\"extension_range,omitempty\"" }, { name: "OneofDecl", key: "OneofDecl", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")), tag: "protobuf:\"bytes,8,rep,name=oneof_decl,json=oneofDecl\" json:\"oneof_decl,omitempty\"" }, { name: "Options", key: "Options", type: /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions"), tag: "protobuf:\"bytes,7,opt,name=options\" json:\"options,omitempty\"" }, { name: "ReservedRange", key: "ReservedRange", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")), tag: "protobuf:\"bytes,9,rep,name=reserved_range,json=reservedRange\" json:\"reserved_range,omitempty\"" }, { name: "ReservedName", key: "ReservedName", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,10,rep,name=reserved_name,json=reservedName\" json:\"reserved_name,omitempty\"" }]
 	)
 }
 
@@ -1115,7 +1106,7 @@ export class ExtensionRangeOptions {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, extensionFields?: protoimpl.ExtensionFields, UninterpretedOption?: $.Slice<UninterpretedOption | $.VarRef<UninterpretedOption> | null>, Declaration?: $.Slice<ExtensionRangeOptions_Declaration | $.VarRef<ExtensionRangeOptions_Declaration> | null>, Features?: FeatureSet | $.VarRef<FeatureSet> | null, Verification?: $.VarRef<ExtensionRangeOptions_VerificationState> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			extensionFields: init?.extensionFields ?? (null! as protoimpl.ExtensionFields),
@@ -1134,7 +1125,7 @@ export class ExtensionRangeOptions {
 	public __goscriptAssign(source: ExtensionRangeOptions): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.extensionFields = values.extensionFields
@@ -1184,40 +1175,40 @@ export class ExtensionRangeOptions {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: ExtensionRangeOptions | $.VarRef<ExtensionRangeOptions> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 3)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 3)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ExtensionRangeOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ExtensionRangeOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.ExtensionRangeOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.ExtensionRangeOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions")))
 	}
 
 	public Reset(): void {
 		let x: ExtensionRangeOptions | $.VarRef<ExtensionRangeOptions> | null = this;
 		$.assignStruct($.pointerValue<ExtensionRangeOptions>(x), $.markAsStructValue(new ExtensionRangeOptions()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 3)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ExtensionRangeOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 3)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ExtensionRangeOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: ExtensionRangeOptions | $.VarRef<ExtensionRangeOptions> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.ExtensionRangeOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.ExtensionRangeOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.ExtensionRangeOptions",
 		() => new ExtensionRangeOptions(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetDeclaration", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration"))], true), $.methodSignature("GetFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("GetUninterpretedOption", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption"))], true), $.methodSignature("GetVerification", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.ExtensionRangeOptions_VerificationState")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetDeclaration", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")) }], pointerReceiver: true }, { name: "GetFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "GetUninterpretedOption", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")) }], pointerReceiver: true }, { name: "GetVerification", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.ExtensionRangeOptions_VerificationState") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		ExtensionRangeOptions,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("extensionFields", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField"), [3], 40, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("UninterpretedOption", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), [4], 48, true, { tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" }), /* @__PURE__ */ $.structField("Declaration", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")), [5], 72, true, { tag: "protobuf:\"bytes,2,rep,name=declaration\" json:\"declaration,omitempty\"" }), /* @__PURE__ */ $.structField("Features", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [6], 96, true, { tag: "protobuf:\"bytes,50,opt,name=features\" json:\"features,omitempty\"" }), /* @__PURE__ */ $.structField("Verification", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.ExtensionRangeOptions_VerificationState")), [7], 104, true, { tag: "protobuf:\"varint,3,opt,name=verification,enum=google.protobuf.ExtensionRangeOptions_VerificationState,def=1\" json:\"verification,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "extensionFields", key: "extensionFields", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField") }, { name: "UninterpretedOption", key: "UninterpretedOption", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" }, { name: "Declaration", key: "Declaration", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")), tag: "protobuf:\"bytes,2,rep,name=declaration\" json:\"declaration,omitempty\"" }, { name: "Features", key: "Features", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,50,opt,name=features\" json:\"features,omitempty\"" }, { name: "Verification", key: "Verification", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.ExtensionRangeOptions_VerificationState")), tag: "protobuf:\"varint,3,opt,name=verification,enum=google.protobuf.ExtensionRangeOptions_VerificationState,def=1\" json:\"verification,omitempty\"" }]
 	)
 }
 
@@ -1393,7 +1384,7 @@ export class FieldDescriptorProto {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.VarRef<string> | null, Number?: $.VarRef<number> | null, Label?: $.VarRef<FieldDescriptorProto_Label> | null, Type?: $.VarRef<FieldDescriptorProto_Type> | null, TypeName?: $.VarRef<string> | null, Extendee?: $.VarRef<string> | null, DefaultValue?: $.VarRef<string> | null, OneofIndex?: $.VarRef<number> | null, JsonName?: $.VarRef<string> | null, Options?: FieldOptions | $.VarRef<FieldOptions> | null, Proto3Optional?: $.VarRef<boolean> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.VarRef<string> | null),
@@ -1418,7 +1409,7 @@ export class FieldDescriptorProto {
 	public __goscriptAssign(source: FieldDescriptorProto): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -1539,40 +1530,40 @@ export class FieldDescriptorProto {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: FieldDescriptorProto | $.VarRef<FieldDescriptorProto> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 4)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 4)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.FieldDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.FieldDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")))
 	}
 
 	public Reset(): void {
 		let x: FieldDescriptorProto | $.VarRef<FieldDescriptorProto> | null = this;
 		$.assignStruct($.pointerValue<FieldDescriptorProto>(x), $.markAsStructValue(new FieldDescriptorProto()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 4)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 4)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: FieldDescriptorProto | $.VarRef<FieldDescriptorProto> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FieldDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FieldDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.FieldDescriptorProto")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.FieldDescriptorProto",
 		() => new FieldDescriptorProto(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetDefaultValue", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetExtendee", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetJsonName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetLabel", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldDescriptorProto_Label")], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetNumber", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetOneofIndex", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetOptions", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions")], true), $.methodSignature("GetProto3Optional", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetType", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldDescriptorProto_Type")], true), $.methodSignature("GetTypeName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetDefaultValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetExtendee", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetJsonName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetLabel", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldDescriptorProto_Label") }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetNumber", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetOneofIndex", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetOptions", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions") }], pointerReceiver: true }, { name: "GetProto3Optional", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetType", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldDescriptorProto_Type") }], pointerReceiver: true }, { name: "GetTypeName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		FieldDescriptorProto,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("Number", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [4], 48, true, { tag: "protobuf:\"varint,3,opt,name=number\" json:\"number,omitempty\"" }), /* @__PURE__ */ $.structField("Label", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldDescriptorProto_Label")), [5], 56, true, { tag: "protobuf:\"varint,4,opt,name=label,enum=google.protobuf.FieldDescriptorProto_Label\" json:\"label,omitempty\"" }), /* @__PURE__ */ $.structField("Type", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldDescriptorProto_Type")), [6], 64, true, { tag: "protobuf:\"varint,5,opt,name=type,enum=google.protobuf.FieldDescriptorProto_Type\" json:\"type,omitempty\"" }), /* @__PURE__ */ $.structField("TypeName", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [7], 72, true, { tag: "protobuf:\"bytes,6,opt,name=type_name,json=typeName\" json:\"type_name,omitempty\"" }), /* @__PURE__ */ $.structField("Extendee", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [8], 80, true, { tag: "protobuf:\"bytes,2,opt,name=extendee\" json:\"extendee,omitempty\"" }), /* @__PURE__ */ $.structField("DefaultValue", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [9], 88, true, { tag: "protobuf:\"bytes,7,opt,name=default_value,json=defaultValue\" json:\"default_value,omitempty\"" }), /* @__PURE__ */ $.structField("OneofIndex", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [10], 96, true, { tag: "protobuf:\"varint,9,opt,name=oneof_index,json=oneofIndex\" json:\"oneof_index,omitempty\"" }), /* @__PURE__ */ $.structField("JsonName", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [11], 104, true, { tag: "protobuf:\"bytes,10,opt,name=json_name,json=jsonName\" json:\"json_name,omitempty\"" }), /* @__PURE__ */ $.structField("Options", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions"), [12], 112, true, { tag: "protobuf:\"bytes,8,opt,name=options\" json:\"options,omitempty\"" }), /* @__PURE__ */ $.structField("Proto3Optional", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [13], 120, true, { tag: "protobuf:\"varint,17,opt,name=proto3_optional,json=proto3Optional\" json:\"proto3_optional,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }, { name: "Number", key: "Number", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,3,opt,name=number\" json:\"number,omitempty\"" }, { name: "Label", key: "Label", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldDescriptorProto_Label")), tag: "protobuf:\"varint,4,opt,name=label,enum=google.protobuf.FieldDescriptorProto_Label\" json:\"label,omitempty\"" }, { name: "Type", key: "Type", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldDescriptorProto_Type")), tag: "protobuf:\"varint,5,opt,name=type,enum=google.protobuf.FieldDescriptorProto_Type\" json:\"type,omitempty\"" }, { name: "TypeName", key: "TypeName", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,6,opt,name=type_name,json=typeName\" json:\"type_name,omitempty\"" }, { name: "Extendee", key: "Extendee", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,2,opt,name=extendee\" json:\"extendee,omitempty\"" }, { name: "DefaultValue", key: "DefaultValue", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,7,opt,name=default_value,json=defaultValue\" json:\"default_value,omitempty\"" }, { name: "OneofIndex", key: "OneofIndex", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,9,opt,name=oneof_index,json=oneofIndex\" json:\"oneof_index,omitempty\"" }, { name: "JsonName", key: "JsonName", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,10,opt,name=json_name,json=jsonName\" json:\"json_name,omitempty\"" }, { name: "Options", key: "Options", type: /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions"), tag: "protobuf:\"bytes,8,opt,name=options\" json:\"options,omitempty\"" }, { name: "Proto3Optional", key: "Proto3Optional", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,17,opt,name=proto3_optional,json=proto3Optional\" json:\"proto3_optional,omitempty\"" }]
 	)
 }
 
@@ -1627,7 +1618,7 @@ export class OneofDescriptorProto {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.VarRef<string> | null, Options?: OneofOptions | $.VarRef<OneofOptions> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.VarRef<string> | null),
@@ -1643,7 +1634,7 @@ export class OneofDescriptorProto {
 	public __goscriptAssign(source: OneofDescriptorProto): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -1674,40 +1665,40 @@ export class OneofDescriptorProto {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: OneofDescriptorProto | $.VarRef<OneofDescriptorProto> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 5)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 5)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.OneofDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.OneofDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.OneofDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.OneofDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")))
 	}
 
 	public Reset(): void {
 		let x: OneofDescriptorProto | $.VarRef<OneofDescriptorProto> | null = this;
 		$.assignStruct($.pointerValue<OneofDescriptorProto>(x), $.markAsStructValue(new OneofDescriptorProto()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 5)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.OneofDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 5)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.OneofDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: OneofDescriptorProto | $.VarRef<OneofDescriptorProto> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.OneofDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.OneofDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.OneofDescriptorProto")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.OneofDescriptorProto",
 		() => new OneofDescriptorProto(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetOptions", [], [/* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetOptions", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		OneofDescriptorProto,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("Options", /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions"), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=options\" json:\"options,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }, { name: "Options", key: "Options", type: /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions"), tag: "protobuf:\"bytes,2,opt,name=options\" json:\"options,omitempty\"" }]
 	)
 }
 
@@ -1794,7 +1785,7 @@ export class EnumDescriptorProto {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.VarRef<string> | null, Value?: $.Slice<EnumValueDescriptorProto | $.VarRef<EnumValueDescriptorProto> | null>, Options?: EnumOptions | $.VarRef<EnumOptions> | null, ReservedRange?: $.Slice<EnumDescriptorProto_EnumReservedRange | $.VarRef<EnumDescriptorProto_EnumReservedRange> | null>, ReservedName?: $.Slice<string>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.VarRef<string> | null),
@@ -1813,7 +1804,7 @@ export class EnumDescriptorProto {
 	public __goscriptAssign(source: EnumDescriptorProto): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -1871,40 +1862,40 @@ export class EnumDescriptorProto {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: EnumDescriptorProto | $.VarRef<EnumDescriptorProto> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 6)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 6)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.EnumDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.EnumDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")))
 	}
 
 	public Reset(): void {
 		let x: EnumDescriptorProto | $.VarRef<EnumDescriptorProto> | null = this;
 		$.assignStruct($.pointerValue<EnumDescriptorProto>(x), $.markAsStructValue(new EnumDescriptorProto()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 6)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 6)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: EnumDescriptorProto | $.VarRef<EnumDescriptorProto> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.EnumDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.EnumDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.EnumDescriptorProto",
 		() => new EnumDescriptorProto(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetOptions", [], [/* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions")], true), $.methodSignature("GetReservedName", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string"))], true), $.methodSignature("GetReservedRange", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange"))], true), $.methodSignature("GetValue", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetOptions", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions") }], pointerReceiver: true }, { name: "GetReservedName", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")) }], pointerReceiver: true }, { name: "GetReservedRange", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")) }], pointerReceiver: true }, { name: "GetValue", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		EnumDescriptorProto,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("Value", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")), [4], 48, true, { tag: "protobuf:\"bytes,2,rep,name=value\" json:\"value,omitempty\"" }), /* @__PURE__ */ $.structField("Options", /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions"), [5], 72, true, { tag: "protobuf:\"bytes,3,opt,name=options\" json:\"options,omitempty\"" }), /* @__PURE__ */ $.structField("ReservedRange", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")), [6], 80, true, { tag: "protobuf:\"bytes,4,rep,name=reserved_range,json=reservedRange\" json:\"reserved_range,omitempty\"" }), /* @__PURE__ */ $.structField("ReservedName", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), [7], 104, true, { tag: "protobuf:\"bytes,5,rep,name=reserved_name,json=reservedName\" json:\"reserved_name,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }, { name: "Value", key: "Value", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")), tag: "protobuf:\"bytes,2,rep,name=value\" json:\"value,omitempty\"" }, { name: "Options", key: "Options", type: /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions"), tag: "protobuf:\"bytes,3,opt,name=options\" json:\"options,omitempty\"" }, { name: "ReservedRange", key: "ReservedRange", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")), tag: "protobuf:\"bytes,4,rep,name=reserved_range,json=reservedRange\" json:\"reserved_range,omitempty\"" }, { name: "ReservedName", key: "ReservedName", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,5,rep,name=reserved_name,json=reservedName\" json:\"reserved_name,omitempty\"" }]
 	)
 }
 
@@ -1968,7 +1959,7 @@ export class EnumValueDescriptorProto {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.VarRef<string> | null, Number?: $.VarRef<number> | null, Options?: EnumValueOptions | $.VarRef<EnumValueOptions> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.VarRef<string> | null),
@@ -1985,7 +1976,7 @@ export class EnumValueDescriptorProto {
 	public __goscriptAssign(source: EnumValueDescriptorProto): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -2026,40 +2017,40 @@ export class EnumValueDescriptorProto {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: EnumValueDescriptorProto | $.VarRef<EnumValueDescriptorProto> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 7)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 7)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumValueDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumValueDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.EnumValueDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.EnumValueDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")))
 	}
 
 	public Reset(): void {
 		let x: EnumValueDescriptorProto | $.VarRef<EnumValueDescriptorProto> | null = this;
 		$.assignStruct($.pointerValue<EnumValueDescriptorProto>(x), $.markAsStructValue(new EnumValueDescriptorProto()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 7)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumValueDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 7)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumValueDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: EnumValueDescriptorProto | $.VarRef<EnumValueDescriptorProto> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.EnumValueDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.EnumValueDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueDescriptorProto")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.EnumValueDescriptorProto",
 		() => new EnumValueDescriptorProto(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetNumber", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetOptions", [], [/* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetNumber", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetOptions", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		EnumValueDescriptorProto,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("Number", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [4], 48, true, { tag: "protobuf:\"varint,2,opt,name=number\" json:\"number,omitempty\"" }), /* @__PURE__ */ $.structField("Options", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions"), [5], 56, true, { tag: "protobuf:\"bytes,3,opt,name=options\" json:\"options,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }, { name: "Number", key: "Number", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,2,opt,name=number\" json:\"number,omitempty\"" }, { name: "Options", key: "Options", type: /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions"), tag: "protobuf:\"bytes,3,opt,name=options\" json:\"options,omitempty\"" }]
 	)
 }
 
@@ -2123,7 +2114,7 @@ export class ServiceDescriptorProto {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.VarRef<string> | null, Method?: $.Slice<MethodDescriptorProto | $.VarRef<MethodDescriptorProto> | null>, Options?: ServiceOptions | $.VarRef<ServiceOptions> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.VarRef<string> | null),
@@ -2140,7 +2131,7 @@ export class ServiceDescriptorProto {
 	public __goscriptAssign(source: ServiceDescriptorProto): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -2180,40 +2171,40 @@ export class ServiceDescriptorProto {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: ServiceDescriptorProto | $.VarRef<ServiceDescriptorProto> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 8)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 8)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ServiceDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ServiceDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.ServiceDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.ServiceDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")))
 	}
 
 	public Reset(): void {
 		let x: ServiceDescriptorProto | $.VarRef<ServiceDescriptorProto> | null = this;
 		$.assignStruct($.pointerValue<ServiceDescriptorProto>(x), $.markAsStructValue(new ServiceDescriptorProto()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 8)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ServiceDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 8)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ServiceDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: ServiceDescriptorProto | $.VarRef<ServiceDescriptorProto> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.ServiceDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.ServiceDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceDescriptorProto")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.ServiceDescriptorProto",
 		() => new ServiceDescriptorProto(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetMethod", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto"))], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetOptions", [], [/* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetMethod", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")) }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetOptions", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		ServiceDescriptorProto,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("Method", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")), [4], 48, true, { tag: "protobuf:\"bytes,2,rep,name=method\" json:\"method,omitempty\"" }), /* @__PURE__ */ $.structField("Options", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions"), [5], 72, true, { tag: "protobuf:\"bytes,3,opt,name=options\" json:\"options,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }, { name: "Method", key: "Method", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")), tag: "protobuf:\"bytes,2,rep,name=method\" json:\"method,omitempty\"" }, { name: "Options", key: "Options", type: /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions"), tag: "protobuf:\"bytes,3,opt,name=options\" json:\"options,omitempty\"" }]
 	)
 }
 
@@ -2308,7 +2299,7 @@ export class MethodDescriptorProto {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.VarRef<string> | null, InputType?: $.VarRef<string> | null, OutputType?: $.VarRef<string> | null, Options?: MethodOptions | $.VarRef<MethodOptions> | null, ClientStreaming?: $.VarRef<boolean> | null, ServerStreaming?: $.VarRef<boolean> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.VarRef<string> | null),
@@ -2328,7 +2319,7 @@ export class MethodDescriptorProto {
 	public __goscriptAssign(source: MethodDescriptorProto): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -2399,40 +2390,40 @@ export class MethodDescriptorProto {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: MethodDescriptorProto | $.VarRef<MethodDescriptorProto> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 9)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 9)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MethodDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MethodDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.MethodDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.MethodDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")))
 	}
 
 	public Reset(): void {
 		let x: MethodDescriptorProto | $.VarRef<MethodDescriptorProto> | null = this;
 		$.assignStruct($.pointerValue<MethodDescriptorProto>(x), $.markAsStructValue(new MethodDescriptorProto()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 9)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MethodDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 9)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MethodDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: MethodDescriptorProto | $.VarRef<MethodDescriptorProto> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.MethodDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.MethodDescriptorProto", /* @__PURE__ */ $.pointerType("descriptorpb.MethodDescriptorProto")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.MethodDescriptorProto",
 		() => new MethodDescriptorProto(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetClientStreaming", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetInputType", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetOptions", [], [/* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions")], true), $.methodSignature("GetOutputType", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetServerStreaming", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetClientStreaming", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetInputType", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetOptions", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions") }], pointerReceiver: true }, { name: "GetOutputType", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetServerStreaming", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		MethodDescriptorProto,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("InputType", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=input_type,json=inputType\" json:\"input_type,omitempty\"" }), /* @__PURE__ */ $.structField("OutputType", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [5], 56, true, { tag: "protobuf:\"bytes,3,opt,name=output_type,json=outputType\" json:\"output_type,omitempty\"" }), /* @__PURE__ */ $.structField("Options", /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions"), [6], 64, true, { tag: "protobuf:\"bytes,4,opt,name=options\" json:\"options,omitempty\"" }), /* @__PURE__ */ $.structField("ClientStreaming", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [7], 72, true, { tag: "protobuf:\"varint,5,opt,name=client_streaming,json=clientStreaming,def=0\" json:\"client_streaming,omitempty\"" }), /* @__PURE__ */ $.structField("ServerStreaming", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [8], 80, true, { tag: "protobuf:\"varint,6,opt,name=server_streaming,json=serverStreaming,def=0\" json:\"server_streaming,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }, { name: "InputType", key: "InputType", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,2,opt,name=input_type,json=inputType\" json:\"input_type,omitempty\"" }, { name: "OutputType", key: "OutputType", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,3,opt,name=output_type,json=outputType\" json:\"output_type,omitempty\"" }, { name: "Options", key: "Options", type: /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions"), tag: "protobuf:\"bytes,4,opt,name=options\" json:\"options,omitempty\"" }, { name: "ClientStreaming", key: "ClientStreaming", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,5,opt,name=client_streaming,json=clientStreaming,def=0\" json:\"client_streaming,omitempty\"" }, { name: "ServerStreaming", key: "ServerStreaming", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,6,opt,name=server_streaming,json=serverStreaming,def=0\" json:\"server_streaming,omitempty\"" }]
 	)
 }
 
@@ -2737,7 +2728,7 @@ export class FileOptions {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, extensionFields?: protoimpl.ExtensionFields, JavaPackage?: $.VarRef<string> | null, JavaOuterClassname?: $.VarRef<string> | null, JavaMultipleFiles?: $.VarRef<boolean> | null, JavaGenerateEqualsAndHash?: $.VarRef<boolean> | null, JavaStringCheckUtf8?: $.VarRef<boolean> | null, OptimizeFor?: $.VarRef<FileOptions_OptimizeMode> | null, GoPackage?: $.VarRef<string> | null, CcGenericServices?: $.VarRef<boolean> | null, JavaGenericServices?: $.VarRef<boolean> | null, PyGenericServices?: $.VarRef<boolean> | null, Deprecated?: $.VarRef<boolean> | null, CcEnableArenas?: $.VarRef<boolean> | null, ObjcClassPrefix?: $.VarRef<string> | null, CsharpNamespace?: $.VarRef<string> | null, SwiftPrefix?: $.VarRef<string> | null, PhpClassPrefix?: $.VarRef<string> | null, PhpNamespace?: $.VarRef<string> | null, PhpMetadataNamespace?: $.VarRef<string> | null, RubyPackage?: $.VarRef<string> | null, Features?: FeatureSet | $.VarRef<FeatureSet> | null, UninterpretedOption?: $.Slice<UninterpretedOption | $.VarRef<UninterpretedOption> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			extensionFields: init?.extensionFields ?? (null! as protoimpl.ExtensionFields),
@@ -2773,7 +2764,7 @@ export class FileOptions {
 	public __goscriptAssign(source: FileOptions): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.extensionFields = values.extensionFields
@@ -2994,40 +2985,40 @@ export class FileOptions {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: FileOptions | $.VarRef<FileOptions> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 10)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 10)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.FileOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.FileOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.FileOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions")))
 	}
 
 	public Reset(): void {
 		let x: FileOptions | $.VarRef<FileOptions> | null = this;
 		$.assignStruct($.pointerValue<FileOptions>(x), $.markAsStructValue(new FileOptions()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 10)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 10)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FileOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: FileOptions | $.VarRef<FileOptions> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FileOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FileOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FileOptions")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.FileOptions",
 		() => new FileOptions(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetCcEnableArenas", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetCcGenericServices", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetCsharpNamespace", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetDeprecated", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("GetGoPackage", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetJavaGenerateEqualsAndHash", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetJavaGenericServices", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetJavaMultipleFiles", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetJavaOuterClassname", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetJavaPackage", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetJavaStringCheckUtf8", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetObjcClassPrefix", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetOptimizeFor", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FileOptions_OptimizeMode")], true), $.methodSignature("GetPhpClassPrefix", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetPhpMetadataNamespace", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetPhpNamespace", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetPyGenericServices", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetRubyPackage", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetSwiftPrefix", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetUninterpretedOption", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetCcEnableArenas", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetCcGenericServices", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetCsharpNamespace", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetDeprecated", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "GetGoPackage", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetJavaGenerateEqualsAndHash", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetJavaGenericServices", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetJavaMultipleFiles", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetJavaOuterClassname", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetJavaPackage", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetJavaStringCheckUtf8", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetObjcClassPrefix", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetOptimizeFor", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FileOptions_OptimizeMode") }], pointerReceiver: true }, { name: "GetPhpClassPrefix", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetPhpMetadataNamespace", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetPhpNamespace", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetPyGenericServices", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetRubyPackage", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetSwiftPrefix", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetUninterpretedOption", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		FileOptions,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("extensionFields", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField"), [3], 40, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("JavaPackage", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [4], 48, true, { tag: "protobuf:\"bytes,1,opt,name=java_package,json=javaPackage\" json:\"java_package,omitempty\"" }), /* @__PURE__ */ $.structField("JavaOuterClassname", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [5], 56, true, { tag: "protobuf:\"bytes,8,opt,name=java_outer_classname,json=javaOuterClassname\" json:\"java_outer_classname,omitempty\"" }), /* @__PURE__ */ $.structField("JavaMultipleFiles", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [6], 64, true, { tag: "protobuf:\"varint,10,opt,name=java_multiple_files,json=javaMultipleFiles,def=0\" json:\"java_multiple_files,omitempty\"" }), /* @__PURE__ */ $.structField("JavaGenerateEqualsAndHash", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [7], 72, true, { tag: "protobuf:\"varint,20,opt,name=java_generate_equals_and_hash,json=javaGenerateEqualsAndHash\" json:\"java_generate_equals_and_hash,omitempty\"" }), /* @__PURE__ */ $.structField("JavaStringCheckUtf8", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [8], 80, true, { tag: "protobuf:\"varint,27,opt,name=java_string_check_utf8,json=javaStringCheckUtf8,def=0\" json:\"java_string_check_utf8,omitempty\"" }), /* @__PURE__ */ $.structField("OptimizeFor", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FileOptions_OptimizeMode")), [9], 88, true, { tag: "protobuf:\"varint,9,opt,name=optimize_for,json=optimizeFor,enum=google.protobuf.FileOptions_OptimizeMode,def=1\" json:\"optimize_for,omitempty\"" }), /* @__PURE__ */ $.structField("GoPackage", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [10], 96, true, { tag: "protobuf:\"bytes,11,opt,name=go_package,json=goPackage\" json:\"go_package,omitempty\"" }), /* @__PURE__ */ $.structField("CcGenericServices", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [11], 104, true, { tag: "protobuf:\"varint,16,opt,name=cc_generic_services,json=ccGenericServices,def=0\" json:\"cc_generic_services,omitempty\"" }), /* @__PURE__ */ $.structField("JavaGenericServices", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [12], 112, true, { tag: "protobuf:\"varint,17,opt,name=java_generic_services,json=javaGenericServices,def=0\" json:\"java_generic_services,omitempty\"" }), /* @__PURE__ */ $.structField("PyGenericServices", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [13], 120, true, { tag: "protobuf:\"varint,18,opt,name=py_generic_services,json=pyGenericServices,def=0\" json:\"py_generic_services,omitempty\"" }), /* @__PURE__ */ $.structField("Deprecated", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [14], 128, true, { tag: "protobuf:\"varint,23,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }), /* @__PURE__ */ $.structField("CcEnableArenas", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [15], 136, true, { tag: "protobuf:\"varint,31,opt,name=cc_enable_arenas,json=ccEnableArenas,def=1\" json:\"cc_enable_arenas,omitempty\"" }), /* @__PURE__ */ $.structField("ObjcClassPrefix", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [16], 144, true, { tag: "protobuf:\"bytes,36,opt,name=objc_class_prefix,json=objcClassPrefix\" json:\"objc_class_prefix,omitempty\"" }), /* @__PURE__ */ $.structField("CsharpNamespace", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [17], 152, true, { tag: "protobuf:\"bytes,37,opt,name=csharp_namespace,json=csharpNamespace\" json:\"csharp_namespace,omitempty\"" }), /* @__PURE__ */ $.structField("SwiftPrefix", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [18], 160, true, { tag: "protobuf:\"bytes,39,opt,name=swift_prefix,json=swiftPrefix\" json:\"swift_prefix,omitempty\"" }), /* @__PURE__ */ $.structField("PhpClassPrefix", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [19], 168, true, { tag: "protobuf:\"bytes,40,opt,name=php_class_prefix,json=phpClassPrefix\" json:\"php_class_prefix,omitempty\"" }), /* @__PURE__ */ $.structField("PhpNamespace", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [20], 176, true, { tag: "protobuf:\"bytes,41,opt,name=php_namespace,json=phpNamespace\" json:\"php_namespace,omitempty\"" }), /* @__PURE__ */ $.structField("PhpMetadataNamespace", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [21], 184, true, { tag: "protobuf:\"bytes,44,opt,name=php_metadata_namespace,json=phpMetadataNamespace\" json:\"php_metadata_namespace,omitempty\"" }), /* @__PURE__ */ $.structField("RubyPackage", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [22], 192, true, { tag: "protobuf:\"bytes,45,opt,name=ruby_package,json=rubyPackage\" json:\"ruby_package,omitempty\"" }), /* @__PURE__ */ $.structField("Features", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [23], 200, true, { tag: "protobuf:\"bytes,50,opt,name=features\" json:\"features,omitempty\"" }), /* @__PURE__ */ $.structField("UninterpretedOption", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), [24], 208, true, { tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "extensionFields", key: "extensionFields", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField") }, { name: "JavaPackage", key: "JavaPackage", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=java_package,json=javaPackage\" json:\"java_package,omitempty\"" }, { name: "JavaOuterClassname", key: "JavaOuterClassname", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,8,opt,name=java_outer_classname,json=javaOuterClassname\" json:\"java_outer_classname,omitempty\"" }, { name: "JavaMultipleFiles", key: "JavaMultipleFiles", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,10,opt,name=java_multiple_files,json=javaMultipleFiles,def=0\" json:\"java_multiple_files,omitempty\"" }, { name: "JavaGenerateEqualsAndHash", key: "JavaGenerateEqualsAndHash", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,20,opt,name=java_generate_equals_and_hash,json=javaGenerateEqualsAndHash\" json:\"java_generate_equals_and_hash,omitempty\"" }, { name: "JavaStringCheckUtf8", key: "JavaStringCheckUtf8", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,27,opt,name=java_string_check_utf8,json=javaStringCheckUtf8,def=0\" json:\"java_string_check_utf8,omitempty\"" }, { name: "OptimizeFor", key: "OptimizeFor", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FileOptions_OptimizeMode")), tag: "protobuf:\"varint,9,opt,name=optimize_for,json=optimizeFor,enum=google.protobuf.FileOptions_OptimizeMode,def=1\" json:\"optimize_for,omitempty\"" }, { name: "GoPackage", key: "GoPackage", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,11,opt,name=go_package,json=goPackage\" json:\"go_package,omitempty\"" }, { name: "CcGenericServices", key: "CcGenericServices", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,16,opt,name=cc_generic_services,json=ccGenericServices,def=0\" json:\"cc_generic_services,omitempty\"" }, { name: "JavaGenericServices", key: "JavaGenericServices", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,17,opt,name=java_generic_services,json=javaGenericServices,def=0\" json:\"java_generic_services,omitempty\"" }, { name: "PyGenericServices", key: "PyGenericServices", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,18,opt,name=py_generic_services,json=pyGenericServices,def=0\" json:\"py_generic_services,omitempty\"" }, { name: "Deprecated", key: "Deprecated", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,23,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }, { name: "CcEnableArenas", key: "CcEnableArenas", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,31,opt,name=cc_enable_arenas,json=ccEnableArenas,def=1\" json:\"cc_enable_arenas,omitempty\"" }, { name: "ObjcClassPrefix", key: "ObjcClassPrefix", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,36,opt,name=objc_class_prefix,json=objcClassPrefix\" json:\"objc_class_prefix,omitempty\"" }, { name: "CsharpNamespace", key: "CsharpNamespace", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,37,opt,name=csharp_namespace,json=csharpNamespace\" json:\"csharp_namespace,omitempty\"" }, { name: "SwiftPrefix", key: "SwiftPrefix", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,39,opt,name=swift_prefix,json=swiftPrefix\" json:\"swift_prefix,omitempty\"" }, { name: "PhpClassPrefix", key: "PhpClassPrefix", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,40,opt,name=php_class_prefix,json=phpClassPrefix\" json:\"php_class_prefix,omitempty\"" }, { name: "PhpNamespace", key: "PhpNamespace", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,41,opt,name=php_namespace,json=phpNamespace\" json:\"php_namespace,omitempty\"" }, { name: "PhpMetadataNamespace", key: "PhpMetadataNamespace", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,44,opt,name=php_metadata_namespace,json=phpMetadataNamespace\" json:\"php_metadata_namespace,omitempty\"" }, { name: "RubyPackage", key: "RubyPackage", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,45,opt,name=ruby_package,json=rubyPackage\" json:\"ruby_package,omitempty\"" }, { name: "Features", key: "Features", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,50,opt,name=features\" json:\"features,omitempty\"" }, { name: "UninterpretedOption", key: "UninterpretedOption", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" }]
 	)
 }
 
@@ -3201,7 +3192,7 @@ export class MessageOptions {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, extensionFields?: protoimpl.ExtensionFields, MessageSetWireFormat?: $.VarRef<boolean> | null, NoStandardDescriptorAccessor?: $.VarRef<boolean> | null, Deprecated?: $.VarRef<boolean> | null, MapEntry?: $.VarRef<boolean> | null, DeprecatedLegacyJsonFieldConflicts?: $.VarRef<boolean> | null, Features?: FeatureSet | $.VarRef<FeatureSet> | null, UninterpretedOption?: $.Slice<UninterpretedOption | $.VarRef<UninterpretedOption> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			extensionFields: init?.extensionFields ?? (null! as protoimpl.ExtensionFields),
@@ -3223,7 +3214,7 @@ export class MessageOptions {
 	public __goscriptAssign(source: MessageOptions): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.extensionFields = values.extensionFields
@@ -3304,40 +3295,40 @@ export class MessageOptions {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: MessageOptions | $.VarRef<MessageOptions> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 11)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 11)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MessageOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MessageOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.MessageOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.MessageOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.MessageOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions")))
 	}
 
 	public Reset(): void {
 		let x: MessageOptions | $.VarRef<MessageOptions> | null = this;
 		$.assignStruct($.pointerValue<MessageOptions>(x), $.markAsStructValue(new MessageOptions()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 11)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MessageOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 11)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MessageOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: MessageOptions | $.VarRef<MessageOptions> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.MessageOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.MessageOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MessageOptions")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.MessageOptions",
 		() => new MessageOptions(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetDeprecated", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetDeprecatedLegacyJsonFieldConflicts", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("GetMapEntry", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetMessageSetWireFormat", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetNoStandardDescriptorAccessor", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetUninterpretedOption", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetDeprecated", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetDeprecatedLegacyJsonFieldConflicts", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "GetMapEntry", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetMessageSetWireFormat", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetNoStandardDescriptorAccessor", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetUninterpretedOption", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		MessageOptions,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("extensionFields", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField"), [3], 40, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("MessageSetWireFormat", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [4], 48, true, { tag: "protobuf:\"varint,1,opt,name=message_set_wire_format,json=messageSetWireFormat,def=0\" json:\"message_set_wire_format,omitempty\"" }), /* @__PURE__ */ $.structField("NoStandardDescriptorAccessor", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [5], 56, true, { tag: "protobuf:\"varint,2,opt,name=no_standard_descriptor_accessor,json=noStandardDescriptorAccessor,def=0\" json:\"no_standard_descriptor_accessor,omitempty\"" }), /* @__PURE__ */ $.structField("Deprecated", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [6], 64, true, { tag: "protobuf:\"varint,3,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }), /* @__PURE__ */ $.structField("MapEntry", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [7], 72, true, { tag: "protobuf:\"varint,7,opt,name=map_entry,json=mapEntry\" json:\"map_entry,omitempty\"" }), /* @__PURE__ */ $.structField("DeprecatedLegacyJsonFieldConflicts", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [8], 80, true, { tag: "protobuf:\"varint,11,opt,name=deprecated_legacy_json_field_conflicts,json=deprecatedLegacyJsonFieldConflicts\" json:\"deprecated_legacy_json_field_conflicts,omitempty\"" }), /* @__PURE__ */ $.structField("Features", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [9], 88, true, { tag: "protobuf:\"bytes,12,opt,name=features\" json:\"features,omitempty\"" }), /* @__PURE__ */ $.structField("UninterpretedOption", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), [10], 96, true, { tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "extensionFields", key: "extensionFields", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField") }, { name: "MessageSetWireFormat", key: "MessageSetWireFormat", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,1,opt,name=message_set_wire_format,json=messageSetWireFormat,def=0\" json:\"message_set_wire_format,omitempty\"" }, { name: "NoStandardDescriptorAccessor", key: "NoStandardDescriptorAccessor", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,2,opt,name=no_standard_descriptor_accessor,json=noStandardDescriptorAccessor,def=0\" json:\"no_standard_descriptor_accessor,omitempty\"" }, { name: "Deprecated", key: "Deprecated", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,3,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }, { name: "MapEntry", key: "MapEntry", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,7,opt,name=map_entry,json=mapEntry\" json:\"map_entry,omitempty\"" }, { name: "DeprecatedLegacyJsonFieldConflicts", key: "DeprecatedLegacyJsonFieldConflicts", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,11,opt,name=deprecated_legacy_json_field_conflicts,json=deprecatedLegacyJsonFieldConflicts\" json:\"deprecated_legacy_json_field_conflicts,omitempty\"" }, { name: "Features", key: "Features", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,12,opt,name=features\" json:\"features,omitempty\"" }, { name: "UninterpretedOption", key: "UninterpretedOption", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" }]
 	)
 }
 
@@ -3567,7 +3558,7 @@ export class FieldOptions {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, extensionFields?: protoimpl.ExtensionFields, Ctype?: $.VarRef<FieldOptions_CType> | null, Packed?: $.VarRef<boolean> | null, Jstype?: $.VarRef<FieldOptions_JSType> | null, Lazy?: $.VarRef<boolean> | null, UnverifiedLazy?: $.VarRef<boolean> | null, Deprecated?: $.VarRef<boolean> | null, Weak?: $.VarRef<boolean> | null, DebugRedact?: $.VarRef<boolean> | null, Retention?: $.VarRef<FieldOptions_OptionRetention> | null, Targets?: $.Slice<FieldOptions_OptionTargetType>, EditionDefaults?: $.Slice<FieldOptions_EditionDefault | $.VarRef<FieldOptions_EditionDefault> | null>, Features?: FeatureSet | $.VarRef<FeatureSet> | null, FeatureSupport?: FieldOptions_FeatureSupport | $.VarRef<FieldOptions_FeatureSupport> | null, UninterpretedOption?: $.Slice<UninterpretedOption | $.VarRef<UninterpretedOption> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			extensionFields: init?.extensionFields ?? (null! as protoimpl.ExtensionFields),
@@ -3596,7 +3587,7 @@ export class FieldOptions {
 	public __goscriptAssign(source: FieldOptions): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.extensionFields = values.extensionFields
@@ -3744,40 +3735,40 @@ export class FieldOptions {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: FieldOptions | $.VarRef<FieldOptions> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 12)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 12)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.FieldOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.FieldOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.FieldOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions")))
 	}
 
 	public Reset(): void {
 		let x: FieldOptions | $.VarRef<FieldOptions> | null = this;
 		$.assignStruct($.pointerValue<FieldOptions>(x), $.markAsStructValue(new FieldOptions()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 12)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 12)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: FieldOptions | $.VarRef<FieldOptions> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FieldOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FieldOptions", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.FieldOptions",
 		() => new FieldOptions(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetCtype", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_CType")], true), $.methodSignature("GetDebugRedact", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetDeprecated", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetEditionDefaults", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault"))], true), $.methodSignature("GetFeatureSupport", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport")], true), $.methodSignature("GetFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("GetJstype", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_JSType")], true), $.methodSignature("GetLazy", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetPacked", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetRetention", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_OptionRetention")], true), $.methodSignature("GetTargets", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_OptionTargetType"))], true), $.methodSignature("GetUninterpretedOption", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption"))], true), $.methodSignature("GetUnverifiedLazy", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetWeak", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetCtype", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_CType") }], pointerReceiver: true }, { name: "GetDebugRedact", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetDeprecated", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetEditionDefaults", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")) }], pointerReceiver: true }, { name: "GetFeatureSupport", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport") }], pointerReceiver: true }, { name: "GetFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "GetJstype", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_JSType") }], pointerReceiver: true }, { name: "GetLazy", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetPacked", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetRetention", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_OptionRetention") }], pointerReceiver: true }, { name: "GetTargets", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_OptionTargetType")) }], pointerReceiver: true }, { name: "GetUninterpretedOption", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")) }], pointerReceiver: true }, { name: "GetUnverifiedLazy", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetWeak", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		FieldOptions,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("extensionFields", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField"), [3], 40, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Ctype", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_CType")), [4], 48, true, { tag: "protobuf:\"varint,1,opt,name=ctype,enum=google.protobuf.FieldOptions_CType,def=0\" json:\"ctype,omitempty\"" }), /* @__PURE__ */ $.structField("Packed", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [5], 56, true, { tag: "protobuf:\"varint,2,opt,name=packed\" json:\"packed,omitempty\"" }), /* @__PURE__ */ $.structField("Jstype", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_JSType")), [6], 64, true, { tag: "protobuf:\"varint,6,opt,name=jstype,enum=google.protobuf.FieldOptions_JSType,def=0\" json:\"jstype,omitempty\"" }), /* @__PURE__ */ $.structField("Lazy", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [7], 72, true, { tag: "protobuf:\"varint,5,opt,name=lazy,def=0\" json:\"lazy,omitempty\"" }), /* @__PURE__ */ $.structField("UnverifiedLazy", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [8], 80, true, { tag: "protobuf:\"varint,15,opt,name=unverified_lazy,json=unverifiedLazy,def=0\" json:\"unverified_lazy,omitempty\"" }), /* @__PURE__ */ $.structField("Deprecated", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [9], 88, true, { tag: "protobuf:\"varint,3,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }), /* @__PURE__ */ $.structField("Weak", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [10], 96, true, { tag: "protobuf:\"varint,10,opt,name=weak,def=0\" json:\"weak,omitempty\"" }), /* @__PURE__ */ $.structField("DebugRedact", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [11], 104, true, { tag: "protobuf:\"varint,16,opt,name=debug_redact,json=debugRedact,def=0\" json:\"debug_redact,omitempty\"" }), /* @__PURE__ */ $.structField("Retention", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_OptionRetention")), [12], 112, true, { tag: "protobuf:\"varint,17,opt,name=retention,enum=google.protobuf.FieldOptions_OptionRetention\" json:\"retention,omitempty\"" }), /* @__PURE__ */ $.structField("Targets", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_OptionTargetType")), [13], 120, true, { tag: "protobuf:\"varint,19,rep,name=targets,enum=google.protobuf.FieldOptions_OptionTargetType\" json:\"targets,omitempty\"" }), /* @__PURE__ */ $.structField("EditionDefaults", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")), [14], 144, true, { tag: "protobuf:\"bytes,20,rep,name=edition_defaults,json=editionDefaults\" json:\"edition_defaults,omitempty\"" }), /* @__PURE__ */ $.structField("Features", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [15], 168, true, { tag: "protobuf:\"bytes,21,opt,name=features\" json:\"features,omitempty\"" }), /* @__PURE__ */ $.structField("FeatureSupport", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport"), [16], 176, true, { tag: "protobuf:\"bytes,22,opt,name=feature_support,json=featureSupport\" json:\"feature_support,omitempty\"" }), /* @__PURE__ */ $.structField("UninterpretedOption", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), [17], 184, true, { tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "extensionFields", key: "extensionFields", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField") }, { name: "Ctype", key: "Ctype", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_CType")), tag: "protobuf:\"varint,1,opt,name=ctype,enum=google.protobuf.FieldOptions_CType,def=0\" json:\"ctype,omitempty\"" }, { name: "Packed", key: "Packed", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,2,opt,name=packed\" json:\"packed,omitempty\"" }, { name: "Jstype", key: "Jstype", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_JSType")), tag: "protobuf:\"varint,6,opt,name=jstype,enum=google.protobuf.FieldOptions_JSType,def=0\" json:\"jstype,omitempty\"" }, { name: "Lazy", key: "Lazy", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,5,opt,name=lazy,def=0\" json:\"lazy,omitempty\"" }, { name: "UnverifiedLazy", key: "UnverifiedLazy", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,15,opt,name=unverified_lazy,json=unverifiedLazy,def=0\" json:\"unverified_lazy,omitempty\"" }, { name: "Deprecated", key: "Deprecated", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,3,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }, { name: "Weak", key: "Weak", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,10,opt,name=weak,def=0\" json:\"weak,omitempty\"" }, { name: "DebugRedact", key: "DebugRedact", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,16,opt,name=debug_redact,json=debugRedact,def=0\" json:\"debug_redact,omitempty\"" }, { name: "Retention", key: "Retention", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_OptionRetention")), tag: "protobuf:\"varint,17,opt,name=retention,enum=google.protobuf.FieldOptions_OptionRetention\" json:\"retention,omitempty\"" }, { name: "Targets", key: "Targets", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FieldOptions_OptionTargetType")), tag: "protobuf:\"varint,19,rep,name=targets,enum=google.protobuf.FieldOptions_OptionTargetType\" json:\"targets,omitempty\"" }, { name: "EditionDefaults", key: "EditionDefaults", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")), tag: "protobuf:\"bytes,20,rep,name=edition_defaults,json=editionDefaults\" json:\"edition_defaults,omitempty\"" }, { name: "Features", key: "Features", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,21,opt,name=features\" json:\"features,omitempty\"" }, { name: "FeatureSupport", key: "FeatureSupport", type: /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport"), tag: "protobuf:\"bytes,22,opt,name=feature_support,json=featureSupport\" json:\"feature_support,omitempty\"" }, { name: "UninterpretedOption", key: "UninterpretedOption", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" }]
 	)
 }
 
@@ -3843,7 +3834,7 @@ export class OneofOptions {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, extensionFields?: protoimpl.ExtensionFields, Features?: FeatureSet | $.VarRef<FeatureSet> | null, UninterpretedOption?: $.Slice<UninterpretedOption | $.VarRef<UninterpretedOption> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			extensionFields: init?.extensionFields ?? (null! as protoimpl.ExtensionFields),
@@ -3860,7 +3851,7 @@ export class OneofOptions {
 	public __goscriptAssign(source: OneofOptions): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.extensionFields = values.extensionFields
@@ -3891,40 +3882,40 @@ export class OneofOptions {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: OneofOptions | $.VarRef<OneofOptions> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 13)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 13)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.OneofOptions", /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.OneofOptions", /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.OneofOptions", /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.OneofOptions", /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.OneofOptions", /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions")))
 	}
 
 	public Reset(): void {
 		let x: OneofOptions | $.VarRef<OneofOptions> | null = this;
 		$.assignStruct($.pointerValue<OneofOptions>(x), $.markAsStructValue(new OneofOptions()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 13)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.OneofOptions", /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 13)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.OneofOptions", /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: OneofOptions | $.VarRef<OneofOptions> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.OneofOptions", /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.OneofOptions", /* @__PURE__ */ $.pointerType("descriptorpb.OneofOptions")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.OneofOptions",
 		() => new OneofOptions(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("GetUninterpretedOption", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "GetUninterpretedOption", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		OneofOptions,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("extensionFields", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField"), [3], 40, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Features", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [4], 48, true, { tag: "protobuf:\"bytes,1,opt,name=features\" json:\"features,omitempty\"" }), /* @__PURE__ */ $.structField("UninterpretedOption", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), [5], 56, true, { tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "extensionFields", key: "extensionFields", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField") }, { name: "Features", key: "Features", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,1,opt,name=features\" json:\"features,omitempty\"" }, { name: "UninterpretedOption", key: "UninterpretedOption", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" }]
 	)
 }
 
@@ -4031,7 +4022,7 @@ export class EnumOptions {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, extensionFields?: protoimpl.ExtensionFields, AllowAlias?: $.VarRef<boolean> | null, Deprecated?: $.VarRef<boolean> | null, DeprecatedLegacyJsonFieldConflicts?: $.VarRef<boolean> | null, Features?: FeatureSet | $.VarRef<FeatureSet> | null, UninterpretedOption?: $.Slice<UninterpretedOption | $.VarRef<UninterpretedOption> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			extensionFields: init?.extensionFields ?? (null! as protoimpl.ExtensionFields),
@@ -4051,7 +4042,7 @@ export class EnumOptions {
 	public __goscriptAssign(source: EnumOptions): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.extensionFields = values.extensionFields
@@ -4112,40 +4103,40 @@ export class EnumOptions {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: EnumOptions | $.VarRef<EnumOptions> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 14)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 14)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.EnumOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.EnumOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.EnumOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions")))
 	}
 
 	public Reset(): void {
 		let x: EnumOptions | $.VarRef<EnumOptions> | null = this;
 		$.assignStruct($.pointerValue<EnumOptions>(x), $.markAsStructValue(new EnumOptions()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 14)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 14)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: EnumOptions | $.VarRef<EnumOptions> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.EnumOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.EnumOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumOptions")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.EnumOptions",
 		() => new EnumOptions(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetAllowAlias", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetDeprecated", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetDeprecatedLegacyJsonFieldConflicts", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("GetUninterpretedOption", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetAllowAlias", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetDeprecated", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetDeprecatedLegacyJsonFieldConflicts", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "GetUninterpretedOption", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		EnumOptions,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("extensionFields", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField"), [3], 40, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("AllowAlias", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [4], 48, true, { tag: "protobuf:\"varint,2,opt,name=allow_alias,json=allowAlias\" json:\"allow_alias,omitempty\"" }), /* @__PURE__ */ $.structField("Deprecated", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [5], 56, true, { tag: "protobuf:\"varint,3,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }), /* @__PURE__ */ $.structField("DeprecatedLegacyJsonFieldConflicts", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [6], 64, true, { tag: "protobuf:\"varint,6,opt,name=deprecated_legacy_json_field_conflicts,json=deprecatedLegacyJsonFieldConflicts\" json:\"deprecated_legacy_json_field_conflicts,omitempty\"" }), /* @__PURE__ */ $.structField("Features", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [7], 72, true, { tag: "protobuf:\"bytes,7,opt,name=features\" json:\"features,omitempty\"" }), /* @__PURE__ */ $.structField("UninterpretedOption", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), [8], 80, true, { tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "extensionFields", key: "extensionFields", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField") }, { name: "AllowAlias", key: "AllowAlias", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,2,opt,name=allow_alias,json=allowAlias\" json:\"allow_alias,omitempty\"" }, { name: "Deprecated", key: "Deprecated", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,3,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }, { name: "DeprecatedLegacyJsonFieldConflicts", key: "DeprecatedLegacyJsonFieldConflicts", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,6,opt,name=deprecated_legacy_json_field_conflicts,json=deprecatedLegacyJsonFieldConflicts\" json:\"deprecated_legacy_json_field_conflicts,omitempty\"" }, { name: "Features", key: "Features", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,7,opt,name=features\" json:\"features,omitempty\"" }, { name: "UninterpretedOption", key: "UninterpretedOption", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" }]
 	)
 }
 
@@ -4246,7 +4237,7 @@ export class EnumValueOptions {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, extensionFields?: protoimpl.ExtensionFields, Deprecated?: $.VarRef<boolean> | null, Features?: FeatureSet | $.VarRef<FeatureSet> | null, DebugRedact?: $.VarRef<boolean> | null, FeatureSupport?: FieldOptions_FeatureSupport | $.VarRef<FieldOptions_FeatureSupport> | null, UninterpretedOption?: $.Slice<UninterpretedOption | $.VarRef<UninterpretedOption> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			extensionFields: init?.extensionFields ?? (null! as protoimpl.ExtensionFields),
@@ -4266,7 +4257,7 @@ export class EnumValueOptions {
 	public __goscriptAssign(source: EnumValueOptions): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.extensionFields = values.extensionFields
@@ -4326,40 +4317,40 @@ export class EnumValueOptions {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: EnumValueOptions | $.VarRef<EnumValueOptions> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 15)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 15)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumValueOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumValueOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.EnumValueOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.EnumValueOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.EnumValueOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions")))
 	}
 
 	public Reset(): void {
 		let x: EnumValueOptions | $.VarRef<EnumValueOptions> | null = this;
 		$.assignStruct($.pointerValue<EnumValueOptions>(x), $.markAsStructValue(new EnumValueOptions()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 15)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumValueOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 15)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumValueOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: EnumValueOptions | $.VarRef<EnumValueOptions> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.EnumValueOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.EnumValueOptions", /* @__PURE__ */ $.pointerType("descriptorpb.EnumValueOptions")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.EnumValueOptions",
 		() => new EnumValueOptions(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetDebugRedact", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetDeprecated", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetFeatureSupport", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport")], true), $.methodSignature("GetFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("GetUninterpretedOption", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetDebugRedact", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetDeprecated", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetFeatureSupport", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport") }], pointerReceiver: true }, { name: "GetFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "GetUninterpretedOption", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		EnumValueOptions,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("extensionFields", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField"), [3], 40, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Deprecated", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [4], 48, true, { tag: "protobuf:\"varint,1,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }), /* @__PURE__ */ $.structField("Features", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [5], 56, true, { tag: "protobuf:\"bytes,2,opt,name=features\" json:\"features,omitempty\"" }), /* @__PURE__ */ $.structField("DebugRedact", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [6], 64, true, { tag: "protobuf:\"varint,3,opt,name=debug_redact,json=debugRedact,def=0\" json:\"debug_redact,omitempty\"" }), /* @__PURE__ */ $.structField("FeatureSupport", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport"), [7], 72, true, { tag: "protobuf:\"bytes,4,opt,name=feature_support,json=featureSupport\" json:\"feature_support,omitempty\"" }), /* @__PURE__ */ $.structField("UninterpretedOption", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), [8], 80, true, { tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "extensionFields", key: "extensionFields", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField") }, { name: "Deprecated", key: "Deprecated", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,1,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }, { name: "Features", key: "Features", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,2,opt,name=features\" json:\"features,omitempty\"" }, { name: "DebugRedact", key: "DebugRedact", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,3,opt,name=debug_redact,json=debugRedact,def=0\" json:\"debug_redact,omitempty\"" }, { name: "FeatureSupport", key: "FeatureSupport", type: /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport"), tag: "protobuf:\"bytes,4,opt,name=feature_support,json=featureSupport\" json:\"feature_support,omitempty\"" }, { name: "UninterpretedOption", key: "UninterpretedOption", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" }]
 	)
 }
 
@@ -4438,7 +4429,7 @@ export class ServiceOptions {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, extensionFields?: protoimpl.ExtensionFields, Features?: FeatureSet | $.VarRef<FeatureSet> | null, Deprecated?: $.VarRef<boolean> | null, UninterpretedOption?: $.Slice<UninterpretedOption | $.VarRef<UninterpretedOption> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			extensionFields: init?.extensionFields ?? (null! as protoimpl.ExtensionFields),
@@ -4456,7 +4447,7 @@ export class ServiceOptions {
 	public __goscriptAssign(source: ServiceOptions): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.extensionFields = values.extensionFields
@@ -4497,40 +4488,40 @@ export class ServiceOptions {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: ServiceOptions | $.VarRef<ServiceOptions> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 16)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 16)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ServiceOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ServiceOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.ServiceOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.ServiceOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.ServiceOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions")))
 	}
 
 	public Reset(): void {
 		let x: ServiceOptions | $.VarRef<ServiceOptions> | null = this;
 		$.assignStruct($.pointerValue<ServiceOptions>(x), $.markAsStructValue(new ServiceOptions()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 16)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ServiceOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 16)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ServiceOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: ServiceOptions | $.VarRef<ServiceOptions> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.ServiceOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.ServiceOptions", /* @__PURE__ */ $.pointerType("descriptorpb.ServiceOptions")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.ServiceOptions",
 		() => new ServiceOptions(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetDeprecated", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("GetUninterpretedOption", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetDeprecated", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "GetUninterpretedOption", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		ServiceOptions,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("extensionFields", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField"), [3], 40, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Features", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [4], 48, true, { tag: "protobuf:\"bytes,34,opt,name=features\" json:\"features,omitempty\"" }), /* @__PURE__ */ $.structField("Deprecated", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [5], 56, true, { tag: "protobuf:\"varint,33,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }), /* @__PURE__ */ $.structField("UninterpretedOption", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), [6], 64, true, { tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "extensionFields", key: "extensionFields", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField") }, { name: "Features", key: "Features", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,34,opt,name=features\" json:\"features,omitempty\"" }, { name: "Deprecated", key: "Deprecated", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,33,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }, { name: "UninterpretedOption", key: "UninterpretedOption", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" }]
 	)
 }
 
@@ -4618,7 +4609,7 @@ export class MethodOptions {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, extensionFields?: protoimpl.ExtensionFields, Deprecated?: $.VarRef<boolean> | null, IdempotencyLevel?: $.VarRef<MethodOptions_IdempotencyLevel> | null, Features?: FeatureSet | $.VarRef<FeatureSet> | null, UninterpretedOption?: $.Slice<UninterpretedOption | $.VarRef<UninterpretedOption> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			extensionFields: init?.extensionFields ?? (null! as protoimpl.ExtensionFields),
@@ -4637,7 +4628,7 @@ export class MethodOptions {
 	public __goscriptAssign(source: MethodOptions): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.extensionFields = values.extensionFields
@@ -4688,40 +4679,40 @@ export class MethodOptions {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: MethodOptions | $.VarRef<MethodOptions> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 17)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 17)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MethodOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MethodOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.MethodOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.MethodOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.MethodOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions")))
 	}
 
 	public Reset(): void {
 		let x: MethodOptions | $.VarRef<MethodOptions> | null = this;
 		$.assignStruct($.pointerValue<MethodOptions>(x), $.markAsStructValue(new MethodOptions()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 17)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MethodOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 17)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.MethodOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: MethodOptions | $.VarRef<MethodOptions> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.MethodOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.MethodOptions", /* @__PURE__ */ $.pointerType("descriptorpb.MethodOptions")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.MethodOptions",
 		() => new MethodOptions(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetDeprecated", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("GetIdempotencyLevel", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.MethodOptions_IdempotencyLevel")], true), $.methodSignature("GetUninterpretedOption", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetDeprecated", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "GetIdempotencyLevel", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.MethodOptions_IdempotencyLevel") }], pointerReceiver: true }, { name: "GetUninterpretedOption", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		MethodOptions,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("extensionFields", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField"), [3], 40, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Deprecated", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [4], 48, true, { tag: "protobuf:\"varint,33,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }), /* @__PURE__ */ $.structField("IdempotencyLevel", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.MethodOptions_IdempotencyLevel")), [5], 56, true, { tag: "protobuf:\"varint,34,opt,name=idempotency_level,json=idempotencyLevel,enum=google.protobuf.MethodOptions_IdempotencyLevel,def=0\" json:\"idempotency_level,omitempty\"" }), /* @__PURE__ */ $.structField("Features", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [6], 64, true, { tag: "protobuf:\"bytes,35,opt,name=features\" json:\"features,omitempty\"" }), /* @__PURE__ */ $.structField("UninterpretedOption", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), [7], 72, true, { tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "extensionFields", key: "extensionFields", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField") }, { name: "Deprecated", key: "Deprecated", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,33,opt,name=deprecated,def=0\" json:\"deprecated,omitempty\"" }, { name: "IdempotencyLevel", key: "IdempotencyLevel", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.MethodOptions_IdempotencyLevel")), tag: "protobuf:\"varint,34,opt,name=idempotency_level,json=idempotencyLevel,enum=google.protobuf.MethodOptions_IdempotencyLevel,def=0\" json:\"idempotency_level,omitempty\"" }, { name: "Features", key: "Features", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,35,opt,name=features\" json:\"features,omitempty\"" }, { name: "UninterpretedOption", key: "UninterpretedOption", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")), tag: "protobuf:\"bytes,999,rep,name=uninterpreted_option,json=uninterpretedOption\" json:\"uninterpreted_option,omitempty\"" }]
 	)
 }
 
@@ -4823,7 +4814,7 @@ export class UninterpretedOption {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.Slice<UninterpretedOption_NamePart | $.VarRef<UninterpretedOption_NamePart> | null>, IdentifierValue?: $.VarRef<string> | null, PositiveIntValue?: $.VarRef<bigint> | null, NegativeIntValue?: $.VarRef<bigint> | null, DoubleValue?: $.VarRef<number> | null, StringValue?: $.Slice<number>, AggregateValue?: $.VarRef<string> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.Slice<UninterpretedOption_NamePart | $.VarRef<UninterpretedOption_NamePart> | null>),
@@ -4844,7 +4835,7 @@ export class UninterpretedOption {
 	public __goscriptAssign(source: UninterpretedOption): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -4924,40 +4915,40 @@ export class UninterpretedOption {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: UninterpretedOption | $.VarRef<UninterpretedOption> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 18)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 18)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.UninterpretedOption", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.UninterpretedOption", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.UninterpretedOption", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.UninterpretedOption", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")))
 	}
 
 	public Reset(): void {
 		let x: UninterpretedOption | $.VarRef<UninterpretedOption> | null = this;
 		$.assignStruct($.pointerValue<UninterpretedOption>(x), $.markAsStructValue(new UninterpretedOption()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 18)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.UninterpretedOption", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 18)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.UninterpretedOption", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: UninterpretedOption | $.VarRef<UninterpretedOption> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.UninterpretedOption", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.UninterpretedOption", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.UninterpretedOption",
 		() => new UninterpretedOption(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetAggregateValue", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetDoubleValue", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("GetIdentifierValue", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart"))], true), $.methodSignature("GetNegativeIntValue", [], [/* @__PURE__ */ $.basicType("int64")], true), $.methodSignature("GetPositiveIntValue", [], [/* @__PURE__ */ $.basicType("uint64")], true), $.methodSignature("GetStringValue", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetAggregateValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetDoubleValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "GetIdentifierValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")) }], pointerReceiver: true }, { name: "GetNegativeIntValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64") }], pointerReceiver: true }, { name: "GetPositiveIntValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint64") }], pointerReceiver: true }, { name: "GetStringValue", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		UninterpretedOption,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")), [3], 40, true, { tag: "protobuf:\"bytes,2,rep,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("IdentifierValue", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [4], 64, true, { tag: "protobuf:\"bytes,3,opt,name=identifier_value,json=identifierValue\" json:\"identifier_value,omitempty\"" }), /* @__PURE__ */ $.structField("PositiveIntValue", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint64")), [5], 72, true, { tag: "protobuf:\"varint,4,opt,name=positive_int_value,json=positiveIntValue\" json:\"positive_int_value,omitempty\"" }), /* @__PURE__ */ $.structField("NegativeIntValue", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int64")), [6], 80, true, { tag: "protobuf:\"varint,5,opt,name=negative_int_value,json=negativeIntValue\" json:\"negative_int_value,omitempty\"" }), /* @__PURE__ */ $.structField("DoubleValue", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [7], 88, true, { tag: "protobuf:\"fixed64,6,opt,name=double_value,json=doubleValue\" json:\"double_value,omitempty\"" }), /* @__PURE__ */ $.structField("StringValue", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [8], 96, true, { tag: "protobuf:\"bytes,7,opt,name=string_value,json=stringValue\" json:\"string_value,omitempty\"" }), /* @__PURE__ */ $.structField("AggregateValue", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [9], 120, true, { tag: "protobuf:\"bytes,8,opt,name=aggregate_value,json=aggregateValue\" json:\"aggregate_value,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")), tag: "protobuf:\"bytes,2,rep,name=name\" json:\"name,omitempty\"" }, { name: "IdentifierValue", key: "IdentifierValue", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,3,opt,name=identifier_value,json=identifierValue\" json:\"identifier_value,omitempty\"" }, { name: "PositiveIntValue", key: "PositiveIntValue", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint64")), tag: "protobuf:\"varint,4,opt,name=positive_int_value,json=positiveIntValue\" json:\"positive_int_value,omitempty\"" }, { name: "NegativeIntValue", key: "NegativeIntValue", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int64")), tag: "protobuf:\"varint,5,opt,name=negative_int_value,json=negativeIntValue\" json:\"negative_int_value,omitempty\"" }, { name: "DoubleValue", key: "DoubleValue", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,6,opt,name=double_value,json=doubleValue\" json:\"double_value,omitempty\"" }, { name: "StringValue", key: "StringValue", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "protobuf:\"bytes,7,opt,name=string_value,json=stringValue\" json:\"string_value,omitempty\"" }, { name: "AggregateValue", key: "AggregateValue", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,8,opt,name=aggregate_value,json=aggregateValue\" json:\"aggregate_value,omitempty\"" }]
 	)
 }
 
@@ -5057,7 +5048,7 @@ export class FeatureSet {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, extensionFields?: protoimpl.ExtensionFields, FieldPresence?: $.VarRef<FeatureSet_FieldPresence> | null, EnumType?: $.VarRef<FeatureSet_EnumType> | null, RepeatedFieldEncoding?: $.VarRef<FeatureSet_RepeatedFieldEncoding> | null, Utf8Validation?: $.VarRef<FeatureSet_Utf8Validation> | null, MessageEncoding?: $.VarRef<FeatureSet_MessageEncoding> | null, JsonFormat?: $.VarRef<FeatureSet_JsonFormat> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			extensionFields: init?.extensionFields ?? (null! as protoimpl.ExtensionFields),
@@ -5078,7 +5069,7 @@ export class FeatureSet {
 	public __goscriptAssign(source: FeatureSet): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.extensionFields = values.extensionFields
@@ -5151,40 +5142,40 @@ export class FeatureSet {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: FeatureSet | $.VarRef<FeatureSet> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 19)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 19)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")))
 	}
 
 	public Reset(): void {
 		let x: FeatureSet | $.VarRef<FeatureSet> | null = this;
 		$.assignStruct($.pointerValue<FeatureSet>(x), $.markAsStructValue(new FeatureSet()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 19)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 19)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: FeatureSet | $.VarRef<FeatureSet> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FeatureSet", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.FeatureSet",
 		() => new FeatureSet(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetEnumType", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_EnumType")], true), $.methodSignature("GetFieldPresence", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_FieldPresence")], true), $.methodSignature("GetJsonFormat", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_JsonFormat")], true), $.methodSignature("GetMessageEncoding", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_MessageEncoding")], true), $.methodSignature("GetRepeatedFieldEncoding", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_RepeatedFieldEncoding")], true), $.methodSignature("GetUtf8Validation", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_Utf8Validation")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetEnumType", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_EnumType") }], pointerReceiver: true }, { name: "GetFieldPresence", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_FieldPresence") }], pointerReceiver: true }, { name: "GetJsonFormat", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_JsonFormat") }], pointerReceiver: true }, { name: "GetMessageEncoding", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_MessageEncoding") }], pointerReceiver: true }, { name: "GetRepeatedFieldEncoding", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_RepeatedFieldEncoding") }], pointerReceiver: true }, { name: "GetUtf8Validation", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_Utf8Validation") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		FeatureSet,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("extensionFields", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField"), [3], 40, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("FieldPresence", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_FieldPresence")), [4], 48, true, { tag: "protobuf:\"varint,1,opt,name=field_presence,json=fieldPresence,enum=google.protobuf.FeatureSet_FieldPresence\" json:\"field_presence,omitempty\"" }), /* @__PURE__ */ $.structField("EnumType", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_EnumType")), [5], 56, true, { tag: "protobuf:\"varint,2,opt,name=enum_type,json=enumType,enum=google.protobuf.FeatureSet_EnumType\" json:\"enum_type,omitempty\"" }), /* @__PURE__ */ $.structField("RepeatedFieldEncoding", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_RepeatedFieldEncoding")), [6], 64, true, { tag: "protobuf:\"varint,3,opt,name=repeated_field_encoding,json=repeatedFieldEncoding,enum=google.protobuf.FeatureSet_RepeatedFieldEncoding\" json:\"repeated_field_encoding,omitempty\"" }), /* @__PURE__ */ $.structField("Utf8Validation", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_Utf8Validation")), [7], 72, true, { tag: "protobuf:\"varint,4,opt,name=utf8_validation,json=utf8Validation,enum=google.protobuf.FeatureSet_Utf8Validation\" json:\"utf8_validation,omitempty\"" }), /* @__PURE__ */ $.structField("MessageEncoding", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_MessageEncoding")), [8], 80, true, { tag: "protobuf:\"varint,5,opt,name=message_encoding,json=messageEncoding,enum=google.protobuf.FeatureSet_MessageEncoding\" json:\"message_encoding,omitempty\"" }), /* @__PURE__ */ $.structField("JsonFormat", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_JsonFormat")), [9], 88, true, { tag: "protobuf:\"varint,6,opt,name=json_format,json=jsonFormat,enum=google.protobuf.FeatureSet_JsonFormat\" json:\"json_format,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "extensionFields", key: "extensionFields", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "impl.ExtensionField") }, { name: "FieldPresence", key: "FieldPresence", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_FieldPresence")), tag: "protobuf:\"varint,1,opt,name=field_presence,json=fieldPresence,enum=google.protobuf.FeatureSet_FieldPresence\" json:\"field_presence,omitempty\"" }, { name: "EnumType", key: "EnumType", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_EnumType")), tag: "protobuf:\"varint,2,opt,name=enum_type,json=enumType,enum=google.protobuf.FeatureSet_EnumType\" json:\"enum_type,omitempty\"" }, { name: "RepeatedFieldEncoding", key: "RepeatedFieldEncoding", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_RepeatedFieldEncoding")), tag: "protobuf:\"varint,3,opt,name=repeated_field_encoding,json=repeatedFieldEncoding,enum=google.protobuf.FeatureSet_RepeatedFieldEncoding\" json:\"repeated_field_encoding,omitempty\"" }, { name: "Utf8Validation", key: "Utf8Validation", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_Utf8Validation")), tag: "protobuf:\"varint,4,opt,name=utf8_validation,json=utf8Validation,enum=google.protobuf.FeatureSet_Utf8Validation\" json:\"utf8_validation,omitempty\"" }, { name: "MessageEncoding", key: "MessageEncoding", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_MessageEncoding")), tag: "protobuf:\"varint,5,opt,name=message_encoding,json=messageEncoding,enum=google.protobuf.FeatureSet_MessageEncoding\" json:\"message_encoding,omitempty\"" }, { name: "JsonFormat", key: "JsonFormat", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.FeatureSet_JsonFormat")), tag: "protobuf:\"varint,6,opt,name=json_format,json=jsonFormat,enum=google.protobuf.FeatureSet_JsonFormat\" json:\"json_format,omitempty\"" }]
 	)
 }
 
@@ -5252,7 +5243,7 @@ export class FeatureSetDefaults {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Defaults?: $.Slice<FeatureSetDefaults_FeatureSetEditionDefault | $.VarRef<FeatureSetDefaults_FeatureSetEditionDefault> | null>, MinimumEdition?: $.VarRef<Edition> | null, MaximumEdition?: $.VarRef<Edition> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Defaults: init?.Defaults ?? (null! as $.Slice<FeatureSetDefaults_FeatureSetEditionDefault | $.VarRef<FeatureSetDefaults_FeatureSetEditionDefault> | null>),
@@ -5269,7 +5260,7 @@ export class FeatureSetDefaults {
 	public __goscriptAssign(source: FeatureSetDefaults): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Defaults = values.Defaults
@@ -5310,40 +5301,40 @@ export class FeatureSetDefaults {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: FeatureSetDefaults | $.VarRef<FeatureSetDefaults> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 20)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 20)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSetDefaults", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSetDefaults", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.FeatureSetDefaults", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.FeatureSetDefaults", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults")))
 	}
 
 	public Reset(): void {
 		let x: FeatureSetDefaults | $.VarRef<FeatureSetDefaults> | null = this;
 		$.assignStruct($.pointerValue<FeatureSetDefaults>(x), $.markAsStructValue(new FeatureSetDefaults()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 20)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSetDefaults", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 20)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSetDefaults", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: FeatureSetDefaults | $.VarRef<FeatureSetDefaults> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FeatureSetDefaults", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FeatureSetDefaults", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.FeatureSetDefaults",
 		() => new FeatureSetDefaults(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetDefaults", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault"))], true), $.methodSignature("GetMaximumEdition", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")], true), $.methodSignature("GetMinimumEdition", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetDefaults", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")) }], pointerReceiver: true }, { name: "GetMaximumEdition", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition") }], pointerReceiver: true }, { name: "GetMinimumEdition", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		FeatureSetDefaults,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Defaults", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")), [3], 40, true, { tag: "protobuf:\"bytes,1,rep,name=defaults\" json:\"defaults,omitempty\"" }), /* @__PURE__ */ $.structField("MinimumEdition", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), [4], 64, true, { tag: "protobuf:\"varint,4,opt,name=minimum_edition,json=minimumEdition,enum=google.protobuf.Edition\" json:\"minimum_edition,omitempty\"" }), /* @__PURE__ */ $.structField("MaximumEdition", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), [5], 72, true, { tag: "protobuf:\"varint,5,opt,name=maximum_edition,json=maximumEdition,enum=google.protobuf.Edition\" json:\"maximum_edition,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Defaults", key: "Defaults", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")), tag: "protobuf:\"bytes,1,rep,name=defaults\" json:\"defaults,omitempty\"" }, { name: "MinimumEdition", key: "MinimumEdition", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), tag: "protobuf:\"varint,4,opt,name=minimum_edition,json=minimumEdition,enum=google.protobuf.Edition\" json:\"minimum_edition,omitempty\"" }, { name: "MaximumEdition", key: "MaximumEdition", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), tag: "protobuf:\"varint,5,opt,name=maximum_edition,json=maximumEdition,enum=google.protobuf.Edition\" json:\"maximum_edition,omitempty\"" }]
 	)
 }
 
@@ -5437,7 +5428,7 @@ export class SourceCodeInfo {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Location?: $.Slice<SourceCodeInfo_Location | $.VarRef<SourceCodeInfo_Location> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Location: init?.Location ?? (null! as $.Slice<SourceCodeInfo_Location | $.VarRef<SourceCodeInfo_Location> | null>)
@@ -5452,7 +5443,7 @@ export class SourceCodeInfo {
 	public __goscriptAssign(source: SourceCodeInfo): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Location = values.Location
@@ -5473,40 +5464,40 @@ export class SourceCodeInfo {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: SourceCodeInfo | $.VarRef<SourceCodeInfo> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 21)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 21)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.SourceCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.SourceCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.SourceCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.SourceCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.SourceCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo")))
 	}
 
 	public Reset(): void {
 		let x: SourceCodeInfo | $.VarRef<SourceCodeInfo> | null = this;
 		$.assignStruct($.pointerValue<SourceCodeInfo>(x), $.markAsStructValue(new SourceCodeInfo()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 21)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.SourceCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 21)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.SourceCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: SourceCodeInfo | $.VarRef<SourceCodeInfo> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.SourceCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.SourceCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.SourceCodeInfo",
 		() => new SourceCodeInfo(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetLocation", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetLocation", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		SourceCodeInfo,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Location", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")), [3], 40, true, { tag: "protobuf:\"bytes,1,rep,name=location\" json:\"location,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Location", key: "Location", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")), tag: "protobuf:\"bytes,1,rep,name=location\" json:\"location,omitempty\"" }]
 	)
 }
 
@@ -5554,7 +5545,7 @@ export class GeneratedCodeInfo {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Annotation?: $.Slice<GeneratedCodeInfo_Annotation | $.VarRef<GeneratedCodeInfo_Annotation> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Annotation: init?.Annotation ?? (null! as $.Slice<GeneratedCodeInfo_Annotation | $.VarRef<GeneratedCodeInfo_Annotation> | null>)
@@ -5569,7 +5560,7 @@ export class GeneratedCodeInfo {
 	public __goscriptAssign(source: GeneratedCodeInfo): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Annotation = values.Annotation
@@ -5590,40 +5581,40 @@ export class GeneratedCodeInfo {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: GeneratedCodeInfo | $.VarRef<GeneratedCodeInfo> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 22)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 22)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.GeneratedCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.GeneratedCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*descriptorpb.GeneratedCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.GeneratedCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo"))))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.GeneratedCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo")))
 	}
 
 	public Reset(): void {
 		let x: GeneratedCodeInfo | $.VarRef<GeneratedCodeInfo> | null = this;
 		$.assignStruct($.pointerValue<GeneratedCodeInfo>(x), $.markAsStructValue(new GeneratedCodeInfo()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 22)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.GeneratedCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 22)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.GeneratedCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: GeneratedCodeInfo | $.VarRef<GeneratedCodeInfo> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.GeneratedCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.GeneratedCodeInfo", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.GeneratedCodeInfo",
 		() => new GeneratedCodeInfo(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetAnnotation", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetAnnotation", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		GeneratedCodeInfo,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Annotation", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")), [3], 40, true, { tag: "protobuf:\"bytes,1,rep,name=annotation\" json:\"annotation,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Annotation", key: "Annotation", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")), tag: "protobuf:\"bytes,1,rep,name=annotation\" json:\"annotation,omitempty\"" }]
 	)
 }
 
@@ -5687,7 +5678,7 @@ export class DescriptorProto_ExtensionRange {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Start?: $.VarRef<number> | null, End?: $.VarRef<number> | null, Options?: ExtensionRangeOptions | $.VarRef<ExtensionRangeOptions> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Start: init?.Start ?? (null! as $.VarRef<number> | null),
@@ -5704,7 +5695,7 @@ export class DescriptorProto_ExtensionRange {
 	public __goscriptAssign(source: DescriptorProto_ExtensionRange): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Start = values.Start
@@ -5745,40 +5736,40 @@ export class DescriptorProto_ExtensionRange {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: DescriptorProto_ExtensionRange | $.VarRef<DescriptorProto_ExtensionRange> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 23)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 23)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto_ExtensionRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto_ExtensionRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.DescriptorProto_ExtensionRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.DescriptorProto_ExtensionRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")))
 	}
 
 	public Reset(): void {
 		let x: DescriptorProto_ExtensionRange | $.VarRef<DescriptorProto_ExtensionRange> | null = this;
 		$.assignStruct($.pointerValue<DescriptorProto_ExtensionRange>(x), $.markAsStructValue(new DescriptorProto_ExtensionRange()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 23)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto_ExtensionRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 23)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto_ExtensionRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: DescriptorProto_ExtensionRange | $.VarRef<DescriptorProto_ExtensionRange> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.DescriptorProto_ExtensionRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.DescriptorProto_ExtensionRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ExtensionRange")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.DescriptorProto_ExtensionRange",
 		() => new DescriptorProto_ExtensionRange(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetEnd", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetOptions", [], [/* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions")], true), $.methodSignature("GetStart", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetEnd", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetOptions", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions") }], pointerReceiver: true }, { name: "GetStart", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		DescriptorProto_ExtensionRange,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Start", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=start\" json:\"start,omitempty\"" }), /* @__PURE__ */ $.structField("End", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [4], 48, true, { tag: "protobuf:\"varint,2,opt,name=end\" json:\"end,omitempty\"" }), /* @__PURE__ */ $.structField("Options", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions"), [5], 56, true, { tag: "protobuf:\"bytes,3,opt,name=options\" json:\"options,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Start", key: "Start", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,1,opt,name=start\" json:\"start,omitempty\"" }, { name: "End", key: "End", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,2,opt,name=end\" json:\"end,omitempty\"" }, { name: "Options", key: "Options", type: /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions"), tag: "protobuf:\"bytes,3,opt,name=options\" json:\"options,omitempty\"" }]
 	)
 }
 
@@ -5833,7 +5824,7 @@ export class DescriptorProto_ReservedRange {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Start?: $.VarRef<number> | null, End?: $.VarRef<number> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Start: init?.Start ?? (null! as $.VarRef<number> | null),
@@ -5849,7 +5840,7 @@ export class DescriptorProto_ReservedRange {
 	public __goscriptAssign(source: DescriptorProto_ReservedRange): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Start = values.Start
@@ -5881,40 +5872,40 @@ export class DescriptorProto_ReservedRange {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: DescriptorProto_ReservedRange | $.VarRef<DescriptorProto_ReservedRange> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 24)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 24)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto_ReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto_ReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.DescriptorProto_ReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.DescriptorProto_ReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")))
 	}
 
 	public Reset(): void {
 		let x: DescriptorProto_ReservedRange | $.VarRef<DescriptorProto_ReservedRange> | null = this;
 		$.assignStruct($.pointerValue<DescriptorProto_ReservedRange>(x), $.markAsStructValue(new DescriptorProto_ReservedRange()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 24)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto_ReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 24)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.DescriptorProto_ReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: DescriptorProto_ReservedRange | $.VarRef<DescriptorProto_ReservedRange> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.DescriptorProto_ReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.DescriptorProto_ReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.DescriptorProto_ReservedRange")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.DescriptorProto_ReservedRange",
 		() => new DescriptorProto_ReservedRange(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetEnd", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetStart", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetEnd", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetStart", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		DescriptorProto_ReservedRange,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Start", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=start\" json:\"start,omitempty\"" }), /* @__PURE__ */ $.structField("End", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [4], 48, true, { tag: "protobuf:\"varint,2,opt,name=end\" json:\"end,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Start", key: "Start", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,1,opt,name=start\" json:\"start,omitempty\"" }, { name: "End", key: "End", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,2,opt,name=end\" json:\"end,omitempty\"" }]
 	)
 }
 
@@ -6007,7 +5998,7 @@ export class ExtensionRangeOptions_Declaration {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Number?: $.VarRef<number> | null, FullName?: $.VarRef<string> | null, Type?: $.VarRef<string> | null, Reserved?: $.VarRef<boolean> | null, Repeated?: $.VarRef<boolean> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Number: init?.Number ?? (null! as $.VarRef<number> | null),
@@ -6026,7 +6017,7 @@ export class ExtensionRangeOptions_Declaration {
 	public __goscriptAssign(source: ExtensionRangeOptions_Declaration): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Number = values.Number
@@ -6088,40 +6079,40 @@ export class ExtensionRangeOptions_Declaration {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: ExtensionRangeOptions_Declaration | $.VarRef<ExtensionRangeOptions_Declaration> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 25)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 25)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ExtensionRangeOptions_Declaration", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ExtensionRangeOptions_Declaration", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.ExtensionRangeOptions_Declaration", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.ExtensionRangeOptions_Declaration", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")))
 	}
 
 	public Reset(): void {
 		let x: ExtensionRangeOptions_Declaration | $.VarRef<ExtensionRangeOptions_Declaration> | null = this;
 		$.assignStruct($.pointerValue<ExtensionRangeOptions_Declaration>(x), $.markAsStructValue(new ExtensionRangeOptions_Declaration()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 25)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ExtensionRangeOptions_Declaration", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 25)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.ExtensionRangeOptions_Declaration", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: ExtensionRangeOptions_Declaration | $.VarRef<ExtensionRangeOptions_Declaration> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.ExtensionRangeOptions_Declaration", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.ExtensionRangeOptions_Declaration", /* @__PURE__ */ $.pointerType("descriptorpb.ExtensionRangeOptions_Declaration")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.ExtensionRangeOptions_Declaration",
 		() => new ExtensionRangeOptions_Declaration(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetFullName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetNumber", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetRepeated", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetReserved", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetType", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetFullName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetNumber", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetRepeated", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetReserved", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetType", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		ExtensionRangeOptions_Declaration,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Number", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=number\" json:\"number,omitempty\"" }), /* @__PURE__ */ $.structField("FullName", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=full_name,json=fullName\" json:\"full_name,omitempty\"" }), /* @__PURE__ */ $.structField("Type", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [5], 56, true, { tag: "protobuf:\"bytes,3,opt,name=type\" json:\"type,omitempty\"" }), /* @__PURE__ */ $.structField("Reserved", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [6], 64, true, { tag: "protobuf:\"varint,5,opt,name=reserved\" json:\"reserved,omitempty\"" }), /* @__PURE__ */ $.structField("Repeated", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [7], 72, true, { tag: "protobuf:\"varint,6,opt,name=repeated\" json:\"repeated,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Number", key: "Number", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,1,opt,name=number\" json:\"number,omitempty\"" }, { name: "FullName", key: "FullName", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,2,opt,name=full_name,json=fullName\" json:\"full_name,omitempty\"" }, { name: "Type", key: "Type", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,3,opt,name=type\" json:\"type,omitempty\"" }, { name: "Reserved", key: "Reserved", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,5,opt,name=reserved\" json:\"reserved,omitempty\"" }, { name: "Repeated", key: "Repeated", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,6,opt,name=repeated\" json:\"repeated,omitempty\"" }]
 	)
 }
 
@@ -6176,7 +6167,7 @@ export class EnumDescriptorProto_EnumReservedRange {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Start?: $.VarRef<number> | null, End?: $.VarRef<number> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Start: init?.Start ?? (null! as $.VarRef<number> | null),
@@ -6192,7 +6183,7 @@ export class EnumDescriptorProto_EnumReservedRange {
 	public __goscriptAssign(source: EnumDescriptorProto_EnumReservedRange): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Start = values.Start
@@ -6224,40 +6215,40 @@ export class EnumDescriptorProto_EnumReservedRange {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: EnumDescriptorProto_EnumReservedRange | $.VarRef<EnumDescriptorProto_EnumReservedRange> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 26)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 26)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumDescriptorProto_EnumReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumDescriptorProto_EnumReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.EnumDescriptorProto_EnumReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.EnumDescriptorProto_EnumReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")))
 	}
 
 	public Reset(): void {
 		let x: EnumDescriptorProto_EnumReservedRange | $.VarRef<EnumDescriptorProto_EnumReservedRange> | null = this;
 		$.assignStruct($.pointerValue<EnumDescriptorProto_EnumReservedRange>(x), $.markAsStructValue(new EnumDescriptorProto_EnumReservedRange()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 26)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumDescriptorProto_EnumReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 26)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.EnumDescriptorProto_EnumReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: EnumDescriptorProto_EnumReservedRange | $.VarRef<EnumDescriptorProto_EnumReservedRange> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.EnumDescriptorProto_EnumReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.EnumDescriptorProto_EnumReservedRange", /* @__PURE__ */ $.pointerType("descriptorpb.EnumDescriptorProto_EnumReservedRange")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.EnumDescriptorProto_EnumReservedRange",
 		() => new EnumDescriptorProto_EnumReservedRange(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetEnd", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetStart", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetEnd", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetStart", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		EnumDescriptorProto_EnumReservedRange,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Start", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=start\" json:\"start,omitempty\"" }), /* @__PURE__ */ $.structField("End", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [4], 48, true, { tag: "protobuf:\"varint,2,opt,name=end\" json:\"end,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Start", key: "Start", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,1,opt,name=start\" json:\"start,omitempty\"" }, { name: "End", key: "End", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,2,opt,name=end\" json:\"end,omitempty\"" }]
 	)
 }
 
@@ -6312,7 +6303,7 @@ export class FieldOptions_EditionDefault {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Edition?: $.VarRef<Edition> | null, Value?: $.VarRef<string> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Edition: init?.Edition ?? (null! as $.VarRef<Edition> | null),
@@ -6328,7 +6319,7 @@ export class FieldOptions_EditionDefault {
 	public __goscriptAssign(source: FieldOptions_EditionDefault): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Edition = values.Edition
@@ -6360,40 +6351,40 @@ export class FieldOptions_EditionDefault {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: FieldOptions_EditionDefault | $.VarRef<FieldOptions_EditionDefault> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 27)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 27)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions_EditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions_EditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.FieldOptions_EditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.FieldOptions_EditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")))
 	}
 
 	public Reset(): void {
 		let x: FieldOptions_EditionDefault | $.VarRef<FieldOptions_EditionDefault> | null = this;
 		$.assignStruct($.pointerValue<FieldOptions_EditionDefault>(x), $.markAsStructValue(new FieldOptions_EditionDefault()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 27)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions_EditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 27)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions_EditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: FieldOptions_EditionDefault | $.VarRef<FieldOptions_EditionDefault> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FieldOptions_EditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FieldOptions_EditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_EditionDefault")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.FieldOptions_EditionDefault",
 		() => new FieldOptions_EditionDefault(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetEdition", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")], true), $.methodSignature("GetValue", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetEdition", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition") }], pointerReceiver: true }, { name: "GetValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		FieldOptions_EditionDefault,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Edition", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), [3], 40, true, { tag: "protobuf:\"varint,3,opt,name=edition,enum=google.protobuf.Edition\" json:\"edition,omitempty\"" }), /* @__PURE__ */ $.structField("Value", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=value\" json:\"value,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Edition", key: "Edition", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), tag: "protobuf:\"varint,3,opt,name=edition,enum=google.protobuf.Edition\" json:\"edition,omitempty\"" }, { name: "Value", key: "Value", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,2,opt,name=value\" json:\"value,omitempty\"" }]
 	)
 }
 
@@ -6476,7 +6467,7 @@ export class FieldOptions_FeatureSupport {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, EditionIntroduced?: $.VarRef<Edition> | null, EditionDeprecated?: $.VarRef<Edition> | null, DeprecationWarning?: $.VarRef<string> | null, EditionRemoved?: $.VarRef<Edition> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			EditionIntroduced: init?.EditionIntroduced ?? (null! as $.VarRef<Edition> | null),
@@ -6494,7 +6485,7 @@ export class FieldOptions_FeatureSupport {
 	public __goscriptAssign(source: FieldOptions_FeatureSupport): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.EditionIntroduced = values.EditionIntroduced
@@ -6546,40 +6537,40 @@ export class FieldOptions_FeatureSupport {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: FieldOptions_FeatureSupport | $.VarRef<FieldOptions_FeatureSupport> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 28)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 28)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions_FeatureSupport", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions_FeatureSupport", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.FieldOptions_FeatureSupport", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.FieldOptions_FeatureSupport", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport")))
 	}
 
 	public Reset(): void {
 		let x: FieldOptions_FeatureSupport | $.VarRef<FieldOptions_FeatureSupport> | null = this;
 		$.assignStruct($.pointerValue<FieldOptions_FeatureSupport>(x), $.markAsStructValue(new FieldOptions_FeatureSupport()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 28)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions_FeatureSupport", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 28)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FieldOptions_FeatureSupport", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: FieldOptions_FeatureSupport | $.VarRef<FieldOptions_FeatureSupport> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FieldOptions_FeatureSupport", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FieldOptions_FeatureSupport", /* @__PURE__ */ $.pointerType("descriptorpb.FieldOptions_FeatureSupport")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.FieldOptions_FeatureSupport",
 		() => new FieldOptions_FeatureSupport(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetDeprecationWarning", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetEditionDeprecated", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")], true), $.methodSignature("GetEditionIntroduced", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")], true), $.methodSignature("GetEditionRemoved", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetDeprecationWarning", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetEditionDeprecated", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition") }], pointerReceiver: true }, { name: "GetEditionIntroduced", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition") }], pointerReceiver: true }, { name: "GetEditionRemoved", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		FieldOptions_FeatureSupport,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("EditionIntroduced", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=edition_introduced,json=editionIntroduced,enum=google.protobuf.Edition\" json:\"edition_introduced,omitempty\"" }), /* @__PURE__ */ $.structField("EditionDeprecated", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), [4], 48, true, { tag: "protobuf:\"varint,2,opt,name=edition_deprecated,json=editionDeprecated,enum=google.protobuf.Edition\" json:\"edition_deprecated,omitempty\"" }), /* @__PURE__ */ $.structField("DeprecationWarning", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [5], 56, true, { tag: "protobuf:\"bytes,3,opt,name=deprecation_warning,json=deprecationWarning\" json:\"deprecation_warning,omitempty\"" }), /* @__PURE__ */ $.structField("EditionRemoved", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), [6], 64, true, { tag: "protobuf:\"varint,4,opt,name=edition_removed,json=editionRemoved,enum=google.protobuf.Edition\" json:\"edition_removed,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "EditionIntroduced", key: "EditionIntroduced", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), tag: "protobuf:\"varint,1,opt,name=edition_introduced,json=editionIntroduced,enum=google.protobuf.Edition\" json:\"edition_introduced,omitempty\"" }, { name: "EditionDeprecated", key: "EditionDeprecated", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), tag: "protobuf:\"varint,2,opt,name=edition_deprecated,json=editionDeprecated,enum=google.protobuf.Edition\" json:\"edition_deprecated,omitempty\"" }, { name: "DeprecationWarning", key: "DeprecationWarning", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,3,opt,name=deprecation_warning,json=deprecationWarning\" json:\"deprecation_warning,omitempty\"" }, { name: "EditionRemoved", key: "EditionRemoved", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), tag: "protobuf:\"varint,4,opt,name=edition_removed,json=editionRemoved,enum=google.protobuf.Edition\" json:\"edition_removed,omitempty\"" }]
 	)
 }
 
@@ -6634,7 +6625,7 @@ export class UninterpretedOption_NamePart {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, NamePart?: $.VarRef<string> | null, IsExtension?: $.VarRef<boolean> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			NamePart: init?.NamePart ?? (null! as $.VarRef<string> | null),
@@ -6650,7 +6641,7 @@ export class UninterpretedOption_NamePart {
 	public __goscriptAssign(source: UninterpretedOption_NamePart): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.NamePart = values.NamePart
@@ -6682,40 +6673,40 @@ export class UninterpretedOption_NamePart {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: UninterpretedOption_NamePart | $.VarRef<UninterpretedOption_NamePart> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 29)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 29)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.UninterpretedOption_NamePart", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.UninterpretedOption_NamePart", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.UninterpretedOption_NamePart", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.UninterpretedOption_NamePart", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")))
 	}
 
 	public Reset(): void {
 		let x: UninterpretedOption_NamePart | $.VarRef<UninterpretedOption_NamePart> | null = this;
 		$.assignStruct($.pointerValue<UninterpretedOption_NamePart>(x), $.markAsStructValue(new UninterpretedOption_NamePart()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 29)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.UninterpretedOption_NamePart", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 29)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.UninterpretedOption_NamePart", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: UninterpretedOption_NamePart | $.VarRef<UninterpretedOption_NamePart> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.UninterpretedOption_NamePart", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.UninterpretedOption_NamePart", /* @__PURE__ */ $.pointerType("descriptorpb.UninterpretedOption_NamePart")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.UninterpretedOption_NamePart",
 		() => new UninterpretedOption_NamePart(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetIsExtension", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetNamePart", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetIsExtension", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetNamePart", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		UninterpretedOption_NamePart,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("NamePart", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,req,name=name_part,json=namePart\" json:\"name_part,omitempty\"" }), /* @__PURE__ */ $.structField("IsExtension", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), [4], 48, true, { tag: "protobuf:\"varint,2,req,name=is_extension,json=isExtension\" json:\"is_extension,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "NamePart", key: "NamePart", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,req,name=name_part,json=namePart\" json:\"name_part,omitempty\"" }, { name: "IsExtension", key: "IsExtension", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("bool")), tag: "protobuf:\"varint,2,req,name=is_extension,json=isExtension\" json:\"is_extension,omitempty\"" }]
 	)
 }
 
@@ -6781,7 +6772,7 @@ export class FeatureSetDefaults_FeatureSetEditionDefault {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Edition?: $.VarRef<Edition> | null, OverridableFeatures?: FeatureSet | $.VarRef<FeatureSet> | null, FixedFeatures?: FeatureSet | $.VarRef<FeatureSet> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Edition: init?.Edition ?? (null! as $.VarRef<Edition> | null),
@@ -6798,7 +6789,7 @@ export class FeatureSetDefaults_FeatureSetEditionDefault {
 	public __goscriptAssign(source: FeatureSetDefaults_FeatureSetEditionDefault): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Edition = values.Edition
@@ -6838,40 +6829,40 @@ export class FeatureSetDefaults_FeatureSetEditionDefault {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: FeatureSetDefaults_FeatureSetEditionDefault | $.VarRef<FeatureSetDefaults_FeatureSetEditionDefault> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 30)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 30)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")))
 	}
 
 	public Reset(): void {
 		let x: FeatureSetDefaults_FeatureSetEditionDefault | $.VarRef<FeatureSetDefaults_FeatureSetEditionDefault> | null = this;
 		$.assignStruct($.pointerValue<FeatureSetDefaults_FeatureSetEditionDefault>(x), $.markAsStructValue(new FeatureSetDefaults_FeatureSetEditionDefault()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 30)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 30)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: FeatureSetDefaults_FeatureSetEditionDefault | $.VarRef<FeatureSetDefaults_FeatureSetEditionDefault> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.FeatureSetDefaults_FeatureSetEditionDefault",
 		() => new FeatureSetDefaults_FeatureSetEditionDefault(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetEdition", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")], true), $.methodSignature("GetFixedFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("GetOverridableFeatures", [], [/* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetEdition", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition") }], pointerReceiver: true }, { name: "GetFixedFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "GetOverridableFeatures", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		FeatureSetDefaults_FeatureSetEditionDefault,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Edition", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), [3], 40, true, { tag: "protobuf:\"varint,3,opt,name=edition,enum=google.protobuf.Edition\" json:\"edition,omitempty\"" }), /* @__PURE__ */ $.structField("OverridableFeatures", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [4], 48, true, { tag: "protobuf:\"bytes,4,opt,name=overridable_features,json=overridableFeatures\" json:\"overridable_features,omitempty\"" }), /* @__PURE__ */ $.structField("FixedFeatures", /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), [5], 56, true, { tag: "protobuf:\"bytes,5,opt,name=fixed_features,json=fixedFeatures\" json:\"fixed_features,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Edition", key: "Edition", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.Edition")), tag: "protobuf:\"varint,3,opt,name=edition,enum=google.protobuf.Edition\" json:\"edition,omitempty\"" }, { name: "OverridableFeatures", key: "OverridableFeatures", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,4,opt,name=overridable_features,json=overridableFeatures\" json:\"overridable_features,omitempty\"" }, { name: "FixedFeatures", key: "FixedFeatures", type: /* @__PURE__ */ $.pointerType("descriptorpb.FeatureSet"), tag: "protobuf:\"bytes,5,opt,name=fixed_features,json=fixedFeatures\" json:\"fixed_features,omitempty\"" }]
 	)
 }
 
@@ -7039,7 +7030,7 @@ export class SourceCodeInfo_Location {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Path?: $.Slice<number>, Span?: $.Slice<number>, LeadingComments?: $.VarRef<string> | null, TrailingComments?: $.VarRef<string> | null, LeadingDetachedComments?: $.Slice<string>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Path: init?.Path ?? (null! as $.Slice<number>),
@@ -7058,7 +7049,7 @@ export class SourceCodeInfo_Location {
 	public __goscriptAssign(source: SourceCodeInfo_Location): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Path = values.Path
@@ -7117,40 +7108,40 @@ export class SourceCodeInfo_Location {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: SourceCodeInfo_Location | $.VarRef<SourceCodeInfo_Location> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 31)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 31)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.SourceCodeInfo_Location", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.SourceCodeInfo_Location", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.SourceCodeInfo_Location", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.SourceCodeInfo_Location", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")))
 	}
 
 	public Reset(): void {
 		let x: SourceCodeInfo_Location | $.VarRef<SourceCodeInfo_Location> | null = this;
 		$.assignStruct($.pointerValue<SourceCodeInfo_Location>(x), $.markAsStructValue(new SourceCodeInfo_Location()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 31)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.SourceCodeInfo_Location", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 31)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.SourceCodeInfo_Location", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: SourceCodeInfo_Location | $.VarRef<SourceCodeInfo_Location> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.SourceCodeInfo_Location", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.SourceCodeInfo_Location", /* @__PURE__ */ $.pointerType("descriptorpb.SourceCodeInfo_Location")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.SourceCodeInfo_Location",
 		() => new SourceCodeInfo_Location(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetLeadingComments", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetLeadingDetachedComments", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string"))], true), $.methodSignature("GetPath", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32"))], true), $.methodSignature("GetSpan", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32"))], true), $.methodSignature("GetTrailingComments", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetLeadingComments", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetLeadingDetachedComments", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")) }], pointerReceiver: true }, { name: "GetPath", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")) }], pointerReceiver: true }, { name: "GetSpan", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")) }], pointerReceiver: true }, { name: "GetTrailingComments", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		SourceCodeInfo_Location,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Path", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), [3], 40, true, { tag: "protobuf:\"varint,1,rep,packed,name=path\" json:\"path,omitempty\"" }), /* @__PURE__ */ $.structField("Span", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), [4], 64, true, { tag: "protobuf:\"varint,2,rep,packed,name=span\" json:\"span,omitempty\"" }), /* @__PURE__ */ $.structField("LeadingComments", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [5], 88, true, { tag: "protobuf:\"bytes,3,opt,name=leading_comments,json=leadingComments\" json:\"leading_comments,omitempty\"" }), /* @__PURE__ */ $.structField("TrailingComments", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [6], 96, true, { tag: "protobuf:\"bytes,4,opt,name=trailing_comments,json=trailingComments\" json:\"trailing_comments,omitempty\"" }), /* @__PURE__ */ $.structField("LeadingDetachedComments", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), [7], 104, true, { tag: "protobuf:\"bytes,6,rep,name=leading_detached_comments,json=leadingDetachedComments\" json:\"leading_detached_comments,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Path", key: "Path", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,1,rep,packed,name=path\" json:\"path,omitempty\"" }, { name: "Span", key: "Span", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,2,rep,packed,name=span\" json:\"span,omitempty\"" }, { name: "LeadingComments", key: "LeadingComments", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,3,opt,name=leading_comments,json=leadingComments\" json:\"leading_comments,omitempty\"" }, { name: "TrailingComments", key: "TrailingComments", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,4,opt,name=trailing_comments,json=trailingComments\" json:\"trailing_comments,omitempty\"" }, { name: "LeadingDetachedComments", key: "LeadingDetachedComments", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,6,rep,name=leading_detached_comments,json=leadingDetachedComments\" json:\"leading_detached_comments,omitempty\"" }]
 	)
 }
 
@@ -7240,7 +7231,7 @@ export class GeneratedCodeInfo_Annotation {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Path?: $.Slice<number>, SourceFile?: $.VarRef<string> | null, Begin?: $.VarRef<number> | null, End?: $.VarRef<number> | null, Semantic?: $.VarRef<GeneratedCodeInfo_Annotation_Semantic> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Path: init?.Path ?? (null! as $.Slice<number>),
@@ -7259,7 +7250,7 @@ export class GeneratedCodeInfo_Annotation {
 	public __goscriptAssign(source: GeneratedCodeInfo_Annotation): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Path = values.Path
@@ -7320,40 +7311,40 @@ export class GeneratedCodeInfo_Annotation {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: GeneratedCodeInfo_Annotation | $.VarRef<GeneratedCodeInfo_Annotation> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 32)
+		let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 32)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.GeneratedCodeInfo_Annotation", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.GeneratedCodeInfo_Annotation", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*descriptorpb.GeneratedCodeInfo_Annotation", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")))
+		return mi.MessageOf($.interfaceValue(x, "*descriptorpb.GeneratedCodeInfo_Annotation", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")))
 	}
 
 	public Reset(): void {
 		let x: GeneratedCodeInfo_Annotation | $.VarRef<GeneratedCodeInfo_Annotation> | null = this;
 		$.assignStruct($.pointerValue<GeneratedCodeInfo_Annotation>(x), $.markAsStructValue(new GeneratedCodeInfo_Annotation()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 32)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.GeneratedCodeInfo_Annotation", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_descriptor_proto_msgTypes!, 32)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*descriptorpb.GeneratedCodeInfo_Annotation", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: GeneratedCodeInfo_Annotation | $.VarRef<GeneratedCodeInfo_Annotation> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.GeneratedCodeInfo_Annotation", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*descriptorpb.GeneratedCodeInfo_Annotation", /* @__PURE__ */ $.pointerType("descriptorpb.GeneratedCodeInfo_Annotation")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"descriptorpb.GeneratedCodeInfo_Annotation",
 		() => new GeneratedCodeInfo_Annotation(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetBegin", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetEnd", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetPath", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32"))], true), $.methodSignature("GetSemantic", [], [/* @__PURE__ */ $.basicType("int32", "descriptorpb.GeneratedCodeInfo_Annotation_Semantic")], true), $.methodSignature("GetSourceFile", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetBegin", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetEnd", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetPath", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")) }], pointerReceiver: true }, { name: "GetSemantic", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "descriptorpb.GeneratedCodeInfo_Annotation_Semantic") }], pointerReceiver: true }, { name: "GetSourceFile", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		GeneratedCodeInfo_Annotation,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/descriptorpb" }), /* @__PURE__ */ $.structField("Path", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), [3], 40, true, { tag: "protobuf:\"varint,1,rep,packed,name=path\" json:\"path,omitempty\"" }), /* @__PURE__ */ $.structField("SourceFile", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [4], 64, true, { tag: "protobuf:\"bytes,2,opt,name=source_file,json=sourceFile\" json:\"source_file,omitempty\"" }), /* @__PURE__ */ $.structField("Begin", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [5], 72, true, { tag: "protobuf:\"varint,3,opt,name=begin\" json:\"begin,omitempty\"" }), /* @__PURE__ */ $.structField("End", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [6], 80, true, { tag: "protobuf:\"varint,4,opt,name=end\" json:\"end,omitempty\"" }), /* @__PURE__ */ $.structField("Semantic", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.GeneratedCodeInfo_Annotation_Semantic")), [7], 88, true, { tag: "protobuf:\"varint,5,opt,name=semantic,enum=google.protobuf.GeneratedCodeInfo_Annotation_Semantic\" json:\"semantic,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Path", key: "Path", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,1,rep,packed,name=path\" json:\"path,omitempty\"" }, { name: "SourceFile", key: "SourceFile", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,2,opt,name=source_file,json=sourceFile\" json:\"source_file,omitempty\"" }, { name: "Begin", key: "Begin", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,3,opt,name=begin\" json:\"begin,omitempty\"" }, { name: "End", key: "End", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"varint,4,opt,name=end\" json:\"end,omitempty\"" }, { name: "Semantic", key: "Semantic", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "descriptorpb.GeneratedCodeInfo_Annotation_Semantic")), tag: "protobuf:\"varint,5,opt,name=semantic,enum=google.protobuf.GeneratedCodeInfo_Annotation_Semantic\" json:\"semantic,omitempty\"" }]
 	)
 }
 
@@ -7594,7 +7585,7 @@ export function Edition_Enum(x: Edition): $.VarRef<Edition> | null {
 }
 
 export function Edition_String(x: Edition): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(Edition_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(Edition_Descriptor(x), $.int(x, 32))
 }
 
 export function Edition_Descriptor(recv: Edition): protoreflect.EnumDescriptor | null {
@@ -7610,7 +7601,7 @@ export function Edition_Number(x: Edition): protoreflect.EnumNumber {
 }
 
 export function Edition_UnmarshalJSON(x: $.VarRef<Edition> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(Edition_Descriptor($.pointerValue<Edition>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(Edition_Descriptor($.pointerValue<Edition>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -7641,7 +7632,7 @@ export function ExtensionRangeOptions_VerificationState_Enum(x: ExtensionRangeOp
 }
 
 export function ExtensionRangeOptions_VerificationState_String(x: ExtensionRangeOptions_VerificationState): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(ExtensionRangeOptions_VerificationState_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(ExtensionRangeOptions_VerificationState_Descriptor(x), $.int(x, 32))
 }
 
 export function ExtensionRangeOptions_VerificationState_Descriptor(recv: ExtensionRangeOptions_VerificationState): protoreflect.EnumDescriptor | null {
@@ -7657,7 +7648,7 @@ export function ExtensionRangeOptions_VerificationState_Number(x: ExtensionRange
 }
 
 export function ExtensionRangeOptions_VerificationState_UnmarshalJSON(x: $.VarRef<ExtensionRangeOptions_VerificationState> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(ExtensionRangeOptions_VerificationState_Descriptor($.pointerValue<ExtensionRangeOptions_VerificationState>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(ExtensionRangeOptions_VerificationState_Descriptor($.pointerValue<ExtensionRangeOptions_VerificationState>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -7688,7 +7679,7 @@ export function FieldDescriptorProto_Type_Enum(x: FieldDescriptorProto_Type): $.
 }
 
 export function FieldDescriptorProto_Type_String(x: FieldDescriptorProto_Type): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FieldDescriptorProto_Type_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FieldDescriptorProto_Type_Descriptor(x), $.int(x, 32))
 }
 
 export function FieldDescriptorProto_Type_Descriptor(recv: FieldDescriptorProto_Type): protoreflect.EnumDescriptor | null {
@@ -7704,7 +7695,7 @@ export function FieldDescriptorProto_Type_Number(x: FieldDescriptorProto_Type): 
 }
 
 export function FieldDescriptorProto_Type_UnmarshalJSON(x: $.VarRef<FieldDescriptorProto_Type> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FieldDescriptorProto_Type_Descriptor($.pointerValue<FieldDescriptorProto_Type>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FieldDescriptorProto_Type_Descriptor($.pointerValue<FieldDescriptorProto_Type>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -7735,7 +7726,7 @@ export function FieldDescriptorProto_Label_Enum(x: FieldDescriptorProto_Label): 
 }
 
 export function FieldDescriptorProto_Label_String(x: FieldDescriptorProto_Label): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FieldDescriptorProto_Label_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FieldDescriptorProto_Label_Descriptor(x), $.int(x, 32))
 }
 
 export function FieldDescriptorProto_Label_Descriptor(recv: FieldDescriptorProto_Label): protoreflect.EnumDescriptor | null {
@@ -7751,7 +7742,7 @@ export function FieldDescriptorProto_Label_Number(x: FieldDescriptorProto_Label)
 }
 
 export function FieldDescriptorProto_Label_UnmarshalJSON(x: $.VarRef<FieldDescriptorProto_Label> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FieldDescriptorProto_Label_Descriptor($.pointerValue<FieldDescriptorProto_Label>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FieldDescriptorProto_Label_Descriptor($.pointerValue<FieldDescriptorProto_Label>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -7782,7 +7773,7 @@ export function FileOptions_OptimizeMode_Enum(x: FileOptions_OptimizeMode): $.Va
 }
 
 export function FileOptions_OptimizeMode_String(x: FileOptions_OptimizeMode): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FileOptions_OptimizeMode_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FileOptions_OptimizeMode_Descriptor(x), $.int(x, 32))
 }
 
 export function FileOptions_OptimizeMode_Descriptor(recv: FileOptions_OptimizeMode): protoreflect.EnumDescriptor | null {
@@ -7798,7 +7789,7 @@ export function FileOptions_OptimizeMode_Number(x: FileOptions_OptimizeMode): pr
 }
 
 export function FileOptions_OptimizeMode_UnmarshalJSON(x: $.VarRef<FileOptions_OptimizeMode> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FileOptions_OptimizeMode_Descriptor($.pointerValue<FileOptions_OptimizeMode>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FileOptions_OptimizeMode_Descriptor($.pointerValue<FileOptions_OptimizeMode>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -7829,7 +7820,7 @@ export function FieldOptions_CType_Enum(x: FieldOptions_CType): $.VarRef<FieldOp
 }
 
 export function FieldOptions_CType_String(x: FieldOptions_CType): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FieldOptions_CType_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FieldOptions_CType_Descriptor(x), $.int(x, 32))
 }
 
 export function FieldOptions_CType_Descriptor(recv: FieldOptions_CType): protoreflect.EnumDescriptor | null {
@@ -7845,7 +7836,7 @@ export function FieldOptions_CType_Number(x: FieldOptions_CType): protoreflect.E
 }
 
 export function FieldOptions_CType_UnmarshalJSON(x: $.VarRef<FieldOptions_CType> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FieldOptions_CType_Descriptor($.pointerValue<FieldOptions_CType>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FieldOptions_CType_Descriptor($.pointerValue<FieldOptions_CType>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -7876,7 +7867,7 @@ export function FieldOptions_JSType_Enum(x: FieldOptions_JSType): $.VarRef<Field
 }
 
 export function FieldOptions_JSType_String(x: FieldOptions_JSType): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FieldOptions_JSType_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FieldOptions_JSType_Descriptor(x), $.int(x, 32))
 }
 
 export function FieldOptions_JSType_Descriptor(recv: FieldOptions_JSType): protoreflect.EnumDescriptor | null {
@@ -7892,7 +7883,7 @@ export function FieldOptions_JSType_Number(x: FieldOptions_JSType): protoreflect
 }
 
 export function FieldOptions_JSType_UnmarshalJSON(x: $.VarRef<FieldOptions_JSType> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FieldOptions_JSType_Descriptor($.pointerValue<FieldOptions_JSType>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FieldOptions_JSType_Descriptor($.pointerValue<FieldOptions_JSType>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -7923,7 +7914,7 @@ export function FieldOptions_OptionRetention_Enum(x: FieldOptions_OptionRetentio
 }
 
 export function FieldOptions_OptionRetention_String(x: FieldOptions_OptionRetention): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FieldOptions_OptionRetention_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FieldOptions_OptionRetention_Descriptor(x), $.int(x, 32))
 }
 
 export function FieldOptions_OptionRetention_Descriptor(recv: FieldOptions_OptionRetention): protoreflect.EnumDescriptor | null {
@@ -7939,7 +7930,7 @@ export function FieldOptions_OptionRetention_Number(x: FieldOptions_OptionRetent
 }
 
 export function FieldOptions_OptionRetention_UnmarshalJSON(x: $.VarRef<FieldOptions_OptionRetention> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FieldOptions_OptionRetention_Descriptor($.pointerValue<FieldOptions_OptionRetention>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FieldOptions_OptionRetention_Descriptor($.pointerValue<FieldOptions_OptionRetention>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -7970,7 +7961,7 @@ export function FieldOptions_OptionTargetType_Enum(x: FieldOptions_OptionTargetT
 }
 
 export function FieldOptions_OptionTargetType_String(x: FieldOptions_OptionTargetType): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FieldOptions_OptionTargetType_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FieldOptions_OptionTargetType_Descriptor(x), $.int(x, 32))
 }
 
 export function FieldOptions_OptionTargetType_Descriptor(recv: FieldOptions_OptionTargetType): protoreflect.EnumDescriptor | null {
@@ -7986,7 +7977,7 @@ export function FieldOptions_OptionTargetType_Number(x: FieldOptions_OptionTarge
 }
 
 export function FieldOptions_OptionTargetType_UnmarshalJSON(x: $.VarRef<FieldOptions_OptionTargetType> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FieldOptions_OptionTargetType_Descriptor($.pointerValue<FieldOptions_OptionTargetType>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FieldOptions_OptionTargetType_Descriptor($.pointerValue<FieldOptions_OptionTargetType>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -8017,7 +8008,7 @@ export function MethodOptions_IdempotencyLevel_Enum(x: MethodOptions_Idempotency
 }
 
 export function MethodOptions_IdempotencyLevel_String(x: MethodOptions_IdempotencyLevel): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(MethodOptions_IdempotencyLevel_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(MethodOptions_IdempotencyLevel_Descriptor(x), $.int(x, 32))
 }
 
 export function MethodOptions_IdempotencyLevel_Descriptor(recv: MethodOptions_IdempotencyLevel): protoreflect.EnumDescriptor | null {
@@ -8033,7 +8024,7 @@ export function MethodOptions_IdempotencyLevel_Number(x: MethodOptions_Idempoten
 }
 
 export function MethodOptions_IdempotencyLevel_UnmarshalJSON(x: $.VarRef<MethodOptions_IdempotencyLevel> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(MethodOptions_IdempotencyLevel_Descriptor($.pointerValue<MethodOptions_IdempotencyLevel>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(MethodOptions_IdempotencyLevel_Descriptor($.pointerValue<MethodOptions_IdempotencyLevel>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -8064,7 +8055,7 @@ export function FeatureSet_FieldPresence_Enum(x: FeatureSet_FieldPresence): $.Va
 }
 
 export function FeatureSet_FieldPresence_String(x: FeatureSet_FieldPresence): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FeatureSet_FieldPresence_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FeatureSet_FieldPresence_Descriptor(x), $.int(x, 32))
 }
 
 export function FeatureSet_FieldPresence_Descriptor(recv: FeatureSet_FieldPresence): protoreflect.EnumDescriptor | null {
@@ -8080,7 +8071,7 @@ export function FeatureSet_FieldPresence_Number(x: FeatureSet_FieldPresence): pr
 }
 
 export function FeatureSet_FieldPresence_UnmarshalJSON(x: $.VarRef<FeatureSet_FieldPresence> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_FieldPresence_Descriptor($.pointerValue<FeatureSet_FieldPresence>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_FieldPresence_Descriptor($.pointerValue<FeatureSet_FieldPresence>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -8111,7 +8102,7 @@ export function FeatureSet_EnumType_Enum(x: FeatureSet_EnumType): $.VarRef<Featu
 }
 
 export function FeatureSet_EnumType_String(x: FeatureSet_EnumType): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FeatureSet_EnumType_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FeatureSet_EnumType_Descriptor(x), $.int(x, 32))
 }
 
 export function FeatureSet_EnumType_Descriptor(recv: FeatureSet_EnumType): protoreflect.EnumDescriptor | null {
@@ -8127,7 +8118,7 @@ export function FeatureSet_EnumType_Number(x: FeatureSet_EnumType): protoreflect
 }
 
 export function FeatureSet_EnumType_UnmarshalJSON(x: $.VarRef<FeatureSet_EnumType> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_EnumType_Descriptor($.pointerValue<FeatureSet_EnumType>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_EnumType_Descriptor($.pointerValue<FeatureSet_EnumType>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -8158,7 +8149,7 @@ export function FeatureSet_RepeatedFieldEncoding_Enum(x: FeatureSet_RepeatedFiel
 }
 
 export function FeatureSet_RepeatedFieldEncoding_String(x: FeatureSet_RepeatedFieldEncoding): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FeatureSet_RepeatedFieldEncoding_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FeatureSet_RepeatedFieldEncoding_Descriptor(x), $.int(x, 32))
 }
 
 export function FeatureSet_RepeatedFieldEncoding_Descriptor(recv: FeatureSet_RepeatedFieldEncoding): protoreflect.EnumDescriptor | null {
@@ -8174,7 +8165,7 @@ export function FeatureSet_RepeatedFieldEncoding_Number(x: FeatureSet_RepeatedFi
 }
 
 export function FeatureSet_RepeatedFieldEncoding_UnmarshalJSON(x: $.VarRef<FeatureSet_RepeatedFieldEncoding> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_RepeatedFieldEncoding_Descriptor($.pointerValue<FeatureSet_RepeatedFieldEncoding>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_RepeatedFieldEncoding_Descriptor($.pointerValue<FeatureSet_RepeatedFieldEncoding>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -8205,7 +8196,7 @@ export function FeatureSet_Utf8Validation_Enum(x: FeatureSet_Utf8Validation): $.
 }
 
 export function FeatureSet_Utf8Validation_String(x: FeatureSet_Utf8Validation): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FeatureSet_Utf8Validation_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FeatureSet_Utf8Validation_Descriptor(x), $.int(x, 32))
 }
 
 export function FeatureSet_Utf8Validation_Descriptor(recv: FeatureSet_Utf8Validation): protoreflect.EnumDescriptor | null {
@@ -8221,7 +8212,7 @@ export function FeatureSet_Utf8Validation_Number(x: FeatureSet_Utf8Validation): 
 }
 
 export function FeatureSet_Utf8Validation_UnmarshalJSON(x: $.VarRef<FeatureSet_Utf8Validation> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_Utf8Validation_Descriptor($.pointerValue<FeatureSet_Utf8Validation>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_Utf8Validation_Descriptor($.pointerValue<FeatureSet_Utf8Validation>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -8252,7 +8243,7 @@ export function FeatureSet_MessageEncoding_Enum(x: FeatureSet_MessageEncoding): 
 }
 
 export function FeatureSet_MessageEncoding_String(x: FeatureSet_MessageEncoding): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FeatureSet_MessageEncoding_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FeatureSet_MessageEncoding_Descriptor(x), $.int(x, 32))
 }
 
 export function FeatureSet_MessageEncoding_Descriptor(recv: FeatureSet_MessageEncoding): protoreflect.EnumDescriptor | null {
@@ -8268,7 +8259,7 @@ export function FeatureSet_MessageEncoding_Number(x: FeatureSet_MessageEncoding)
 }
 
 export function FeatureSet_MessageEncoding_UnmarshalJSON(x: $.VarRef<FeatureSet_MessageEncoding> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_MessageEncoding_Descriptor($.pointerValue<FeatureSet_MessageEncoding>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_MessageEncoding_Descriptor($.pointerValue<FeatureSet_MessageEncoding>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -8299,7 +8290,7 @@ export function FeatureSet_JsonFormat_Enum(x: FeatureSet_JsonFormat): $.VarRef<F
 }
 
 export function FeatureSet_JsonFormat_String(x: FeatureSet_JsonFormat): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(FeatureSet_JsonFormat_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(FeatureSet_JsonFormat_Descriptor(x), $.int(x, 32))
 }
 
 export function FeatureSet_JsonFormat_Descriptor(recv: FeatureSet_JsonFormat): protoreflect.EnumDescriptor | null {
@@ -8315,7 +8306,7 @@ export function FeatureSet_JsonFormat_Number(x: FeatureSet_JsonFormat): protoref
 }
 
 export function FeatureSet_JsonFormat_UnmarshalJSON(x: $.VarRef<FeatureSet_JsonFormat> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_JsonFormat_Descriptor($.pointerValue<FeatureSet_JsonFormat>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(FeatureSet_JsonFormat_Descriptor($.pointerValue<FeatureSet_JsonFormat>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -8346,7 +8337,7 @@ export function GeneratedCodeInfo_Annotation_Semantic_Enum(x: GeneratedCodeInfo_
 }
 
 export function GeneratedCodeInfo_Annotation_Semantic_String(x: GeneratedCodeInfo_Annotation_Semantic): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(GeneratedCodeInfo_Annotation_Semantic_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(GeneratedCodeInfo_Annotation_Semantic_Descriptor(x), $.int(x, 32))
 }
 
 export function GeneratedCodeInfo_Annotation_Semantic_Descriptor(recv: GeneratedCodeInfo_Annotation_Semantic): protoreflect.EnumDescriptor | null {
@@ -8362,7 +8353,7 @@ export function GeneratedCodeInfo_Annotation_Semantic_Number(x: GeneratedCodeInf
 }
 
 export function GeneratedCodeInfo_Annotation_Semantic_UnmarshalJSON(x: $.VarRef<GeneratedCodeInfo_Annotation_Semantic> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(GeneratedCodeInfo_Annotation_Semantic_Descriptor($.pointerValue<GeneratedCodeInfo_Annotation_Semantic>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(GeneratedCodeInfo_Annotation_Semantic_Descriptor($.pointerValue<GeneratedCodeInfo_Annotation_Semantic>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -8400,18 +8391,18 @@ export function __goscript_set_file_google_protobuf_descriptor_proto_rawDescData
 
 export async function file_google_protobuf_descriptor_proto_rawDescGZIP(): globalThis.Promise<$.Slice<number>> {
 	await file_google_protobuf_descriptor_proto_rawDescOnce.value.Do($.functionValue((): void => {
-		file_google_protobuf_descriptor_proto_rawDescData = $.pointerValue<impl.Export>(protoimpl.X).CompressGZIP(file_google_protobuf_descriptor_proto_rawDescData)
+		file_google_protobuf_descriptor_proto_rawDescData = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).CompressGZIP(file_google_protobuf_descriptor_proto_rawDescData)
 	}, ({ kind: $.TypeKind.Function, params: [], results: [] } as $.FunctionTypeInfo)))
 	return file_google_protobuf_descriptor_proto_rawDescData
 }
 
-export let file_google_protobuf_descriptor_proto_enumTypes: $.Slice<protoimpl.EnumInfo> = $.makeSlice<protoimpl.EnumInfo>(17, undefined, undefined, () => new impl.EnumInfo(undefined, true))
+export let file_google_protobuf_descriptor_proto_enumTypes: $.Slice<protoimpl.EnumInfo> = $.makeSlice<protoimpl.EnumInfo>(17, undefined, undefined, () => new protoimpl.EnumInfo(undefined, true))
 
 export function __goscript_set_file_google_protobuf_descriptor_proto_enumTypes(__goscriptValue: $.Slice<protoimpl.EnumInfo>): void {
 	file_google_protobuf_descriptor_proto_enumTypes = __goscriptValue
 }
 
-export let file_google_protobuf_descriptor_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(33, undefined, undefined, () => new impl.MessageInfo(undefined, true))
+export let file_google_protobuf_descriptor_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(33, undefined, undefined, () => new protoimpl.MessageInfo(undefined, true))
 
 export function __goscript_set_file_google_protobuf_descriptor_proto_msgTypes(__goscriptValue: $.Slice<protoimpl.MessageInfo>): void {
 	file_google_protobuf_descriptor_proto_msgTypes = __goscriptValue
@@ -9405,7 +9396,7 @@ export async function file_google_protobuf_descriptor_proto_init(): globalThis.P
 			() => []
 		)
 	}
-	let out = await $.markAsStructValue($.cloneStructValue(new filetype.Builder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "descriptorpb.x", "descriptorpb.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new filedesc.Builder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_google_protobuf_descriptor_proto_rawDesc, NumEnums: 17, NumMessages: 33, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_google_protobuf_descriptor_proto_goTypes, DependencyIndexes: file_google_protobuf_descriptor_proto_depIdxs, EnumInfos: file_google_protobuf_descriptor_proto_enumTypes, MessageInfos: file_google_protobuf_descriptor_proto_msgTypes}, true))).Build()
+	let out = await $.markAsStructValue($.cloneStructValue(new protoimpl.TypeBuilder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "descriptorpb.x", "descriptorpb.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new protoimpl.DescBuilder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_google_protobuf_descriptor_proto_rawDesc, NumEnums: 17, NumMessages: 33, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_google_protobuf_descriptor_proto_goTypes, DependencyIndexes: file_google_protobuf_descriptor_proto_depIdxs, EnumInfos: file_google_protobuf_descriptor_proto_enumTypes, MessageInfos: file_google_protobuf_descriptor_proto_msgTypes}, true))).Build()
 	File_google_protobuf_descriptor_proto = out.File
 	file_google_protobuf_descriptor_proto_rawDesc = null
 	file_google_protobuf_descriptor_proto_goTypes = null

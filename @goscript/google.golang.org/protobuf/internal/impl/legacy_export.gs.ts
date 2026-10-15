@@ -19,12 +19,6 @@ import * as protoreflect from "@goscript/google.golang.org/protobuf/reflect/prot
 
 import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 
-import * as protowire from "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-
-import * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
-import type * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
-
 import * as sync from "@goscript/sync/index.js"
 
 import * as __goscript_api_export from "./api_export.gs.ts"
@@ -70,8 +64,6 @@ import "@goscript/reflect/index.js"
 import "@goscript/google.golang.org/protobuf/internal/errors/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-import "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
 import "@goscript/sync/index.js"
 import "./api_export.gs.ts"
 import "./checkinit.gs.ts"

@@ -58,9 +58,9 @@ export class listConverter {
 		target.c = $.assignFieldValue(target.c, values.c, "impl.Converter")
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: listConverter | $.VarRef<listConverter> | null = this;
-		let rv = $.markAsStructValue($.cloneStructValue($.pointerValue<listReflect>($.mustTypeAssert<listReflect | $.VarRef<listReflect> | null>(await v.List(), /* @__PURE__ */ $.pointerType("impl.listReflect"))).v))
+		let rv = $.markAsStructValue($.cloneStructValue($.pointerValue<listReflect>($.mustTypeAssert<listReflect | $.VarRef<listReflect> | null>($.markAsStructValue($.cloneStructValue(v)).List(), /* @__PURE__ */ $.pointerType("impl.listReflect"))).v))
 		if ($.markAsStructValue($.cloneStructValue(rv)).IsNil()) {
 			return $.markAsStructValue($.cloneStructValue(reflect.Zero($.pointerValueOrNil($.pointerValue<listConverter>(c).goType)!)))
 		}
@@ -74,7 +74,7 @@ export class listConverter {
 
 	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
 		const c: listConverter | $.VarRef<listConverter> | null = this;
-		let __goscriptTuple0: any = $.typeAssertTuple<listReflect | $.VarRef<listReflect> | null>(await v.Interface(), /* @__PURE__ */ $.pointerType("impl.listReflect"))
+		let __goscriptTuple0: any = $.typeAssertTuple<listReflect | $.VarRef<listReflect> | null>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.pointerType("impl.listReflect"))
 		let list: listReflect | $.VarRef<listReflect> | null = __goscriptTuple0[0]
 		let ok = __goscriptTuple0[1]
 		if (!ok) {
@@ -109,9 +109,9 @@ export class listConverter {
 	static __typeInfo = $.registerStructType(
 		"impl.listConverter",
 		() => new listConverter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		listConverter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("c", "impl.Converter", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "c", key: "c", type: "impl.Converter" }]
 	)
 }
 
@@ -156,9 +156,9 @@ export class listPtrConverter {
 		target.c = $.assignFieldValue(target.c, values.c, "impl.Converter")
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: listPtrConverter | $.VarRef<listPtrConverter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.pointerValue<listReflect>($.mustTypeAssert<listReflect | $.VarRef<listReflect> | null>(await v.List(), /* @__PURE__ */ $.pointerType("impl.listReflect"))).v))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<listReflect>($.mustTypeAssert<listReflect | $.VarRef<listReflect> | null>($.markAsStructValue($.cloneStructValue(v)).List(), /* @__PURE__ */ $.pointerType("impl.listReflect"))).v))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -166,9 +166,9 @@ export class listPtrConverter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<listPtrConverter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: listPtrConverter | $.VarRef<listPtrConverter> | null = this;
-		let __goscriptTuple1: any = $.typeAssertTuple<listReflect | $.VarRef<listReflect> | null>(await v.Interface(), /* @__PURE__ */ $.pointerType("impl.listReflect"))
+		let __goscriptTuple1: any = $.typeAssertTuple<listReflect | $.VarRef<listReflect> | null>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.pointerType("impl.listReflect"))
 		let list: listReflect | $.VarRef<listReflect> | null = __goscriptTuple1[0]
 		let ok = __goscriptTuple1[1]
 		if (!ok) {
@@ -199,9 +199,9 @@ export class listPtrConverter {
 	static __typeInfo = $.registerStructType(
 		"impl.listPtrConverter",
 		() => new listPtrConverter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		listPtrConverter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("c", "impl.Converter", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "c", key: "c", type: "impl.Converter" }]
 	)
 }
 
@@ -310,9 +310,9 @@ export class listReflect {
 	static __typeInfo = $.registerStructType(
 		"impl.listReflect",
 		() => new listReflect(),
-		() => [$.methodSignature("Append", [["v", "protoreflect.Value"]], [], true), $.methodSignature("AppendMutable", [], ["protoreflect.Value"], true), $.methodSignature("Get", [["i", /* @__PURE__ */ $.basicType("int")]], ["protoreflect.Value"], true), $.methodSignature("IsValid", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("Len", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("NewElement", [], ["protoreflect.Value"], true), $.methodSignature("Set", [["i", /* @__PURE__ */ $.basicType("int")], ["v", "protoreflect.Value"]], [], true), $.methodSignature("Truncate", [["i", /* @__PURE__ */ $.basicType("int")]], [], true), $.methodSignature("protoUnwrap", [], [{ kind: $.TypeKind.Interface, methods: [] }], true)],
+		() => [{ name: "Append", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "AppendMutable", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Get", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "IsValid", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "Len", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "NewElement", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Set", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "Truncate", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "protoUnwrap", args: [], returns: [{ type: { kind: $.TypeKind.Interface, methods: [] } }], pointerReceiver: true }],
 		listReflect,
-		() => [/* @__PURE__ */ $.structField("v", "reflect.Value", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("conv", "impl.Converter", [1], 24, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "v", key: "v", type: "reflect.Value" }, { name: "conv", key: "conv", type: "impl.Converter" }]
 	)
 }
 

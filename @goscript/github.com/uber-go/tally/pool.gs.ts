@@ -107,9 +107,9 @@ export class ObjectPool {
 	static __typeInfo = $.registerStructType(
 		"tally.ObjectPool",
 		() => new ObjectPool(),
-		() => [$.methodSignature("Get", [], [{ kind: $.TypeKind.Interface, methods: [] }], true), $.methodSignature("Init", [["alloc", ({ kind: $.TypeKind.Function, params: [], results: [{ kind: $.TypeKind.Interface, methods: [] }] } as $.FunctionTypeInfo)]], [], true), $.methodSignature("Put", [["obj", { kind: $.TypeKind.Interface, methods: [] }]], [], true)],
+		() => [{ name: "Get", args: [], returns: [{ type: { kind: $.TypeKind.Interface, methods: [] } }], pointerReceiver: true }, { name: "Init", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "Put", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }],
 		ObjectPool,
-		() => [/* @__PURE__ */ $.structField("values", /* @__PURE__ */ $.channelType({ kind: $.TypeKind.Interface, methods: [] }, "both"), [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("alloc", ({ kind: $.TypeKind.Function, params: [], results: [{ kind: $.TypeKind.Interface, methods: [] }] } as $.FunctionTypeInfo), [1], 8, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "values", key: "values", type: /* @__PURE__ */ $.channelType({ kind: $.TypeKind.Interface, methods: [] }, "both") }, { name: "alloc", key: "alloc", type: ({ kind: $.TypeKind.Function, params: [], results: [{ kind: $.TypeKind.Interface, methods: [] }] } as $.FunctionTypeInfo) }]
 	)
 }
 

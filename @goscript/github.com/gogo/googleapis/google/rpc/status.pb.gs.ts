@@ -33,18 +33,18 @@ import "@goscript/strings/index.js"
 $.registerTypePackagePath("github.com/gogo/googleapis/google/rpc", ["rpc.Status", "rpc.randyStatus"])
 
 export type randyStatus = {
-	Float32(): number | globalThis.Promise<number>
-	Float64(): number | globalThis.Promise<number>
-	Int31(): number | globalThis.Promise<number>
-	Int63(): bigint | globalThis.Promise<bigint>
-	Intn(n: number): number | globalThis.Promise<number>
-	Uint32(): number | globalThis.Promise<number>
+	Float32(): number
+	Float64(): number
+	Int31(): number
+	Int63(): bigint
+	Intn(n: number): number
+	Uint32(): number
 }
 
 $.registerInterfaceType(
 	"rpc.randyStatus",
 	null,
-	[$.methodSignature("Float32", [], [/* @__PURE__ */ $.basicType("float32")]), $.methodSignature("Float64", [], [/* @__PURE__ */ $.basicType("float64")]), $.methodSignature("Int31", [], [/* @__PURE__ */ $.basicType("int32")]), $.methodSignature("Int63", [], [/* @__PURE__ */ $.basicType("int64")]), $.methodSignature("Intn", [["n", /* @__PURE__ */ $.basicType("int")]], [/* @__PURE__ */ $.basicType("int")]), $.methodSignature("Uint32", [], [/* @__PURE__ */ $.basicType("uint32")])]
+	[{ name: "Float32", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float32") }] }, { name: "Float64", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }] }, { name: "Int31", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }] }, { name: "Int63", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64") }] }, { name: "Intn", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }] }, { name: "Uint32", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint32") }] }]
 );
 
 export class Status {
@@ -408,10 +408,10 @@ export class Status {
 		let repeatedStringForDetails = "[]*Any{"
 		for (let __goscriptRangeTarget3 = (_this$ as Status).Details, __goscriptRangeWindow3 = $.sliceRange(__goscriptRangeTarget3), __rangeIndex = 0; __rangeIndex < __goscriptRangeWindow3.length; __rangeIndex++) {
 			let f = (__goscriptRangeWindow3.backing[__goscriptRangeWindow3.offset + __rangeIndex] as types.Any | $.VarRef<types.Any> | null)
-			repeatedStringForDetails = $.concatString(repeatedStringForDetails, $.concatString(strings.Replace(await fmt.Sprintf("%v", $.interfaceValue(f, "*types.Any", /* @__PURE__ */ $.pointerType("types.Any"))), "Any", "types.Any", 1), ","))
+			repeatedStringForDetails = $.concatString(repeatedStringForDetails, $.concatString(strings.Replace(fmt.Sprintf("%v", $.interfaceValue(f, "*types.Any", /* @__PURE__ */ $.pointerType("types.Any"))), "Any", "types.Any", 1), ","))
 		}
 		repeatedStringForDetails = $.concatString(repeatedStringForDetails, "}")
-		let s = strings.Join($.arrayToSlice<string>(["&Status{", $.concatString(($.concatString("Code:", await fmt.Sprintf("%v", $.basicInterfaceValue((_this$ as Status).Code, "int32")))), ","), $.concatString(($.concatString("Message:", await fmt.Sprintf("%v", (_this$ as Status).Message))), ","), $.concatString(($.concatString("Details:", repeatedStringForDetails)), ","), $.concatString(($.concatString("XXX_unrecognized:", await fmt.Sprintf("%v", $.interfaceValue((_this$ as Status).XXX_unrecognized, "[]byte", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))))), ","), "}"]), "")
+		let s = strings.Join($.arrayToSlice<string>(["&Status{", $.concatString(($.concatString("Code:", fmt.Sprintf("%v", $.basicInterfaceValue((_this$ as Status).Code, "int32")))), ","), $.concatString(($.concatString("Message:", fmt.Sprintf("%v", (_this$ as Status).Message))), ","), $.concatString(($.concatString("Details:", repeatedStringForDetails)), ","), $.concatString(($.concatString("XXX_unrecognized:", fmt.Sprintf("%v", $.interfaceValue((_this$ as Status).XXX_unrecognized, "[]byte", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))))), ","), "}"]), "")
 		return s
 	}
 
@@ -569,12 +569,12 @@ export class Status {
 		return null
 	}
 
-	public async XXX_DiscardUnknown(): globalThis.Promise<void> {
+	public XXX_DiscardUnknown(): void {
 		const m: Status | $.VarRef<Status> | null = this;
-		await xxx_messageInfo_Status.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*rpc.Status", /* @__PURE__ */ $.pointerType("rpc.Status")))
+		xxx_messageInfo_Status.value.DiscardUnknown($.interfaceValue<proto.Message | null>(m, "*rpc.Status", /* @__PURE__ */ $.pointerType("rpc.Status")))
 	}
 
-	public async XXX_Marshal(b: $.Slice<number>, deterministic: boolean): globalThis.Promise<[$.Slice<number>, $.GoError]> {
+	public XXX_Marshal(b: $.Slice<number>, deterministic: boolean): [$.Slice<number>, $.GoError] {
 		const m: Status | $.VarRef<Status> | null = this;
 		if (deterministic) {
 			return xxx_messageInfo_Status.value.Marshal(b, $.interfaceValue<proto.Message | null>(m, "*rpc.Status", /* @__PURE__ */ $.pointerType("rpc.Status")), deterministic)
@@ -589,9 +589,9 @@ export class Status {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async XXX_Merge(src: proto.Message | null): globalThis.Promise<void> {
+	public XXX_Merge(src: proto.Message | null): void {
 		const m: Status | $.VarRef<Status> | null = this;
-		await xxx_messageInfo_Status.value.Merge($.interfaceValue<proto.Message | null>(m, "*rpc.Status", /* @__PURE__ */ $.pointerType("rpc.Status")), src)
+		xxx_messageInfo_Status.value.Merge($.interfaceValue<proto.Message | null>(m, "*rpc.Status", /* @__PURE__ */ $.pointerType("rpc.Status")), src)
 	}
 
 	public XXX_MessageName(): string {
@@ -611,9 +611,9 @@ export class Status {
 	static __typeInfo = $.registerStructType(
 		"rpc.Status",
 		() => new Status(),
-		() => [$.methodSignature("Compare", [["that", { kind: $.TypeKind.Interface, methods: [] }]], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("Equal", [["that", { kind: $.TypeKind.Interface, methods: [] }]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetCode", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetDetails", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("types.Any"))], true), $.methodSignature("GetMessage", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GoString", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Marshal", [], [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["err", "error"]], true), $.methodSignature("MarshalTo", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("MarshalToSizedBuffer", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int"), "error"], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("Reset", [], [], true), $.methodSignature("Size", [], [["n", /* @__PURE__ */ $.basicType("int")]], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("Unmarshal", [["dAtA", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true), $.methodSignature("XXX_DiscardUnknown", [], [], true), $.methodSignature("XXX_Marshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], ["deterministic", /* @__PURE__ */ $.basicType("bool")]], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), "error"], true), $.methodSignature("XXX_Merge", [["src", "proto.Message"]], [], true), $.methodSignature("XXX_MessageName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("XXX_Size", [], [/* @__PURE__ */ $.basicType("int")], true), $.methodSignature("XXX_Unmarshal", [["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], ["error"], true)],
+		() => [{ name: "Compare", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "Equal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetCode", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetDetails", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("types.Any")) }], pointerReceiver: true }, { name: "GetMessage", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GoString", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Marshal", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "MarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "MarshalToSizedBuffer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int") }, { type: "error" }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "XXX_DiscardUnknown", args: [], returns: [], pointerReceiver: true }, { name: "XXX_Marshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: "error" }], pointerReceiver: true }, { name: "XXX_Merge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "XXX_MessageName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "XXX_Size", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }], pointerReceiver: true }, { name: "XXX_Unmarshal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		Status,
-		() => [/* @__PURE__ */ $.structField("Code", /* @__PURE__ */ $.basicType("int32"), [0], 0, true, { tag: "protobuf:\"varint,1,opt,name=code,proto3\" json:\"code,omitempty\"" }), /* @__PURE__ */ $.structField("Message", /* @__PURE__ */ $.basicType("string"), [1], 8, true, { tag: "protobuf:\"bytes,2,opt,name=message,proto3\" json:\"message,omitempty\"" }), /* @__PURE__ */ $.structField("Details", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("types.Any")), [2], 24, true, { tag: "protobuf:\"bytes,3,rep,name=details,proto3\" json:\"details,omitempty\"" }), /* @__PURE__ */ $.structField("XXX_NoUnkeyedLiteral", { kind: $.TypeKind.Struct, methods: [], fields: [] }, [3], 48, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_unrecognized", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [4], 48, true, { tag: "json:\"-\"" }), /* @__PURE__ */ $.structField("XXX_sizecache", /* @__PURE__ */ $.basicType("int32"), [5], 72, true, { tag: "json:\"-\"" })]
+		() => [{ name: "Code", key: "Code", type: /* @__PURE__ */ $.basicType("int32"), tag: "protobuf:\"varint,1,opt,name=code,proto3\" json:\"code,omitempty\"" }, { name: "Message", key: "Message", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,2,opt,name=message,proto3\" json:\"message,omitempty\"" }, { name: "Details", key: "Details", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("types.Any")), tag: "protobuf:\"bytes,3,rep,name=details,proto3\" json:\"details,omitempty\"" }, { name: "XXX_NoUnkeyedLiteral", key: "XXX_NoUnkeyedLiteral", type: { kind: $.TypeKind.Struct, methods: [], fields: [] }, tag: "json:\"-\"" }, { name: "XXX_unrecognized", key: "XXX_unrecognized", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "json:\"-\"" }, { name: "XXX_sizecache", key: "XXX_sizecache", type: /* @__PURE__ */ $.basicType("int32"), tag: "json:\"-\"" }]
 	)
 }
 
@@ -623,11 +623,11 @@ export function __goscript_set_xxx_messageInfo_Status(__goscriptValue: proto.Int
 	$.assignStruct(xxx_messageInfo_Status.value, __goscriptValue)
 }
 
-async function __goscriptInit0(): globalThis.Promise<void> {
-	await proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*rpc.Status", /* @__PURE__ */ $.pointerType("rpc.Status")), "google.rpc.Status")
+function __goscriptInit0(): void {
+	proto.RegisterType($.interfaceValue<proto.Message | null>(null, "*rpc.Status", /* @__PURE__ */ $.pointerType("rpc.Status")), "google.rpc.Status")
 }
 
-async function __goscriptInit1(): globalThis.Promise<void> {
+function __goscriptInit1(): void {
 	proto.RegisterFile("google/rpc/status.proto", fileDescriptor_24d244abaf643bfe)
 }
 
@@ -670,7 +670,7 @@ export async function NewPopulatedStatus(r: randyStatus | null, easy: boolean): 
 		let v1 = (__goscriptAwait = (r !== null && (r as any).__isVarRef !== true && (r as any).__goValue === undefined ? (r as Exclude<randyStatus, null>) : $.pointerValue<Exclude<randyStatus, null>>(r)).Intn(5), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait);
 		;(_this$ as Status).Details = $.makeSlice<types.Any | $.VarRef<types.Any> | null>(v1)
 		for (let i = 0; i < v1; i++) {
-			$.sliceElems((_this$ as Status).Details!)[$.sliceSlot((_this$ as Status).Details!, i)] = await types.NewPopulatedAny((r as types.randyAny | null), easy)
+			$.sliceElems((_this$ as Status).Details!)[$.sliceSlot((_this$ as Status).Details!, i)] = types.NewPopulatedAny((r as types.randyAny | null), easy)
 		}
 	}
 	if (!easy && ((__goscriptAwait = (r !== null && (r as any).__isVarRef !== true && (r as any).__goValue === undefined ? (r as Exclude<randyStatus, null>) : $.pointerValue<Exclude<randyStatus, null>>(r)).Intn(10), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) != 0)) {

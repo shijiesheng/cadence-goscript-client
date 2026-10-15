@@ -25,10 +25,6 @@ import * as protobuf from "@goscript/go.uber.org/yarpc/encoding/protobuf/index.j
 
 import * as reflection from "@goscript/go.uber.org/yarpc/encoding/protobuf/reflection/index.js"
 
-import * as types from "@goscript/github.com/gogo/protobuf/types/index.js"
-
-import * as dig from "@goscript/go.uber.org/dig/index.js"
-
 import type * as io from "@goscript/io/index.js"
 
 import * as __goscript_common_pb from "./common.pb.gs.ts"
@@ -49,8 +45,6 @@ import "@goscript/go.uber.org/yarpc/api/transport/index.js"
 import "@goscript/go.uber.org/yarpc/api/x/restriction/index.js"
 import "@goscript/go.uber.org/yarpc/encoding/protobuf/index.js"
 import "@goscript/go.uber.org/yarpc/encoding/protobuf/reflection/index.js"
-import "@goscript/github.com/gogo/protobuf/types/index.js"
-import "@goscript/go.uber.org/dig/index.js"
 import "./common.pb.gs.ts"
 import "./schedule.pb.gs.ts"
 import "./service_schedule.pb.gs.ts"
@@ -72,7 +66,7 @@ export type ScheduleAPIYARPCClient = {
 $.registerInterfaceType(
 	"apiv1.ScheduleAPIYARPCClient",
 	null,
-	[$.methodSignature("BackfillSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.BackfillScheduleRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.BackfillScheduleResponse"), "error"]), $.methodSignature("CreateSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.CreateScheduleRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.CreateScheduleResponse"), "error"]), $.methodSignature("DeleteSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.DeleteScheduleRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.DeleteScheduleResponse"), "error"]), $.methodSignature("DescribeSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.DescribeScheduleRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.DescribeScheduleResponse"), "error"]), $.methodSignature("ListSchedules", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListSchedulesRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.ListSchedulesResponse"), "error"]), $.methodSignature("PauseSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.PauseScheduleRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.PauseScheduleResponse"), "error"]), $.methodSignature("UnpauseSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.UnpauseScheduleRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.UnpauseScheduleResponse"), "error"]), $.methodSignature("UpdateSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.UpdateScheduleRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.UpdateScheduleResponse"), "error"])]
+	[{ name: "BackfillSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.BackfillScheduleResponse") }, { type: "error" }] }, { name: "CreateSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.CreateScheduleResponse") }, { type: "error" }] }, { name: "DeleteSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DeleteScheduleResponse") }, { type: "error" }] }, { name: "DescribeSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DescribeScheduleResponse") }, { type: "error" }] }, { name: "ListSchedules", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListSchedulesResponse") }, { type: "error" }] }, { name: "PauseSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.PauseScheduleResponse") }, { type: "error" }] }, { name: "UnpauseSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.UnpauseScheduleResponse") }, { type: "error" }] }, { name: "UpdateSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.UpdateScheduleResponse") }, { type: "error" }] }]
 );
 
 export type ScheduleAPIYARPCServer = {
@@ -89,7 +83,7 @@ export type ScheduleAPIYARPCServer = {
 $.registerInterfaceType(
 	"apiv1.ScheduleAPIYARPCServer",
 	null,
-	[$.methodSignature("BackfillSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.BackfillScheduleRequest")], [/* @__PURE__ */ $.pointerType("apiv1.BackfillScheduleResponse"), "error"]), $.methodSignature("CreateSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.CreateScheduleRequest")], [/* @__PURE__ */ $.pointerType("apiv1.CreateScheduleResponse"), "error"]), $.methodSignature("DeleteSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.DeleteScheduleRequest")], [/* @__PURE__ */ $.pointerType("apiv1.DeleteScheduleResponse"), "error"]), $.methodSignature("DescribeSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.DescribeScheduleRequest")], [/* @__PURE__ */ $.pointerType("apiv1.DescribeScheduleResponse"), "error"]), $.methodSignature("ListSchedules", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListSchedulesRequest")], [/* @__PURE__ */ $.pointerType("apiv1.ListSchedulesResponse"), "error"]), $.methodSignature("PauseSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.PauseScheduleRequest")], [/* @__PURE__ */ $.pointerType("apiv1.PauseScheduleResponse"), "error"]), $.methodSignature("UnpauseSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.UnpauseScheduleRequest")], [/* @__PURE__ */ $.pointerType("apiv1.UnpauseScheduleResponse"), "error"]), $.methodSignature("UpdateSchedule", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.UpdateScheduleRequest")], [/* @__PURE__ */ $.pointerType("apiv1.UpdateScheduleResponse"), "error"])]
+	[{ name: "BackfillSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.BackfillScheduleResponse") }, { type: "error" }] }, { name: "CreateSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.CreateScheduleResponse") }, { type: "error" }] }, { name: "DeleteSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DeleteScheduleResponse") }, { type: "error" }] }, { name: "DescribeSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DescribeScheduleResponse") }, { type: "error" }] }, { name: "ListSchedules", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListSchedulesResponse") }, { type: "error" }] }, { name: "PauseSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.PauseScheduleResponse") }, { type: "error" }] }, { name: "UnpauseSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.UnpauseScheduleResponse") }, { type: "error" }] }, { name: "UpdateSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.UpdateScheduleResponse") }, { type: "error" }] }]
 );
 
 export class buildScheduleAPIYARPCProceduresParams {
@@ -138,7 +132,7 @@ export class buildScheduleAPIYARPCProceduresParams {
 		() => new buildScheduleAPIYARPCProceduresParams(),
 		() => [],
 		buildScheduleAPIYARPCProceduresParams,
-		() => [/* @__PURE__ */ $.structField("Server", "apiv1.ScheduleAPIYARPCServer", [0], 0, true), /* @__PURE__ */ $.structField("AnyResolver", "jsonpb.AnyResolver", [1], 16, true)]
+		() => [{ name: "Server", key: "Server", type: "apiv1.ScheduleAPIYARPCServer" }, { name: "AnyResolver", key: "AnyResolver", type: "jsonpb.AnyResolver" }]
 	)
 }
 
@@ -184,7 +178,7 @@ export class FxScheduleAPIYARPCClientParams {
 
 	constructor(init?: Partial<{In?: fx.In, Provider?: yarpc.ClientConfig | null, AnyResolver?: jsonpb.AnyResolver | null, Restriction?: restriction.Checker | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			In: init?.In ? init.In.clone() : new dig.In(undefined, true),
+			In: init?.In ?? (undefined as any as fx.In),
 			Provider: init?.Provider ?? (null! as yarpc.ClientConfig | null),
 			AnyResolver: init?.AnyResolver ?? (null! as jsonpb.AnyResolver | null),
 			Restriction: init?.Restriction ?? (null! as restriction.Checker | null)
@@ -199,7 +193,7 @@ export class FxScheduleAPIYARPCClientParams {
 	public __goscriptAssign(source: FxScheduleAPIYARPCClientParams): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.In, values.In)
+		target.In = $.assignFieldValue(target.In, values.In, "dig.In")
 		target.Provider = $.assignFieldValue(target.Provider, values.Provider, "yarpc.ClientConfig")
 		target.AnyResolver = $.assignFieldValue(target.AnyResolver, values.AnyResolver, "jsonpb.AnyResolver")
 		target.Restriction = $.assignFieldValue(target.Restriction, values.Restriction, "restriction.Checker")
@@ -210,7 +204,7 @@ export class FxScheduleAPIYARPCClientParams {
 		() => new FxScheduleAPIYARPCClientParams(),
 		() => [],
 		FxScheduleAPIYARPCClientParams,
-		() => [/* @__PURE__ */ $.structField("In", "dig.In", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Provider", "yarpc.ClientConfig", [1], 0, true), /* @__PURE__ */ $.structField("AnyResolver", "jsonpb.AnyResolver", [2], 16, true, { tag: "name:\"yarpcfx\" optional:\"true\"" }), /* @__PURE__ */ $.structField("Restriction", "restriction.Checker", [3], 32, true, { tag: "optional:\"true\"" })]
+		() => [{ name: "In", key: "In", type: "dig.In", anonymous: true }, { name: "Provider", key: "Provider", type: "yarpc.ClientConfig" }, { name: "AnyResolver", key: "AnyResolver", type: "jsonpb.AnyResolver", tag: "name:\"yarpcfx\" optional:\"true\"" }, { name: "Restriction", key: "Restriction", type: "restriction.Checker", tag: "optional:\"true\"" }]
 	)
 }
 
@@ -238,7 +232,7 @@ export class FxScheduleAPIYARPCClientResult {
 
 	constructor(init?: Partial<{Out?: fx.Out, Client?: ScheduleAPIYARPCClient | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			Out: init?.Out ? init.Out.clone() : new dig.Out(undefined, true),
+			Out: init?.Out ?? (undefined as any as fx.Out),
 			Client: init?.Client ?? (null! as ScheduleAPIYARPCClient | null)
 		}
 		;(this as any)[$.structValueMarker] = __goscriptValue === true
@@ -251,7 +245,7 @@ export class FxScheduleAPIYARPCClientResult {
 	public __goscriptAssign(source: FxScheduleAPIYARPCClientResult): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.Out, values.Out)
+		target.Out = $.assignFieldValue(target.Out, values.Out, "dig.Out")
 		target.Client = $.assignFieldValue(target.Client, values.Client, "apiv1.ScheduleAPIYARPCClient")
 	}
 
@@ -260,7 +254,7 @@ export class FxScheduleAPIYARPCClientResult {
 		() => new FxScheduleAPIYARPCClientResult(),
 		() => [],
 		FxScheduleAPIYARPCClientResult,
-		() => [/* @__PURE__ */ $.structField("Out", "dig.Out", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Client", "apiv1.ScheduleAPIYARPCClient", [1], 0, true)]
+		() => [{ name: "Out", key: "Out", type: "dig.Out", anonymous: true }, { name: "Client", key: "Client", type: "apiv1.ScheduleAPIYARPCClient" }]
 	)
 }
 
@@ -297,7 +291,7 @@ export class FxScheduleAPIYARPCProceduresParams {
 
 	constructor(init?: Partial<{In?: fx.In, Server?: ScheduleAPIYARPCServer | null, AnyResolver?: jsonpb.AnyResolver | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			In: init?.In ? init.In.clone() : new dig.In(undefined, true),
+			In: init?.In ?? (undefined as any as fx.In),
 			Server: init?.Server ?? (null! as ScheduleAPIYARPCServer | null),
 			AnyResolver: init?.AnyResolver ?? (null! as jsonpb.AnyResolver | null)
 		}
@@ -311,7 +305,7 @@ export class FxScheduleAPIYARPCProceduresParams {
 	public __goscriptAssign(source: FxScheduleAPIYARPCProceduresParams): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.In, values.In)
+		target.In = $.assignFieldValue(target.In, values.In, "dig.In")
 		target.Server = $.assignFieldValue(target.Server, values.Server, "apiv1.ScheduleAPIYARPCServer")
 		target.AnyResolver = $.assignFieldValue(target.AnyResolver, values.AnyResolver, "jsonpb.AnyResolver")
 	}
@@ -321,7 +315,7 @@ export class FxScheduleAPIYARPCProceduresParams {
 		() => new FxScheduleAPIYARPCProceduresParams(),
 		() => [],
 		FxScheduleAPIYARPCProceduresParams,
-		() => [/* @__PURE__ */ $.structField("In", "dig.In", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Server", "apiv1.ScheduleAPIYARPCServer", [1], 0, true), /* @__PURE__ */ $.structField("AnyResolver", "jsonpb.AnyResolver", [2], 16, true, { tag: "name:\"yarpcfx\" optional:\"true\"" })]
+		() => [{ name: "In", key: "In", type: "dig.In", anonymous: true }, { name: "Server", key: "Server", type: "apiv1.ScheduleAPIYARPCServer" }, { name: "AnyResolver", key: "AnyResolver", type: "jsonpb.AnyResolver", tag: "name:\"yarpcfx\" optional:\"true\"" }]
 	)
 }
 
@@ -358,7 +352,7 @@ export class FxScheduleAPIYARPCProceduresResult {
 
 	constructor(init?: Partial<{Out?: fx.Out, Procedures?: $.Slice<transport.Procedure>, ReflectionMeta?: reflection.ServerMeta}>, __goscriptValue?: boolean) {
 		this._fields = {
-			Out: init?.Out ? init.Out.clone() : new dig.Out(undefined, true),
+			Out: init?.Out ?? (undefined as any as fx.Out),
 			Procedures: init?.Procedures ?? (null! as $.Slice<transport.Procedure>),
 			ReflectionMeta: init?.ReflectionMeta ? init.ReflectionMeta.clone() : new reflection.ServerMeta(undefined, true)
 		}
@@ -372,7 +366,7 @@ export class FxScheduleAPIYARPCProceduresResult {
 	public __goscriptAssign(source: FxScheduleAPIYARPCProceduresResult): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.Out, values.Out)
+		target.Out = $.assignFieldValue(target.Out, values.Out, "dig.Out")
 		target.Procedures = values.Procedures
 		$.assignStruct(target.ReflectionMeta, values.ReflectionMeta)
 	}
@@ -382,7 +376,7 @@ export class FxScheduleAPIYARPCProceduresResult {
 		() => new FxScheduleAPIYARPCProceduresResult(),
 		() => [],
 		FxScheduleAPIYARPCProceduresResult,
-		() => [/* @__PURE__ */ $.structField("Out", "dig.Out", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Procedures", /* @__PURE__ */ $.sliceType("transport.Procedure"), [1], 0, true, { tag: "group:\"yarpcfx\"" }), /* @__PURE__ */ $.structField("ReflectionMeta", "reflection.ServerMeta", [2], 24, true, { tag: "group:\"yarpcfx\"" })]
+		() => [{ name: "Out", key: "Out", type: "dig.Out", anonymous: true }, { name: "Procedures", key: "Procedures", type: /* @__PURE__ */ $.sliceType("transport.Procedure"), tag: "group:\"yarpcfx\"" }, { name: "ReflectionMeta", key: "ReflectionMeta", type: "reflection.ServerMeta", tag: "group:\"yarpcfx\"" }]
 	)
 }
 
@@ -539,9 +533,9 @@ export class _ScheduleAPIYARPCCaller {
 	static __typeInfo = $.registerStructType(
 		"apiv1._ScheduleAPIYARPCCaller",
 		() => new _ScheduleAPIYARPCCaller(),
-		() => [$.methodSignature("BackfillSchedule", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.BackfillScheduleRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.BackfillScheduleResponse"), "error"], true), $.methodSignature("CreateSchedule", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.CreateScheduleRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.CreateScheduleResponse"), "error"], true), $.methodSignature("DeleteSchedule", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.DeleteScheduleRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.DeleteScheduleResponse"), "error"], true), $.methodSignature("DescribeSchedule", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.DescribeScheduleRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.DescribeScheduleResponse"), "error"], true), $.methodSignature("ListSchedules", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.ListSchedulesRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.ListSchedulesResponse"), "error"], true), $.methodSignature("PauseSchedule", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.PauseScheduleRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.PauseScheduleResponse"), "error"], true), $.methodSignature("UnpauseSchedule", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.UnpauseScheduleRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.UnpauseScheduleResponse"), "error"], true), $.methodSignature("UpdateSchedule", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.UpdateScheduleRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.UpdateScheduleResponse"), "error"], true)],
+		() => [{ name: "BackfillSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.BackfillScheduleResponse") }, { type: "error" }], pointerReceiver: true }, { name: "CreateSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.CreateScheduleResponse") }, { type: "error" }], pointerReceiver: true }, { name: "DeleteSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DeleteScheduleResponse") }, { type: "error" }], pointerReceiver: true }, { name: "DescribeSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DescribeScheduleResponse") }, { type: "error" }], pointerReceiver: true }, { name: "ListSchedules", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListSchedulesResponse") }, { type: "error" }], pointerReceiver: true }, { name: "PauseSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.PauseScheduleResponse") }, { type: "error" }], pointerReceiver: true }, { name: "UnpauseSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.UnpauseScheduleResponse") }, { type: "error" }], pointerReceiver: true }, { name: "UpdateSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.UpdateScheduleResponse") }, { type: "error" }], pointerReceiver: true }],
 		_ScheduleAPIYARPCCaller,
-		() => [/* @__PURE__ */ $.structField("streamClient", "protobuf.StreamClient", [0], 0, false, { pkgPath: "github.com/uber/cadence-idl/go/proto/api/v1" })]
+		() => [{ name: "streamClient", key: "streamClient", type: "protobuf.StreamClient" }]
 	)
 }
 
@@ -746,18 +740,19 @@ export class _ScheduleAPIYARPCHandler {
 	static __typeInfo = $.registerStructType(
 		"apiv1._ScheduleAPIYARPCHandler",
 		() => new _ScheduleAPIYARPCHandler(),
-		() => [$.methodSignature("BackfillSchedule", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("CreateSchedule", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("DeleteSchedule", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("DescribeSchedule", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("ListSchedules", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("PauseSchedule", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("UnpauseSchedule", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("UpdateSchedule", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true)],
+		() => [{ name: "BackfillSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "CreateSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "DeleteSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "DescribeSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "ListSchedules", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "PauseSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "UnpauseSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "UpdateSchedule", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }],
 		_ScheduleAPIYARPCHandler,
-		() => [/* @__PURE__ */ $.structField("server", "apiv1.ScheduleAPIYARPCServer", [0], 0, false, { pkgPath: "github.com/uber/cadence-idl/go/proto/api/v1" })]
+		() => [{ name: "server", key: "server", type: "apiv1.ScheduleAPIYARPCServer" }]
 	)
 }
 
 export async function newScheduleAPIYARPCClient(clientConfig: transport.ClientConfig | null, anyResolver: jsonpb.AnyResolver | null, options: $.Slice<protobuf.ClientOption | null>): globalThis.Promise<ScheduleAPIYARPCClient | null> {
-	return $.interfaceValue<ScheduleAPIYARPCClient | null>((await (async () => { const __goscriptLiteralField0 = await protobuf.NewStreamClient(new protobuf.ClientParams({ServiceName: "uber.cadence.api.v1.ScheduleAPI", ClientConfig: clientConfig, AnyResolver: anyResolver, Options: options}, true)); return new _ScheduleAPIYARPCCaller({streamClient: __goscriptLiteralField0}) })()), "*apiv1._ScheduleAPIYARPCCaller", /* @__PURE__ */ $.pointerType("apiv1._ScheduleAPIYARPCCaller"))
+	const streamClient = await protobuf.NewStreamClient(new protobuf.ClientParams({ServiceName: "uber.cadence.api.v1.ScheduleAPI", ClientConfig: clientConfig, AnyResolver: anyResolver, Options: options}, true))
+	return $.interfaceValue<ScheduleAPIYARPCClient | null>(new _ScheduleAPIYARPCCaller({streamClient}), "*apiv1._ScheduleAPIYARPCCaller", /* @__PURE__ */ $.pointerType("apiv1._ScheduleAPIYARPCCaller"))
 }
 
 export async function NewScheduleAPIYARPCClient(clientConfig: transport.ClientConfig | null, options: $.Slice<protobuf.ClientOption | null>): globalThis.Promise<ScheduleAPIYARPCClient | null> {
-	return newScheduleAPIYARPCClient(clientConfig, null, options)
+	return await newScheduleAPIYARPCClient(clientConfig, null, options)
 }
 
 export function buildScheduleAPIYARPCProcedures(params: buildScheduleAPIYARPCProceduresParams): $.Slice<transport.Procedure> {
@@ -787,7 +782,8 @@ export function NewFxScheduleAPIYARPCClient(name: string, options: $.Slice<proto
 			}
 		}
 
-		return (await (async () => { const __goscriptLiteralField9 = await newScheduleAPIYARPCClient(cc, params.AnyResolver, options); return new FxScheduleAPIYARPCClientResult({Client: __goscriptLiteralField9}, true) })())
+		const client = await newScheduleAPIYARPCClient(cc, params.AnyResolver, options)
+		return new FxScheduleAPIYARPCClientResult({Client: client}, true)
 	}, ({ kind: $.TypeKind.Function, params: ["apiv1.FxScheduleAPIYARPCClientParams"], results: ["apiv1.FxScheduleAPIYARPCClientResult"] } as $.FunctionTypeInfo)), "func(params apiv1.FxScheduleAPIYARPCClientParams) apiv1.FxScheduleAPIYARPCClientResult", ({ kind: $.TypeKind.Function, params: ["apiv1.FxScheduleAPIYARPCClientParams"], results: ["apiv1.FxScheduleAPIYARPCClientResult"] } as $.FunctionTypeInfo))
 }
 
@@ -1190,9 +1186,9 @@ export function __goscript_set_yarpcFileDescriptorClosuree1236bf37818157b(__gosc
 	yarpcFileDescriptorClosuree1236bf37818157b = __goscriptValue
 }
 
-async function __goscriptInit0(): globalThis.Promise<void> {
-	await yarpc.RegisterClientBuilder($.interfaceValue($.functionValue(async (clientConfig: transport.ClientConfig | null, structField: reflect.StructField): globalThis.Promise<ScheduleAPIYARPCClient | null> => {
-		return await NewScheduleAPIYARPCClient(clientConfig, protobuf.ClientBuilderOptions(clientConfig, structField))
+function __goscriptInit0(): void {
+	yarpc.RegisterClientBuilder($.interfaceValue($.functionValue(async (clientConfig: transport.ClientConfig | null, structField: reflect.StructField): globalThis.Promise<ScheduleAPIYARPCClient | null> => {
+		return await NewScheduleAPIYARPCClient(clientConfig, protobuf.ClientBuilderOptions(clientConfig, $.markAsStructValue($.cloneStructValue(structField))))
 	}, ({ kind: $.TypeKind.Function, params: ["transport.ClientConfig", "reflect.StructField"], results: ["apiv1.ScheduleAPIYARPCClient"] } as $.FunctionTypeInfo)), "func(clientConfig transport.ClientConfig, structField reflect.StructField) apiv1.ScheduleAPIYARPCClient", ({ kind: $.TypeKind.Function, params: ["transport.ClientConfig", "reflect.StructField"], results: ["apiv1.ScheduleAPIYARPCClient"] } as $.FunctionTypeInfo)))
 }
 

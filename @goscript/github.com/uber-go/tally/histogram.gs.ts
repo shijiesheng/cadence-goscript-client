@@ -144,9 +144,9 @@ export class bucketPair {
 	static __typeInfo = $.registerStructType(
 		"tally.bucketPair",
 		() => new bucketPair(),
-		() => [$.methodSignature("LowerBoundDuration", [], [/* @__PURE__ */ $.basicType("int64", "time.Duration")]), $.methodSignature("LowerBoundValue", [], [/* @__PURE__ */ $.basicType("float64")]), $.methodSignature("UpperBoundDuration", [], [/* @__PURE__ */ $.basicType("int64", "time.Duration")]), $.methodSignature("UpperBoundValue", [], [/* @__PURE__ */ $.basicType("float64")])],
+		() => [{ name: "LowerBoundDuration", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64", "time.Duration") }] }, { name: "LowerBoundValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }] }, { name: "UpperBoundDuration", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64", "time.Duration") }] }, { name: "UpperBoundValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }] }],
 		bucketPair,
-		() => [/* @__PURE__ */ $.structField("lowerBoundValue", /* @__PURE__ */ $.basicType("float64"), [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("upperBoundValue", /* @__PURE__ */ $.basicType("float64"), [1], 8, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("lowerBoundDuration", /* @__PURE__ */ $.basicType("int64", "time.Duration"), [2], 16, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("upperBoundDuration", /* @__PURE__ */ $.basicType("int64", "time.Duration"), [3], 24, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "lowerBoundValue", key: "lowerBoundValue", type: /* @__PURE__ */ $.basicType("float64") }, { name: "upperBoundValue", key: "upperBoundValue", type: /* @__PURE__ */ $.basicType("float64") }, { name: "lowerBoundDuration", key: "lowerBoundDuration", type: /* @__PURE__ */ $.basicType("int64", "time.Duration") }, { name: "upperBoundDuration", key: "upperBoundDuration", type: /* @__PURE__ */ $.basicType("int64", "time.Duration") }]
 	)
 }
 

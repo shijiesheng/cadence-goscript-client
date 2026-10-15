@@ -13,12 +13,6 @@ import * as errors from "@goscript/google.golang.org/protobuf/internal/errors/in
 
 import * as protoreflect from "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 
-import * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
-import type * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
-
-import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-
 import * as reflect from "@goscript/reflect/index.js"
 
 import * as __goscript_checkinit from "./checkinit.gs.ts"
@@ -61,8 +55,6 @@ import "@goscript/sync/atomic/index.js"
 import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
 import "@goscript/google.golang.org/protobuf/internal/errors/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
-import "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 import "@goscript/reflect/index.js"
 import "./checkinit.gs.ts"
 import "./codec_field.gs.ts"
@@ -163,7 +155,7 @@ export class extensionFieldInfo {
 		() => new extensionFieldInfo(),
 		() => [],
 		extensionFieldInfo,
-		() => [/* @__PURE__ */ $.structField("wiretag", /* @__PURE__ */ $.basicType("uint64"), [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("tagsize", /* @__PURE__ */ $.basicType("int"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("unmarshalNeedsValue", /* @__PURE__ */ $.basicType("bool"), [2], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("funcs", "impl.valueCoderFuncs", [3], 24, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("validation", "impl.validationInfo", [4], 64, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "wiretag", key: "wiretag", type: /* @__PURE__ */ $.basicType("uint64") }, { name: "tagsize", key: "tagsize", type: /* @__PURE__ */ $.basicType("int") }, { name: "unmarshalNeedsValue", key: "unmarshalNeedsValue", type: /* @__PURE__ */ $.basicType("bool") }, { name: "funcs", key: "funcs", type: "impl.valueCoderFuncs" }, { name: "validation", key: "validation", type: "impl.validationInfo" }]
 	)
 }
 
@@ -257,7 +249,7 @@ export class lazyExtensionValue {
 		() => new lazyExtensionValue(),
 		() => [],
 		lazyExtensionValue,
-		() => [/* @__PURE__ */ $.structField("atomicOnce", /* @__PURE__ */ $.basicType("uint32"), [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("mu", "sync.Mutex", [1], 4, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("xi", /* @__PURE__ */ $.pointerType("impl.extensionFieldInfo"), [2], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("value", "protoreflect.Value", [3], 24, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [4], 96, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("fn", ({ kind: $.TypeKind.Function, params: [], results: ["protoreflect.Value"] } as $.FunctionTypeInfo), [5], 120, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "atomicOnce", key: "atomicOnce", type: /* @__PURE__ */ $.basicType("uint32") }, { name: "mu", key: "mu", type: "sync.Mutex" }, { name: "xi", key: "xi", type: /* @__PURE__ */ $.pointerType("impl.extensionFieldInfo") }, { name: "value", key: "value", type: "protoreflect.Value" }, { name: "b", key: "b", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "fn", key: "fn", type: ({ kind: $.TypeKind.Function, params: [], results: ["protoreflect.Value"] } as $.FunctionTypeInfo) }]
 	)
 }
 
@@ -425,7 +417,7 @@ export class ExtensionField {
 						tag = __goscriptTuple1[0]
 						n = __goscriptTuple1[1]
 						if (n < 0) {
-							$.panic((await errors.New("bad tag in lazy extension decoding", null) as any))
+							$.panic((errors.New("bad tag in lazy extension decoding", null) as any))
 						}
 						b = $.goSlice(b, n, undefined)
 					}
@@ -439,7 +431,7 @@ export class ExtensionField {
 				out = $.assignStruct(out, __goscriptTuple2[1])
 				err = __goscriptTuple2[2]
 				if (err != null) {
-					$.panic((await errors.New("decode failure in lazy extension decoding: %v", $.arrayToSlice<any>([(err as any)])) as any))
+					$.panic((errors.New("decode failure in lazy extension decoding: %v", $.arrayToSlice<any>([(err as any)])) as any))
 				}
 				b = $.goSlice(b, out.n, undefined)
 			}
@@ -456,9 +448,9 @@ export class ExtensionField {
 	static __typeInfo = $.registerStructType(
 		"impl.ExtensionField",
 		() => new ExtensionField(),
-		() => [$.methodSignature("IsSet", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("Set", [["t", "protoreflect.ExtensionType"], ["v", "protoreflect.Value"]], [], true), $.methodSignature("SetLazy", [["t", "protoreflect.ExtensionType"], ["fn", ({ kind: $.TypeKind.Function, params: [], results: ["protoreflect.Value"] } as $.FunctionTypeInfo)]], [], true), $.methodSignature("Type", [], ["protoreflect.ExtensionType"]), $.methodSignature("Value", [], ["protoreflect.Value"], true), $.methodSignature("appendLazyBytes", [["xt", "protoreflect.ExtensionType"], ["xi", /* @__PURE__ */ $.pointerType("impl.extensionFieldInfo")], ["num", /* @__PURE__ */ $.basicType("int32", "protowire.Number")], ["wtyp", /* @__PURE__ */ $.basicType("int8", "protowire.Type")], ["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [], true), $.methodSignature("canLazy", [["xt", "protoreflect.ExtensionType"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("isUnexpandedLazy", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("lazyBuffer", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], true), $.methodSignature("lazyInit", [], [], true)],
+		() => [{ name: "IsSet", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "Set", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "SetLazy", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "Type", args: [], returns: [{ type: "protoreflect.ExtensionType" }] }, { name: "Value", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "appendLazyBytes", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "canLazy", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "isUnexpandedLazy", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "lazyBuffer", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }], pointerReceiver: true }, { name: "lazyInit", args: [], returns: [], pointerReceiver: true }],
 		ExtensionField,
-		() => [/* @__PURE__ */ $.structField("typ", "protoreflect.ExtensionType", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("value", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("lazy", /* @__PURE__ */ $.pointerType("impl.lazyExtensionValue"), [2], 88, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "typ", key: "typ", type: "protoreflect.ExtensionType" }, { name: "value", key: "value", type: "protoreflect.Value" }, { name: "lazy", key: "lazy", type: /* @__PURE__ */ $.pointerType("impl.lazyExtensionValue") }]
 	)
 }
 

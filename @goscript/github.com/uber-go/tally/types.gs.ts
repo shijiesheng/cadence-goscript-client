@@ -27,7 +27,7 @@ export type Scope = {
 $.registerInterfaceType(
 	"tally.Scope",
 	null,
-	[$.methodSignature("Capabilities", [], ["tally.Capabilities"]), $.methodSignature("Counter", [["name", /* @__PURE__ */ $.basicType("string")]], ["tally.Counter"]), $.methodSignature("Gauge", [["name", /* @__PURE__ */ $.basicType("string")]], ["tally.Gauge"]), $.methodSignature("Histogram", [["name", /* @__PURE__ */ $.basicType("string")], ["buckets", "tally.Buckets"]], ["tally.Histogram"]), $.methodSignature("SubScope", [["name", /* @__PURE__ */ $.basicType("string")]], ["tally.Scope"]), $.methodSignature("Tagged", [["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))]], ["tally.Scope"]), $.methodSignature("Timer", [["name", /* @__PURE__ */ $.basicType("string")]], ["tally.Timer"])]
+	[{ name: "Capabilities", args: [], returns: [{ type: "tally.Capabilities" }] }, { name: "Counter", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.Counter" }] }, { name: "Gauge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.Gauge" }] }, { name: "Histogram", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.Histogram" }] }, { name: "SubScope", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.Scope" }] }, { name: "Tagged", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.Scope" }] }, { name: "Timer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.Timer" }] }]
 );
 
 export type Counter = {
@@ -37,7 +37,7 @@ export type Counter = {
 $.registerInterfaceType(
 	"tally.Counter",
 	null,
-	[$.methodSignature("Inc", [["delta", /* @__PURE__ */ $.basicType("int64")]])]
+	[{ name: "Inc", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }]
 );
 
 export type Gauge = {
@@ -47,7 +47,7 @@ export type Gauge = {
 $.registerInterfaceType(
 	"tally.Gauge",
 	null,
-	[$.methodSignature("Update", [["value", /* @__PURE__ */ $.basicType("float64")]])]
+	[{ name: "Update", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }]
 );
 
 export type Timer = {
@@ -58,7 +58,7 @@ export type Timer = {
 $.registerInterfaceType(
 	"tally.Timer",
 	null,
-	[$.methodSignature("Record", [["value", /* @__PURE__ */ $.basicType("int64", "time.Duration")]]), $.methodSignature("Start", [], ["tally.Stopwatch"])]
+	[{ name: "Record", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "Start", args: [], returns: [{ type: "tally.Stopwatch" }] }]
 );
 
 export type Histogram = {
@@ -70,7 +70,7 @@ export type Histogram = {
 $.registerInterfaceType(
 	"tally.Histogram",
 	null,
-	[$.methodSignature("RecordDuration", [["value", /* @__PURE__ */ $.basicType("int64", "time.Duration")]]), $.methodSignature("RecordValue", [["value", /* @__PURE__ */ $.basicType("float64")]]), $.methodSignature("Start", [], ["tally.Stopwatch"])]
+	[{ name: "RecordDuration", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "RecordValue", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "Start", args: [], returns: [{ type: "tally.Stopwatch" }] }]
 );
 
 export type StopwatchRecorder = {
@@ -80,14 +80,14 @@ export type StopwatchRecorder = {
 $.registerInterfaceType(
 	"tally.StopwatchRecorder",
 	null,
-	[$.methodSignature("RecordStopwatch", [["stopwatchStart", "time.Time"]])]
+	[{ name: "RecordStopwatch", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }]
 );
 
 export type Buckets = {
 	AsDurations(): $.Slice<time.Duration>
 	AsValues(): $.Slice<number>
 	Len(): number
-	Less(i: number, j: number): boolean | globalThis.Promise<boolean>
+	Less(i: number, j: number): boolean
 	String(): string | globalThis.Promise<string>
 	Swap(i: number, j: number): void
 }
@@ -95,7 +95,7 @@ export type Buckets = {
 $.registerInterfaceType(
 	"tally.Buckets",
 	null,
-	[$.methodSignature("AsDurations", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64", "time.Duration"))]), $.methodSignature("AsValues", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("float64"))]), $.methodSignature("Len", [], [/* @__PURE__ */ $.basicType("int")]), $.methodSignature("Less", [["i", /* @__PURE__ */ $.basicType("int")], ["j", /* @__PURE__ */ $.basicType("int")]], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("Swap", [["i", /* @__PURE__ */ $.basicType("int")], ["j", /* @__PURE__ */ $.basicType("int")]])]
+	[{ name: "AsDurations", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64", "time.Duration")) }] }, { name: "AsValues", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("float64")) }] }, { name: "Len", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }] }, { name: "Less", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "Swap", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }]
 );
 
 export type BucketPair = {
@@ -108,7 +108,7 @@ export type BucketPair = {
 $.registerInterfaceType(
 	"tally.BucketPair",
 	null,
-	[$.methodSignature("LowerBoundDuration", [], [/* @__PURE__ */ $.basicType("int64", "time.Duration")]), $.methodSignature("LowerBoundValue", [], [/* @__PURE__ */ $.basicType("float64")]), $.methodSignature("UpperBoundDuration", [], [/* @__PURE__ */ $.basicType("int64", "time.Duration")]), $.methodSignature("UpperBoundValue", [], [/* @__PURE__ */ $.basicType("float64")])]
+	[{ name: "LowerBoundDuration", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64", "time.Duration") }] }, { name: "LowerBoundValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }] }, { name: "UpperBoundDuration", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64", "time.Duration") }] }, { name: "UpperBoundValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }] }]
 );
 
 export type Capabilities = {
@@ -119,7 +119,7 @@ export type Capabilities = {
 $.registerInterfaceType(
 	"tally.Capabilities",
 	null,
-	[$.methodSignature("Reporting", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("Tagging", [], [/* @__PURE__ */ $.basicType("bool")])]
+	[{ name: "Reporting", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "Tagging", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }]
 );
 
 export class Stopwatch {
@@ -171,9 +171,9 @@ export class Stopwatch {
 	static __typeInfo = $.registerStructType(
 		"tally.Stopwatch",
 		() => new Stopwatch(),
-		() => [$.methodSignature("Stop")],
+		() => [{ name: "Stop", args: [], returns: [] }],
 		Stopwatch,
-		() => [/* @__PURE__ */ $.structField("start", "time.Time", [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("recorder", "tally.StopwatchRecorder", [1], 24, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "start", key: "start", type: "time.Time" }, { name: "recorder", key: "recorder", type: "tally.StopwatchRecorder" }]
 	)
 }
 

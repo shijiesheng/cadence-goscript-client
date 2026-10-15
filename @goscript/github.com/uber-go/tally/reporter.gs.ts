@@ -22,7 +22,7 @@ export type BaseStatsReporter = {
 $.registerInterfaceType(
 	"tally.BaseStatsReporter",
 	null,
-	[$.methodSignature("Capabilities", [], ["tally.Capabilities"]), $.methodSignature("Flush")]
+	[{ name: "Capabilities", args: [], returns: [{ type: "tally.Capabilities" }] }, { name: "Flush", args: [], returns: [] }]
 );
 
 export type StatsReporter = {
@@ -38,7 +38,7 @@ export type StatsReporter = {
 $.registerInterfaceType(
 	"tally.StatsReporter",
 	null,
-	[$.methodSignature("Capabilities", [], ["tally.Capabilities"]), $.methodSignature("Flush"), $.methodSignature("ReportCounter", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["value", /* @__PURE__ */ $.basicType("int64")]]), $.methodSignature("ReportGauge", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["value", /* @__PURE__ */ $.basicType("float64")]]), $.methodSignature("ReportHistogramDurationSamples", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["buckets", "tally.Buckets"], ["bucketLowerBound", /* @__PURE__ */ $.basicType("int64", "time.Duration")], ["bucketUpperBound", /* @__PURE__ */ $.basicType("int64", "time.Duration")], ["samples", /* @__PURE__ */ $.basicType("int64")]]), $.methodSignature("ReportHistogramValueSamples", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["buckets", "tally.Buckets"], ["bucketLowerBound", /* @__PURE__ */ $.basicType("float64")], ["bucketUpperBound", /* @__PURE__ */ $.basicType("float64")], ["samples", /* @__PURE__ */ $.basicType("int64")]]), $.methodSignature("ReportTimer", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["interval", /* @__PURE__ */ $.basicType("int64", "time.Duration")]])]
+	[{ name: "Capabilities", args: [], returns: [{ type: "tally.Capabilities" }] }, { name: "Flush", args: [], returns: [] }, { name: "ReportCounter", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "ReportGauge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "ReportHistogramDurationSamples", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "ReportHistogramValueSamples", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "ReportTimer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }]
 );
 
 export type CachedStatsReporter = {
@@ -53,7 +53,7 @@ export type CachedStatsReporter = {
 $.registerInterfaceType(
 	"tally.CachedStatsReporter",
 	null,
-	[$.methodSignature("AllocateCounter", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))]], ["tally.CachedCount"]), $.methodSignature("AllocateGauge", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))]], ["tally.CachedGauge"]), $.methodSignature("AllocateHistogram", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["buckets", "tally.Buckets"]], ["tally.CachedHistogram"]), $.methodSignature("AllocateTimer", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))]], ["tally.CachedTimer"]), $.methodSignature("Capabilities", [], ["tally.Capabilities"]), $.methodSignature("Flush")]
+	[{ name: "AllocateCounter", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.CachedCount" }] }, { name: "AllocateGauge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.CachedGauge" }] }, { name: "AllocateHistogram", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.CachedHistogram" }] }, { name: "AllocateTimer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.CachedTimer" }] }, { name: "Capabilities", args: [], returns: [{ type: "tally.Capabilities" }] }, { name: "Flush", args: [], returns: [] }]
 );
 
 export type CachedCount = {
@@ -63,7 +63,7 @@ export type CachedCount = {
 $.registerInterfaceType(
 	"tally.CachedCount",
 	null,
-	[$.methodSignature("ReportCount", [["value", /* @__PURE__ */ $.basicType("int64")]])]
+	[{ name: "ReportCount", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }]
 );
 
 export type CachedGauge = {
@@ -73,7 +73,7 @@ export type CachedGauge = {
 $.registerInterfaceType(
 	"tally.CachedGauge",
 	null,
-	[$.methodSignature("ReportGauge", [["value", /* @__PURE__ */ $.basicType("float64")]])]
+	[{ name: "ReportGauge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }]
 );
 
 export type CachedTimer = {
@@ -83,7 +83,7 @@ export type CachedTimer = {
 $.registerInterfaceType(
 	"tally.CachedTimer",
 	null,
-	[$.methodSignature("ReportTimer", [["interval", /* @__PURE__ */ $.basicType("int64", "time.Duration")]])]
+	[{ name: "ReportTimer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }]
 );
 
 export type CachedHistogram = {
@@ -94,7 +94,7 @@ export type CachedHistogram = {
 $.registerInterfaceType(
 	"tally.CachedHistogram",
 	null,
-	[$.methodSignature("DurationBucket", [["bucketLowerBound", /* @__PURE__ */ $.basicType("int64", "time.Duration")], ["bucketUpperBound", /* @__PURE__ */ $.basicType("int64", "time.Duration")]], ["tally.CachedHistogramBucket"]), $.methodSignature("ValueBucket", [["bucketLowerBound", /* @__PURE__ */ $.basicType("float64")], ["bucketUpperBound", /* @__PURE__ */ $.basicType("float64")]], ["tally.CachedHistogramBucket"])]
+	[{ name: "DurationBucket", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.CachedHistogramBucket" }] }, { name: "ValueBucket", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.CachedHistogramBucket" }] }]
 );
 
 export type CachedHistogramBucket = {
@@ -104,5 +104,5 @@ export type CachedHistogramBucket = {
 $.registerInterfaceType(
 	"tally.CachedHistogramBucket",
 	null,
-	[$.methodSignature("ReportSamples", [["value", /* @__PURE__ */ $.basicType("int64")]])]
+	[{ name: "ReportSamples", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }]
 );

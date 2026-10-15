@@ -81,11 +81,11 @@ export function Code_EnumDescriptor(recv: Code): [$.Slice<number>, $.Slice<numbe
 	return [fileDescriptor_fe593a732623ccf0, $.arrayToSlice<number>([0])]
 }
 
-async function __goscriptInit0(): globalThis.Promise<void> {
+function __goscriptInit0(): void {
 	proto.RegisterEnum("google.rpc.Code", Code_name, Code_value)
 }
 
-async function __goscriptInit1(): globalThis.Promise<void> {
+function __goscriptInit1(): void {
 	proto.RegisterFile("google/rpc/code.proto", fileDescriptor_fe593a732623ccf0)
 }
 

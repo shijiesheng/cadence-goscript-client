@@ -11,7 +11,7 @@ import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoi
 
 import type * as protowire from "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
 
-import type * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
+import * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
 
 import * as __goscript_proto from "./proto.gs.ts"
 
@@ -19,6 +19,7 @@ import * as __goscript_proto_methods from "./proto_methods.gs.ts"
 import "@goscript/fmt/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
+import "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
 import "./proto.gs.ts"
 import "./proto_methods.gs.ts"
 

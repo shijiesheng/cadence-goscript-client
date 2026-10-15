@@ -1,0 +1,16 @@
+{
+  "name": "cadence-goscript-client",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "worker": "tsx examples/main.ts"
+  },
+  "dependencies": {
+    "@noble/ciphers": "2.2.0",
+    "@noble/hashes": "2.2.0",
+    "pako": "3.0.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.1"
+  }
+}

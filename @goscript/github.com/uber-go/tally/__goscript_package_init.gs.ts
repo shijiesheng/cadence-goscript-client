@@ -18,4 +18,5 @@ export async function __goscript_package_init(): globalThis.Promise<void> {
 	__goscript_file1.__goscript_init_gaugeCardinalityName()
 	__goscript_file1.__goscript_init_histogramCardinalityName()
 	__goscript_file2.__goscript_init_NullStatsReporter()
+	await __goscript_file0.__goscript_init_NoopScope()
 }

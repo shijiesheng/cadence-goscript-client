@@ -29,10 +29,6 @@ import * as protoregistry from "@goscript/google.golang.org/protobuf/reflect/pro
 
 import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 
-import type * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
-import type * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
-
 import * as sync from "@goscript/sync/index.js"
 
 import * as __goscript_checkinit from "./checkinit.gs.ts"
@@ -196,7 +192,7 @@ export class validationInfo {
 		() => new validationInfo(),
 		() => [],
 		validationInfo,
-		() => [/* @__PURE__ */ $.structField("mi", /* @__PURE__ */ $.pointerType("impl.MessageInfo"), [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("typ", /* @__PURE__ */ $.basicType("uint8", "impl.validationType"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("keyType", /* @__PURE__ */ $.basicType("uint8", "impl.validationType"), [2], 9, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("valType", /* @__PURE__ */ $.basicType("uint8", "impl.validationType"), [3], 10, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("requiredBit", /* @__PURE__ */ $.basicType("uint64"), [4], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "mi", key: "mi", type: /* @__PURE__ */ $.pointerType("impl.MessageInfo") }, { name: "typ", key: "typ", type: /* @__PURE__ */ $.basicType("uint8", "impl.validationType") }, { name: "keyType", key: "keyType", type: /* @__PURE__ */ $.basicType("uint8", "impl.validationType") }, { name: "valType", key: "valType", type: /* @__PURE__ */ $.basicType("uint8", "impl.validationType") }, { name: "requiredBit", key: "requiredBit", type: /* @__PURE__ */ $.basicType("uint64") }]
 	)
 }
 
@@ -259,7 +255,7 @@ export async function ValidationStatus_String(v: ValidationStatus): globalThis.P
 }
 
 export async function Validate(mt: protoreflect.MessageType | null, _in: protoiface.UnmarshalInput): globalThis.Promise<[protoiface.UnmarshalOutput, ValidationStatus]> {
-	let out: protoiface.UnmarshalOutput = $.anonymousStructValue({"NoUnkeyedLiterals": new pragma.NoUnkeyedLiterals(undefined, true), "Flags": 0}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [1], 0, true)] })
+	let out: protoiface.UnmarshalOutput = $.anonymousStructValue({"NoUnkeyedLiterals": undefined as any, "Flags": 0}, { kind: $.TypeKind.Struct, methods: [], fields: [/* @__PURE__ */ $.structField("NoUnkeyedLiterals", "pragma.NoUnkeyedLiterals", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Flags", /* @__PURE__ */ $.basicType("uint8"), [1], 0, true)] })
 	let __goscriptTuple0: any = $.typeAssertTuple<__goscript_message.MessageInfo | $.VarRef<__goscript_message.MessageInfo> | null>(mt, /* @__PURE__ */ $.pointerType("impl.MessageInfo"))
 	let mi: __goscript_message.MessageInfo | $.VarRef<__goscript_message.MessageInfo> | null = __goscriptTuple0[0]
 	let ok = __goscriptTuple0[1]
@@ -307,7 +303,7 @@ export async function newFieldValidationInfo(mi: __goscript_message.MessageInfo 
 				}
 				case protoreflect.StringKind:
 				{
-					if (await strs.EnforceUTF8(fd)) {
+					if (strs.EnforceUTF8(fd)) {
 						vi.typ = 11
 					}
 					break
@@ -359,7 +355,7 @@ export async function newValidationInfo(fd: protoreflect.FieldDescriptor | null,
 				case protoreflect.StringKind:
 				{
 					vi.typ = 10
-					if (await strs.EnforceUTF8(fd)) {
+					if (strs.EnforceUTF8(fd)) {
 						vi.typ = 11
 					}
 					break
@@ -394,7 +390,7 @@ export async function newValidationInfo(fd: protoreflect.FieldDescriptor | null,
 			switch ((__goscriptAwait = $.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>((__goscriptAwait = (fd !== null && (fd as any).__isVarRef !== true && (fd as any).__goValue === undefined ? (fd as Exclude<protoreflect.FieldDescriptor, null>) : $.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(fd)).MapKey(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).Kind(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)) {
 				case protoreflect.StringKind:
 				{
-					if (await strs.EnforceUTF8(fd)) {
+					if (strs.EnforceUTF8(fd)) {
 						vi.keyType = 11
 					}
 					break
@@ -411,7 +407,7 @@ export async function newValidationInfo(fd: protoreflect.FieldDescriptor | null,
 				}
 				case protoreflect.StringKind:
 				{
-					if (await strs.EnforceUTF8(fd)) {
+					if (strs.EnforceUTF8(fd)) {
 						vi.valType = 11
 					}
 					break
@@ -439,7 +435,7 @@ export async function newValidationInfo(fd: protoreflect.FieldDescriptor | null,
 				case protoreflect.StringKind:
 				{
 					vi.typ = 10
-					if (await strs.EnforceUTF8(fd)) {
+					if (strs.EnforceUTF8(fd)) {
 						vi.typ = 11
 					}
 					break

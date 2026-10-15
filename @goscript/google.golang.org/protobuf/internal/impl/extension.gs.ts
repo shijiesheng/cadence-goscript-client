@@ -25,10 +25,6 @@ import * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/in
 
 import * as protoregistry from "@goscript/google.golang.org/protobuf/reflect/protoregistry/index.js"
 
-import * as protowire from "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-
-import type * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
-
 import * as __goscript_api_export from "./api_export.gs.ts"
 
 import * as __goscript_checkinit from "./checkinit.gs.ts"
@@ -83,7 +79,6 @@ import "@goscript/google.golang.org/protobuf/internal/encoding/tag/index.js"
 import "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
 import "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoregistry/index.js"
-import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
 import "./api_export.gs.ts"
 import "./checkinit.gs.ts"
 import "./codec_extension.gs.ts"
@@ -171,32 +166,32 @@ export class extensionTypeDescriptor {
 		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).ContainingOneof()
 	}
 
-	public async Default(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Default()
+	public Default(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Default()
 	}
 
-	public async DefaultEnumValue(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).DefaultEnumValue()
+	public DefaultEnumValue(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).DefaultEnumValue()
 	}
 
-	public async Enum(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Enum()
+	public Enum(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Enum()
 	}
 
 	public FullName(): any {
 		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).FullName()
 	}
 
-	public async HasDefault(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).HasDefault()
+	public HasDefault(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).HasDefault()
 	}
 
-	public async HasJSONName(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).HasJSONName()
+	public HasJSONName(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).HasJSONName()
 	}
 
-	public async HasOptionalKeyword(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).HasOptionalKeyword()
+	public HasOptionalKeyword(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).HasOptionalKeyword()
 	}
 
 	public HasPresence(): any {
@@ -211,12 +206,12 @@ export class extensionTypeDescriptor {
 		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).IsExtension()
 	}
 
-	public async IsList(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).IsList()
+	public IsList(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).IsList()
 	}
 
-	public async IsMap(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).IsMap()
+	public IsMap(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).IsMap()
 	}
 
 	public IsPacked(): any {
@@ -231,24 +226,24 @@ export class extensionTypeDescriptor {
 		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).IsWeak()
 	}
 
-	public async JSONName(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).JSONName()
+	public JSONName(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).JSONName()
 	}
 
 	public Kind(): any {
 		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Kind()
 	}
 
-	public async MapKey(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).MapKey()
+	public MapKey(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).MapKey()
 	}
 
-	public async MapValue(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).MapValue()
+	public MapValue(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).MapValue()
 	}
 
-	public async Message(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Message()
+	public Message(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Message()
 	}
 
 	public Name(): any {
@@ -259,8 +254,8 @@ export class extensionTypeDescriptor {
 		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Number()
 	}
 
-	public async Options(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Options()
+	public Options(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Options()
 	}
 
 	public Parent(): any {
@@ -283,16 +278,16 @@ export class extensionTypeDescriptor {
 		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).Syntax()
 	}
 
-	public async TextName(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).TextName()
+	public TextName(): any {
+		return $.pointerValue<Exclude<protoreflect.ExtensionDescriptor | null, null>>(this.ExtensionDescriptor).TextName()
 	}
 
 	static __typeInfo = $.registerStructType(
 		"impl.extensionTypeDescriptor",
 		() => new extensionTypeDescriptor(),
-		() => [$.methodSignature("Descriptor", [], ["protoreflect.FieldDescriptor"], true), $.methodSignature("Type", [], ["protoreflect.ExtensionType"], true), $.methodSignature("Cardinality", [], [/* @__PURE__ */ $.basicType("int8", "protoreflect.Cardinality")]), $.methodSignature("ContainingMessage", [], ["protoreflect.MessageDescriptor"]), $.methodSignature("ContainingOneof", [], ["protoreflect.OneofDescriptor"]), $.methodSignature("Default", [], ["protoreflect.Value"]), $.methodSignature("DefaultEnumValue", [], ["protoreflect.EnumValueDescriptor"]), $.methodSignature("Enum", [], ["protoreflect.EnumDescriptor"]), $.methodSignature("FullName", [], [/* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]), $.methodSignature("HasDefault", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("HasJSONName", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("HasOptionalKeyword", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("HasPresence", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("Index", [], [/* @__PURE__ */ $.basicType("int")]), $.methodSignature("IsExtension", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsList", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsMap", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsPacked", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsPlaceholder", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsWeak", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("JSONName", [], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("Kind", [], [/* @__PURE__ */ $.basicType("int8", "protoreflect.Kind")]), $.methodSignature("MapKey", [], ["protoreflect.FieldDescriptor"]), $.methodSignature("MapValue", [], ["protoreflect.FieldDescriptor"]), $.methodSignature("Message", [], ["protoreflect.MessageDescriptor"]), $.methodSignature("Name", [], [/* @__PURE__ */ $.basicType("string", "protoreflect.Name")]), $.methodSignature("Number", [], [/* @__PURE__ */ $.basicType("int32", "protowire.Number")]), $.methodSignature("Options", [], ["protoreflect.ProtoMessage"]), $.methodSignature("Parent", [], ["protoreflect.Descriptor"]), $.methodSignature("ParentFile", [], ["protoreflect.FileDescriptor"]), $.methodSignature("ProtoInternal", ["pragma.DoNotImplement"]), $.methodSignature("ProtoType", ["protoreflect.FieldDescriptor"]), $.methodSignature("Syntax", [], [/* @__PURE__ */ $.basicType("int8", "protoreflect.Syntax")]), $.methodSignature("TextName", [], [/* @__PURE__ */ $.basicType("string")])],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: "protoreflect.FieldDescriptor" }], pointerReceiver: true }, { name: "Type", args: [], returns: [{ type: "protoreflect.ExtensionType" }], pointerReceiver: true }, { name: "Cardinality", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int8", "protoreflect.Cardinality") }] }, { name: "ContainingMessage", args: [], returns: [{ type: "protoreflect.MessageDescriptor" }] }, { name: "ContainingOneof", args: [], returns: [{ type: "protoreflect.OneofDescriptor" }] }, { name: "Default", args: [], returns: [{ type: "protoreflect.Value" }] }, { name: "DefaultEnumValue", args: [], returns: [{ type: "protoreflect.EnumValueDescriptor" }] }, { name: "Enum", args: [], returns: [{ type: "protoreflect.EnumDescriptor" }] }, { name: "FullName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string", "protoreflect.FullName") }] }, { name: "HasDefault", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "HasJSONName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "HasOptionalKeyword", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "HasPresence", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "Index", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int") }] }, { name: "IsExtension", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsList", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsMap", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsPacked", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsPlaceholder", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsWeak", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "JSONName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "Kind", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int8", "protoreflect.Kind") }] }, { name: "MapKey", args: [], returns: [{ type: "protoreflect.FieldDescriptor" }] }, { name: "MapValue", args: [], returns: [{ type: "protoreflect.FieldDescriptor" }] }, { name: "Message", args: [], returns: [{ type: "protoreflect.MessageDescriptor" }] }, { name: "Name", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string", "protoreflect.Name") }] }, { name: "Number", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "protowire.Number") }] }, { name: "Options", args: [], returns: [{ type: "protoreflect.ProtoMessage" }] }, { name: "Parent", args: [], returns: [{ type: "protoreflect.Descriptor" }] }, { name: "ParentFile", args: [], returns: [{ type: "protoreflect.FileDescriptor" }] }, { name: "ProtoInternal", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "ProtoType", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "Syntax", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int8", "protoreflect.Syntax") }] }, { name: "TextName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }],
 		extensionTypeDescriptor,
-		() => [/* @__PURE__ */ $.structField("ExtensionDescriptor", "protoreflect.FieldDescriptor", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("xi", /* @__PURE__ */ $.pointerType("impl.ExtensionInfo"), [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "ExtensionDescriptor", key: "ExtensionDescriptor", type: "protoreflect.FieldDescriptor", anonymous: true }, { name: "xi", key: "xi", type: /* @__PURE__ */ $.pointerType("impl.ExtensionInfo") }]
 	)
 }
 
@@ -574,12 +569,12 @@ export class ExtensionInfo {
 		if (ed != null) {
 			evs = (__goscriptAwait = (ed !== null && (ed as any).__isVarRef !== true && (ed as any).__goValue === undefined ? (ed as Exclude<protoreflect.EnumDescriptor, null>) : $.pointerValue<Exclude<protoreflect.EnumDescriptor, null>>(ed)).Values(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 		}
-		let fd: filedesc.Field | $.VarRef<filedesc.Field> | null = $.mustTypeAssert<filedesc.Field | $.VarRef<filedesc.Field> | null>(await ptag.Unmarshal((xi$ as ExtensionInfo).Tag, t, evs), /* @__PURE__ */ $.pointerType("filedesc.Field"))
+		let fd: filedesc.Field | $.VarRef<filedesc.Field> | null = $.mustTypeAssert<filedesc.Field | $.VarRef<filedesc.Field> | null>(ptag.Unmarshal((xi$ as ExtensionInfo).Tag, t, evs), /* @__PURE__ */ $.pointerType("filedesc.Field"))
 		let fd$: filedesc.Field = fd == null ? $.pointerTarget<filedesc.Field>(fd) : (fd as any).__isVarRef === true ? (fd as any).value : (fd as any).__goValue === undefined ? (fd as any) : $.pointerTarget<filedesc.Field>(fd)
 
 		let xd: filedesc.Extension | $.VarRef<filedesc.Extension> | null = new filedesc.Extension({L2: new filedesc.ExtensionL2()})
 		let xd$: filedesc.Extension = xd == null ? $.pointerTarget<filedesc.Extension>(xd) : (xd as any).__isVarRef === true ? (xd as any).value : (xd as any).__goValue === undefined ? (xd as any) : $.pointerTarget<filedesc.Extension>(xd);
-		;(xd$ as filedesc.Extension).Base.L0.ParentFile = filedesc.__goscript_get_SurrogateProto2();
+		;(xd$ as filedesc.Extension).Base.L0.ParentFile = filedesc.SurrogateProto2;
 		;(xd$ as filedesc.Extension).Base.L0.FullName = (xi$ as ExtensionInfo).Name;
 		;(xd$ as filedesc.Extension).L1.Number = $.int((xi$ as ExtensionInfo).Field, 32);
 		;(xd$ as filedesc.Extension).L1.Cardinality = (fd$ as filedesc.Field).L1.Cardinality;
@@ -609,7 +604,7 @@ export class ExtensionInfo {
 		let parent: protoiface.MessageV1 | null = null! as protoiface.MessageV1 | null
 		let messageName = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.MessageDescriptor, null>>($.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(xd.ExtensionDescriptor).ContainingMessage()).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 		{
-			let [mt, ] = await protoregistry.Types.prototype.FindMessageByName.call(protoregistry.GlobalTypes, messageName)
+			let [mt, ] = protoregistry.Types.prototype.FindMessageByName.call(protoregistry.GlobalTypes, messageName)
 			if (mt != null) {
 
 				let mv = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((__goscriptAwait = (mt !== null && (mt as any).__isVarRef !== true && (mt as any).__goValue === undefined ? (mt as Exclude<protoreflect.MessageType, null>) : $.pointerValue<Exclude<protoreflect.MessageType, null>>(mt)).New(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
@@ -655,7 +650,7 @@ export class ExtensionInfo {
 
 		let enumName: string = ""
 		if ($.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(xd.ExtensionDescriptor).Kind() == 14) {
-			enumName = await __goscript_legacy_enum.legacyEnumName(await $.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(xd.ExtensionDescriptor).Enum())
+			enumName = await __goscript_legacy_enum.legacyEnumName($.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(xd.ExtensionDescriptor).Enum())
 		}
 
 		let filename: string = ""
@@ -667,7 +662,7 @@ export class ExtensionInfo {
 		}
 
 		let name = $.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(xd.ExtensionDescriptor).FullName()
-		if (await messageset.IsMessageSetExtension($.interfaceValue<protoreflect.FieldDescriptor | null>((xd).clone(), "impl.extensionTypeDescriptor", "impl.extensionTypeDescriptor"))) {
+		if (messageset.IsMessageSetExtension($.interfaceValue<protoreflect.FieldDescriptor | null>((xd).clone(), "impl.extensionTypeDescriptor", "impl.extensionTypeDescriptor"))) {
 			name = protoreflect.FullName_Parent(name)
 		}
 
@@ -675,7 +670,7 @@ export class ExtensionInfo {
 		;(xi$ as ExtensionInfo).ExtensionType = $.markAsStructValue($.cloneStructValue(reflect.Zero($.pointerValueOrNil(extType)!))).Interface();
 		;(xi$ as ExtensionInfo).Field = $.int($.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(xd.ExtensionDescriptor).Number(), 32);
 		;(xi$ as ExtensionInfo).Name = name;
-		;(xi$ as ExtensionInfo).Tag = await ptag.Marshal($.interfaceValue<protoreflect.FieldDescriptor | null>((xd).clone(), "impl.extensionTypeDescriptor", "impl.extensionTypeDescriptor"), enumName);
+		;(xi$ as ExtensionInfo).Tag = ptag.Marshal($.interfaceValue<protoreflect.FieldDescriptor | null>((xd).clone(), "impl.extensionTypeDescriptor", "impl.extensionTypeDescriptor"), enumName);
 		;(xi$ as ExtensionInfo).Filename = filename
 	}
 
@@ -718,9 +713,9 @@ export class ExtensionInfo {
 	static __typeInfo = $.registerStructType(
 		"impl.ExtensionInfo",
 		() => new ExtensionInfo(),
-		() => [$.methodSignature("InterfaceOf", [["v", "protoreflect.Value"]], [{ kind: $.TypeKind.Interface, methods: [] }], true), $.methodSignature("IsValidInterface", [["v", { kind: $.TypeKind.Interface, methods: [] }]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidValue", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("TypeDescriptor", [], ["protoreflect.ExtensionTypeDescriptor"], true), $.methodSignature("ValueOf", [["v", { kind: $.TypeKind.Interface, methods: [] }]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true), $.methodSignature("initFromLegacy", [], [], true), $.methodSignature("initToLegacy", [], [], true), $.methodSignature("lazyInit", [], ["impl.Converter"], true), $.methodSignature("lazyInitSlow", [], [], true)],
+		() => [{ name: "InterfaceOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: { kind: $.TypeKind.Interface, methods: [] } }], pointerReceiver: true }, { name: "IsValidInterface", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidValue", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "TypeDescriptor", args: [], returns: [{ type: "protoreflect.ExtensionTypeDescriptor" }], pointerReceiver: true }, { name: "ValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "initFromLegacy", args: [], returns: [], pointerReceiver: true }, { name: "initToLegacy", args: [], returns: [], pointerReceiver: true }, { name: "lazyInit", args: [], returns: [{ type: "impl.Converter" }], pointerReceiver: true }, { name: "lazyInitSlow", args: [], returns: [], pointerReceiver: true }],
 		ExtensionInfo,
-		() => [/* @__PURE__ */ $.structField("init", /* @__PURE__ */ $.basicType("uint32"), [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("mu", "sync.Mutex", [1], 4, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("goType", "reflect.Type", [2], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("desc", "impl.extensionTypeDescriptor", [3], 32, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("conv", "impl.Converter", [4], 56, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("info", /* @__PURE__ */ $.pointerType("impl.extensionFieldInfo"), [5], 72, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("ExtendedType", "protoiface.MessageV1", [6], 80, true), /* @__PURE__ */ $.structField("ExtensionType", { kind: $.TypeKind.Interface, methods: [] }, [7], 96, true), /* @__PURE__ */ $.structField("Field", /* @__PURE__ */ $.basicType("int32"), [8], 112, true), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.basicType("string"), [9], 120, true), /* @__PURE__ */ $.structField("Tag", /* @__PURE__ */ $.basicType("string"), [10], 136, true), /* @__PURE__ */ $.structField("Filename", /* @__PURE__ */ $.basicType("string"), [11], 152, true)]
+		() => [{ name: "init", key: "init", type: /* @__PURE__ */ $.basicType("uint32") }, { name: "mu", key: "mu", type: "sync.Mutex" }, { name: "goType", key: "goType", type: "reflect.Type" }, { name: "desc", key: "desc", type: "impl.extensionTypeDescriptor" }, { name: "conv", key: "conv", type: "impl.Converter" }, { name: "info", key: "info", type: /* @__PURE__ */ $.pointerType("impl.extensionFieldInfo") }, { name: "ExtendedType", key: "ExtendedType", type: "protoiface.MessageV1" }, { name: "ExtensionType", key: "ExtensionType", type: { kind: $.TypeKind.Interface, methods: [] } }, { name: "Field", key: "Field", type: /* @__PURE__ */ $.basicType("int32") }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.basicType("string") }, { name: "Tag", key: "Tag", type: /* @__PURE__ */ $.basicType("string") }, { name: "Filename", key: "Filename", type: /* @__PURE__ */ $.basicType("string") }]
 	)
 }
 

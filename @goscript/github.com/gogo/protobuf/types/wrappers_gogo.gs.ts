@@ -3,8 +3,6 @@
 
 import * as $ from "@goscript/builtin/index.js"
 
-import type * as proto from "@goscript/github.com/gogo/protobuf/proto/index.js"
-
 import * as __goscript_protosize from "./protosize.gs.ts"
 
 import * as __goscript_wrappers_pb from "./wrappers.pb.gs.ts"

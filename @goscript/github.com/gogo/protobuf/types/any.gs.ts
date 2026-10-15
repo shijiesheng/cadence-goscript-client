@@ -57,8 +57,8 @@ export class DynamicAny {
 		return $.pointerValue<Exclude<proto.Message | null, null>>(this.Message).ProtoMessage()
 	}
 
-	public async Reset(): globalThis.Promise<any> {
-		return await $.pointerValue<Exclude<proto.Message | null, null>>(this.Message).Reset()
+	public Reset(): any {
+		return $.pointerValue<Exclude<proto.Message | null, null>>(this.Message).Reset()
 	}
 
 	public async String(): globalThis.Promise<any> {
@@ -68,9 +68,9 @@ export class DynamicAny {
 	static __typeInfo = $.registerStructType(
 		"types.DynamicAny",
 		() => new DynamicAny(),
-		() => [$.methodSignature("ProtoMessage"), $.methodSignature("Reset"), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")])],
+		() => [{ name: "ProtoMessage", args: [], returns: [] }, { name: "Reset", args: [], returns: [] }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }],
 		DynamicAny,
-		() => [/* @__PURE__ */ $.structField("Message", "proto.Message", [0], 0, true, { anonymous: true })]
+		() => [{ name: "Message", key: "Message", type: "proto.Message", anonymous: true }]
 	)
 }
 
@@ -88,14 +88,14 @@ export function AnyMessageName(_any: __goscript_any_pb.Any | $.VarRef<__goscript
 	return [$.sliceStringOrBytes((_any$ as __goscript_any_pb.Any).TypeUrl, slash + 1, undefined), null]
 }
 
-export async function MarshalAny(pb: proto.Message | null): globalThis.Promise<[__goscript_any_pb.Any | $.VarRef<__goscript_any_pb.Any> | null, $.GoError]> {
-	let __goscriptTuple0: any = await proto.Marshal(pb)
+export function MarshalAny(pb: proto.Message | null): [__goscript_any_pb.Any | $.VarRef<__goscript_any_pb.Any> | null, $.GoError] {
+	let __goscriptTuple0: any = proto.Marshal(pb)
 	let value: $.Slice<number> = __goscriptTuple0[0]
 	let err = __goscriptTuple0[1]
 	if (err != null) {
 		return [null, err]
 	}
-	return [(await (async () => { const __goscriptLiteralField0 = $.concatString("type.googleapis.com/", await proto.MessageName(pb)); return new __goscript_any_pb.Any({TypeUrl: __goscriptLiteralField0, Value: value}) })()), null]
+	return [(() => { const __goscriptLiteralField0 = $.concatString("type.googleapis.com/", proto.MessageName(pb)); return new __goscript_any_pb.Any({TypeUrl: __goscriptLiteralField0, Value: value}) })(), null]
 }
 
 export async function EmptyAny(_any: __goscript_any_pb.Any | $.VarRef<__goscript_any_pb.Any> | null): globalThis.Promise<[proto.Message | null, $.GoError]> {
@@ -135,21 +135,21 @@ export async function UnmarshalAny(_any: __goscript_any_pb.Any | $.VarRef<__gosc
 		return err
 	}
 
-	let mname = await proto.MessageName(pb)
+	let mname = proto.MessageName(pb)
 	if (!$.stringEqual(aname, mname)) {
 		return fmt.Errorf("mismatched message type: got %q want %q", aname, mname)
 	}
 	return proto.Unmarshal($.pointerValue<__goscript_any_pb.Any>(_any).Value, pb)
 }
 
-export async function Is(_any: __goscript_any_pb.Any | $.VarRef<__goscript_any_pb.Any> | null, pb: proto.Message | null): globalThis.Promise<boolean> {
+export function Is(_any: __goscript_any_pb.Any | $.VarRef<__goscript_any_pb.Any> | null, pb: proto.Message | null): boolean {
 	const _any$: __goscript_any_pb.Any = _any == null ? $.pointerTarget<__goscript_any_pb.Any>(_any) : (_any as any).__isVarRef === true ? (_any as any).value : (_any as any).__goValue === undefined ? (_any as any) : $.pointerTarget<__goscript_any_pb.Any>(_any)
 	// The following is equivalent to AnyMessageName(any) == proto.MessageName(pb),
 	// but it avoids scanning TypeUrl for the slash.
 	if (_any == null) {
 		return false
 	}
-	let name = await proto.MessageName(pb)
+	let name = proto.MessageName(pb)
 	let prefix = $.stringLen((_any$ as __goscript_any_pb.Any).TypeUrl) - $.stringLen(name)
 	return ((prefix >= 1) && ($.indexString((_any$ as __goscript_any_pb.Any).TypeUrl, prefix - 1) == 47)) && ($.stringEqual($.sliceStringOrBytes((_any$ as __goscript_any_pb.Any).TypeUrl, prefix, undefined), name))
 }

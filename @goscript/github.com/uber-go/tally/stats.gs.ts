@@ -94,9 +94,9 @@ export class capabilities {
 	static __typeInfo = $.registerStructType(
 		"tally.capabilities",
 		() => new capabilities(),
-		() => [$.methodSignature("Reporting", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("Tagging", [], [/* @__PURE__ */ $.basicType("bool")], true)],
+		() => [{ name: "Reporting", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "Tagging", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }],
 		capabilities,
-		() => [/* @__PURE__ */ $.structField("reporting", /* @__PURE__ */ $.basicType("bool"), [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("tagging", /* @__PURE__ */ $.basicType("bool"), [1], 1, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "reporting", key: "reporting", type: /* @__PURE__ */ $.basicType("bool") }, { name: "tagging", key: "tagging", type: /* @__PURE__ */ $.basicType("bool") }]
 	)
 }
 
@@ -199,9 +199,9 @@ export class counter {
 	static __typeInfo = $.registerStructType(
 		"tally.counter",
 		() => new counter(),
-		() => [$.methodSignature("Inc", [["v", /* @__PURE__ */ $.basicType("int64")]], [], true), $.methodSignature("cachedReport", [], [], true), $.methodSignature("report", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["r", "tally.StatsReporter"]], [], true), $.methodSignature("snapshot", [], [/* @__PURE__ */ $.basicType("int64")], true), $.methodSignature("value", [], [/* @__PURE__ */ $.basicType("int64")], true)],
+		() => [{ name: "Inc", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "cachedReport", args: [], returns: [], pointerReceiver: true }, { name: "report", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "snapshot", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64") }], pointerReceiver: true }, { name: "value", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64") }], pointerReceiver: true }],
 		counter,
-		() => [/* @__PURE__ */ $.structField("prev", /* @__PURE__ */ $.basicType("int64"), [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("curr", /* @__PURE__ */ $.basicType("int64"), [1], 8, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("cachedCount", "tally.CachedCount", [2], 16, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "prev", key: "prev", type: /* @__PURE__ */ $.basicType("int64") }, { name: "curr", key: "curr", type: /* @__PURE__ */ $.basicType("int64") }, { name: "cachedCount", key: "cachedCount", type: "tally.CachedCount" }]
 	)
 }
 
@@ -292,9 +292,9 @@ export class gauge {
 	static __typeInfo = $.registerStructType(
 		"tally.gauge",
 		() => new gauge(),
-		() => [$.methodSignature("Update", [["v", /* @__PURE__ */ $.basicType("float64")]], [], true), $.methodSignature("cachedReport", [], [], true), $.methodSignature("report", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["r", "tally.StatsReporter"]], [], true), $.methodSignature("snapshot", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("value", [], [/* @__PURE__ */ $.basicType("float64")], true)],
+		() => [{ name: "Update", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "cachedReport", args: [], returns: [], pointerReceiver: true }, { name: "report", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "snapshot", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "value", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }],
 		gauge,
-		() => [/* @__PURE__ */ $.structField("updated", /* @__PURE__ */ $.basicType("uint64"), [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("curr", /* @__PURE__ */ $.basicType("uint64"), [1], 8, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("cachedGauge", "tally.CachedGauge", [2], 16, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "updated", key: "updated", type: /* @__PURE__ */ $.basicType("uint64") }, { name: "curr", key: "curr", type: /* @__PURE__ */ $.basicType("uint64") }, { name: "cachedGauge", key: "cachedGauge", type: "tally.CachedGauge" }]
 	)
 }
 
@@ -370,9 +370,9 @@ export class timerValues {
 	static __typeInfo = $.registerStructType(
 		"tally.timerValues",
 		() => new timerValues(),
-		() => [$.methodSignature("Lock", [], [], true), $.methodSignature("RLock", [], [], true), $.methodSignature("RLocker", [], ["sync.Locker"], true), $.methodSignature("RUnlock", [], [], true), $.methodSignature("TryLock", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("TryRLock", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("Unlock", [], [], true)],
+		() => [{ name: "Lock", args: [], returns: [], pointerReceiver: true }, { name: "RLock", args: [], returns: [], pointerReceiver: true }, { name: "RLocker", args: [], returns: [{ type: "sync.Locker" }], pointerReceiver: true }, { name: "RUnlock", args: [], returns: [], pointerReceiver: true }, { name: "TryLock", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "TryRLock", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "Unlock", args: [], returns: [], pointerReceiver: true }],
 		timerValues,
-		() => [/* @__PURE__ */ $.structField("RWMutex", "sync.RWMutex", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("values", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64", "time.Duration")), [1], 24, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "RWMutex", key: "RWMutex", type: "sync.RWMutex", anonymous: true }, { name: "values", key: "values", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64", "time.Duration")) }]
 	)
 }
 
@@ -486,9 +486,9 @@ export class timer {
 	static __typeInfo = $.registerStructType(
 		"tally.timer",
 		() => new timer(),
-		() => [$.methodSignature("Record", [["interval", /* @__PURE__ */ $.basicType("int64", "time.Duration")]], [], true), $.methodSignature("RecordStopwatch", [["stopwatchStart", "time.Time"]], [], true), $.methodSignature("Start", [], ["tally.Stopwatch"], true), $.methodSignature("snapshot", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64", "time.Duration"))], true)],
+		() => [{ name: "Record", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "RecordStopwatch", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "Start", args: [], returns: [{ type: "tally.Stopwatch" }], pointerReceiver: true }, { name: "snapshot", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64", "time.Duration")) }], pointerReceiver: true }],
 		timer,
-		() => [/* @__PURE__ */ $.structField("name", /* @__PURE__ */ $.basicType("string"), [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string")), [1], 16, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("reporter", "tally.StatsReporter", [2], 24, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("cachedTimer", "tally.CachedTimer", [3], 40, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("unreported", "tally.timerValues", [4], 56, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "name", key: "name", type: /* @__PURE__ */ $.basicType("string") }, { name: "tags", key: "tags", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string")) }, { name: "reporter", key: "reporter", type: "tally.StatsReporter" }, { name: "cachedTimer", key: "cachedTimer", type: "tally.CachedTimer" }, { name: "unreported", key: "unreported", type: "tally.timerValues" }]
 	)
 }
 
@@ -597,9 +597,9 @@ export class timerNoReporterSink {
 	static __typeInfo = $.registerStructType(
 		"tally.timerNoReporterSink",
 		() => new timerNoReporterSink(),
-		() => [$.methodSignature("Capabilities", [], ["tally.Capabilities"], true), $.methodSignature("Flush", [], [], true), $.methodSignature("ReportCounter", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["value", /* @__PURE__ */ $.basicType("int64")]], [], true), $.methodSignature("ReportGauge", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["value", /* @__PURE__ */ $.basicType("float64")]], [], true), $.methodSignature("ReportHistogramDurationSamples", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["buckets", "tally.Buckets"], ["bucketLowerBound", /* @__PURE__ */ $.basicType("int64", "time.Duration")], ["bucketUpperBound", /* @__PURE__ */ $.basicType("int64", "time.Duration")], ["samples", /* @__PURE__ */ $.basicType("int64")]], [], true), $.methodSignature("ReportHistogramValueSamples", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["buckets", "tally.Buckets"], ["bucketLowerBound", /* @__PURE__ */ $.basicType("float64")], ["bucketUpperBound", /* @__PURE__ */ $.basicType("float64")], ["samples", /* @__PURE__ */ $.basicType("int64")]], [], true), $.methodSignature("ReportTimer", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["interval", /* @__PURE__ */ $.basicType("int64", "time.Duration")]], [], true), $.methodSignature("Lock", [], [], true), $.methodSignature("RLock", [], [], true), $.methodSignature("RLocker", [], ["sync.Locker"], true), $.methodSignature("RUnlock", [], [], true), $.methodSignature("TryLock", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("TryRLock", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("Unlock", [], [], true)],
+		() => [{ name: "Capabilities", args: [], returns: [{ type: "tally.Capabilities" }], pointerReceiver: true }, { name: "Flush", args: [], returns: [], pointerReceiver: true }, { name: "ReportCounter", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "ReportGauge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "ReportHistogramDurationSamples", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "ReportHistogramValueSamples", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "ReportTimer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "Lock", args: [], returns: [], pointerReceiver: true }, { name: "RLock", args: [], returns: [], pointerReceiver: true }, { name: "RLocker", args: [], returns: [{ type: "sync.Locker" }], pointerReceiver: true }, { name: "RUnlock", args: [], returns: [], pointerReceiver: true }, { name: "TryLock", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "TryRLock", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "Unlock", args: [], returns: [], pointerReceiver: true }],
 		timerNoReporterSink,
-		() => [/* @__PURE__ */ $.structField("RWMutex", "sync.RWMutex", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("timer", /* @__PURE__ */ $.pointerType("tally.timer"), [1], 24, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "RWMutex", key: "RWMutex", type: "sync.RWMutex", anonymous: true }, { name: "timer", key: "timer", type: /* @__PURE__ */ $.pointerType("tally.timer") }]
 	)
 }
 
@@ -649,7 +649,7 @@ export class sampleCounter {
 		() => new sampleCounter(),
 		() => [],
 		sampleCounter,
-		() => [/* @__PURE__ */ $.structField("counter", /* @__PURE__ */ $.pointerType("tally.counter"), [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("cachedBucket", "tally.CachedHistogramBucket", [1], 8, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "counter", key: "counter", type: /* @__PURE__ */ $.pointerType("tally.counter") }, { name: "cachedBucket", key: "cachedBucket", type: "tally.CachedHistogramBucket" }]
 	)
 }
 
@@ -875,9 +875,9 @@ export class histogram {
 	static __typeInfo = $.registerStructType(
 		"tally.histogram",
 		() => new histogram(),
-		() => [$.methodSignature("RecordDuration", [["value", /* @__PURE__ */ $.basicType("int64", "time.Duration")]], [], true), $.methodSignature("RecordStopwatch", [["stopwatchStart", "time.Time"]], [], true), $.methodSignature("RecordValue", [["value", /* @__PURE__ */ $.basicType("float64")]], [], true), $.methodSignature("Start", [], ["tally.Stopwatch"], true), $.methodSignature("cachedReport", [], [], true), $.methodSignature("report", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["r", "tally.StatsReporter"]], [], true), $.methodSignature("snapshotDurations", [], [/* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int64", "time.Duration"), /* @__PURE__ */ $.basicType("int64"))], true), $.methodSignature("snapshotValues", [], [/* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("float64"), /* @__PURE__ */ $.basicType("int64"))], true)],
+		() => [{ name: "RecordDuration", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "RecordStopwatch", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "RecordValue", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "Start", args: [], returns: [{ type: "tally.Stopwatch" }], pointerReceiver: true }, { name: "cachedReport", args: [], returns: [], pointerReceiver: true }, { name: "report", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [], pointerReceiver: true }, { name: "snapshotDurations", args: [], returns: [{ type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int64", "time.Duration"), /* @__PURE__ */ $.basicType("int64")) }], pointerReceiver: true }, { name: "snapshotValues", args: [], returns: [{ type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("float64"), /* @__PURE__ */ $.basicType("int64")) }], pointerReceiver: true }],
 		histogram,
-		() => [/* @__PURE__ */ $.structField("htype", /* @__PURE__ */ $.basicType("int", "tally.histogramType"), [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("name", /* @__PURE__ */ $.basicType("string"), [1], 8, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string")), [2], 24, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("reporter", "tally.StatsReporter", [3], 32, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("specification", "tally.Buckets", [4], 48, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("buckets", /* @__PURE__ */ $.sliceType("tally.histogramBucket"), [5], 64, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("samples", /* @__PURE__ */ $.sliceType("tally.sampleCounter"), [6], 88, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "htype", key: "htype", type: /* @__PURE__ */ $.basicType("int", "tally.histogramType") }, { name: "name", key: "name", type: /* @__PURE__ */ $.basicType("string") }, { name: "tags", key: "tags", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string")) }, { name: "reporter", key: "reporter", type: "tally.StatsReporter" }, { name: "specification", key: "specification", type: "tally.Buckets" }, { name: "buckets", key: "buckets", type: /* @__PURE__ */ $.sliceType("tally.histogramBucket") }, { name: "samples", key: "samples", type: /* @__PURE__ */ $.sliceType("tally.sampleCounter") }]
 	)
 }
 
@@ -949,7 +949,7 @@ export class histogramBucket {
 		() => new histogramBucket(),
 		() => [],
 		histogramBucket,
-		() => [/* @__PURE__ */ $.structField("valueUpperBound", /* @__PURE__ */ $.basicType("float64"), [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("durationUpperBound", /* @__PURE__ */ $.basicType("int64", "time.Duration"), [1], 8, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("cachedValueBucket", "tally.CachedHistogramBucket", [2], 16, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("cachedDurationBucket", "tally.CachedHistogramBucket", [3], 32, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "valueUpperBound", key: "valueUpperBound", type: /* @__PURE__ */ $.basicType("float64") }, { name: "durationUpperBound", key: "durationUpperBound", type: /* @__PURE__ */ $.basicType("int64", "time.Duration") }, { name: "cachedValueBucket", key: "cachedValueBucket", type: "tally.CachedHistogramBucket" }, { name: "cachedDurationBucket", key: "cachedDurationBucket", type: "tally.CachedHistogramBucket" }]
 	)
 }
 
@@ -999,7 +999,7 @@ export class bucketStorage {
 		() => new bucketStorage(),
 		() => [],
 		bucketStorage,
-		() => [/* @__PURE__ */ $.structField("buckets", "tally.Buckets", [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("hbuckets", /* @__PURE__ */ $.sliceType("tally.histogramBucket"), [1], 16, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "buckets", key: "buckets", type: "tally.Buckets" }, { name: "hbuckets", key: "hbuckets", type: /* @__PURE__ */ $.sliceType("tally.histogramBucket") }]
 	)
 }
 
@@ -1070,9 +1070,9 @@ export class bucketCache {
 	static __typeInfo = $.registerStructType(
 		"tally.bucketCache",
 		() => new bucketCache(),
-		() => [$.methodSignature("Get", [["htype", /* @__PURE__ */ $.basicType("int", "tally.histogramType")], ["buckets", "tally.Buckets"]], ["tally.bucketStorage"], true)],
+		() => [{ name: "Get", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "tally.bucketStorage" }], pointerReceiver: true }],
 		bucketCache,
-		() => [/* @__PURE__ */ $.structField("mtx", "sync.RWMutex", [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("cache", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("uint64"), "tally.bucketStorage"), [1], 24, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "mtx", key: "mtx", type: "sync.RWMutex" }, { name: "cache", key: "cache", type: /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("uint64"), "tally.bucketStorage") }]
 	)
 }
 
@@ -1125,7 +1125,7 @@ export class nullStatsReporter {
 	static __typeInfo = $.registerStructType(
 		"tally.nullStatsReporter",
 		() => new nullStatsReporter(),
-		() => [$.methodSignature("Capabilities", [], ["tally.Capabilities"]), $.methodSignature("Flush"), $.methodSignature("ReportCounter", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["value", /* @__PURE__ */ $.basicType("int64")]]), $.methodSignature("ReportGauge", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["value", /* @__PURE__ */ $.basicType("float64")]]), $.methodSignature("ReportHistogramDurationSamples", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["buckets", "tally.Buckets"], ["bucketLowerBound", /* @__PURE__ */ $.basicType("int64", "time.Duration")], ["bucketUpperBound", /* @__PURE__ */ $.basicType("int64", "time.Duration")], ["samples", /* @__PURE__ */ $.basicType("int64")]]), $.methodSignature("ReportHistogramValueSamples", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["buckets", "tally.Buckets"], ["bucketLowerBound", /* @__PURE__ */ $.basicType("float64")], ["bucketUpperBound", /* @__PURE__ */ $.basicType("float64")], ["samples", /* @__PURE__ */ $.basicType("int64")]]), $.methodSignature("ReportTimer", [["name", /* @__PURE__ */ $.basicType("string")], ["tags", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("string"), /* @__PURE__ */ $.basicType("string"))], ["interval", /* @__PURE__ */ $.basicType("int64", "time.Duration")]])],
+		() => [{ name: "Capabilities", args: [], returns: [{ type: "tally.Capabilities" }] }, { name: "Flush", args: [], returns: [] }, { name: "ReportCounter", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "ReportGauge", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "ReportHistogramDurationSamples", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "ReportHistogramValueSamples", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "ReportTimer", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }],
 		nullStatsReporter,
 		() => []
 	)

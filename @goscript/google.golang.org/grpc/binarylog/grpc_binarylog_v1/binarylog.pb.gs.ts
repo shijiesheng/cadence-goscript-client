@@ -14,21 +14,12 @@ import * as timestamppb from "@goscript/google.golang.org/protobuf/types/known/t
 import * as reflect from "@goscript/reflect/index.js"
 
 import * as sync from "@goscript/sync/index.js"
-
-import * as filedesc from "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-
-import * as filetype from "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-
-import * as impl from "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoimpl/index.js"
 import "@goscript/google.golang.org/protobuf/types/known/durationpb/index.js"
 import "@goscript/google.golang.org/protobuf/types/known/timestamppb/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/sync/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-import "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 
 $.registerTypePackagePath("google.golang.org/grpc/binarylog/grpc_binarylog_v1", ["grpc_binarylog_v1.GrpcLogEntry_EventType", "grpc_binarylog_v1.GrpcLogEntry_Logger", "grpc_binarylog_v1.Address_Type", "grpc_binarylog_v1.GrpcLogEntry", "grpc_binarylog_v1.isGrpcLogEntry_Payload", "grpc_binarylog_v1.GrpcLogEntry_ClientHeader", "grpc_binarylog_v1.GrpcLogEntry_ServerHeader", "grpc_binarylog_v1.GrpcLogEntry_Message", "grpc_binarylog_v1.GrpcLogEntry_Trailer", "grpc_binarylog_v1.ClientHeader", "grpc_binarylog_v1.ServerHeader", "grpc_binarylog_v1.Trailer", "grpc_binarylog_v1.Message", "grpc_binarylog_v1.Metadata", "grpc_binarylog_v1.MetadataEntry", "grpc_binarylog_v1.Address", "grpc_binarylog_v1.x"])
 
@@ -81,7 +72,7 @@ export type isGrpcLogEntry_Payload = {
 $.registerInterfaceType(
 	"grpc_binarylog_v1.isGrpcLogEntry_Payload",
 	null,
-	[$.methodSignature("isGrpcLogEntry_Payload")]
+	[{ name: "isGrpcLogEntry_Payload", args: [], returns: [] }]
 );
 
 export class GrpcLogEntry {
@@ -214,7 +205,7 @@ export class GrpcLogEntry {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Timestamp?: timestamppb.Timestamp | $.VarRef<timestamppb.Timestamp> | null, CallId?: bigint, SequenceIdWithinCall?: bigint, Type?: GrpcLogEntry_EventType, Logger?: GrpcLogEntry_Logger, Payload?: isGrpcLogEntry_Payload | null, PayloadTruncated?: boolean, Peer?: Address | $.VarRef<Address> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Timestamp: init?.Timestamp ?? (null! as timestamppb.Timestamp | $.VarRef<timestamppb.Timestamp> | null),
@@ -236,7 +227,7 @@ export class GrpcLogEntry {
 	public __goscriptAssign(source: GrpcLogEntry): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Timestamp = values.Timestamp
@@ -376,40 +367,40 @@ export class GrpcLogEntry {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: GrpcLogEntry | $.VarRef<GrpcLogEntry> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 0)
+		let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 0)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.GrpcLogEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.GrpcLogEntry")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.GrpcLogEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.GrpcLogEntry")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.GrpcLogEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.GrpcLogEntry"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*grpc_binarylog_v1.GrpcLogEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.GrpcLogEntry"))))
+		return mi.MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.GrpcLogEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.GrpcLogEntry")))
 	}
 
 	public Reset(): void {
 		let x: GrpcLogEntry | $.VarRef<GrpcLogEntry> | null = this;
 		$.assignStruct($.pointerValue<GrpcLogEntry>(x), $.markAsStructValue(new GrpcLogEntry()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 0)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.GrpcLogEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.GrpcLogEntry")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 0)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.GrpcLogEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.GrpcLogEntry")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: GrpcLogEntry | $.VarRef<GrpcLogEntry> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.GrpcLogEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.GrpcLogEntry")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.GrpcLogEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.GrpcLogEntry")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.GrpcLogEntry",
 		() => new GrpcLogEntry(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetCallId", [], [/* @__PURE__ */ $.basicType("uint64")], true), $.methodSignature("GetClientHeader", [], [/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader")], true), $.methodSignature("GetLogger", [], [/* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.GrpcLogEntry_Logger")], true), $.methodSignature("GetMessage", [], [/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message")], true), $.methodSignature("GetPayload", [], ["grpc_binarylog_v1.isGrpcLogEntry_Payload"], true), $.methodSignature("GetPayloadTruncated", [], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("GetPeer", [], [/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address")], true), $.methodSignature("GetSequenceIdWithinCall", [], [/* @__PURE__ */ $.basicType("uint64")], true), $.methodSignature("GetServerHeader", [], [/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader")], true), $.methodSignature("GetTimestamp", [], [/* @__PURE__ */ $.pointerType("timestamppb.Timestamp")], true), $.methodSignature("GetTrailer", [], [/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer")], true), $.methodSignature("GetType", [], [/* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.GrpcLogEntry_EventType")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetCallId", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint64") }], pointerReceiver: true }, { name: "GetClientHeader", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader") }], pointerReceiver: true }, { name: "GetLogger", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.GrpcLogEntry_Logger") }], pointerReceiver: true }, { name: "GetMessage", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message") }], pointerReceiver: true }, { name: "GetPayload", args: [], returns: [{ type: "grpc_binarylog_v1.isGrpcLogEntry_Payload" }], pointerReceiver: true }, { name: "GetPayloadTruncated", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "GetPeer", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address") }], pointerReceiver: true }, { name: "GetSequenceIdWithinCall", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint64") }], pointerReceiver: true }, { name: "GetServerHeader", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader") }], pointerReceiver: true }, { name: "GetTimestamp", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("timestamppb.Timestamp") }], pointerReceiver: true }, { name: "GetTrailer", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer") }], pointerReceiver: true }, { name: "GetType", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.GrpcLogEntry_EventType") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		GrpcLogEntry,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("Timestamp", /* @__PURE__ */ $.pointerType("timestamppb.Timestamp"), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=timestamp,proto3\" json:\"timestamp,omitempty\"" }), /* @__PURE__ */ $.structField("CallId", /* @__PURE__ */ $.basicType("uint64"), [4], 48, true, { tag: "protobuf:\"varint,2,opt,name=call_id,json=callId,proto3\" json:\"call_id,omitempty\"" }), /* @__PURE__ */ $.structField("SequenceIdWithinCall", /* @__PURE__ */ $.basicType("uint64"), [5], 56, true, { tag: "protobuf:\"varint,3,opt,name=sequence_id_within_call,json=sequenceIdWithinCall,proto3\" json:\"sequence_id_within_call,omitempty\"" }), /* @__PURE__ */ $.structField("Type", /* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.GrpcLogEntry_EventType"), [6], 64, true, { tag: "protobuf:\"varint,4,opt,name=type,proto3,enum=grpc.binarylog.v1.GrpcLogEntry_EventType\" json:\"type,omitempty\"" }), /* @__PURE__ */ $.structField("Logger", /* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.GrpcLogEntry_Logger"), [7], 68, true, { tag: "protobuf:\"varint,5,opt,name=logger,proto3,enum=grpc.binarylog.v1.GrpcLogEntry_Logger\" json:\"logger,omitempty\"" }), /* @__PURE__ */ $.structField("Payload", "grpc_binarylog_v1.isGrpcLogEntry_Payload", [8], 72, true, { tag: "protobuf_oneof:\"payload\"" }), /* @__PURE__ */ $.structField("PayloadTruncated", /* @__PURE__ */ $.basicType("bool"), [9], 88, true, { tag: "protobuf:\"varint,10,opt,name=payload_truncated,json=payloadTruncated,proto3\" json:\"payload_truncated,omitempty\"" }), /* @__PURE__ */ $.structField("Peer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address"), [10], 96, true, { tag: "protobuf:\"bytes,11,opt,name=peer,proto3\" json:\"peer,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Timestamp", key: "Timestamp", type: /* @__PURE__ */ $.pointerType("timestamppb.Timestamp"), tag: "protobuf:\"bytes,1,opt,name=timestamp,proto3\" json:\"timestamp,omitempty\"" }, { name: "CallId", key: "CallId", type: /* @__PURE__ */ $.basicType("uint64"), tag: "protobuf:\"varint,2,opt,name=call_id,json=callId,proto3\" json:\"call_id,omitempty\"" }, { name: "SequenceIdWithinCall", key: "SequenceIdWithinCall", type: /* @__PURE__ */ $.basicType("uint64"), tag: "protobuf:\"varint,3,opt,name=sequence_id_within_call,json=sequenceIdWithinCall,proto3\" json:\"sequence_id_within_call,omitempty\"" }, { name: "Type", key: "Type", type: /* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.GrpcLogEntry_EventType"), tag: "protobuf:\"varint,4,opt,name=type,proto3,enum=grpc.binarylog.v1.GrpcLogEntry_EventType\" json:\"type,omitempty\"" }, { name: "Logger", key: "Logger", type: /* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.GrpcLogEntry_Logger"), tag: "protobuf:\"varint,5,opt,name=logger,proto3,enum=grpc.binarylog.v1.GrpcLogEntry_Logger\" json:\"logger,omitempty\"" }, { name: "Payload", key: "Payload", type: "grpc_binarylog_v1.isGrpcLogEntry_Payload", tag: "protobuf_oneof:\"payload\"" }, { name: "PayloadTruncated", key: "PayloadTruncated", type: /* @__PURE__ */ $.basicType("bool"), tag: "protobuf:\"varint,10,opt,name=payload_truncated,json=payloadTruncated,proto3\" json:\"payload_truncated,omitempty\"" }, { name: "Peer", key: "Peer", type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address"), tag: "protobuf:\"bytes,11,opt,name=peer,proto3\" json:\"peer,omitempty\"" }]
 	)
 }
 
@@ -449,9 +440,9 @@ export class GrpcLogEntry_ClientHeader {
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.GrpcLogEntry_ClientHeader",
 		() => new GrpcLogEntry_ClientHeader(),
-		() => [$.methodSignature("isGrpcLogEntry_Payload", [], [], true)],
+		() => [{ name: "isGrpcLogEntry_Payload", args: [], returns: [], pointerReceiver: true }],
 		GrpcLogEntry_ClientHeader,
-		() => [/* @__PURE__ */ $.structField("ClientHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader"), [0], 0, true, { tag: "protobuf:\"bytes,6,opt,name=client_header,json=clientHeader,proto3,oneof\"" })]
+		() => [{ name: "ClientHeader", key: "ClientHeader", type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader"), tag: "protobuf:\"bytes,6,opt,name=client_header,json=clientHeader,proto3,oneof\"" }]
 	)
 }
 
@@ -491,9 +482,9 @@ export class GrpcLogEntry_ServerHeader {
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.GrpcLogEntry_ServerHeader",
 		() => new GrpcLogEntry_ServerHeader(),
-		() => [$.methodSignature("isGrpcLogEntry_Payload", [], [], true)],
+		() => [{ name: "isGrpcLogEntry_Payload", args: [], returns: [], pointerReceiver: true }],
 		GrpcLogEntry_ServerHeader,
-		() => [/* @__PURE__ */ $.structField("ServerHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader"), [0], 0, true, { tag: "protobuf:\"bytes,7,opt,name=server_header,json=serverHeader,proto3,oneof\"" })]
+		() => [{ name: "ServerHeader", key: "ServerHeader", type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader"), tag: "protobuf:\"bytes,7,opt,name=server_header,json=serverHeader,proto3,oneof\"" }]
 	)
 }
 
@@ -534,9 +525,9 @@ export class GrpcLogEntry_Message {
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.GrpcLogEntry_Message",
 		() => new GrpcLogEntry_Message(),
-		() => [$.methodSignature("isGrpcLogEntry_Payload", [], [], true)],
+		() => [{ name: "isGrpcLogEntry_Payload", args: [], returns: [], pointerReceiver: true }],
 		GrpcLogEntry_Message,
-		() => [/* @__PURE__ */ $.structField("Message", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message"), [0], 0, true, { tag: "protobuf:\"bytes,8,opt,name=message,proto3,oneof\"" })]
+		() => [{ name: "Message", key: "Message", type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message"), tag: "protobuf:\"bytes,8,opt,name=message,proto3,oneof\"" }]
 	)
 }
 
@@ -576,9 +567,9 @@ export class GrpcLogEntry_Trailer {
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.GrpcLogEntry_Trailer",
 		() => new GrpcLogEntry_Trailer(),
-		() => [$.methodSignature("isGrpcLogEntry_Payload", [], [], true)],
+		() => [{ name: "isGrpcLogEntry_Payload", args: [], returns: [], pointerReceiver: true }],
 		GrpcLogEntry_Trailer,
-		() => [/* @__PURE__ */ $.structField("Trailer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer"), [0], 0, true, { tag: "protobuf:\"bytes,9,opt,name=trailer,proto3,oneof\"" })]
+		() => [{ name: "Trailer", key: "Trailer", type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer"), tag: "protobuf:\"bytes,9,opt,name=trailer,proto3,oneof\"" }]
 	)
 }
 
@@ -661,7 +652,7 @@ export class ClientHeader {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Metadata?: Metadata | $.VarRef<Metadata> | null, MethodName?: string, Authority?: string, Timeout?: durationpb.Duration | $.VarRef<durationpb.Duration> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Metadata: init?.Metadata ?? (null! as Metadata | $.VarRef<Metadata> | null),
@@ -679,7 +670,7 @@ export class ClientHeader {
 	public __goscriptAssign(source: ClientHeader): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Metadata = values.Metadata
@@ -727,40 +718,40 @@ export class ClientHeader {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: ClientHeader | $.VarRef<ClientHeader> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 1)
+		let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 1)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.ClientHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.ClientHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.ClientHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*grpc_binarylog_v1.ClientHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader"))))
+		return mi.MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.ClientHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader")))
 	}
 
 	public Reset(): void {
 		let x: ClientHeader | $.VarRef<ClientHeader> | null = this;
 		$.assignStruct($.pointerValue<ClientHeader>(x), $.markAsStructValue(new ClientHeader()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 1)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.ClientHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 1)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.ClientHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: ClientHeader | $.VarRef<ClientHeader> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.ClientHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.ClientHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ClientHeader")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.ClientHeader",
 		() => new ClientHeader(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetAuthority", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetMetadata", [], [/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata")], true), $.methodSignature("GetMethodName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetTimeout", [], [/* @__PURE__ */ $.pointerType("durationpb.Duration")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetAuthority", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetMetadata", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata") }], pointerReceiver: true }, { name: "GetMethodName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetTimeout", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("durationpb.Duration") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		ClientHeader,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata"), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=metadata,proto3\" json:\"metadata,omitempty\"" }), /* @__PURE__ */ $.structField("MethodName", /* @__PURE__ */ $.basicType("string"), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=method_name,json=methodName,proto3\" json:\"method_name,omitempty\"" }), /* @__PURE__ */ $.structField("Authority", /* @__PURE__ */ $.basicType("string"), [5], 64, true, { tag: "protobuf:\"bytes,3,opt,name=authority,proto3\" json:\"authority,omitempty\"" }), /* @__PURE__ */ $.structField("Timeout", /* @__PURE__ */ $.pointerType("durationpb.Duration"), [6], 80, true, { tag: "protobuf:\"bytes,4,opt,name=timeout,proto3\" json:\"timeout,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Metadata", key: "Metadata", type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata"), tag: "protobuf:\"bytes,1,opt,name=metadata,proto3\" json:\"metadata,omitempty\"" }, { name: "MethodName", key: "MethodName", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,2,opt,name=method_name,json=methodName,proto3\" json:\"method_name,omitempty\"" }, { name: "Authority", key: "Authority", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,3,opt,name=authority,proto3\" json:\"authority,omitempty\"" }, { name: "Timeout", key: "Timeout", type: /* @__PURE__ */ $.pointerType("durationpb.Duration"), tag: "protobuf:\"bytes,4,opt,name=timeout,proto3\" json:\"timeout,omitempty\"" }]
 	)
 }
 
@@ -807,7 +798,7 @@ export class ServerHeader {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Metadata?: Metadata | $.VarRef<Metadata> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Metadata: init?.Metadata ?? (null! as Metadata | $.VarRef<Metadata> | null)
@@ -822,7 +813,7 @@ export class ServerHeader {
 	public __goscriptAssign(source: ServerHeader): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Metadata = values.Metadata
@@ -843,40 +834,40 @@ export class ServerHeader {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: ServerHeader | $.VarRef<ServerHeader> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 2)
+		let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 2)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.ServerHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.ServerHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.ServerHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*grpc_binarylog_v1.ServerHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader"))))
+		return mi.MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.ServerHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader")))
 	}
 
 	public Reset(): void {
 		let x: ServerHeader | $.VarRef<ServerHeader> | null = this;
 		$.assignStruct($.pointerValue<ServerHeader>(x), $.markAsStructValue(new ServerHeader()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 2)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.ServerHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 2)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.ServerHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: ServerHeader | $.VarRef<ServerHeader> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.ServerHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.ServerHeader", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.ServerHeader")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.ServerHeader",
 		() => new ServerHeader(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetMetadata", [], [/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetMetadata", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		ServerHeader,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata"), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=metadata,proto3\" json:\"metadata,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Metadata", key: "Metadata", type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata"), tag: "protobuf:\"bytes,1,opt,name=metadata,proto3\" json:\"metadata,omitempty\"" }]
 	)
 }
 
@@ -955,7 +946,7 @@ export class Trailer {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Metadata?: Metadata | $.VarRef<Metadata> | null, StatusCode?: number, StatusMessage?: string, StatusDetails?: $.Slice<number>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Metadata: init?.Metadata ?? (null! as Metadata | $.VarRef<Metadata> | null),
@@ -973,7 +964,7 @@ export class Trailer {
 	public __goscriptAssign(source: Trailer): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Metadata = values.Metadata
@@ -1021,40 +1012,40 @@ export class Trailer {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Trailer | $.VarRef<Trailer> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 3)
+		let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 3)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Trailer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Trailer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.Trailer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*grpc_binarylog_v1.Trailer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer"))))
+		return mi.MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.Trailer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer")))
 	}
 
 	public Reset(): void {
 		let x: Trailer | $.VarRef<Trailer> | null = this;
 		$.assignStruct($.pointerValue<Trailer>(x), $.markAsStructValue(new Trailer()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 3)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Trailer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 3)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Trailer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Trailer | $.VarRef<Trailer> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.Trailer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.Trailer", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Trailer")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.Trailer",
 		() => new Trailer(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetMetadata", [], [/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata")], true), $.methodSignature("GetStatusCode", [], [/* @__PURE__ */ $.basicType("uint32")], true), $.methodSignature("GetStatusDetails", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], true), $.methodSignature("GetStatusMessage", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetMetadata", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata") }], pointerReceiver: true }, { name: "GetStatusCode", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint32") }], pointerReceiver: true }, { name: "GetStatusDetails", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }], pointerReceiver: true }, { name: "GetStatusMessage", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Trailer,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata"), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=metadata,proto3\" json:\"metadata,omitempty\"" }), /* @__PURE__ */ $.structField("StatusCode", /* @__PURE__ */ $.basicType("uint32"), [4], 48, true, { tag: "protobuf:\"varint,2,opt,name=status_code,json=statusCode,proto3\" json:\"status_code,omitempty\"" }), /* @__PURE__ */ $.structField("StatusMessage", /* @__PURE__ */ $.basicType("string"), [5], 56, true, { tag: "protobuf:\"bytes,3,opt,name=status_message,json=statusMessage,proto3\" json:\"status_message,omitempty\"" }), /* @__PURE__ */ $.structField("StatusDetails", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [6], 72, true, { tag: "protobuf:\"bytes,4,opt,name=status_details,json=statusDetails,proto3\" json:\"status_details,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Metadata", key: "Metadata", type: /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata"), tag: "protobuf:\"bytes,1,opt,name=metadata,proto3\" json:\"metadata,omitempty\"" }, { name: "StatusCode", key: "StatusCode", type: /* @__PURE__ */ $.basicType("uint32"), tag: "protobuf:\"varint,2,opt,name=status_code,json=statusCode,proto3\" json:\"status_code,omitempty\"" }, { name: "StatusMessage", key: "StatusMessage", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,3,opt,name=status_message,json=statusMessage,proto3\" json:\"status_message,omitempty\"" }, { name: "StatusDetails", key: "StatusDetails", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "protobuf:\"bytes,4,opt,name=status_details,json=statusDetails,proto3\" json:\"status_details,omitempty\"" }]
 	)
 }
 
@@ -1112,7 +1103,7 @@ export class Message {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Length?: number, Data?: $.Slice<number>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Length: init?.Length ?? (0 as number),
@@ -1128,7 +1119,7 @@ export class Message {
 	public __goscriptAssign(source: Message): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Length = values.Length
@@ -1158,40 +1149,40 @@ export class Message {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Message | $.VarRef<Message> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 4)
+		let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 4)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Message", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Message", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.Message", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*grpc_binarylog_v1.Message", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message"))))
+		return mi.MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.Message", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message")))
 	}
 
 	public Reset(): void {
 		let x: Message | $.VarRef<Message> | null = this;
 		$.assignStruct($.pointerValue<Message>(x), $.markAsStructValue(new Message()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 4)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Message", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 4)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Message", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Message | $.VarRef<Message> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.Message", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.Message", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Message")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.Message",
 		() => new Message(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetData", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], true), $.methodSignature("GetLength", [], [/* @__PURE__ */ $.basicType("uint32")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetData", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }], pointerReceiver: true }, { name: "GetLength", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint32") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Message,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("Length", /* @__PURE__ */ $.basicType("uint32"), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=length,proto3\" json:\"length,omitempty\"" }), /* @__PURE__ */ $.structField("Data", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=data,proto3\" json:\"data,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Length", key: "Length", type: /* @__PURE__ */ $.basicType("uint32"), tag: "protobuf:\"varint,1,opt,name=length,proto3\" json:\"length,omitempty\"" }, { name: "Data", key: "Data", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "protobuf:\"bytes,2,opt,name=data,proto3\" json:\"data,omitempty\"" }]
 	)
 }
 
@@ -1237,7 +1228,7 @@ export class Metadata {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Entry?: $.Slice<MetadataEntry | $.VarRef<MetadataEntry> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Entry: init?.Entry ?? (null! as $.Slice<MetadataEntry | $.VarRef<MetadataEntry> | null>)
@@ -1252,7 +1243,7 @@ export class Metadata {
 	public __goscriptAssign(source: Metadata): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Entry = values.Entry
@@ -1273,40 +1264,40 @@ export class Metadata {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Metadata | $.VarRef<Metadata> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 5)
+		let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 5)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*grpc_binarylog_v1.Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata"))))
+		return mi.MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata")))
 	}
 
 	public Reset(): void {
 		let x: Metadata | $.VarRef<Metadata> | null = this;
 		$.assignStruct($.pointerValue<Metadata>(x), $.markAsStructValue(new Metadata()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 5)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 5)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Metadata | $.VarRef<Metadata> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.Metadata", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Metadata")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.Metadata",
 		() => new Metadata(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetEntry", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetEntry", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Metadata,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("Entry", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")), [3], 40, true, { tag: "protobuf:\"bytes,1,rep,name=entry,proto3\" json:\"entry,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Entry", key: "Entry", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")), tag: "protobuf:\"bytes,1,rep,name=entry,proto3\" json:\"entry,omitempty\"" }]
 	)
 }
 
@@ -1361,7 +1352,7 @@ export class MetadataEntry {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Key?: string, Value?: $.Slice<number>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Key: init?.Key ?? ("" as string),
@@ -1377,7 +1368,7 @@ export class MetadataEntry {
 	public __goscriptAssign(source: MetadataEntry): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Key = values.Key
@@ -1407,40 +1398,40 @@ export class MetadataEntry {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: MetadataEntry | $.VarRef<MetadataEntry> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 6)
+		let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 6)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.MetadataEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.MetadataEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*grpc_binarylog_v1.MetadataEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")))
+		return mi.MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.MetadataEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")))
 	}
 
 	public Reset(): void {
 		let x: MetadataEntry | $.VarRef<MetadataEntry> | null = this;
 		$.assignStruct($.pointerValue<MetadataEntry>(x), $.markAsStructValue(new MetadataEntry()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 6)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.MetadataEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 6)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.MetadataEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: MetadataEntry | $.VarRef<MetadataEntry> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.MetadataEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.MetadataEntry", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.MetadataEntry")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.MetadataEntry",
 		() => new MetadataEntry(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetKey", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetValue", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetKey", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetValue", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		MetadataEntry,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("Key", /* @__PURE__ */ $.basicType("string"), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=key,proto3\" json:\"key,omitempty\"" }), /* @__PURE__ */ $.structField("Value", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [4], 56, true, { tag: "protobuf:\"bytes,2,opt,name=value,proto3\" json:\"value,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Key", key: "Key", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,1,opt,name=key,proto3\" json:\"key,omitempty\"" }, { name: "Value", key: "Value", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "protobuf:\"bytes,2,opt,name=value,proto3\" json:\"value,omitempty\"" }]
 	)
 }
 
@@ -1505,7 +1496,7 @@ export class Address {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Type?: Address_Type, Address?: string, IpPort?: number}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Type: init?.Type ?? (0 as Address_Type),
@@ -1522,7 +1513,7 @@ export class Address {
 	public __goscriptAssign(source: Address): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Type = values.Type
@@ -1561,40 +1552,40 @@ export class Address {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Address | $.VarRef<Address> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 7)
+		let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 7)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Address", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Address", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.Address", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*grpc_binarylog_v1.Address", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address"))))
+		return mi.MessageOf($.interfaceValue(x, "*grpc_binarylog_v1.Address", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address")))
 	}
 
 	public Reset(): void {
 		let x: Address | $.VarRef<Address> | null = this;
 		$.assignStruct($.pointerValue<Address>(x), $.markAsStructValue(new Address()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 7)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Address", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_grpc_binlog_v1_binarylog_proto_msgTypes!, 7)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*grpc_binarylog_v1.Address", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Address | $.VarRef<Address> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.Address", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*grpc_binarylog_v1.Address", /* @__PURE__ */ $.pointerType("grpc_binarylog_v1.Address")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"grpc_binarylog_v1.Address",
 		() => new Address(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetAddress", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetIpPort", [], [/* @__PURE__ */ $.basicType("uint32")], true), $.methodSignature("GetType", [], [/* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.Address_Type")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetAddress", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetIpPort", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint32") }], pointerReceiver: true }, { name: "GetType", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.Address_Type") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Address,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/grpc/binarylog/grpc_binarylog_v1" }), /* @__PURE__ */ $.structField("Type", /* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.Address_Type"), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=type,proto3,enum=grpc.binarylog.v1.Address_Type\" json:\"type,omitempty\"" }), /* @__PURE__ */ $.structField("Address", /* @__PURE__ */ $.basicType("string"), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=address,proto3\" json:\"address,omitempty\"" }), /* @__PURE__ */ $.structField("IpPort", /* @__PURE__ */ $.basicType("uint32"), [5], 64, true, { tag: "protobuf:\"varint,3,opt,name=ip_port,json=ipPort,proto3\" json:\"ip_port,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Type", key: "Type", type: /* @__PURE__ */ $.basicType("int32", "grpc_binarylog_v1.Address_Type"), tag: "protobuf:\"varint,1,opt,name=type,proto3,enum=grpc.binarylog.v1.Address_Type\" json:\"type,omitempty\"" }, { name: "Address", key: "Address", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,2,opt,name=address,proto3\" json:\"address,omitempty\"" }, { name: "IpPort", key: "IpPort", type: /* @__PURE__ */ $.basicType("uint32"), tag: "protobuf:\"varint,3,opt,name=ip_port,json=ipPort,proto3\" json:\"ip_port,omitempty\"" }]
 	)
 }
 
@@ -1647,7 +1638,7 @@ export function GrpcLogEntry_EventType_Enum(x: GrpcLogEntry_EventType): $.VarRef
 }
 
 export function GrpcLogEntry_EventType_String(x: GrpcLogEntry_EventType): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(GrpcLogEntry_EventType_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(GrpcLogEntry_EventType_Descriptor(x), $.int(x, 32))
 }
 
 export function GrpcLogEntry_EventType_Descriptor(recv: GrpcLogEntry_EventType): protoreflect.EnumDescriptor | null {
@@ -1685,7 +1676,7 @@ export function GrpcLogEntry_Logger_Enum(x: GrpcLogEntry_Logger): $.VarRef<GrpcL
 }
 
 export function GrpcLogEntry_Logger_String(x: GrpcLogEntry_Logger): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(GrpcLogEntry_Logger_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(GrpcLogEntry_Logger_Descriptor(x), $.int(x, 32))
 }
 
 export function GrpcLogEntry_Logger_Descriptor(recv: GrpcLogEntry_Logger): protoreflect.EnumDescriptor | null {
@@ -1723,7 +1714,7 @@ export function Address_Type_Enum(x: Address_Type): $.VarRef<Address_Type> | nul
 }
 
 export function Address_Type_String(x: Address_Type): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(Address_Type_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(Address_Type_Descriptor(x), $.int(x, 32))
 }
 
 export function Address_Type_Descriptor(recv: Address_Type): protoreflect.EnumDescriptor | null {
@@ -1768,18 +1759,18 @@ export function __goscript_set_file_grpc_binlog_v1_binarylog_proto_rawDescData(_
 
 export async function file_grpc_binlog_v1_binarylog_proto_rawDescGZIP(): globalThis.Promise<$.Slice<number>> {
 	await file_grpc_binlog_v1_binarylog_proto_rawDescOnce.value.Do($.functionValue((): void => {
-		file_grpc_binlog_v1_binarylog_proto_rawDescData = $.pointerValue<impl.Export>(protoimpl.X).CompressGZIP(file_grpc_binlog_v1_binarylog_proto_rawDescData)
+		file_grpc_binlog_v1_binarylog_proto_rawDescData = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).CompressGZIP(file_grpc_binlog_v1_binarylog_proto_rawDescData)
 	}, ({ kind: $.TypeKind.Function, params: [], results: [] } as $.FunctionTypeInfo)))
 	return file_grpc_binlog_v1_binarylog_proto_rawDescData
 }
 
-export let file_grpc_binlog_v1_binarylog_proto_enumTypes: $.Slice<protoimpl.EnumInfo> = $.makeSlice<protoimpl.EnumInfo>(3, undefined, undefined, () => new impl.EnumInfo(undefined, true))
+export let file_grpc_binlog_v1_binarylog_proto_enumTypes: $.Slice<protoimpl.EnumInfo> = $.makeSlice<protoimpl.EnumInfo>(3, undefined, undefined, () => new protoimpl.EnumInfo(undefined, true))
 
 export function __goscript_set_file_grpc_binlog_v1_binarylog_proto_enumTypes(__goscriptValue: $.Slice<protoimpl.EnumInfo>): void {
 	file_grpc_binlog_v1_binarylog_proto_enumTypes = __goscriptValue
 }
 
-export let file_grpc_binlog_v1_binarylog_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(8, undefined, undefined, () => new impl.MessageInfo(undefined, true))
+export let file_grpc_binlog_v1_binarylog_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(8, undefined, undefined, () => new protoimpl.MessageInfo(undefined, true))
 
 export function __goscript_set_file_grpc_binlog_v1_binarylog_proto_msgTypes(__goscriptValue: $.Slice<protoimpl.MessageInfo>): void {
 	file_grpc_binlog_v1_binarylog_proto_msgTypes = __goscriptValue
@@ -2049,7 +2040,7 @@ export async function file_grpc_binlog_v1_binarylog_proto_init(): globalThis.Pro
 			() => []
 		)
 	}
-	let out = await $.markAsStructValue($.cloneStructValue(new filetype.Builder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "grpc_binarylog_v1.x", "grpc_binarylog_v1.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new filedesc.Builder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_grpc_binlog_v1_binarylog_proto_rawDesc, NumEnums: 3, NumMessages: 8, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_grpc_binlog_v1_binarylog_proto_goTypes, DependencyIndexes: file_grpc_binlog_v1_binarylog_proto_depIdxs, EnumInfos: file_grpc_binlog_v1_binarylog_proto_enumTypes, MessageInfos: file_grpc_binlog_v1_binarylog_proto_msgTypes}, true))).Build()
+	let out = await $.markAsStructValue($.cloneStructValue(new protoimpl.TypeBuilder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "grpc_binarylog_v1.x", "grpc_binarylog_v1.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new protoimpl.DescBuilder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_grpc_binlog_v1_binarylog_proto_rawDesc, NumEnums: 3, NumMessages: 8, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_grpc_binlog_v1_binarylog_proto_goTypes, DependencyIndexes: file_grpc_binlog_v1_binarylog_proto_depIdxs, EnumInfos: file_grpc_binlog_v1_binarylog_proto_enumTypes, MessageInfos: file_grpc_binlog_v1_binarylog_proto_msgTypes}, true))).Build()
 	File_grpc_binlog_v1_binarylog_proto = out.File
 	file_grpc_binlog_v1_binarylog_proto_rawDesc = null
 	file_grpc_binlog_v1_binarylog_proto_goTypes = null

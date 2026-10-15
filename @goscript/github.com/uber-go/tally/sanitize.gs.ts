@@ -23,7 +23,7 @@ export type Sanitizer = {
 $.registerInterfaceType(
 	"tally.Sanitizer",
 	null,
-	[$.methodSignature("Key", [["k", /* @__PURE__ */ $.basicType("string")]], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("Name", [["n", /* @__PURE__ */ $.basicType("string")]], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("Value", [["v", /* @__PURE__ */ $.basicType("string")]], [/* @__PURE__ */ $.basicType("string")])]
+	[{ name: "Key", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "Name", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "Value", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }]
 );
 
 export class ValidCharacters {
@@ -125,9 +125,9 @@ export class ValidCharacters {
 	static __typeInfo = $.registerStructType(
 		"tally.ValidCharacters",
 		() => new ValidCharacters(),
-		() => [$.methodSignature("sanitizeFn", [["repChar", /* @__PURE__ */ $.basicType("int32")]], [({ kind: $.TypeKind.Function, name: "tally.SanitizeFn", params: [/* @__PURE__ */ $.basicType("string")], results: [/* @__PURE__ */ $.basicType("string")] } as $.FunctionTypeInfo)], true)],
+		() => [{ name: "sanitizeFn", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: ({ kind: $.TypeKind.Function, name: "tally.SanitizeFn", params: [/* @__PURE__ */ $.basicType("string")], results: [/* @__PURE__ */ $.basicType("string")] } as $.FunctionTypeInfo) }], pointerReceiver: true }],
 		ValidCharacters,
-		() => [/* @__PURE__ */ $.structField("Ranges", /* @__PURE__ */ $.sliceType("tally.SanitizeRange"), [0], 0, true), /* @__PURE__ */ $.structField("Characters", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")), [1], 24, true)]
+		() => [{ name: "Ranges", key: "Ranges", type: /* @__PURE__ */ $.sliceType("tally.SanitizeRange") }, { name: "Characters", key: "Characters", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int32")) }]
 	)
 }
 
@@ -199,7 +199,7 @@ export class SanitizeOptions {
 		() => new SanitizeOptions(),
 		() => [],
 		SanitizeOptions,
-		() => [/* @__PURE__ */ $.structField("NameCharacters", "tally.ValidCharacters", [0], 0, true), /* @__PURE__ */ $.structField("KeyCharacters", "tally.ValidCharacters", [1], 48, true), /* @__PURE__ */ $.structField("ValueCharacters", "tally.ValidCharacters", [2], 96, true), /* @__PURE__ */ $.structField("ReplacementCharacter", /* @__PURE__ */ $.basicType("int32"), [3], 144, true)]
+		() => [{ name: "NameCharacters", key: "NameCharacters", type: "tally.ValidCharacters" }, { name: "KeyCharacters", key: "KeyCharacters", type: "tally.ValidCharacters" }, { name: "ValueCharacters", key: "ValueCharacters", type: "tally.ValidCharacters" }, { name: "ReplacementCharacter", key: "ReplacementCharacter", type: /* @__PURE__ */ $.basicType("int32") }]
 	)
 }
 
@@ -273,9 +273,9 @@ export class sanitizer {
 	static __typeInfo = $.registerStructType(
 		"tally.sanitizer",
 		() => new sanitizer(),
-		() => [$.methodSignature("Key", [["k", /* @__PURE__ */ $.basicType("string")]], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("Name", [["n", /* @__PURE__ */ $.basicType("string")]], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("Value", [["v", /* @__PURE__ */ $.basicType("string")]], [/* @__PURE__ */ $.basicType("string")])],
+		() => [{ name: "Key", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "Name", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "Value", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }],
 		sanitizer,
-		() => [/* @__PURE__ */ $.structField("nameFn", ({ kind: $.TypeKind.Function, name: "tally.SanitizeFn", params: [/* @__PURE__ */ $.basicType("string")], results: [/* @__PURE__ */ $.basicType("string")] } as $.FunctionTypeInfo), [0], 0, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("keyFn", ({ kind: $.TypeKind.Function, name: "tally.SanitizeFn", params: [/* @__PURE__ */ $.basicType("string")], results: [/* @__PURE__ */ $.basicType("string")] } as $.FunctionTypeInfo), [1], 8, false, { pkgPath: "github.com/uber-go/tally" }), /* @__PURE__ */ $.structField("valueFn", ({ kind: $.TypeKind.Function, name: "tally.SanitizeFn", params: [/* @__PURE__ */ $.basicType("string")], results: [/* @__PURE__ */ $.basicType("string")] } as $.FunctionTypeInfo), [2], 16, false, { pkgPath: "github.com/uber-go/tally" })]
+		() => [{ name: "nameFn", key: "nameFn", type: ({ kind: $.TypeKind.Function, name: "tally.SanitizeFn", params: [/* @__PURE__ */ $.basicType("string")], results: [/* @__PURE__ */ $.basicType("string")] } as $.FunctionTypeInfo) }, { name: "keyFn", key: "keyFn", type: ({ kind: $.TypeKind.Function, name: "tally.SanitizeFn", params: [/* @__PURE__ */ $.basicType("string")], results: [/* @__PURE__ */ $.basicType("string")] } as $.FunctionTypeInfo) }, { name: "valueFn", key: "valueFn", type: ({ kind: $.TypeKind.Function, name: "tally.SanitizeFn", params: [/* @__PURE__ */ $.basicType("string")], results: [/* @__PURE__ */ $.basicType("string")] } as $.FunctionTypeInfo) }]
 	)
 }
 

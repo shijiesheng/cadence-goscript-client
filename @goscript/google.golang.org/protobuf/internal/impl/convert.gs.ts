@@ -30,7 +30,7 @@ export type unwrapper = {
 $.registerInterfaceType(
 	"impl.unwrapper",
 	null,
-	[$.methodSignature("protoUnwrap", [], [{ kind: $.TypeKind.Interface, methods: [] }])]
+	[{ name: "protoUnwrap", args: [], returns: [{ type: { kind: $.TypeKind.Interface, methods: [] } }] }]
 );
 
 export type Converter = {
@@ -45,7 +45,7 @@ export type Converter = {
 $.registerInterfaceType(
 	"impl.Converter",
 	null,
-	[$.methodSignature("GoValueOf", ["protoreflect.Value"], ["reflect.Value"]), $.methodSignature("IsValidGo", ["reflect.Value"], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("IsValidPB", ["protoreflect.Value"], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("New", [], ["protoreflect.Value"]), $.methodSignature("PBValueOf", ["reflect.Value"], ["protoreflect.Value"]), $.methodSignature("Zero", [], ["protoreflect.Value"])]
+	[{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }] }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }] }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }] }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }] }]
 );
 
 export class boolConverter {
@@ -89,9 +89,9 @@ export class boolConverter {
 		$.assignStruct(target.def, values.def)
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: boolConverter | $.VarRef<boolConverter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf(await v.Bool()))).Convert($.pointerValueOrNil($.pointerValue<boolConverter>(c).goType)!)))
+		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.markAsStructValue($.cloneStructValue(v)).Bool()))).Convert($.pointerValueOrNil($.pointerValue<boolConverter>(c).goType)!)))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -99,9 +99,9 @@ export class boolConverter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<boolConverter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: boolConverter | $.VarRef<boolConverter> | null = this;
-		let [, ok] = $.typeAssertTuple<boolean>(await v.Interface(), /* @__PURE__ */ $.basicType("bool"))
+		let [, ok] = $.typeAssertTuple<boolean>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.basicType("bool"))
 		return ok
 	}
 
@@ -127,9 +127,9 @@ export class boolConverter {
 	static __typeInfo = $.registerStructType(
 		"impl.boolConverter",
 		() => new boolConverter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		boolConverter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("def", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "def", key: "def", type: "protoreflect.Value" }]
 	)
 }
 
@@ -174,9 +174,9 @@ export class int32Converter {
 		$.assignStruct(target.def, values.def)
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: int32Converter | $.VarRef<int32Converter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue($.int(await v.Int(), 32), "int32")))).Convert($.pointerValueOrNil($.pointerValue<int32Converter>(c).goType)!)))
+		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue($.int($.markAsStructValue($.cloneStructValue(v)).Int(), 32), "int32")))).Convert($.pointerValueOrNil($.pointerValue<int32Converter>(c).goType)!)))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -184,9 +184,9 @@ export class int32Converter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<int32Converter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: int32Converter | $.VarRef<int32Converter> | null = this;
-		let [, ok] = $.typeAssertTuple<number>(await v.Interface(), /* @__PURE__ */ $.basicType("int32"))
+		let [, ok] = $.typeAssertTuple<number>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.basicType("int32"))
 		return ok
 	}
 
@@ -212,9 +212,9 @@ export class int32Converter {
 	static __typeInfo = $.registerStructType(
 		"impl.int32Converter",
 		() => new int32Converter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		int32Converter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("def", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "def", key: "def", type: "protoreflect.Value" }]
 	)
 }
 
@@ -259,9 +259,9 @@ export class int64Converter {
 		$.assignStruct(target.def, values.def)
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: int64Converter | $.VarRef<int64Converter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue($.int64(await v.Int()), "int64")))).Convert($.pointerValueOrNil($.pointerValue<int64Converter>(c).goType)!)))
+		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue($.int64($.markAsStructValue($.cloneStructValue(v)).Int()), "int64")))).Convert($.pointerValueOrNil($.pointerValue<int64Converter>(c).goType)!)))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -269,9 +269,9 @@ export class int64Converter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<int64Converter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: int64Converter | $.VarRef<int64Converter> | null = this;
-		let [, ok] = $.typeAssertTuple<bigint>(await v.Interface(), /* @__PURE__ */ $.basicType("int64"))
+		let [, ok] = $.typeAssertTuple<bigint>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.basicType("int64"))
 		return ok
 	}
 
@@ -297,9 +297,9 @@ export class int64Converter {
 	static __typeInfo = $.registerStructType(
 		"impl.int64Converter",
 		() => new int64Converter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		int64Converter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("def", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "def", key: "def", type: "protoreflect.Value" }]
 	)
 }
 
@@ -344,9 +344,9 @@ export class uint32Converter {
 		$.assignStruct(target.def, values.def)
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: uint32Converter | $.VarRef<uint32Converter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue($.uint(await v.Uint(), 32), "uint32")))).Convert($.pointerValueOrNil($.pointerValue<uint32Converter>(c).goType)!)))
+		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue($.uint($.markAsStructValue($.cloneStructValue(v)).Uint(), 32), "uint32")))).Convert($.pointerValueOrNil($.pointerValue<uint32Converter>(c).goType)!)))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -354,9 +354,9 @@ export class uint32Converter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<uint32Converter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: uint32Converter | $.VarRef<uint32Converter> | null = this;
-		let [, ok] = $.typeAssertTuple<number>(await v.Interface(), /* @__PURE__ */ $.basicType("uint32"))
+		let [, ok] = $.typeAssertTuple<number>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.basicType("uint32"))
 		return ok
 	}
 
@@ -382,9 +382,9 @@ export class uint32Converter {
 	static __typeInfo = $.registerStructType(
 		"impl.uint32Converter",
 		() => new uint32Converter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		uint32Converter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("def", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "def", key: "def", type: "protoreflect.Value" }]
 	)
 }
 
@@ -429,9 +429,9 @@ export class uint64Converter {
 		$.assignStruct(target.def, values.def)
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: uint64Converter | $.VarRef<uint64Converter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue($.uint64(await v.Uint()), "uint64")))).Convert($.pointerValueOrNil($.pointerValue<uint64Converter>(c).goType)!)))
+		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue($.uint64($.markAsStructValue($.cloneStructValue(v)).Uint()), "uint64")))).Convert($.pointerValueOrNil($.pointerValue<uint64Converter>(c).goType)!)))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -439,9 +439,9 @@ export class uint64Converter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<uint64Converter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: uint64Converter | $.VarRef<uint64Converter> | null = this;
-		let [, ok] = $.typeAssertTuple<bigint>(await v.Interface(), /* @__PURE__ */ $.basicType("uint64"))
+		let [, ok] = $.typeAssertTuple<bigint>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.basicType("uint64"))
 		return ok
 	}
 
@@ -467,9 +467,9 @@ export class uint64Converter {
 	static __typeInfo = $.registerStructType(
 		"impl.uint64Converter",
 		() => new uint64Converter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		uint64Converter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("def", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "def", key: "def", type: "protoreflect.Value" }]
 	)
 }
 
@@ -514,9 +514,9 @@ export class float32Converter {
 		$.assignStruct(target.def, values.def)
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: float32Converter | $.VarRef<float32Converter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue(globalThis.Math.fround(await v.Float()), "float32")))).Convert($.pointerValueOrNil($.pointerValue<float32Converter>(c).goType)!)))
+		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue(globalThis.Math.fround($.markAsStructValue($.cloneStructValue(v)).Float()), "float32")))).Convert($.pointerValueOrNil($.pointerValue<float32Converter>(c).goType)!)))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -524,9 +524,9 @@ export class float32Converter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<float32Converter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: float32Converter | $.VarRef<float32Converter> | null = this;
-		let [, ok] = $.typeAssertTuple<number>(await v.Interface(), /* @__PURE__ */ $.basicType("float32"))
+		let [, ok] = $.typeAssertTuple<number>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.basicType("float32"))
 		return ok
 	}
 
@@ -552,9 +552,9 @@ export class float32Converter {
 	static __typeInfo = $.registerStructType(
 		"impl.float32Converter",
 		() => new float32Converter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		float32Converter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("def", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "def", key: "def", type: "protoreflect.Value" }]
 	)
 }
 
@@ -599,9 +599,9 @@ export class float64Converter {
 		$.assignStruct(target.def, values.def)
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: float64Converter | $.VarRef<float64Converter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue(await v.Float(), "float64")))).Convert($.pointerValueOrNil($.pointerValue<float64Converter>(c).goType)!)))
+		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.basicInterfaceValue($.markAsStructValue($.cloneStructValue(v)).Float(), "float64")))).Convert($.pointerValueOrNil($.pointerValue<float64Converter>(c).goType)!)))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -609,9 +609,9 @@ export class float64Converter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<float64Converter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: float64Converter | $.VarRef<float64Converter> | null = this;
-		let [, ok] = $.typeAssertTuple<number>(await v.Interface(), /* @__PURE__ */ $.basicType("float64"))
+		let [, ok] = $.typeAssertTuple<number>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.basicType("float64"))
 		return ok
 	}
 
@@ -637,9 +637,9 @@ export class float64Converter {
 	static __typeInfo = $.registerStructType(
 		"impl.float64Converter",
 		() => new float64Converter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		float64Converter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("def", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "def", key: "def", type: "protoreflect.Value" }]
 	)
 }
 
@@ -689,7 +689,7 @@ export class stringConverter {
 		const c$: stringConverter = c == null ? $.pointerTarget<stringConverter>(c) : (c as any).__isVarRef === true ? (c as any).value : (c as any).__goValue === undefined ? (c as any) : $.pointerTarget<stringConverter>(c)
 		// pref.Value.String never panics, so we go through an interface
 		// conversion here to check the type.
-		let s = $.mustTypeAssert<string>(await v.Interface(), /* @__PURE__ */ $.basicType("string"))
+		let s = $.mustTypeAssert<string>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.basicType("string"))
 		if (((__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>((c$ as stringConverter).goType).Kind(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) == 23) && ($.stringEqual(s, ""))) {
 			return $.markAsStructValue($.cloneStructValue(reflect.Zero($.pointerValueOrNil((c$ as stringConverter).goType)!)))
 		}
@@ -701,9 +701,9 @@ export class stringConverter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<stringConverter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: stringConverter | $.VarRef<stringConverter> | null = this;
-		let [, ok] = $.typeAssertTuple<string>(await v.Interface(), /* @__PURE__ */ $.basicType("string"))
+		let [, ok] = $.typeAssertTuple<string>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.basicType("string"))
 		return ok
 	}
 
@@ -729,9 +729,9 @@ export class stringConverter {
 	static __typeInfo = $.registerStructType(
 		"impl.stringConverter",
 		() => new stringConverter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		stringConverter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("def", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "def", key: "def", type: "protoreflect.Value" }]
 	)
 }
 
@@ -776,9 +776,9 @@ export class bytesConverter {
 		$.assignStruct(target.def, values.def)
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: bytesConverter | $.VarRef<bytesConverter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.interfaceValue(await v.Bytes(), "[]byte", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))))).Convert($.pointerValueOrNil($.pointerValue<bytesConverter>(c).goType)!)))
+		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.interfaceValue($.markAsStructValue($.cloneStructValue(v)).Bytes(), "[]byte", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))))).Convert($.pointerValueOrNil($.pointerValue<bytesConverter>(c).goType)!)))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -786,9 +786,9 @@ export class bytesConverter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<bytesConverter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: bytesConverter | $.VarRef<bytesConverter> | null = this;
-		let [, ok] = $.typeAssertTuple<$.Slice<number>>(await v.Interface(), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))
+		let [, ok] = $.typeAssertTuple<$.Slice<number>>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))
 		return ok
 	}
 
@@ -817,9 +817,9 @@ export class bytesConverter {
 	static __typeInfo = $.registerStructType(
 		"impl.bytesConverter",
 		() => new bytesConverter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		bytesConverter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("def", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "def", key: "def", type: "protoreflect.Value" }]
 	)
 }
 
@@ -864,9 +864,9 @@ export class enumConverter {
 		$.assignStruct(target.def, values.def)
 	}
 
-	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
+	public GoValueOf(v: protoreflect.Value): reflect.Value {
 		const c: enumConverter | $.VarRef<enumConverter> | null = this;
-		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.namedValueInterfaceValue<any>(await v.Enum(), "protoreflect.EnumNumber", {}, /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber"))))).Convert($.pointerValueOrNil($.pointerValue<enumConverter>(c).goType)!)))
+		return $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(reflect.ValueOf($.namedValueInterfaceValue<any>($.markAsStructValue($.cloneStructValue(v)).Enum(), "protoreflect.EnumNumber", {}, /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber"))))).Convert($.pointerValueOrNil($.pointerValue<enumConverter>(c).goType)!)))
 	}
 
 	public IsValidGo(v: reflect.Value): boolean {
@@ -874,9 +874,9 @@ export class enumConverter {
 		return $.markAsStructValue($.cloneStructValue(v)).IsValid() && ($.comparableEqual($.markAsStructValue($.cloneStructValue(v)).Type(), $.pointerValue<enumConverter>(c).goType))
 	}
 
-	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
+	public IsValidPB(v: protoreflect.Value): boolean {
 		const c: enumConverter | $.VarRef<enumConverter> | null = this;
-		let [, ok] = $.typeAssertTuple<protoreflect.EnumNumber>(await v.Interface(), /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber"))
+		let [, ok] = $.typeAssertTuple<protoreflect.EnumNumber>($.markAsStructValue($.cloneStructValue(v)).Interface(), /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber"))
 		return ok
 	}
 
@@ -902,9 +902,9 @@ export class enumConverter {
 	static __typeInfo = $.registerStructType(
 		"impl.enumConverter",
 		() => new enumConverter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }],
 		enumConverter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("def", "protoreflect.Value", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "def", key: "def", type: "protoreflect.Value" }]
 	)
 }
 
@@ -941,7 +941,7 @@ export class messageConverter {
 	public async GoValueOf(v: protoreflect.Value): globalThis.Promise<reflect.Value> {
 		const c: messageConverter | $.VarRef<messageConverter> | null = this;
 		const c$: messageConverter = c == null ? $.pointerTarget<messageConverter>(c) : (c as any).__isVarRef === true ? (c as any).value : (c as any).__goValue === undefined ? (c as any) : $.pointerTarget<messageConverter>(c)
-		let m = await v.Message()
+		let m = $.markAsStructValue($.cloneStructValue(v)).Message()
 		let rv: reflect.Value = $.markAsStructValue(new reflect.Value())
 		{
 			let [u, ok] = $.typeAssertTuple<unwrapper | null>(m, "impl.unwrapper")
@@ -975,7 +975,7 @@ export class messageConverter {
 	public async IsValidPB(v: protoreflect.Value): globalThis.Promise<boolean> {
 		const c: messageConverter | $.VarRef<messageConverter> | null = this;
 		const c$: messageConverter = c == null ? $.pointerTarget<messageConverter>(c) : (c as any).__isVarRef === true ? (c as any).value : (c as any).__goValue === undefined ? (c as any) : $.pointerTarget<messageConverter>(c)
-		let m = await v.Message()
+		let m = $.markAsStructValue($.cloneStructValue(v)).Message()
 		let rv: reflect.Value = $.markAsStructValue(new reflect.Value())
 		{
 			let [u, ok] = $.typeAssertTuple<unwrapper | null>(m, "impl.unwrapper")
@@ -1035,9 +1035,9 @@ export class messageConverter {
 	static __typeInfo = $.registerStructType(
 		"impl.messageConverter",
 		() => new messageConverter(),
-		() => [$.methodSignature("GoValueOf", [["v", "protoreflect.Value"]], ["reflect.Value"], true), $.methodSignature("IsValidGo", [["v", "reflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("IsValidPB", [["v", "protoreflect.Value"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("New", [], ["protoreflect.Value"], true), $.methodSignature("PBValueOf", [["v", "reflect.Value"]], ["protoreflect.Value"], true), $.methodSignature("Zero", [], ["protoreflect.Value"], true), $.methodSignature("isNonPointer", [], [/* @__PURE__ */ $.basicType("bool")], true)],
+		() => [{ name: "GoValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "reflect.Value" }], pointerReceiver: true }, { name: "IsValidGo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "IsValidPB", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "New", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "PBValueOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "Zero", args: [], returns: [{ type: "protoreflect.Value" }], pointerReceiver: true }, { name: "isNonPointer", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }],
 		messageConverter,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }]
 	)
 }
 

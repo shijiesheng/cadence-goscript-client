@@ -40,7 +40,7 @@ export class Pool {
 
 	public async Get(__typeArgs: $.GenericTypeArgs | undefined): globalThis.Promise<any> {
 		const p: Pool | $.VarRef<Pool> | null = this;
-		return $.mustTypeAssert<any>(await $.pointerValue<Pool>(p).pool.Get(), __typeArgs?.["T"]?.type ?? { kind: $.TypeKind.Interface, methods: [] })
+		return await $.pointerValue<Pool>(p).pool.Get()
 	}
 
 	public Put(__typeArgs: $.GenericTypeArgs | undefined, x: any): void {

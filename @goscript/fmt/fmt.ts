@@ -912,126 +912,153 @@ let stdout = {
 
 // Print functions.
 //
-// Operands may implement Error/String/GoString asynchronously (a transpiled
-// Go method that awaits), so every operand renders through the Maybe pipeline
-// and these functions resolve before writing or returning text.
+// Operands may implement Error/String/Format/GoString asynchronously (a
+// transpiled Go method that awaits), so every operand renders through the
+// Maybe pipeline. A function returns plain values when every operand renders
+// synchronously, and a Promise only when one does not: synchronous generated
+// methods such as protobuf String must never receive a Promise.
+
+function settle<T>(value: T | PromiseLike<T>): T | Promise<T> {
+  return isPromiseLike<T>(value) ? Promise.resolve(value) : value
+}
+
+function thenMaybe<T, R>(
+  value: T | PromiseLike<T>,
+  f: (value: T) => R,
+): R | Promise<R> {
+  return isPromiseLike<T>(value) ? Promise.resolve(value).then(f) : f(value)
+}
 
 // sprintOperands renders operands with Go's Print spacing rule: a space is
 // added between operands only when neither side is a string.
-async function sprintOperands(a: any[]): Promise<string> {
-  let out = ''
+function sprintOperands(a: any[]): MaybeString {
+  const parts: MaybeString[] = []
   for (let i = 0; i < a.length; i++) {
     if (i > 0) {
       const prevIsString = typeof a[i - 1] === 'string'
       const currIsString = typeof a[i] === 'string'
-      if (!prevIsString && !currIsString) out += ' '
+      if (!prevIsString && !currIsString) parts.push(' ')
     }
-    out += await defaultFormatMaybe(a[i])
+    parts.push(defaultFormatMaybe(a[i]))
   }
-  return out
+  return joinMaybe(parts, '')
 }
 
 // sprintlnOperands renders operands with Go's Println rule: always
 // space-separated, terminated by a newline.
-async function sprintlnOperands(a: any[]): Promise<string> {
-  const parts = await Promise.all(
-    a.map((operand) => Promise.resolve(defaultFormatMaybe(operand))),
+function sprintlnOperands(a: any[]): MaybeString {
+  return joinMaybe(
+    a.map((operand) => defaultFormatMaybe(operand)),
+    ' ',
+    '',
+    '\n',
   )
-  return parts.join(' ') + '\n'
 }
 
-export async function Print(...a: any[]): Promise<[number, $.GoError | null]> {
-  const out = await sprintOperands(a)
-  stdout.write(out)
-  return [out.length, null]
+function writeStdout(
+  out: MaybeString,
+): [number, $.GoError | null] | Promise<[number, $.GoError | null]> {
+  return thenMaybe(out, (text): [number, $.GoError | null] => {
+    stdout.write(text)
+    return [text.length, null]
+  })
 }
 
-export async function Printf(
+export function Print(
+  ...a: any[]
+): [number, $.GoError | null] | Promise<[number, $.GoError | null]> {
+  return writeStdout(sprintOperands(a))
+}
+
+export function Printf(
   format: string,
   ...a: any[]
-): Promise<[number, $.GoError | null]> {
-  const result = await parseFormatMaybe(format, a)
-  stdout.write(result)
-  return [result.length, null]
+): [number, $.GoError | null] | Promise<[number, $.GoError | null]> {
+  return writeStdout(parseFormatMaybe(format, a))
 }
 
-export async function Println(
+export function Println(
   ...a: any[]
-): Promise<[number, $.GoError | null]> {
-  const result = await sprintlnOperands(a)
-  stdout.write(result)
-  return [result.length, null]
+): [number, $.GoError | null] | Promise<[number, $.GoError | null]> {
+  return writeStdout(sprintlnOperands(a))
 }
 
 // Sprint functions (return strings)
-export async function Sprint(...a: any[]): Promise<string> {
-  return sprintOperands(a)
+export function Sprint(...a: any[]): any {
+  return settle(sprintOperands(a))
 }
 
-export async function Sprintf(format: string, ...a: any[]): Promise<string> {
-  return parseFormatMaybe(format, a)
+export function Sprintf(format: string, ...a: any[]): any {
+  return settle(parseFormatMaybe(format, a))
 }
 
-export async function Sprintln(...a: any[]): Promise<string> {
-  return sprintlnOperands(a)
+export function Sprintln(...a: any[]): any {
+  return settle(sprintlnOperands(a))
 }
 
-async function writeToWriter(
+function writeToWriter(
   w: any,
-  out: string,
-): Promise<[number, $.GoError | null]> {
-  if (w && w.Write) {
-    return await w.Write($.stringToBytes(out))
-  }
-  return [0, $.newError('Writer does not implement Write method')]
+  out: MaybeString,
+): [number, $.GoError | null] | Promise<[number, $.GoError | null]> {
+  return settle(
+    thenMaybe(
+      out,
+      (
+        text,
+      ):
+        | [number, $.GoError | null]
+        | PromiseLike<[number, $.GoError | null]> => {
+        if (w && w.Write) {
+          return w.Write($.stringToBytes(text))
+        }
+        return [0, $.newError('Writer does not implement Write method')]
+      },
+    ),
+  ) as [number, $.GoError | null] | Promise<[number, $.GoError | null]>
 }
 
 // Fprint functions (write to Writer)
-export async function Fprint(
+export function Fprint(
   w: any,
   ...a: any[]
-): Promise<[number, $.GoError | null]> {
+): [number, $.GoError | null] | Promise<[number, $.GoError | null]> {
   // Same spacing as Print
-  const out = await sprintOperands(a)
-  return await writeToWriter(w, out)
+  return writeToWriter(w, sprintOperands(a))
 }
 
-export async function Fprintf(
+export function Fprintf(
   w: any,
   format: string,
   ...a: any[]
-): Promise<[number, $.GoError | null]> {
-  const result = await parseFormatMaybe(format, a)
-  return await writeToWriter(w, result)
+): [number, $.GoError | null] | Promise<[number, $.GoError | null]> {
+  return writeToWriter(w, parseFormatMaybe(format, a))
 }
 
-export async function Fprintln(
+export function Fprintln(
   w: any,
   ...a: any[]
-): Promise<[number, $.GoError | null]> {
+): [number, $.GoError | null] | Promise<[number, $.GoError | null]> {
   // Same behavior as Println
-  const result = await sprintlnOperands(a)
-  return await writeToWriter(w, result)
+  return writeToWriter(w, sprintlnOperands(a))
 }
 
 // Append functions (append to byte slice)
-export async function Append(b: $.Bytes, ...a: any[]): Promise<$.Bytes> {
-  const result = await sprintOperands(a)
-  return appendText(b, result)
+export function Append(b: $.Bytes, ...a: any[]): $.Bytes | Promise<$.Bytes> {
+  return thenMaybe(sprintOperands(a), (result) => appendText(b, result))
 }
 
-export async function Appendf(
+export function Appendf(
   b: $.Bytes,
   format: string,
   ...a: any[]
-): Promise<$.Bytes> {
-  const result = await parseFormatMaybe(format, a)
-  return appendText(b, result)
+): $.Bytes | Promise<$.Bytes> {
+  return thenMaybe(parseFormatMaybe(format, a), (result) =>
+    appendText(b, result),
+  )
 }
 
-export async function Appendln(b: $.Bytes, ...a: any[]): Promise<$.Bytes> {
-  const result = await sprintlnOperands(a)
-  return appendText(b, result)
+export function Appendln(b: $.Bytes, ...a: any[]): $.Bytes | Promise<$.Bytes> {
+  return thenMaybe(sprintlnOperands(a), (result) => appendText(b, result))
 }
 
 function appendText(b: $.Bytes, result: string): $.Bytes {

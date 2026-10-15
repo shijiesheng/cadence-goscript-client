@@ -105,9 +105,9 @@ export class legacyEnumType {
 	static __typeInfo = $.registerStructType(
 		"impl.legacyEnumType",
 		() => new legacyEnumType(),
-		() => [$.methodSignature("Descriptor", [], ["protoreflect.EnumDescriptor"], true), $.methodSignature("New", [["n", /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber")]], ["protoreflect.Enum"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: "protoreflect.EnumDescriptor" }], pointerReceiver: true }, { name: "New", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Enum" }], pointerReceiver: true }],
 		legacyEnumType,
-		() => [/* @__PURE__ */ $.structField("desc", "protoreflect.EnumDescriptor", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("goType", "reflect.Type", [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("m", "sync.Map", [2], 32, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "desc", key: "desc", type: "protoreflect.EnumDescriptor" }, { name: "goType", key: "goType", type: "reflect.Type" }, { name: "m", key: "m", type: "sync.Map" }]
 	)
 }
 
@@ -194,9 +194,9 @@ export class legacyEnumWrapper {
 	static __typeInfo = $.registerStructType(
 		"impl.legacyEnumWrapper",
 		() => new legacyEnumWrapper(),
-		() => [$.methodSignature("Descriptor", [], ["protoreflect.EnumDescriptor"], true), $.methodSignature("Number", [], [/* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber")], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Enum"], true), $.methodSignature("Type", [], ["protoreflect.EnumType"], true), $.methodSignature("protoUnwrap", [], [{ kind: $.TypeKind.Interface, methods: [] }], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: "protoreflect.EnumDescriptor" }], pointerReceiver: true }, { name: "Number", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber") }], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Enum" }], pointerReceiver: true }, { name: "Type", args: [], returns: [{ type: "protoreflect.EnumType" }], pointerReceiver: true }, { name: "protoUnwrap", args: [], returns: [{ type: { kind: $.TypeKind.Interface, methods: [] } }], pointerReceiver: true }],
 		legacyEnumWrapper,
-		() => [/* @__PURE__ */ $.structField("num", /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber"), [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("pbTyp", "protoreflect.EnumType", [1], 8, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("goTyp", "reflect.Type", [2], 24, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "num", key: "num", type: /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber") }, { name: "pbTyp", key: "pbTyp", type: "protoreflect.EnumType" }, { name: "goTyp", key: "goTyp", type: "reflect.Type" }]
 	)
 }
 
@@ -351,7 +351,7 @@ export async function aberrantLoadEnumDesc(t: reflect.Type | null): globalThis.P
 	let ed: filedesc.Enum | $.VarRef<filedesc.Enum> | null = new filedesc.Enum({L2: new filedesc.EnumL2()})
 	let ed$: filedesc.Enum = ed == null ? $.pointerTarget<filedesc.Enum>(ed) : (ed as any).__isVarRef === true ? (ed as any).value : (ed as any).__goValue === undefined ? (ed as any) : $.pointerTarget<filedesc.Enum>(ed);
 	;(ed$ as filedesc.Enum).Base.L0.FullName = await AberrantDeriveFullName(t);
-	;(ed$ as filedesc.Enum).Base.L0.ParentFile = filedesc.__goscript_get_SurrogateProto3()
+	;(ed$ as filedesc.Enum).Base.L0.ParentFile = filedesc.SurrogateProto3
 	$.assignStruct((ed$ as filedesc.Enum).L1.EditionFeatures, $.pointerValue<filedesc.File>((ed$ as filedesc.Enum).Base.L0.ParentFile).L1.EditionFeatures)
 	$.pointerValue<filedesc.EnumL2>((ed$ as filedesc.Enum).L2).Values.List = $.appendOne($.pointerValue<filedesc.EnumL2>((ed$ as filedesc.Enum).L2).Values.List, new filedesc.EnumValue(undefined, true))
 

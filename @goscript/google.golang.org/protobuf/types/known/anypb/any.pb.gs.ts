@@ -16,14 +16,6 @@ import * as reflect from "@goscript/reflect/index.js"
 import * as strings from "@goscript/strings/index.js"
 
 import * as sync from "@goscript/sync/index.js"
-
-import type * as protowire from "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-
-import * as filedesc from "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-
-import * as filetype from "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-
-import * as impl from "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 import "@goscript/google.golang.org/protobuf/proto/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoregistry/index.js"
@@ -31,9 +23,6 @@ import "@goscript/google.golang.org/protobuf/runtime/protoimpl/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/strings/index.js"
 import "@goscript/sync/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-import "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 
 $.registerTypePackagePath("google.golang.org/protobuf/types/known/anypb", ["anypb.Any", "anypb.x"])
 
@@ -117,7 +106,7 @@ export class Any {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, TypeUrl?: string, Value?: $.Slice<number>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			TypeUrl: init?.TypeUrl ?? ("" as string),
@@ -133,7 +122,7 @@ export class Any {
 	public __goscriptAssign(source: Any): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.TypeUrl = values.TypeUrl
@@ -197,32 +186,32 @@ export class Any {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Any | $.VarRef<Any> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_any_proto_msgTypes!, 0)
+		let mi: any = $.indexRef(file_google_protobuf_any_proto_msgTypes!, 0)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*anypb.Any", /* @__PURE__ */ $.pointerType("anypb.Any")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*anypb.Any", /* @__PURE__ */ $.pointerType("anypb.Any")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*anypb.Any", /* @__PURE__ */ $.pointerType("anypb.Any"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*anypb.Any", /* @__PURE__ */ $.pointerType("anypb.Any"))))
+		return mi.MessageOf($.interfaceValue(x, "*anypb.Any", /* @__PURE__ */ $.pointerType("anypb.Any")))
 	}
 
 	public Reset(): void {
 		let x: Any | $.VarRef<Any> | null = this;
 		$.assignStruct($.pointerValue<Any>(x), $.markAsStructValue(new Any()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_google_protobuf_any_proto_msgTypes!, 0)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*anypb.Any", /* @__PURE__ */ $.pointerType("anypb.Any")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_google_protobuf_any_proto_msgTypes!, 0)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*anypb.Any", /* @__PURE__ */ $.pointerType("anypb.Any")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Any | $.VarRef<Any> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*anypb.Any", /* @__PURE__ */ $.pointerType("anypb.Any")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*anypb.Any", /* @__PURE__ */ $.pointerType("anypb.Any")))
 	}
 
 	public async UnmarshalNew(): globalThis.Promise<[proto.Message | null, $.GoError]> {
@@ -238,9 +227,9 @@ export class Any {
 	static __typeInfo = $.registerStructType(
 		"anypb.Any",
 		() => new Any(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetTypeUrl", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetValue", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))], true), $.methodSignature("MarshalFrom", [["m", "protoreflect.ProtoMessage"]], ["error"], true), $.methodSignature("MessageIs", [["m", "protoreflect.ProtoMessage"]], [/* @__PURE__ */ $.basicType("bool")], true), $.methodSignature("MessageName", [], [/* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("UnmarshalNew", [], ["protoreflect.ProtoMessage", "error"], true), $.methodSignature("UnmarshalTo", [["m", "protoreflect.ProtoMessage"]], ["error"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetTypeUrl", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetValue", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }], pointerReceiver: true }, { name: "MarshalFrom", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }, { name: "MessageIs", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }], pointerReceiver: true }, { name: "MessageName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string", "protoreflect.FullName") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "UnmarshalNew", args: [], returns: [{ type: "protoreflect.ProtoMessage" }, { type: "error" }], pointerReceiver: true }, { name: "UnmarshalTo", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }], pointerReceiver: true }],
 		Any,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "google.golang.org/protobuf/types/known/anypb" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "google.golang.org/protobuf/types/known/anypb" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "google.golang.org/protobuf/types/known/anypb" }), /* @__PURE__ */ $.structField("TypeUrl", /* @__PURE__ */ $.basicType("string"), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=type_url,json=typeUrl,proto3\" json:\"type_url,omitempty\"" }), /* @__PURE__ */ $.structField("Value", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [4], 56, true, { tag: "protobuf:\"bytes,2,opt,name=value,proto3\" json:\"value,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "TypeUrl", key: "TypeUrl", type: /* @__PURE__ */ $.basicType("string"), tag: "protobuf:\"bytes,1,opt,name=type_url,json=typeUrl,proto3\" json:\"type_url,omitempty\"" }, { name: "Value", key: "Value", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), tag: "protobuf:\"bytes,2,opt,name=value,proto3\" json:\"value,omitempty\"" }]
 	)
 }
 
@@ -259,9 +248,9 @@ export async function MarshalFrom(dst: Any | $.VarRef<Any> | null, src: proto.Me
 	const dst$: Any = dst == null ? $.pointerTarget<Any>(dst) : (dst as any).__isVarRef === true ? (dst as any).value : (dst as any).__goValue === undefined ? (dst as any) : $.pointerTarget<Any>(dst)
 	const urlPrefix: string = "type.googleapis.com/"
 	if (src == null) {
-		return $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).NewError("invalid nil source message", null)
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).NewError("invalid nil source message", null)
 	}
-	let __goscriptTuple0: any = await opts.Marshal(src)
+	let __goscriptTuple0: any = $.markAsStructValue($.cloneStructValue(opts)).Marshal(src)
 	let b: $.Slice<number> = __goscriptTuple0[0]
 	let err = __goscriptTuple0[1]
 	if (err != null) {
@@ -274,12 +263,12 @@ export async function MarshalFrom(dst: Any | $.VarRef<Any> | null, src: proto.Me
 
 export async function UnmarshalTo(src: Any | $.VarRef<Any> | null, dst: proto.Message | null, opts: proto.UnmarshalOptions): globalThis.Promise<$.GoError> {
 	if (src == null) {
-		return $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).NewError("invalid nil source message", null)
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).NewError("invalid nil source message", null)
 	}
 	if (!await (src !== null && (src as any).__isVarRef !== true && (src as any).__goValue === undefined ? ((src as any) as Any).MessageIs(dst) : Any.prototype.MessageIs.call(src, dst))) {
 		let got = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.MessageDescriptor, null>>((__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((__goscriptAwait = (dst !== null && (dst as any).__isVarRef !== true && (dst as any).__goValue === undefined ? (dst as Exclude<protoreflect.ProtoMessage, null>) : $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>(dst)).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).Descriptor(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 		let want = (src !== null && (src as any).__isVarRef !== true && (src as any).__goValue === undefined ? ((src as any) as Any).MessageName() : Any.prototype.MessageName.call(src))
-		return $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).NewError("mismatched message type: got %q, want %q", $.arrayToSlice<any>([$.namedValueInterfaceValue<any>(got, "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()), $.namedValueInterfaceValue<any>(want, "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2())]))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).NewError("mismatched message type: got %q, want %q", $.arrayToSlice<any>([$.namedValueInterfaceValue<any>(got, "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()), $.namedValueInterfaceValue<any>(want, "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2())]))
 	}
 	return $.markAsStructValue($.cloneStructValue(opts)).Unmarshal((src !== null && (src as any).__isVarRef !== true && (src as any).__goValue === undefined ? ((src as any) as Any).GetValue() : Any.prototype.GetValue.call(src)), dst)
 }
@@ -288,7 +277,7 @@ export async function UnmarshalNew(src: Any | $.VarRef<Any> | null, opts: proto.
 	let dst: proto.Message | null = null! as proto.Message | null
 	let err: $.GoError = null! as $.GoError
 	if ($.stringEqual((src !== null && (src as any).__isVarRef !== true && (src as any).__goValue === undefined ? ((src as any) as Any).GetTypeUrl() : Any.prototype.GetTypeUrl.call(src)), "")) {
-		return [null, await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).NewError("invalid empty type URL", null)]
+		return [null, $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).NewError("invalid empty type URL", null)]
 	}
 	if (opts.Resolver == null) {
 		opts.Resolver = $.interfaceValue(protoregistry.GlobalTypes, "*protoregistry.Types", /* @__PURE__ */ $.pointerType("protoregistry.Types"))
@@ -304,10 +293,10 @@ export async function UnmarshalNew(src: Any | $.VarRef<Any> | null, opts: proto.
 		if ($.comparableEqual(err, protoregistry.NotFound)) {
 			return [null, err]
 		}
-		return [null, await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).NewError("could not resolve %q: %v", $.arrayToSlice<any>([(src !== null && (src as any).__isVarRef !== true && (src as any).__goValue === undefined ? ((src as any) as Any).GetTypeUrl() : Any.prototype.GetTypeUrl.call(src)), (err as any)]))]
+		return [null, $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).NewError("could not resolve %q: %v", $.arrayToSlice<any>([(src !== null && (src as any).__isVarRef !== true && (src as any).__goValue === undefined ? ((src as any) as Any).GetTypeUrl() : Any.prototype.GetTypeUrl.call(src)), (err as any)]))]
 	}
 	dst = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.Message, null>>((__goscriptAwait = (mt !== null && (mt as any).__isVarRef !== true && (mt as any).__goValue === undefined ? (mt as Exclude<protoreflect.MessageType, null>) : $.pointerValue<Exclude<protoreflect.MessageType, null>>(mt)).New(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).Interface(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
-	return [dst, await $.markAsStructValue($.cloneStructValue(opts)).Unmarshal((src !== null && (src as any).__isVarRef !== true && (src as any).__goValue === undefined ? ((src as any) as Any).GetValue() : Any.prototype.GetValue.call(src)), dst)]
+	return [dst, $.markAsStructValue($.cloneStructValue(opts)).Unmarshal((src !== null && (src as any).__isVarRef !== true && (src as any).__goValue === undefined ? ((src as any) as Any).GetValue() : Any.prototype.GetValue.call(src)), dst)]
 }
 
 export let File_google_protobuf_any_proto: protoreflect.FileDescriptor | null = null! as protoreflect.FileDescriptor | null
@@ -336,12 +325,12 @@ export function __goscript_set_file_google_protobuf_any_proto_rawDescData(__gosc
 
 export async function file_google_protobuf_any_proto_rawDescGZIP(): globalThis.Promise<$.Slice<number>> {
 	await file_google_protobuf_any_proto_rawDescOnce.value.Do($.functionValue((): void => {
-		file_google_protobuf_any_proto_rawDescData = $.pointerValue<impl.Export>(protoimpl.X).CompressGZIP(file_google_protobuf_any_proto_rawDescData)
+		file_google_protobuf_any_proto_rawDescData = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).CompressGZIP(file_google_protobuf_any_proto_rawDescData)
 	}, ({ kind: $.TypeKind.Function, params: [], results: [] } as $.FunctionTypeInfo)))
 	return file_google_protobuf_any_proto_rawDescData
 }
 
-export let file_google_protobuf_any_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(1, undefined, undefined, () => new impl.MessageInfo(undefined, true))
+export let file_google_protobuf_any_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(1, undefined, undefined, () => new protoimpl.MessageInfo(undefined, true))
 
 export function __goscript_set_file_google_protobuf_any_proto_msgTypes(__goscriptValue: $.Slice<protoimpl.MessageInfo>): void {
 	file_google_protobuf_any_proto_msgTypes = __goscriptValue
@@ -421,7 +410,7 @@ export async function file_google_protobuf_any_proto_init(): globalThis.Promise<
 			() => []
 		)
 	}
-	let out = await $.markAsStructValue($.cloneStructValue(new filetype.Builder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "anypb.x", "anypb.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new filedesc.Builder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_google_protobuf_any_proto_rawDesc, NumEnums: 0, NumMessages: 1, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_google_protobuf_any_proto_goTypes, DependencyIndexes: file_google_protobuf_any_proto_depIdxs, MessageInfos: file_google_protobuf_any_proto_msgTypes}, true))).Build()
+	let out = await $.markAsStructValue($.cloneStructValue(new protoimpl.TypeBuilder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "anypb.x", "anypb.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new protoimpl.DescBuilder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_google_protobuf_any_proto_rawDesc, NumEnums: 0, NumMessages: 1, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_google_protobuf_any_proto_goTypes, DependencyIndexes: file_google_protobuf_any_proto_depIdxs, MessageInfos: file_google_protobuf_any_proto_msgTypes}, true))).Build()
 	File_google_protobuf_any_proto = out.File
 	file_google_protobuf_any_proto_rawDesc = null
 	file_google_protobuf_any_proto_goTypes = null

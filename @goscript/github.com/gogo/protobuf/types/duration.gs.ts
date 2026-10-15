@@ -9,8 +9,6 @@ import * as fmt from "@goscript/fmt/index.js"
 
 import * as time from "@goscript/time/index.js"
 
-import type * as proto from "@goscript/github.com/gogo/protobuf/proto/index.js"
-
 import * as __goscript_duration_gogo from "./duration_gogo.gs.ts"
 
 import * as __goscript_duration_pb from "./duration.pb.gs.ts"

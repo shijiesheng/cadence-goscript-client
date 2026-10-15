@@ -7,14 +7,6 @@ import * as reflect from "@goscript/reflect/index.js"
 
 import * as protowire from "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
 
-import type * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
-import type * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
-
-import * as protoreflect from "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
-
-import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-
 import * as sync from "@goscript/sync/index.js"
 
 import * as __goscript_checkinit from "./checkinit.gs.ts"
@@ -48,8 +40,6 @@ import * as __goscript_validate from "./validate.gs.ts"
 import type * as __goscript_weak from "./weak.gs.ts"
 import "@goscript/reflect/index.js"
 import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
-import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 import "@goscript/sync/index.js"
 import "./checkinit.gs.ts"
 import "./codec_extension.gs.ts"

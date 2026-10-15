@@ -11,10 +11,10 @@ export async function __goscript_package_init(): globalThis.Promise<void> {
 		return
 	}
 	initialized = true
-	await __goscript_file0.__goscriptInit0()
-	await __goscript_file0.__goscriptInit1()
-	await __goscript_file1.__goscriptInit0()
-	await __goscript_file1.__goscriptInit1()
-	await __goscript_file2.__goscriptInit0()
-	await __goscript_file2.__goscriptInit1()
+	__goscript_file0.__goscriptInit0()
+	__goscript_file0.__goscriptInit1()
+	__goscript_file1.__goscriptInit0()
+	__goscript_file1.__goscriptInit1()
+	__goscript_file2.__goscriptInit0()
+	__goscript_file2.__goscriptInit1()
 }

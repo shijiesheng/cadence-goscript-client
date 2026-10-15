@@ -25,10 +25,6 @@ import * as protobuf from "@goscript/go.uber.org/yarpc/encoding/protobuf/index.j
 
 import * as reflection from "@goscript/go.uber.org/yarpc/encoding/protobuf/reflection/index.js"
 
-import * as types from "@goscript/github.com/gogo/protobuf/types/index.js"
-
-import * as dig from "@goscript/go.uber.org/dig/index.js"
-
 import type * as io from "@goscript/io/index.js"
 
 import * as __goscript_common_pb from "./common.pb.gs.ts"
@@ -51,8 +47,6 @@ import "@goscript/go.uber.org/yarpc/api/transport/index.js"
 import "@goscript/go.uber.org/yarpc/api/x/restriction/index.js"
 import "@goscript/go.uber.org/yarpc/encoding/protobuf/index.js"
 import "@goscript/go.uber.org/yarpc/encoding/protobuf/reflection/index.js"
-import "@goscript/github.com/gogo/protobuf/types/index.js"
-import "@goscript/go.uber.org/dig/index.js"
 import "./common.pb.gs.ts"
 import "./service_visibility.pb.gs.ts"
 import "./tasklist.pb.gs.ts"
@@ -74,7 +68,7 @@ export type VisibilityAPIYARPCClient = {
 $.registerInterfaceType(
 	"apiv1.VisibilityAPIYARPCClient",
 	null,
-	[$.methodSignature("CountWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.CountWorkflowExecutionsRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.CountWorkflowExecutionsResponse"), "error"]), $.methodSignature("GetSearchAttributes", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.GetSearchAttributesRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.GetSearchAttributesResponse"), "error"]), $.methodSignature("ListArchivedWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListArchivedWorkflowExecutionsRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.ListArchivedWorkflowExecutionsResponse"), "error"]), $.methodSignature("ListClosedWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListClosedWorkflowExecutionsRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.ListClosedWorkflowExecutionsResponse"), "error"]), $.methodSignature("ListOpenWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListOpenWorkflowExecutionsRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.ListOpenWorkflowExecutionsResponse"), "error"]), $.methodSignature("ListWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListWorkflowExecutionsRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.ListWorkflowExecutionsResponse"), "error"]), $.methodSignature("ScanWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ScanWorkflowExecutionsRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.ScanWorkflowExecutionsResponse"), "error"])]
+	[{ name: "CountWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.CountWorkflowExecutionsResponse") }, { type: "error" }] }, { name: "GetSearchAttributes", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.GetSearchAttributesResponse") }, { type: "error" }] }, { name: "ListArchivedWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListArchivedWorkflowExecutionsResponse") }, { type: "error" }] }, { name: "ListClosedWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListClosedWorkflowExecutionsResponse") }, { type: "error" }] }, { name: "ListOpenWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListOpenWorkflowExecutionsResponse") }, { type: "error" }] }, { name: "ListWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListWorkflowExecutionsResponse") }, { type: "error" }] }, { name: "ScanWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ScanWorkflowExecutionsResponse") }, { type: "error" }] }]
 );
 
 export type VisibilityAPIYARPCServer = {
@@ -90,7 +84,7 @@ export type VisibilityAPIYARPCServer = {
 $.registerInterfaceType(
 	"apiv1.VisibilityAPIYARPCServer",
 	null,
-	[$.methodSignature("CountWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.CountWorkflowExecutionsRequest")], [/* @__PURE__ */ $.pointerType("apiv1.CountWorkflowExecutionsResponse"), "error"]), $.methodSignature("GetSearchAttributes", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.GetSearchAttributesRequest")], [/* @__PURE__ */ $.pointerType("apiv1.GetSearchAttributesResponse"), "error"]), $.methodSignature("ListArchivedWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListArchivedWorkflowExecutionsRequest")], [/* @__PURE__ */ $.pointerType("apiv1.ListArchivedWorkflowExecutionsResponse"), "error"]), $.methodSignature("ListClosedWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListClosedWorkflowExecutionsRequest")], [/* @__PURE__ */ $.pointerType("apiv1.ListClosedWorkflowExecutionsResponse"), "error"]), $.methodSignature("ListOpenWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListOpenWorkflowExecutionsRequest")], [/* @__PURE__ */ $.pointerType("apiv1.ListOpenWorkflowExecutionsResponse"), "error"]), $.methodSignature("ListWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListWorkflowExecutionsRequest")], [/* @__PURE__ */ $.pointerType("apiv1.ListWorkflowExecutionsResponse"), "error"]), $.methodSignature("ScanWorkflowExecutions", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ScanWorkflowExecutionsRequest")], [/* @__PURE__ */ $.pointerType("apiv1.ScanWorkflowExecutionsResponse"), "error"])]
+	[{ name: "CountWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.CountWorkflowExecutionsResponse") }, { type: "error" }] }, { name: "GetSearchAttributes", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.GetSearchAttributesResponse") }, { type: "error" }] }, { name: "ListArchivedWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListArchivedWorkflowExecutionsResponse") }, { type: "error" }] }, { name: "ListClosedWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListClosedWorkflowExecutionsResponse") }, { type: "error" }] }, { name: "ListOpenWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListOpenWorkflowExecutionsResponse") }, { type: "error" }] }, { name: "ListWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListWorkflowExecutionsResponse") }, { type: "error" }] }, { name: "ScanWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ScanWorkflowExecutionsResponse") }, { type: "error" }] }]
 );
 
 export class buildVisibilityAPIYARPCProceduresParams {
@@ -139,7 +133,7 @@ export class buildVisibilityAPIYARPCProceduresParams {
 		() => new buildVisibilityAPIYARPCProceduresParams(),
 		() => [],
 		buildVisibilityAPIYARPCProceduresParams,
-		() => [/* @__PURE__ */ $.structField("Server", "apiv1.VisibilityAPIYARPCServer", [0], 0, true), /* @__PURE__ */ $.structField("AnyResolver", "jsonpb.AnyResolver", [1], 16, true)]
+		() => [{ name: "Server", key: "Server", type: "apiv1.VisibilityAPIYARPCServer" }, { name: "AnyResolver", key: "AnyResolver", type: "jsonpb.AnyResolver" }]
 	)
 }
 
@@ -185,7 +179,7 @@ export class FxVisibilityAPIYARPCClientParams {
 
 	constructor(init?: Partial<{In?: fx.In, Provider?: yarpc.ClientConfig | null, AnyResolver?: jsonpb.AnyResolver | null, Restriction?: restriction.Checker | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			In: init?.In ? init.In.clone() : new dig.In(undefined, true),
+			In: init?.In ?? (undefined as any as fx.In),
 			Provider: init?.Provider ?? (null! as yarpc.ClientConfig | null),
 			AnyResolver: init?.AnyResolver ?? (null! as jsonpb.AnyResolver | null),
 			Restriction: init?.Restriction ?? (null! as restriction.Checker | null)
@@ -200,7 +194,7 @@ export class FxVisibilityAPIYARPCClientParams {
 	public __goscriptAssign(source: FxVisibilityAPIYARPCClientParams): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.In, values.In)
+		target.In = $.assignFieldValue(target.In, values.In, "dig.In")
 		target.Provider = $.assignFieldValue(target.Provider, values.Provider, "yarpc.ClientConfig")
 		target.AnyResolver = $.assignFieldValue(target.AnyResolver, values.AnyResolver, "jsonpb.AnyResolver")
 		target.Restriction = $.assignFieldValue(target.Restriction, values.Restriction, "restriction.Checker")
@@ -211,7 +205,7 @@ export class FxVisibilityAPIYARPCClientParams {
 		() => new FxVisibilityAPIYARPCClientParams(),
 		() => [],
 		FxVisibilityAPIYARPCClientParams,
-		() => [/* @__PURE__ */ $.structField("In", "dig.In", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Provider", "yarpc.ClientConfig", [1], 0, true), /* @__PURE__ */ $.structField("AnyResolver", "jsonpb.AnyResolver", [2], 16, true, { tag: "name:\"yarpcfx\" optional:\"true\"" }), /* @__PURE__ */ $.structField("Restriction", "restriction.Checker", [3], 32, true, { tag: "optional:\"true\"" })]
+		() => [{ name: "In", key: "In", type: "dig.In", anonymous: true }, { name: "Provider", key: "Provider", type: "yarpc.ClientConfig" }, { name: "AnyResolver", key: "AnyResolver", type: "jsonpb.AnyResolver", tag: "name:\"yarpcfx\" optional:\"true\"" }, { name: "Restriction", key: "Restriction", type: "restriction.Checker", tag: "optional:\"true\"" }]
 	)
 }
 
@@ -239,7 +233,7 @@ export class FxVisibilityAPIYARPCClientResult {
 
 	constructor(init?: Partial<{Out?: fx.Out, Client?: VisibilityAPIYARPCClient | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			Out: init?.Out ? init.Out.clone() : new dig.Out(undefined, true),
+			Out: init?.Out ?? (undefined as any as fx.Out),
 			Client: init?.Client ?? (null! as VisibilityAPIYARPCClient | null)
 		}
 		;(this as any)[$.structValueMarker] = __goscriptValue === true
@@ -252,7 +246,7 @@ export class FxVisibilityAPIYARPCClientResult {
 	public __goscriptAssign(source: FxVisibilityAPIYARPCClientResult): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.Out, values.Out)
+		target.Out = $.assignFieldValue(target.Out, values.Out, "dig.Out")
 		target.Client = $.assignFieldValue(target.Client, values.Client, "apiv1.VisibilityAPIYARPCClient")
 	}
 
@@ -261,7 +255,7 @@ export class FxVisibilityAPIYARPCClientResult {
 		() => new FxVisibilityAPIYARPCClientResult(),
 		() => [],
 		FxVisibilityAPIYARPCClientResult,
-		() => [/* @__PURE__ */ $.structField("Out", "dig.Out", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Client", "apiv1.VisibilityAPIYARPCClient", [1], 0, true)]
+		() => [{ name: "Out", key: "Out", type: "dig.Out", anonymous: true }, { name: "Client", key: "Client", type: "apiv1.VisibilityAPIYARPCClient" }]
 	)
 }
 
@@ -298,7 +292,7 @@ export class FxVisibilityAPIYARPCProceduresParams {
 
 	constructor(init?: Partial<{In?: fx.In, Server?: VisibilityAPIYARPCServer | null, AnyResolver?: jsonpb.AnyResolver | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			In: init?.In ? init.In.clone() : new dig.In(undefined, true),
+			In: init?.In ?? (undefined as any as fx.In),
 			Server: init?.Server ?? (null! as VisibilityAPIYARPCServer | null),
 			AnyResolver: init?.AnyResolver ?? (null! as jsonpb.AnyResolver | null)
 		}
@@ -312,7 +306,7 @@ export class FxVisibilityAPIYARPCProceduresParams {
 	public __goscriptAssign(source: FxVisibilityAPIYARPCProceduresParams): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.In, values.In)
+		target.In = $.assignFieldValue(target.In, values.In, "dig.In")
 		target.Server = $.assignFieldValue(target.Server, values.Server, "apiv1.VisibilityAPIYARPCServer")
 		target.AnyResolver = $.assignFieldValue(target.AnyResolver, values.AnyResolver, "jsonpb.AnyResolver")
 	}
@@ -322,7 +316,7 @@ export class FxVisibilityAPIYARPCProceduresParams {
 		() => new FxVisibilityAPIYARPCProceduresParams(),
 		() => [],
 		FxVisibilityAPIYARPCProceduresParams,
-		() => [/* @__PURE__ */ $.structField("In", "dig.In", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Server", "apiv1.VisibilityAPIYARPCServer", [1], 0, true), /* @__PURE__ */ $.structField("AnyResolver", "jsonpb.AnyResolver", [2], 16, true, { tag: "name:\"yarpcfx\" optional:\"true\"" })]
+		() => [{ name: "In", key: "In", type: "dig.In", anonymous: true }, { name: "Server", key: "Server", type: "apiv1.VisibilityAPIYARPCServer" }, { name: "AnyResolver", key: "AnyResolver", type: "jsonpb.AnyResolver", tag: "name:\"yarpcfx\" optional:\"true\"" }]
 	)
 }
 
@@ -359,7 +353,7 @@ export class FxVisibilityAPIYARPCProceduresResult {
 
 	constructor(init?: Partial<{Out?: fx.Out, Procedures?: $.Slice<transport.Procedure>, ReflectionMeta?: reflection.ServerMeta}>, __goscriptValue?: boolean) {
 		this._fields = {
-			Out: init?.Out ? init.Out.clone() : new dig.Out(undefined, true),
+			Out: init?.Out ?? (undefined as any as fx.Out),
 			Procedures: init?.Procedures ?? (null! as $.Slice<transport.Procedure>),
 			ReflectionMeta: init?.ReflectionMeta ? init.ReflectionMeta.clone() : new reflection.ServerMeta(undefined, true)
 		}
@@ -373,7 +367,7 @@ export class FxVisibilityAPIYARPCProceduresResult {
 	public __goscriptAssign(source: FxVisibilityAPIYARPCProceduresResult): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.Out, values.Out)
+		target.Out = $.assignFieldValue(target.Out, values.Out, "dig.Out")
 		target.Procedures = values.Procedures
 		$.assignStruct(target.ReflectionMeta, values.ReflectionMeta)
 	}
@@ -383,7 +377,7 @@ export class FxVisibilityAPIYARPCProceduresResult {
 		() => new FxVisibilityAPIYARPCProceduresResult(),
 		() => [],
 		FxVisibilityAPIYARPCProceduresResult,
-		() => [/* @__PURE__ */ $.structField("Out", "dig.Out", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Procedures", /* @__PURE__ */ $.sliceType("transport.Procedure"), [1], 0, true, { tag: "group:\"yarpcfx\"" }), /* @__PURE__ */ $.structField("ReflectionMeta", "reflection.ServerMeta", [2], 24, true, { tag: "group:\"yarpcfx\"" })]
+		() => [{ name: "Out", key: "Out", type: "dig.Out", anonymous: true }, { name: "Procedures", key: "Procedures", type: /* @__PURE__ */ $.sliceType("transport.Procedure"), tag: "group:\"yarpcfx\"" }, { name: "ReflectionMeta", key: "ReflectionMeta", type: "reflection.ServerMeta", tag: "group:\"yarpcfx\"" }]
 	)
 }
 
@@ -525,9 +519,9 @@ export class _VisibilityAPIYARPCCaller {
 	static __typeInfo = $.registerStructType(
 		"apiv1._VisibilityAPIYARPCCaller",
 		() => new _VisibilityAPIYARPCCaller(),
-		() => [$.methodSignature("CountWorkflowExecutions", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.CountWorkflowExecutionsRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.CountWorkflowExecutionsResponse"), "error"], true), $.methodSignature("GetSearchAttributes", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.GetSearchAttributesRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.GetSearchAttributesResponse"), "error"], true), $.methodSignature("ListArchivedWorkflowExecutions", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.ListArchivedWorkflowExecutionsRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.ListArchivedWorkflowExecutionsResponse"), "error"], true), $.methodSignature("ListClosedWorkflowExecutions", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.ListClosedWorkflowExecutionsRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.ListClosedWorkflowExecutionsResponse"), "error"], true), $.methodSignature("ListOpenWorkflowExecutions", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.ListOpenWorkflowExecutionsRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.ListOpenWorkflowExecutionsResponse"), "error"], true), $.methodSignature("ListWorkflowExecutions", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.ListWorkflowExecutionsRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.ListWorkflowExecutionsResponse"), "error"], true), $.methodSignature("ScanWorkflowExecutions", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.ScanWorkflowExecutionsRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.ScanWorkflowExecutionsResponse"), "error"], true)],
+		() => [{ name: "CountWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.CountWorkflowExecutionsResponse") }, { type: "error" }], pointerReceiver: true }, { name: "GetSearchAttributes", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.GetSearchAttributesResponse") }, { type: "error" }], pointerReceiver: true }, { name: "ListArchivedWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListArchivedWorkflowExecutionsResponse") }, { type: "error" }], pointerReceiver: true }, { name: "ListClosedWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListClosedWorkflowExecutionsResponse") }, { type: "error" }], pointerReceiver: true }, { name: "ListOpenWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListOpenWorkflowExecutionsResponse") }, { type: "error" }], pointerReceiver: true }, { name: "ListWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListWorkflowExecutionsResponse") }, { type: "error" }], pointerReceiver: true }, { name: "ScanWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ScanWorkflowExecutionsResponse") }, { type: "error" }], pointerReceiver: true }],
 		_VisibilityAPIYARPCCaller,
-		() => [/* @__PURE__ */ $.structField("streamClient", "protobuf.StreamClient", [0], 0, false, { pkgPath: "github.com/uber/cadence-idl/go/proto/api/v1" })]
+		() => [{ name: "streamClient", key: "streamClient", type: "protobuf.StreamClient" }]
 	)
 }
 
@@ -711,18 +705,19 @@ export class _VisibilityAPIYARPCHandler {
 	static __typeInfo = $.registerStructType(
 		"apiv1._VisibilityAPIYARPCHandler",
 		() => new _VisibilityAPIYARPCHandler(),
-		() => [$.methodSignature("CountWorkflowExecutions", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("GetSearchAttributes", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("ListArchivedWorkflowExecutions", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("ListClosedWorkflowExecutions", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("ListOpenWorkflowExecutions", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("ListWorkflowExecutions", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("ScanWorkflowExecutions", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true)],
+		() => [{ name: "CountWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "GetSearchAttributes", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "ListArchivedWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "ListClosedWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "ListOpenWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "ListWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "ScanWorkflowExecutions", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }],
 		_VisibilityAPIYARPCHandler,
-		() => [/* @__PURE__ */ $.structField("server", "apiv1.VisibilityAPIYARPCServer", [0], 0, false, { pkgPath: "github.com/uber/cadence-idl/go/proto/api/v1" })]
+		() => [{ name: "server", key: "server", type: "apiv1.VisibilityAPIYARPCServer" }]
 	)
 }
 
 export async function newVisibilityAPIYARPCClient(clientConfig: transport.ClientConfig | null, anyResolver: jsonpb.AnyResolver | null, options: $.Slice<protobuf.ClientOption | null>): globalThis.Promise<VisibilityAPIYARPCClient | null> {
-	return $.interfaceValue<VisibilityAPIYARPCClient | null>((await (async () => { const __goscriptLiteralField0 = await protobuf.NewStreamClient(new protobuf.ClientParams({ServiceName: "uber.cadence.api.v1.VisibilityAPI", ClientConfig: clientConfig, AnyResolver: anyResolver, Options: options}, true)); return new _VisibilityAPIYARPCCaller({streamClient: __goscriptLiteralField0}) })()), "*apiv1._VisibilityAPIYARPCCaller", /* @__PURE__ */ $.pointerType("apiv1._VisibilityAPIYARPCCaller"))
+	const streamClient = await protobuf.NewStreamClient(new protobuf.ClientParams({ServiceName: "uber.cadence.api.v1.VisibilityAPI", ClientConfig: clientConfig, AnyResolver: anyResolver, Options: options}, true))
+	return $.interfaceValue<VisibilityAPIYARPCClient | null>(new _VisibilityAPIYARPCCaller({streamClient}), "*apiv1._VisibilityAPIYARPCCaller", /* @__PURE__ */ $.pointerType("apiv1._VisibilityAPIYARPCCaller"))
 }
 
 export async function NewVisibilityAPIYARPCClient(clientConfig: transport.ClientConfig | null, options: $.Slice<protobuf.ClientOption | null>): globalThis.Promise<VisibilityAPIYARPCClient | null> {
-	return newVisibilityAPIYARPCClient(clientConfig, null, options)
+	return await newVisibilityAPIYARPCClient(clientConfig, null, options)
 }
 
 export function buildVisibilityAPIYARPCProcedures(params: buildVisibilityAPIYARPCProceduresParams): $.Slice<transport.Procedure> {
@@ -752,7 +747,8 @@ export function NewFxVisibilityAPIYARPCClient(name: string, options: $.Slice<pro
 			}
 		}
 
-		return (await (async () => { const __goscriptLiteralField8 = await newVisibilityAPIYARPCClient(cc, params.AnyResolver, options); return new FxVisibilityAPIYARPCClientResult({Client: __goscriptLiteralField8}, true) })())
+		const client = await newVisibilityAPIYARPCClient(cc, params.AnyResolver, options)
+		return new FxVisibilityAPIYARPCClientResult({Client: client}, true)
 	}, ({ kind: $.TypeKind.Function, params: ["apiv1.FxVisibilityAPIYARPCClientParams"], results: ["apiv1.FxVisibilityAPIYARPCClientResult"] } as $.FunctionTypeInfo)), "func(params apiv1.FxVisibilityAPIYARPCClientParams) apiv1.FxVisibilityAPIYARPCClientResult", ({ kind: $.TypeKind.Function, params: ["apiv1.FxVisibilityAPIYARPCClientParams"], results: ["apiv1.FxVisibilityAPIYARPCClientResult"] } as $.FunctionTypeInfo))
 }
 
@@ -1109,9 +1105,9 @@ export function __goscript_set_yarpcFileDescriptorClosurea7341dc69cef4364(__gosc
 	yarpcFileDescriptorClosurea7341dc69cef4364 = __goscriptValue
 }
 
-async function __goscriptInit0(): globalThis.Promise<void> {
-	await yarpc.RegisterClientBuilder($.interfaceValue($.functionValue(async (clientConfig: transport.ClientConfig | null, structField: reflect.StructField): globalThis.Promise<VisibilityAPIYARPCClient | null> => {
-		return await NewVisibilityAPIYARPCClient(clientConfig, protobuf.ClientBuilderOptions(clientConfig, structField))
+function __goscriptInit0(): void {
+	yarpc.RegisterClientBuilder($.interfaceValue($.functionValue(async (clientConfig: transport.ClientConfig | null, structField: reflect.StructField): globalThis.Promise<VisibilityAPIYARPCClient | null> => {
+		return await NewVisibilityAPIYARPCClient(clientConfig, protobuf.ClientBuilderOptions(clientConfig, $.markAsStructValue($.cloneStructValue(structField))))
 	}, ({ kind: $.TypeKind.Function, params: ["transport.ClientConfig", "reflect.StructField"], results: ["apiv1.VisibilityAPIYARPCClient"] } as $.FunctionTypeInfo)), "func(clientConfig transport.ClientConfig, structField reflect.StructField) apiv1.VisibilityAPIYARPCClient", ({ kind: $.TypeKind.Function, params: ["transport.ClientConfig", "reflect.StructField"], results: ["apiv1.VisibilityAPIYARPCClient"] } as $.FunctionTypeInfo)))
 }
 

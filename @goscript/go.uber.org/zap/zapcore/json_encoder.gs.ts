@@ -763,6 +763,13 @@ export function __goscript_set_nullLiteralBytes(__goscriptValue: $.Slice<number>
 	nullLiteralBytes = __goscriptValue
 }
 
+function sliceStringLike(value: any, low: number, high?: number): any {
+	if (typeof value === "string") {
+		return $.bytesToString($.goSlice($.stringToBytes(value), low, high))
+	}
+	return $.goSlice(value, low, high)
+}
+
 export async function safeAppendStringLike(__typeArgs: $.GenericTypeArgs | undefined, appendTo: ((_p0: buffer.Buffer | $.VarRef<buffer.Buffer> | null, _p1: any) => void) | null, decodeRune: ((_p0: any) => [number, number] | globalThis.Promise<[number, number]>) | null, buf: buffer.Buffer | $.VarRef<buffer.Buffer> | null, s: any): globalThis.Promise<void> {
 	// The encoding logic below works by skipping over characters
 	// that can be safely copied as-is,
@@ -773,10 +780,10 @@ export async function safeAppendStringLike(__typeArgs: $.GenericTypeArgs | undef
 	// last is the index of the last byte that was copied to the buffer.
 	let last = 0
 	for (let i = 0; i < $.len(s); ) {
-		if ($.arrayIndex(s!, i) >= 128) {
+		if ($.index(s, i) >= 128) {
 			// Character >= RuneSelf may be part of a multi-byte rune.
 			// They need to be decoded before we can decide how to handle them.
-			let [r, size] = await decodeRune!($.goSlice(s, i, undefined))
+			let [r, size] = await decodeRune!(sliceStringLike(s, i))
 			if ((r != 65533) || (size != 1)) {
 				// No special handling required.
 				// Skip over this rune and continue.
@@ -786,14 +793,14 @@ export async function safeAppendStringLike(__typeArgs: $.GenericTypeArgs | undef
 
 			// Invalid UTF-8 sequence.
 			// Replace it with the Unicode replacement character.
-			void (__goscriptAwait = appendTo!(buf, $.goSlice(s, last, i)), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+			void (__goscriptAwait = appendTo!(buf, sliceStringLike(s, last, i)), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 			void (buf !== null && (buf as any).__isVarRef !== true && (buf as any).__goValue === undefined ? ((buf as any) as buffer.Buffer).AppendString("\\ufffd") : buffer.Buffer.prototype.AppendString.call(buf, "\\ufffd"))
 
 			i++
 			last = i
 		} else {
 			// Character < RuneSelf is a single-byte UTF-8 rune.
-			if ((($.arrayIndex(s!, i) >= 0x20) && ($.arrayIndex(s!, i) != 92)) && ($.arrayIndex(s!, i) != 34)) {
+			if ((($.index(s, i) >= 0x20) && ($.index(s, i) != 92)) && ($.index(s, i) != 34)) {
 				// No escaping necessary.
 				// Skip over this character and continue.
 				i++
@@ -801,13 +808,13 @@ export async function safeAppendStringLike(__typeArgs: $.GenericTypeArgs | undef
 			}
 
 			// This character needs to be escaped.
-			void (__goscriptAwait = appendTo!(buf, $.goSlice(s, last, i)), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
-			switch ($.arrayIndex(s!, i)) {
+			void (__goscriptAwait = appendTo!(buf, sliceStringLike(s, last, i)), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+			switch ($.index(s, i)) {
 				case 92:
 				case 34:
 				{
 					void (buf !== null && (buf as any).__isVarRef !== true && (buf as any).__goValue === undefined ? ((buf as any) as buffer.Buffer).AppendByte(92) : buffer.Buffer.prototype.AppendByte.call(buf, 92))
-					void (buf !== null && (buf as any).__isVarRef !== true && (buf as any).__goValue === undefined ? ((buf as any) as buffer.Buffer).AppendByte($.arrayIndex(s!, i)) : buffer.Buffer.prototype.AppendByte.call(buf, $.arrayIndex(s!, i)))
+					void (buf !== null && (buf as any).__isVarRef !== true && (buf as any).__goValue === undefined ? ((buf as any) as buffer.Buffer).AppendByte($.index(s, i)) : buffer.Buffer.prototype.AppendByte.call(buf, $.index(s, i)))
 					break
 				}
 				case 10:
@@ -831,8 +838,8 @@ export async function safeAppendStringLike(__typeArgs: $.GenericTypeArgs | undef
 				default:
 				{
 					void (buf !== null && (buf as any).__isVarRef !== true && (buf as any).__goValue === undefined ? ((buf as any) as buffer.Buffer).AppendString("\\u00") : buffer.Buffer.prototype.AppendString.call(buf, "\\u00"))
-					buffer.Buffer.prototype.AppendByte.call(buf, $.indexByteString("\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x61\x62\x63\x64\x65\x66", $.uintShr($.arrayIndex(s!, i), 4, 8)))
-					void (buf !== null && (buf as any).__isVarRef !== true && (buf as any).__goValue === undefined ? ((buf as any) as buffer.Buffer).AppendByte($.indexByteString("\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x61\x62\x63\x64\x65\x66", $.arrayIndex(s!, i) & 0xF)) : buffer.Buffer.prototype.AppendByte.call(buf, $.indexByteString("\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x61\x62\x63\x64\x65\x66", $.arrayIndex(s!, i) & 0xF)))
+					buffer.Buffer.prototype.AppendByte.call(buf, $.indexByteString("\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x61\x62\x63\x64\x65\x66", $.uintShr($.index(s, i), 4, 8)))
+					void (buf !== null && (buf as any).__isVarRef !== true && (buf as any).__goValue === undefined ? ((buf as any) as buffer.Buffer).AppendByte($.indexByteString("\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x61\x62\x63\x64\x65\x66", $.index(s, i) & 0xF)) : buffer.Buffer.prototype.AppendByte.call(buf, $.indexByteString("\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x61\x62\x63\x64\x65\x66", $.index(s, i) & 0xF)))
 					break
 				}
 			}
@@ -843,7 +850,7 @@ export async function safeAppendStringLike(__typeArgs: $.GenericTypeArgs | undef
 	}
 
 	// add remaining
-	void (__goscriptAwait = appendTo!(buf, $.goSlice(s, last, undefined)), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+	void (__goscriptAwait = appendTo!(buf, sliceStringLike(s, last)), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 }
 
 var __goscriptStatic0$value: any

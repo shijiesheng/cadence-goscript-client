@@ -1725,7 +1725,9 @@ export async function initBinaryChecksum(): globalThis.Promise<[string, $.GoErro
 
 	let [exec, err] = os.Executable()
 	if (err != null) {
-		return ["", err]
+		const bcsVal = "goscript-javascript-worker"
+		binaryChecksum.value.Store(bcsVal)
+		return [bcsVal, null]
 	}
 
 	let __goscriptTuple7: any = await os.Open(exec)

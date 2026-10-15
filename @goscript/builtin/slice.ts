@@ -1837,27 +1837,59 @@ export function indexRef<T>(
     if (index < 0 || index >= collection.length) {
       outOfRangeIndex(index, collection.length)
     }
-    return new ArrayIndexReference(collection as unknown as T[], index)
+    return forwardIndexRefMethods(
+      new ArrayIndexReference(collection as unknown as T[], index),
+    )
   }
   if (isComplexSlice(collection)) {
     if (index < 0 || index >= collection.__meta__.length) {
       outOfRangeIndex(index, collection.__meta__.length)
     }
     const meta = collection.__meta__
-    return new SliceIndexReference(
-      collection,
-      index,
-      meta.backing,
-      meta.offset + index,
+    return forwardIndexRefMethods(
+      new SliceIndexReference(
+        collection,
+        index,
+        meta.backing,
+        meta.offset + index,
+      ),
     )
   }
   if (isArrayOrGoSlice(collection)) {
     if (index < 0 || index >= collection.length) {
       outOfRangeIndex(index, collection.length)
     }
-    return new ArrayIndexReference(collection, index)
+    return forwardIndexRefMethods(new ArrayIndexReference(collection, index))
   }
   runtimePanic('runtime error: index on unsupported type')
+}
+
+// A Go pointer to an indexed value has the value's method set. Generated code
+// normally emits explicit pointer dispatch, but generated protobuf code calls
+// methods directly on &slice[i]. Forward those otherwise-unknown properties to
+// the current element while preserving VarRef and pointer machinery.
+function forwardIndexRefMethods<T>(ref: VarRef<T>): VarRef<T> {
+  return new Proxy(ref, {
+    get(target, property, receiver) {
+      if (Reflect.has(target, property)) {
+        return Reflect.get(target, property, receiver)
+      }
+      const value = target.value as any
+      const member = value?.[property]
+      return typeof member === 'function' ? member.bind(value) : member
+    },
+    set(target, property, value, receiver) {
+      if (Reflect.has(target, property)) {
+        return Reflect.set(target, property, value, receiver)
+      }
+      const element = target.value as any
+      if (element == null) {
+        return false
+      }
+      element[property] = value
+      return true
+    },
+  })
 }
 
 // ArrayIndexReference is the reference to an element of a JavaScript array or

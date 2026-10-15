@@ -65,8 +65,8 @@ export class EnumInfo {
 	static __typeInfo = $.registerStructType(
 		"impl.EnumInfo",
 		() => new EnumInfo(),
-		() => [$.methodSignature("Descriptor", [], ["protoreflect.EnumDescriptor"], true), $.methodSignature("New", [["n", /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber")]], ["protoreflect.Enum"], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: "protoreflect.EnumDescriptor" }], pointerReceiver: true }, { name: "New", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Enum" }], pointerReceiver: true }],
 		EnumInfo,
-		() => [/* @__PURE__ */ $.structField("GoReflectType", "reflect.Type", [0], 0, true), /* @__PURE__ */ $.structField("Desc", "protoreflect.EnumDescriptor", [1], 16, true)]
+		() => [{ name: "GoReflectType", key: "GoReflectType", type: "reflect.Type" }, { name: "Desc", key: "Desc", type: "protoreflect.EnumDescriptor" }]
 	)
 }

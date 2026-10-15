@@ -29,13 +29,23 @@ import "@goscript/sync/index.js"
 
 export type DescBuilder = filedesc.Builder
 
+export const DescBuilder = filedesc.Builder
+
 export type TypeBuilder = filetype.Builder
+
+export const TypeBuilder = filetype.Builder
 
 export type EnumInfo = impl.EnumInfo
 
+export const EnumInfo = impl.EnumInfo
+
 export type MessageInfo = impl.MessageInfo
 
+export const MessageInfo = impl.MessageInfo
+
 export type ExtensionInfo = impl.ExtensionInfo
+
+export const ExtensionInfo = impl.ExtensionInfo
 
 export type MessageState = impl.MessageState
 

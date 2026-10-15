@@ -15,12 +15,6 @@ import * as genid from "@goscript/google.golang.org/protobuf/internal/genid/inde
 
 import * as protoreflect from "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 
-import type * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
-import type * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
-
-import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-
 import * as sync from "@goscript/sync/index.js"
 
 import * as __goscript_checkinit from "./checkinit.gs.ts"
@@ -66,7 +60,6 @@ import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
 import "@goscript/google.golang.org/protobuf/internal/errors/index.js"
 import "@goscript/google.golang.org/protobuf/internal/genid/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
-import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 import "@goscript/sync/index.js"
 import "./checkinit.gs.ts"
 import "./codec_extension.gs.ts"
@@ -201,7 +194,7 @@ export class mapInfo {
 		() => new mapInfo(),
 		() => [],
 		mapInfo,
-		() => [/* @__PURE__ */ $.structField("goType", "reflect.Type", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("keyWiretag", /* @__PURE__ */ $.basicType("uint64"), [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("valWiretag", /* @__PURE__ */ $.basicType("uint64"), [2], 24, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("keyFuncs", "impl.valueCoderFuncs", [3], 32, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("valFuncs", "impl.valueCoderFuncs", [4], 72, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("keyZero", "protoreflect.Value", [5], 112, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("keyKind", /* @__PURE__ */ $.basicType("int8", "protoreflect.Kind"), [6], 184, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("conv", /* @__PURE__ */ $.pointerType("impl.mapConverter"), [7], 192, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "goType", key: "goType", type: "reflect.Type" }, { name: "keyWiretag", key: "keyWiretag", type: /* @__PURE__ */ $.basicType("uint64") }, { name: "valWiretag", key: "valWiretag", type: /* @__PURE__ */ $.basicType("uint64") }, { name: "keyFuncs", key: "keyFuncs", type: "impl.valueCoderFuncs" }, { name: "valFuncs", key: "valFuncs", type: "impl.valueCoderFuncs" }, { name: "keyZero", key: "keyZero", type: "protoreflect.Value" }, { name: "keyKind", key: "keyKind", type: /* @__PURE__ */ $.basicType("int8", "protoreflect.Kind") }, { name: "conv", key: "conv", type: /* @__PURE__ */ $.pointerType("impl.mapConverter") }]
 	)
 }
 
@@ -275,8 +268,8 @@ export async function sizeMap(mapv: reflect.Value, mapi: mapInfo | $.VarRef<mapI
 	let n = 0
 	let iter: reflect.MapIter | $.VarRef<reflect.MapIter> | null = __goscript_codec_map_go112.mapRange(mapv)
 	while (reflect.MapIter.prototype.Next.call($.pointerValue<reflect.MapIter>(iter))) {
-		let key = await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>($.pointerValue<__goscript_convert_map.mapConverter>((mapi$ as mapInfo).conv).keyConv).PBValueOf($.markAsStructValue($.cloneStructValue(reflect.MapIter.prototype.Key.call($.pointerValue<reflect.MapIter>(iter))))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).MapKey()
-		let keySize = (__goscriptAwait = (mapi$ as mapInfo).keyFuncs.size!(key.Value(), 1, (opts).clone()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
+		let key = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>($.pointerValue<__goscript_convert_map.mapConverter>((mapi$ as mapInfo).conv).keyConv).PBValueOf($.markAsStructValue($.cloneStructValue(reflect.MapIter.prototype.Key.call($.pointerValue<reflect.MapIter>(iter))))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).MapKey()
+		let keySize = (__goscriptAwait = (mapi$ as mapInfo).keyFuncs.size!($.markAsStructValue($.cloneStructValue(key)).Value(), 1, (opts).clone()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 		let valSize: number = 0
 		let value = (((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>($.pointerValue<__goscript_convert_map.mapConverter>((mapi$ as mapInfo).conv).valConv).PBValueOf($.markAsStructValue($.cloneStructValue(reflect.MapIter.prototype.Value.call($.pointerValue<reflect.MapIter>(iter))))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		if ((f$ as __goscript_codec_message.coderFieldInfo).mi == null) {
@@ -452,15 +445,15 @@ export async function appendMapItem(b: $.Slice<number>, keyrv: reflect.Value, va
 	const mapi$: mapInfo = mapi == null ? $.pointerTarget<mapInfo>(mapi) : (mapi as any).__isVarRef === true ? (mapi as any).value : (mapi as any).__goValue === undefined ? (mapi as any) : $.pointerTarget<mapInfo>(mapi)
 	const f$: __goscript_codec_message.coderFieldInfo = f == null ? $.pointerTarget<__goscript_codec_message.coderFieldInfo>(f) : (f as any).__isVarRef === true ? (f as any).value : (f as any).__goValue === undefined ? (f as any) : $.pointerTarget<__goscript_codec_message.coderFieldInfo>(f)
 	if ((f$ as __goscript_codec_message.coderFieldInfo).mi == null) {
-		let key = await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>($.pointerValue<__goscript_convert_map.mapConverter>((mapi$ as mapInfo).conv).keyConv).PBValueOf($.markAsStructValue($.cloneStructValue(keyrv))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).MapKey()
+		let key = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>($.pointerValue<__goscript_convert_map.mapConverter>((mapi$ as mapInfo).conv).keyConv).PBValueOf($.markAsStructValue($.cloneStructValue(keyrv))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).MapKey()
 		let val = (((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>($.pointerValue<__goscript_convert_map.mapConverter>((mapi$ as mapInfo).conv).valConv).PBValueOf($.markAsStructValue($.cloneStructValue(valrv))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 		let size = 0
-		size = size + ((__goscriptAwait = (mapi$ as mapInfo).keyFuncs.size!(key.Value(), 1, (opts).clone()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))
+		size = size + ((__goscriptAwait = (mapi$ as mapInfo).keyFuncs.size!($.markAsStructValue($.cloneStructValue(key)).Value(), 1, (opts).clone()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))
 		size = size + ((__goscriptAwait = (mapi$ as mapInfo).valFuncs.size!((val).clone(), 1, (opts).clone()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))
 		b = protowire.AppendVarint(b, $.uint64(size))
 		let before = $.sliceLen(b)
 		let __goscriptShadow6 = b
-		let __goscriptTuple7: any = await (mapi$ as mapInfo).keyFuncs.marshal!(__goscriptShadow6, key.Value(), (mapi$ as mapInfo).keyWiretag, (opts).clone())
+		let __goscriptTuple7: any = await (mapi$ as mapInfo).keyFuncs.marshal!(__goscriptShadow6, $.markAsStructValue($.cloneStructValue(key)).Value(), (mapi$ as mapInfo).keyWiretag, (opts).clone())
 		let __goscriptShadow7: $.Slice<number> = __goscriptTuple7[0]
 		let err = __goscriptTuple7[1]
 		if (err != null) {
@@ -477,15 +470,15 @@ export async function appendMapItem(b: $.Slice<number>, keyrv: reflect.Value, va
 		}
 		return [__goscriptShadow7, err]
 	} else {
-		let key = await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>($.pointerValue<__goscript_convert_map.mapConverter>((mapi$ as mapInfo).conv).keyConv).PBValueOf($.markAsStructValue($.cloneStructValue(keyrv))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).MapKey()
+		let key = $.markAsStructValue($.cloneStructValue(((__goscriptAwait = $.pointerValue<Exclude<__goscript_convert.Converter, null>>($.pointerValue<__goscript_convert_map.mapConverter>((mapi$ as mapInfo).conv).keyConv).PBValueOf($.markAsStructValue($.cloneStructValue(keyrv))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).MapKey()
 		let val = __goscript_pointer_reflect.pointerOfValue(valrv)
 		let valSize = await __goscript_message.MessageInfo.prototype.sizePointer.call((f$ as __goscript_codec_message.coderFieldInfo).mi, val, opts)
 		let size = 0
-		size = size + ((__goscriptAwait = (mapi$ as mapInfo).keyFuncs.size!(key.Value(), 1, (opts).clone()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))
+		size = size + ((__goscriptAwait = (mapi$ as mapInfo).keyFuncs.size!($.markAsStructValue($.cloneStructValue(key)).Value(), 1, (opts).clone()), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))
 		size = size + (1 + protowire.SizeBytes(valSize))
 		b = protowire.AppendVarint(b, $.uint64(size))
 		let __goscriptShadow8 = b
-		let __goscriptTuple9: any = await (mapi$ as mapInfo).keyFuncs.marshal!(__goscriptShadow8, key.Value(), (mapi$ as mapInfo).keyWiretag, (opts).clone())
+		let __goscriptTuple9: any = await (mapi$ as mapInfo).keyFuncs.marshal!(__goscriptShadow8, $.markAsStructValue($.cloneStructValue(key)).Value(), (mapi$ as mapInfo).keyWiretag, (opts).clone())
 		let __goscriptShadow9: $.Slice<number> = __goscriptTuple9[0]
 		let err = __goscriptTuple9[1]
 		if (err != null) {
@@ -672,7 +665,7 @@ export async function mergeMapOfMessage(dst: __goscript_pointer_reflect.pointer,
 		if ((f$ as __goscript_codec_message.coderFieldInfo).mi != null) {
 			await __goscript_message.MessageInfo.prototype.mergePointer.call((f$ as __goscript_codec_message.coderFieldInfo).mi, __goscript_pointer_reflect.pointerOfValue(val), __goscript_pointer_reflect.pointerOfValue(reflect.MapIter.prototype.Value.call($.pointerValue<reflect.MapIter>(iter))), opts)
 		} else {
-			await opts.Merge(await __goscript_codec_field.asMessage(val), await __goscript_codec_field.asMessage($.markAsStructValue($.cloneStructValue(reflect.MapIter.prototype.Value.call($.pointerValue<reflect.MapIter>(iter))))))
+			opts.Merge(await __goscript_codec_field.asMessage(val), await __goscript_codec_field.asMessage($.markAsStructValue($.cloneStructValue(reflect.MapIter.prototype.Value.call($.pointerValue<reflect.MapIter>(iter))))))
 		}
 		$.markAsStructValue($.cloneStructValue(dstm)).SetMapIndex($.markAsStructValue($.cloneStructValue(reflect.MapIter.prototype.Key.call($.pointerValue<reflect.MapIter>(iter)))), $.markAsStructValue($.cloneStructValue(val)))
 	}

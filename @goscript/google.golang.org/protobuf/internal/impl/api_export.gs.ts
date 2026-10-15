@@ -31,10 +31,6 @@ import * as sync from "@goscript/sync/index.js"
 
 import * as protoregistry from "@goscript/google.golang.org/protobuf/reflect/protoregistry/index.js"
 
-import * as protowire from "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-
-import * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
 import * as __goscript_checkinit from "./checkinit.gs.ts"
 
 import * as __goscript_codec_extension from "./codec_extension.gs.ts"
@@ -86,8 +82,6 @@ import "@goscript/hash/crc32/index.js"
 import "@goscript/math/index.js"
 import "@goscript/sync/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoregistry/index.js"
-import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-import "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
 import "./checkinit.gs.ts"
 import "./codec_extension.gs.ts"
 import "./codec_field.gs.ts"
@@ -110,7 +104,7 @@ import "./weak.gs.ts"
 
 $.registerTypePackagePath("google.golang.org/protobuf/internal/impl", ["impl.Export", "impl.legacyMessageWrapper"])
 
-export type enum = any
+export type enumValue = any
 
 export type message = any
 
@@ -166,7 +160,7 @@ export class Export {
 		return out
 	}
 
-	public async EnumDescriptorOf(e: enum | null): globalThis.Promise<protoreflect.EnumDescriptor | null> {
+	public async EnumDescriptorOf(e: enumValue | null): globalThis.Promise<protoreflect.EnumDescriptor | null> {
 		{
 			const __goscriptTypeSwitchValue = e
 			switch (true) {
@@ -193,7 +187,7 @@ export class Export {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async EnumOf(e: enum | null): globalThis.Promise<protoreflect.Enum | null> {
+	public async EnumOf(e: enumValue | null): globalThis.Promise<protoreflect.Enum | null> {
 		{
 			const __goscriptTypeSwitchValue = e
 			switch (true) {
@@ -228,7 +222,7 @@ export class Export {
 		return strconv.Itoa($.int(n))
 	}
 
-	public async EnumTypeOf(e: enum | null): globalThis.Promise<protoreflect.EnumType | null> {
+	public async EnumTypeOf(e: enumValue | null): globalThis.Promise<protoreflect.EnumType | null> {
 		{
 			const __goscriptTypeSwitchValue = e
 			switch (true) {
@@ -262,7 +256,7 @@ export class Export {
 				return m
 			}
 		}
-		let [mt, ] = await protoregistry.Types.prototype.FindMessageByName.call(protoregistry.GlobalTypes, name)
+		let [mt, ] = protoregistry.Types.prototype.FindMessageByName.call(protoregistry.GlobalTypes, name)
 		if (mt == null) {
 			$.panic(await fmt.Sprintf("message %v for weak field is not linked in", $.namedValueInterfaceValue<any>(name, "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2())))
 		}
@@ -319,7 +313,7 @@ export class Export {
 		throw new globalThis.Error("goscript: unreachable return")
 	}
 
-	public async MessageStringOf(m: protoreflect.ProtoMessage | null): globalThis.Promise<string> {
+	public MessageStringOf(m: protoreflect.ProtoMessage | null): string {
 		return $.markAsStructValue($.cloneStructValue(new prototext.MarshalOptions({Multiline: false}, true))).Format(m)
 	}
 
@@ -336,7 +330,7 @@ export class Export {
 		return __goscript_legacy_message.legacyLoadMessageType(reflect.TypeOf(m), "")
 	}
 
-	public async NewError(f: string, x: $.Slice<any>): globalThis.Promise<$.GoError> {
+	public NewError(f: string, x: $.Slice<any>): $.GoError {
 		return errors.New(f, x)
 	}
 
@@ -394,7 +388,7 @@ export class Export {
 
 	public async SetWeak(w: $.VarRef<__goscript_message.WeakFields> | null, num: protoreflect.FieldNumber, name: protoreflect.FullName, m: protoreflect.ProtoMessage | null): globalThis.Promise<void> {
 		if (m != null) {
-			let [mt, ] = await protoregistry.Types.prototype.FindMessageByName.call(protoregistry.GlobalTypes, name)
+			let [mt, ] = protoregistry.Types.prototype.FindMessageByName.call(protoregistry.GlobalTypes, name)
 			if (mt == null) {
 				$.panic(await fmt.Sprintf("message %v for weak field is not linked in", $.namedValueInterfaceValue<any>(name, "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2())))
 			}
@@ -416,22 +410,22 @@ export class Export {
 		if ($.arrayIndex(b!, 0) == 34) {
 			let name: $.VarRef<protoreflect.Name> = $.varRef("")
 			{
-				let err = await json.Unmarshal(b, $.namedValueInterfaceValue<any>(name, "*protoreflect.Name", __goscriptStatic3(), __goscriptStatic4(), __goscriptStatic5()))
+				let err = json.Unmarshal(b, $.namedValueInterfaceValue<any>(name, "*protoreflect.Name", __goscriptStatic3(), __goscriptStatic4(), __goscriptStatic5()))
 				if (err != null) {
-					return [0, await errors.New("invalid input for enum %v: %s", $.arrayToSlice<any>([$.namedValueInterfaceValue<any>((__goscriptAwait = (ed !== null && (ed as any).__isVarRef !== true && (ed as any).__goValue === undefined ? (ed as Exclude<protoreflect.EnumDescriptor, null>) : $.pointerValue<Exclude<protoreflect.EnumDescriptor, null>>(ed)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()), $.interfaceValue(b, "[]byte", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))]))]
+					return [0, errors.New("invalid input for enum %v: %s", $.arrayToSlice<any>([$.namedValueInterfaceValue<any>((__goscriptAwait = (ed !== null && (ed as any).__isVarRef !== true && (ed as any).__goValue === undefined ? (ed as Exclude<protoreflect.EnumDescriptor, null>) : $.pointerValue<Exclude<protoreflect.EnumDescriptor, null>>(ed)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()), $.interfaceValue(b, "[]byte", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))]))]
 				}
 			}
 			let ev = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.EnumValueDescriptors, null>>((__goscriptAwait = (ed !== null && (ed as any).__isVarRef !== true && (ed as any).__goValue === undefined ? (ed as Exclude<protoreflect.EnumDescriptor, null>) : $.pointerValue<Exclude<protoreflect.EnumDescriptor, null>>(ed)).Values(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).ByName(name.value), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
 			if (ev == null) {
-				return [0, await errors.New("invalid value for enum %v: %s", $.arrayToSlice<any>([$.namedValueInterfaceValue<any>((__goscriptAwait = (ed !== null && (ed as any).__isVarRef !== true && (ed as any).__goValue === undefined ? (ed as Exclude<protoreflect.EnumDescriptor, null>) : $.pointerValue<Exclude<protoreflect.EnumDescriptor, null>>(ed)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()), $.namedValueInterfaceValue<any>(name.value, "protoreflect.Name", __goscriptStatic6(), __goscriptStatic7(), __goscriptStatic5())]))]
+				return [0, errors.New("invalid value for enum %v: %s", $.arrayToSlice<any>([$.namedValueInterfaceValue<any>((__goscriptAwait = (ed !== null && (ed as any).__isVarRef !== true && (ed as any).__goValue === undefined ? (ed as Exclude<protoreflect.EnumDescriptor, null>) : $.pointerValue<Exclude<protoreflect.EnumDescriptor, null>>(ed)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()), $.namedValueInterfaceValue<any>(name.value, "protoreflect.Name", __goscriptStatic6(), __goscriptStatic7(), __goscriptStatic5())]))]
 			}
 			return [(__goscriptAwait = (ev !== null && (ev as any).__isVarRef !== true && (ev as any).__goValue === undefined ? (ev as Exclude<protoreflect.EnumValueDescriptor, null>) : $.pointerValue<Exclude<protoreflect.EnumValueDescriptor, null>>(ev)).Number(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), null]
 		} else {
 			let num: $.VarRef<protoreflect.EnumNumber> = $.varRef(0)
 			{
-				let err = await json.Unmarshal(b, $.interfaceValue(num, "*protoreflect.EnumNumber", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber"))))
+				let err = json.Unmarshal(b, $.interfaceValue(num, "*protoreflect.EnumNumber", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber"))))
 				if (err != null) {
-					return [0, await errors.New("invalid input for enum %v: %s", $.arrayToSlice<any>([$.namedValueInterfaceValue<any>((__goscriptAwait = (ed !== null && (ed as any).__isVarRef !== true && (ed as any).__goValue === undefined ? (ed as Exclude<protoreflect.EnumDescriptor, null>) : $.pointerValue<Exclude<protoreflect.EnumDescriptor, null>>(ed)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()), $.interfaceValue(b, "[]byte", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))]))]
+					return [0, errors.New("invalid input for enum %v: %s", $.arrayToSlice<any>([$.namedValueInterfaceValue<any>((__goscriptAwait = (ed !== null && (ed as any).__isVarRef !== true && (ed as any).__goValue === undefined ? (ed as Exclude<protoreflect.EnumDescriptor, null>) : $.pointerValue<Exclude<protoreflect.EnumDescriptor, null>>(ed)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()), $.interfaceValue(b, "[]byte", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")))]))]
 				}
 			}
 			return [num.value, null]
@@ -481,7 +475,7 @@ export class Export {
 	static __typeInfo = $.registerStructType(
 		"impl.Export",
 		() => new Export(),
-		() => [$.methodSignature("ClearWeak", [["w", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "protoreflect.ProtoMessage"))], ["num", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]]), $.methodSignature("CompressGZIP", [["in", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [["out", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]]), $.methodSignature("EnumDescriptorOf", [["e", { kind: $.TypeKind.Interface, methods: [] }]], ["protoreflect.EnumDescriptor"]), $.methodSignature("EnumOf", [["e", { kind: $.TypeKind.Interface, methods: [] }]], ["protoreflect.Enum"]), $.methodSignature("EnumStringOf", [["ed", "protoreflect.EnumDescriptor"], ["n", /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber")]], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("EnumTypeOf", [["e", { kind: $.TypeKind.Interface, methods: [] }]], ["protoreflect.EnumType"]), $.methodSignature("GetWeak", [["w", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "protoreflect.ProtoMessage")], ["num", /* @__PURE__ */ $.basicType("int32", "protowire.Number")], ["name", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.ProtoMessage"]), $.methodSignature("HasWeak", [["w", /* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "protoreflect.ProtoMessage")], ["num", /* @__PURE__ */ $.basicType("int32", "protowire.Number")]], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("LegacyEnumName", [["ed", "protoreflect.EnumDescriptor"]], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("LegacyMessageTypeOf", [["m", "protoiface.MessageV1"], ["name", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")]], ["protoreflect.MessageType"]), $.methodSignature("MessageDescriptorOf", [["m", { kind: $.TypeKind.Interface, methods: [] }]], ["protoreflect.MessageDescriptor"]), $.methodSignature("MessageOf", [["m", { kind: $.TypeKind.Interface, methods: [] }]], ["protoreflect.Message"]), $.methodSignature("MessageStateOf", [["p", "impl.Pointer"]], [/* @__PURE__ */ $.pointerType("impl.messageState")]), $.methodSignature("MessageStringOf", [["m", "protoreflect.ProtoMessage"]], [/* @__PURE__ */ $.basicType("string")]), $.methodSignature("MessageTypeOf", [["m", { kind: $.TypeKind.Interface, methods: [] }]], ["protoreflect.MessageType"]), $.methodSignature("NewError", [["f", /* @__PURE__ */ $.basicType("string")], ["x", /* @__PURE__ */ $.sliceType({ kind: $.TypeKind.Interface, methods: [] })]], ["error"]), $.methodSignature("ProtoMessageV1Of", [["m", { kind: $.TypeKind.Interface, methods: [] }]], ["protoiface.MessageV1"]), $.methodSignature("ProtoMessageV2Of", [["m", { kind: $.TypeKind.Interface, methods: [] }]], ["protoreflect.ProtoMessage"]), $.methodSignature("SetWeak", [["w", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.mapType(/* @__PURE__ */ $.basicType("int32"), "protoreflect.ProtoMessage"))], ["num", /* @__PURE__ */ $.basicType("int32", "protowire.Number")], ["name", /* @__PURE__ */ $.basicType("string", "protoreflect.FullName")], ["m", "protoreflect.ProtoMessage"]]), $.methodSignature("UnmarshalJSONEnum", [["ed", "protoreflect.EnumDescriptor"], ["b", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8"))]], [/* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber"), "error"]), $.methodSignature("protoMessageV2Of", [["m", { kind: $.TypeKind.Interface, methods: [] }]], ["protoreflect.ProtoMessage"])],
+		() => [{ name: "ClearWeak", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "CompressGZIP", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }] }, { name: "EnumDescriptorOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.EnumDescriptor" }] }, { name: "EnumOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Enum" }] }, { name: "EnumStringOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "EnumTypeOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.EnumType" }] }, { name: "GetWeak", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.ProtoMessage" }] }, { name: "HasWeak", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "LegacyEnumName", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "LegacyMessageTypeOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.MessageType" }] }, { name: "MessageDescriptorOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.MessageDescriptor" }] }, { name: "MessageOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.Message" }] }, { name: "MessageStateOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("impl.messageState") }] }, { name: "MessageStringOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }, { name: "MessageTypeOf", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.MessageType" }] }, { name: "NewError", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "error" }] }, { name: "ProtoMessageV1Of", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoiface.MessageV1" }] }, { name: "ProtoMessageV2Of", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.ProtoMessage" }] }, { name: "SetWeak", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [] }, { name: "UnmarshalJSONEnum", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "protoreflect.EnumNumber") }, { type: "error" }] }, { name: "protoMessageV2Of", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "protoreflect.ProtoMessage" }] }],
 		Export,
 		() => []
 	)
@@ -521,22 +515,22 @@ export class legacyMessageWrapper {
 		const m = this;
 	}
 
-	public async Reset(): globalThis.Promise<void> {
+	public Reset(): void {
 		const m = this;
-		await proto.Reset(m.m)
+		proto.Reset(m.m)
 	}
 
-	public async String(): globalThis.Promise<string> {
+	public String(): string {
 		const m = this;
-		return $.markAsStructValue($.cloneStructValue(new Export(undefined, true))).MessageStringOf(m.m)
+		return new Export(undefined, true).MessageStringOf(m.m)
 	}
 
 	static __typeInfo = $.registerStructType(
 		"impl.legacyMessageWrapper",
 		() => new legacyMessageWrapper(),
-		() => [$.methodSignature("ProtoMessage"), $.methodSignature("Reset"), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")])],
+		() => [{ name: "ProtoMessage", args: [], returns: [] }, { name: "Reset", args: [], returns: [] }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }] }],
 		legacyMessageWrapper,
-		() => [/* @__PURE__ */ $.structField("m", "protoreflect.ProtoMessage", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "m", key: "m", type: "protoreflect.ProtoMessage" }]
 	)
 }
 

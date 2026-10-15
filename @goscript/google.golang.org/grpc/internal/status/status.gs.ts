@@ -112,7 +112,29 @@ export class Status {
 		if (s == null) {
 			return null
 		}
-		return $.mustTypeAssert<spb.Status | $.VarRef<spb.Status> | null>(await proto.Clone($.interfaceValue<proto.Message | null>($.pointerValue<Status>(s).s, "*status.Status", /* @__PURE__ */ $.pointerType("status.Status"))), /* @__PURE__ */ $.pointerType("status.Status"))
+		const source = $.pointerValue<Status>(s).s
+		if (source == null) {
+			return null
+		}
+		const sourceValue = $.pointerValue<spb.Status>(source)
+		let details: $.Slice<anypb.Any | $.VarRef<anypb.Any> | null> = null
+		for (let window = $.sliceRange(sourceValue.Details), index = 0; index < window.length; index++) {
+			const detail = window.backing[window.offset + index]
+			if (detail == null) {
+				details = $.appendOne(details, null, $.appendZeros.nil)
+				continue
+			}
+			const detailValue = $.pointerValue<anypb.Any>(detail)
+			details = $.appendOne(details, new anypb.Any({
+				TypeUrl: detailValue.TypeUrl,
+				Value: $.appendSlice<number>(null, detailValue.Value),
+			}), $.appendZeros.nil)
+		}
+		return new spb.Status({
+			Code: sourceValue.Code,
+			Message: sourceValue.Message,
+			Details: details,
+		})
 	}
 
 	public async String(): globalThis.Promise<string> {

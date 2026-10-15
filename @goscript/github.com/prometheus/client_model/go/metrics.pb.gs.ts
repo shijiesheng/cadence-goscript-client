@@ -12,20 +12,11 @@ import * as timestamppb from "@goscript/google.golang.org/protobuf/types/known/t
 import * as reflect from "@goscript/reflect/index.js"
 
 import * as sync from "@goscript/sync/index.js"
-
-import * as filedesc from "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-
-import * as filetype from "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-
-import * as impl from "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoimpl/index.js"
 import "@goscript/google.golang.org/protobuf/types/known/timestamppb/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/sync/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filedesc/index.js"
-import "@goscript/google.golang.org/protobuf/internal/filetype/index.js"
-import "@goscript/google.golang.org/protobuf/internal/impl/index.js"
 
 $.registerTypePackagePath("github.com/prometheus/client_model/go", ["io_prometheus_client.MetricType", "io_prometheus_client.LabelPair", "io_prometheus_client.Gauge", "io_prometheus_client.Counter", "io_prometheus_client.Quantile", "io_prometheus_client.Summary", "io_prometheus_client.Untyped", "io_prometheus_client.Histogram", "io_prometheus_client.Bucket", "io_prometheus_client.BucketSpan", "io_prometheus_client.Exemplar", "io_prometheus_client.Metric", "io_prometheus_client.MetricFamily", "io_prometheus_client.x"])
 
@@ -94,7 +85,7 @@ export class LabelPair {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.VarRef<string> | null, Value?: $.VarRef<string> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.VarRef<string> | null),
@@ -110,7 +101,7 @@ export class LabelPair {
 	public __goscriptAssign(source: LabelPair): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -142,40 +133,40 @@ export class LabelPair {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: LabelPair | $.VarRef<LabelPair> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 0)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 0)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.LabelPair", /* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.LabelPair", /* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*io_prometheus_client.LabelPair", /* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.LabelPair", /* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair"))))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.LabelPair", /* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")))
 	}
 
 	public Reset(): void {
 		let x: LabelPair | $.VarRef<LabelPair> | null = this;
 		$.assignStruct($.pointerValue<LabelPair>(x), $.markAsStructValue(new LabelPair()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 0)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.LabelPair", /* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 0)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.LabelPair", /* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: LabelPair | $.VarRef<LabelPair> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.LabelPair", /* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.LabelPair", /* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.LabelPair",
 		() => new LabelPair(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetValue", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		LabelPair,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("Value", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=value\" json:\"value,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }, { name: "Value", key: "Value", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,2,opt,name=value\" json:\"value,omitempty\"" }]
 	)
 }
 
@@ -221,7 +212,7 @@ export class Gauge {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Value?: $.VarRef<number> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Value: init?.Value ?? (null! as $.VarRef<number> | null)
@@ -236,7 +227,7 @@ export class Gauge {
 	public __goscriptAssign(source: Gauge): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Value = values.Value
@@ -258,40 +249,40 @@ export class Gauge {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Gauge | $.VarRef<Gauge> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 1)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 1)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Gauge", /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Gauge", /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*io_prometheus_client.Gauge", /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.Gauge", /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge"))))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.Gauge", /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge")))
 	}
 
 	public Reset(): void {
 		let x: Gauge | $.VarRef<Gauge> | null = this;
 		$.assignStruct($.pointerValue<Gauge>(x), $.markAsStructValue(new Gauge()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 1)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Gauge", /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 1)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Gauge", /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Gauge | $.VarRef<Gauge> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Gauge", /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Gauge", /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.Gauge",
 		() => new Gauge(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetValue", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Gauge,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("Value", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [3], 40, true, { tag: "protobuf:\"fixed64,1,opt,name=value\" json:\"value,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Value", key: "Value", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,1,opt,name=value\" json:\"value,omitempty\"" }]
 	)
 }
 
@@ -355,7 +346,7 @@ export class Counter {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Value?: $.VarRef<number> | null, Exemplar?: Exemplar | $.VarRef<Exemplar> | null, CreatedTimestamp?: timestamppb.Timestamp | $.VarRef<timestamppb.Timestamp> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Value: init?.Value ?? (null! as $.VarRef<number> | null),
@@ -372,7 +363,7 @@ export class Counter {
 	public __goscriptAssign(source: Counter): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Value = values.Value
@@ -412,40 +403,40 @@ export class Counter {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Counter | $.VarRef<Counter> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 2)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 2)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Counter", /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Counter", /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*io_prometheus_client.Counter", /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.Counter", /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter"))))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.Counter", /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter")))
 	}
 
 	public Reset(): void {
 		let x: Counter | $.VarRef<Counter> | null = this;
 		$.assignStruct($.pointerValue<Counter>(x), $.markAsStructValue(new Counter()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 2)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Counter", /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 2)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Counter", /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Counter | $.VarRef<Counter> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Counter", /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Counter", /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.Counter",
 		() => new Counter(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetCreatedTimestamp", [], [/* @__PURE__ */ $.pointerType("timestamppb.Timestamp")], true), $.methodSignature("GetExemplar", [], [/* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")], true), $.methodSignature("GetValue", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetCreatedTimestamp", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("timestamppb.Timestamp") }], pointerReceiver: true }, { name: "GetExemplar", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar") }], pointerReceiver: true }, { name: "GetValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Counter,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("Value", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [3], 40, true, { tag: "protobuf:\"fixed64,1,opt,name=value\" json:\"value,omitempty\"" }), /* @__PURE__ */ $.structField("Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar"), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=exemplar\" json:\"exemplar,omitempty\"" }), /* @__PURE__ */ $.structField("CreatedTimestamp", /* @__PURE__ */ $.pointerType("timestamppb.Timestamp"), [5], 56, true, { tag: "protobuf:\"bytes,3,opt,name=created_timestamp,json=createdTimestamp\" json:\"created_timestamp,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Value", key: "Value", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,1,opt,name=value\" json:\"value,omitempty\"" }, { name: "Exemplar", key: "Exemplar", type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar"), tag: "protobuf:\"bytes,2,opt,name=exemplar\" json:\"exemplar,omitempty\"" }, { name: "CreatedTimestamp", key: "CreatedTimestamp", type: /* @__PURE__ */ $.pointerType("timestamppb.Timestamp"), tag: "protobuf:\"bytes,3,opt,name=created_timestamp,json=createdTimestamp\" json:\"created_timestamp,omitempty\"" }]
 	)
 }
 
@@ -500,7 +491,7 @@ export class Quantile {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Quantile?: $.VarRef<number> | null, Value?: $.VarRef<number> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Quantile: init?.Quantile ?? (null! as $.VarRef<number> | null),
@@ -516,7 +507,7 @@ export class Quantile {
 	public __goscriptAssign(source: Quantile): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Quantile = values.Quantile
@@ -548,40 +539,40 @@ export class Quantile {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Quantile | $.VarRef<Quantile> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 3)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 3)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Quantile", /* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Quantile", /* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*io_prometheus_client.Quantile", /* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.Quantile", /* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile"))))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.Quantile", /* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile")))
 	}
 
 	public Reset(): void {
 		let x: Quantile | $.VarRef<Quantile> | null = this;
 		$.assignStruct($.pointerValue<Quantile>(x), $.markAsStructValue(new Quantile()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 3)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Quantile", /* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 3)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Quantile", /* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Quantile | $.VarRef<Quantile> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Quantile", /* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Quantile", /* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.Quantile",
 		() => new Quantile(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetQuantile", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("GetValue", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetQuantile", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "GetValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Quantile,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("Quantile", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [3], 40, true, { tag: "protobuf:\"fixed64,1,opt,name=quantile\" json:\"quantile,omitempty\"" }), /* @__PURE__ */ $.structField("Value", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [4], 48, true, { tag: "protobuf:\"fixed64,2,opt,name=value\" json:\"value,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Quantile", key: "Quantile", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,1,opt,name=quantile\" json:\"quantile,omitempty\"" }, { name: "Value", key: "Value", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,2,opt,name=value\" json:\"value,omitempty\"" }]
 	)
 }
 
@@ -654,7 +645,7 @@ export class Summary {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, SampleCount?: $.VarRef<bigint> | null, SampleSum?: $.VarRef<number> | null, Quantile?: $.Slice<Quantile | $.VarRef<Quantile> | null>, CreatedTimestamp?: timestamppb.Timestamp | $.VarRef<timestamppb.Timestamp> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			SampleCount: init?.SampleCount ?? (null! as $.VarRef<bigint> | null),
@@ -672,7 +663,7 @@ export class Summary {
 	public __goscriptAssign(source: Summary): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.SampleCount = values.SampleCount
@@ -722,40 +713,40 @@ export class Summary {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Summary | $.VarRef<Summary> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 4)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 4)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Summary", /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Summary", /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*io_prometheus_client.Summary", /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.Summary", /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary"))))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.Summary", /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary")))
 	}
 
 	public Reset(): void {
 		let x: Summary | $.VarRef<Summary> | null = this;
 		$.assignStruct($.pointerValue<Summary>(x), $.markAsStructValue(new Summary()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 4)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Summary", /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 4)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Summary", /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Summary | $.VarRef<Summary> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Summary", /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Summary", /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.Summary",
 		() => new Summary(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetCreatedTimestamp", [], [/* @__PURE__ */ $.pointerType("timestamppb.Timestamp")], true), $.methodSignature("GetQuantile", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile"))], true), $.methodSignature("GetSampleCount", [], [/* @__PURE__ */ $.basicType("uint64")], true), $.methodSignature("GetSampleSum", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetCreatedTimestamp", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("timestamppb.Timestamp") }], pointerReceiver: true }, { name: "GetQuantile", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile")) }], pointerReceiver: true }, { name: "GetSampleCount", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint64") }], pointerReceiver: true }, { name: "GetSampleSum", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Summary,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("SampleCount", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint64")), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=sample_count,json=sampleCount\" json:\"sample_count,omitempty\"" }), /* @__PURE__ */ $.structField("SampleSum", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [4], 48, true, { tag: "protobuf:\"fixed64,2,opt,name=sample_sum,json=sampleSum\" json:\"sample_sum,omitempty\"" }), /* @__PURE__ */ $.structField("Quantile", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile")), [5], 56, true, { tag: "protobuf:\"bytes,3,rep,name=quantile\" json:\"quantile,omitempty\"" }), /* @__PURE__ */ $.structField("CreatedTimestamp", /* @__PURE__ */ $.pointerType("timestamppb.Timestamp"), [6], 80, true, { tag: "protobuf:\"bytes,4,opt,name=created_timestamp,json=createdTimestamp\" json:\"created_timestamp,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "SampleCount", key: "SampleCount", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint64")), tag: "protobuf:\"varint,1,opt,name=sample_count,json=sampleCount\" json:\"sample_count,omitempty\"" }, { name: "SampleSum", key: "SampleSum", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,2,opt,name=sample_sum,json=sampleSum\" json:\"sample_sum,omitempty\"" }, { name: "Quantile", key: "Quantile", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Quantile")), tag: "protobuf:\"bytes,3,rep,name=quantile\" json:\"quantile,omitempty\"" }, { name: "CreatedTimestamp", key: "CreatedTimestamp", type: /* @__PURE__ */ $.pointerType("timestamppb.Timestamp"), tag: "protobuf:\"bytes,4,opt,name=created_timestamp,json=createdTimestamp\" json:\"created_timestamp,omitempty\"" }]
 	)
 }
 
@@ -801,7 +792,7 @@ export class Untyped {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Value?: $.VarRef<number> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Value: init?.Value ?? (null! as $.VarRef<number> | null)
@@ -816,7 +807,7 @@ export class Untyped {
 	public __goscriptAssign(source: Untyped): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Value = values.Value
@@ -838,40 +829,40 @@ export class Untyped {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Untyped | $.VarRef<Untyped> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 5)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 5)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Untyped", /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Untyped", /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*io_prometheus_client.Untyped", /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.Untyped", /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped"))))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.Untyped", /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped")))
 	}
 
 	public Reset(): void {
 		let x: Untyped | $.VarRef<Untyped> | null = this;
 		$.assignStruct($.pointerValue<Untyped>(x), $.markAsStructValue(new Untyped()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 5)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Untyped", /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 5)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Untyped", /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Untyped | $.VarRef<Untyped> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Untyped", /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Untyped", /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.Untyped",
 		() => new Untyped(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetValue", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Untyped,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("Value", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [3], 40, true, { tag: "protobuf:\"fixed64,1,opt,name=value\" json:\"value,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Value", key: "Value", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,1,opt,name=value\" json:\"value,omitempty\"" }]
 	)
 }
 
@@ -1070,7 +1061,7 @@ export class Histogram {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, SampleCount?: $.VarRef<bigint> | null, SampleCountFloat?: $.VarRef<number> | null, SampleSum?: $.VarRef<number> | null, Bucket?: $.Slice<Bucket | $.VarRef<Bucket> | null>, CreatedTimestamp?: timestamppb.Timestamp | $.VarRef<timestamppb.Timestamp> | null, Schema?: $.VarRef<number> | null, ZeroThreshold?: $.VarRef<number> | null, ZeroCount?: $.VarRef<bigint> | null, ZeroCountFloat?: $.VarRef<number> | null, NegativeSpan?: $.Slice<BucketSpan | $.VarRef<BucketSpan> | null>, NegativeDelta?: $.Slice<bigint>, NegativeCount?: $.Slice<number>, PositiveSpan?: $.Slice<BucketSpan | $.VarRef<BucketSpan> | null>, PositiveDelta?: $.Slice<bigint>, PositiveCount?: $.Slice<number>, Exemplars?: $.Slice<Exemplar | $.VarRef<Exemplar> | null>}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			SampleCount: init?.SampleCount ?? (null! as $.VarRef<bigint> | null),
@@ -1100,7 +1091,7 @@ export class Histogram {
 	public __goscriptAssign(source: Histogram): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.SampleCount = values.SampleCount
@@ -1263,40 +1254,40 @@ export class Histogram {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Histogram | $.VarRef<Histogram> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 6)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 6)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Histogram", /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Histogram", /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*io_prometheus_client.Histogram", /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.Histogram", /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram"))))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.Histogram", /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram")))
 	}
 
 	public Reset(): void {
 		let x: Histogram | $.VarRef<Histogram> | null = this;
 		$.assignStruct($.pointerValue<Histogram>(x), $.markAsStructValue(new Histogram()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 6)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Histogram", /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 6)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Histogram", /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Histogram | $.VarRef<Histogram> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Histogram", /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Histogram", /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.Histogram",
 		() => new Histogram(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetBucket", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket"))], true), $.methodSignature("GetCreatedTimestamp", [], [/* @__PURE__ */ $.pointerType("timestamppb.Timestamp")], true), $.methodSignature("GetExemplars", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar"))], true), $.methodSignature("GetNegativeCount", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("float64"))], true), $.methodSignature("GetNegativeDelta", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64"))], true), $.methodSignature("GetNegativeSpan", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan"))], true), $.methodSignature("GetPositiveCount", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("float64"))], true), $.methodSignature("GetPositiveDelta", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64"))], true), $.methodSignature("GetPositiveSpan", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan"))], true), $.methodSignature("GetSampleCount", [], [/* @__PURE__ */ $.basicType("uint64")], true), $.methodSignature("GetSampleCountFloat", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("GetSampleSum", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("GetSchema", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("GetZeroCount", [], [/* @__PURE__ */ $.basicType("uint64")], true), $.methodSignature("GetZeroCountFloat", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("GetZeroThreshold", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetBucket", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket")) }], pointerReceiver: true }, { name: "GetCreatedTimestamp", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("timestamppb.Timestamp") }], pointerReceiver: true }, { name: "GetExemplars", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")) }], pointerReceiver: true }, { name: "GetNegativeCount", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("float64")) }], pointerReceiver: true }, { name: "GetNegativeDelta", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64")) }], pointerReceiver: true }, { name: "GetNegativeSpan", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")) }], pointerReceiver: true }, { name: "GetPositiveCount", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("float64")) }], pointerReceiver: true }, { name: "GetPositiveDelta", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64")) }], pointerReceiver: true }, { name: "GetPositiveSpan", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")) }], pointerReceiver: true }, { name: "GetSampleCount", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint64") }], pointerReceiver: true }, { name: "GetSampleCountFloat", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "GetSampleSum", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "GetSchema", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "GetZeroCount", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint64") }], pointerReceiver: true }, { name: "GetZeroCountFloat", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "GetZeroThreshold", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Histogram,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("SampleCount", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint64")), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=sample_count,json=sampleCount\" json:\"sample_count,omitempty\"" }), /* @__PURE__ */ $.structField("SampleCountFloat", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [4], 48, true, { tag: "protobuf:\"fixed64,4,opt,name=sample_count_float,json=sampleCountFloat\" json:\"sample_count_float,omitempty\"" }), /* @__PURE__ */ $.structField("SampleSum", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [5], 56, true, { tag: "protobuf:\"fixed64,2,opt,name=sample_sum,json=sampleSum\" json:\"sample_sum,omitempty\"" }), /* @__PURE__ */ $.structField("Bucket", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket")), [6], 64, true, { tag: "protobuf:\"bytes,3,rep,name=bucket\" json:\"bucket,omitempty\"" }), /* @__PURE__ */ $.structField("CreatedTimestamp", /* @__PURE__ */ $.pointerType("timestamppb.Timestamp"), [7], 88, true, { tag: "protobuf:\"bytes,15,opt,name=created_timestamp,json=createdTimestamp\" json:\"created_timestamp,omitempty\"" }), /* @__PURE__ */ $.structField("Schema", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [8], 96, true, { tag: "protobuf:\"zigzag32,5,opt,name=schema\" json:\"schema,omitempty\"" }), /* @__PURE__ */ $.structField("ZeroThreshold", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [9], 104, true, { tag: "protobuf:\"fixed64,6,opt,name=zero_threshold,json=zeroThreshold\" json:\"zero_threshold,omitempty\"" }), /* @__PURE__ */ $.structField("ZeroCount", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint64")), [10], 112, true, { tag: "protobuf:\"varint,7,opt,name=zero_count,json=zeroCount\" json:\"zero_count,omitempty\"" }), /* @__PURE__ */ $.structField("ZeroCountFloat", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [11], 120, true, { tag: "protobuf:\"fixed64,8,opt,name=zero_count_float,json=zeroCountFloat\" json:\"zero_count_float,omitempty\"" }), /* @__PURE__ */ $.structField("NegativeSpan", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")), [12], 128, true, { tag: "protobuf:\"bytes,9,rep,name=negative_span,json=negativeSpan\" json:\"negative_span,omitempty\"" }), /* @__PURE__ */ $.structField("NegativeDelta", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64")), [13], 152, true, { tag: "protobuf:\"zigzag64,10,rep,name=negative_delta,json=negativeDelta\" json:\"negative_delta,omitempty\"" }), /* @__PURE__ */ $.structField("NegativeCount", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("float64")), [14], 176, true, { tag: "protobuf:\"fixed64,11,rep,name=negative_count,json=negativeCount\" json:\"negative_count,omitempty\"" }), /* @__PURE__ */ $.structField("PositiveSpan", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")), [15], 200, true, { tag: "protobuf:\"bytes,12,rep,name=positive_span,json=positiveSpan\" json:\"positive_span,omitempty\"" }), /* @__PURE__ */ $.structField("PositiveDelta", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64")), [16], 224, true, { tag: "protobuf:\"zigzag64,13,rep,name=positive_delta,json=positiveDelta\" json:\"positive_delta,omitempty\"" }), /* @__PURE__ */ $.structField("PositiveCount", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("float64")), [17], 248, true, { tag: "protobuf:\"fixed64,14,rep,name=positive_count,json=positiveCount\" json:\"positive_count,omitempty\"" }), /* @__PURE__ */ $.structField("Exemplars", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")), [18], 272, true, { tag: "protobuf:\"bytes,16,rep,name=exemplars\" json:\"exemplars,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "SampleCount", key: "SampleCount", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint64")), tag: "protobuf:\"varint,1,opt,name=sample_count,json=sampleCount\" json:\"sample_count,omitempty\"" }, { name: "SampleCountFloat", key: "SampleCountFloat", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,4,opt,name=sample_count_float,json=sampleCountFloat\" json:\"sample_count_float,omitempty\"" }, { name: "SampleSum", key: "SampleSum", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,2,opt,name=sample_sum,json=sampleSum\" json:\"sample_sum,omitempty\"" }, { name: "Bucket", key: "Bucket", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket")), tag: "protobuf:\"bytes,3,rep,name=bucket\" json:\"bucket,omitempty\"" }, { name: "CreatedTimestamp", key: "CreatedTimestamp", type: /* @__PURE__ */ $.pointerType("timestamppb.Timestamp"), tag: "protobuf:\"bytes,15,opt,name=created_timestamp,json=createdTimestamp\" json:\"created_timestamp,omitempty\"" }, { name: "Schema", key: "Schema", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"zigzag32,5,opt,name=schema\" json:\"schema,omitempty\"" }, { name: "ZeroThreshold", key: "ZeroThreshold", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,6,opt,name=zero_threshold,json=zeroThreshold\" json:\"zero_threshold,omitempty\"" }, { name: "ZeroCount", key: "ZeroCount", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint64")), tag: "protobuf:\"varint,7,opt,name=zero_count,json=zeroCount\" json:\"zero_count,omitempty\"" }, { name: "ZeroCountFloat", key: "ZeroCountFloat", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,8,opt,name=zero_count_float,json=zeroCountFloat\" json:\"zero_count_float,omitempty\"" }, { name: "NegativeSpan", key: "NegativeSpan", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")), tag: "protobuf:\"bytes,9,rep,name=negative_span,json=negativeSpan\" json:\"negative_span,omitempty\"" }, { name: "NegativeDelta", key: "NegativeDelta", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64")), tag: "protobuf:\"zigzag64,10,rep,name=negative_delta,json=negativeDelta\" json:\"negative_delta,omitempty\"" }, { name: "NegativeCount", key: "NegativeCount", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,11,rep,name=negative_count,json=negativeCount\" json:\"negative_count,omitempty\"" }, { name: "PositiveSpan", key: "PositiveSpan", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")), tag: "protobuf:\"bytes,12,rep,name=positive_span,json=positiveSpan\" json:\"positive_span,omitempty\"" }, { name: "PositiveDelta", key: "PositiveDelta", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int64")), tag: "protobuf:\"zigzag64,13,rep,name=positive_delta,json=positiveDelta\" json:\"positive_delta,omitempty\"" }, { name: "PositiveCount", key: "PositiveCount", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,14,rep,name=positive_count,json=positiveCount\" json:\"positive_count,omitempty\"" }, { name: "Exemplars", key: "Exemplars", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")), tag: "protobuf:\"bytes,16,rep,name=exemplars\" json:\"exemplars,omitempty\"" }]
 	)
 }
 
@@ -1369,7 +1360,7 @@ export class Bucket {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, CumulativeCount?: $.VarRef<bigint> | null, CumulativeCountFloat?: $.VarRef<number> | null, UpperBound?: $.VarRef<number> | null, Exemplar?: Exemplar | $.VarRef<Exemplar> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			CumulativeCount: init?.CumulativeCount ?? (null! as $.VarRef<bigint> | null),
@@ -1387,7 +1378,7 @@ export class Bucket {
 	public __goscriptAssign(source: Bucket): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.CumulativeCount = values.CumulativeCount
@@ -1438,40 +1429,40 @@ export class Bucket {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Bucket | $.VarRef<Bucket> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 7)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 7)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Bucket", /* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Bucket", /* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*io_prometheus_client.Bucket", /* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.Bucket", /* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket"))))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.Bucket", /* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket")))
 	}
 
 	public Reset(): void {
 		let x: Bucket | $.VarRef<Bucket> | null = this;
 		$.assignStruct($.pointerValue<Bucket>(x), $.markAsStructValue(new Bucket()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 7)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Bucket", /* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 7)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Bucket", /* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Bucket | $.VarRef<Bucket> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Bucket", /* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Bucket", /* @__PURE__ */ $.pointerType("io_prometheus_client.Bucket")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.Bucket",
 		() => new Bucket(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetCumulativeCount", [], [/* @__PURE__ */ $.basicType("uint64")], true), $.methodSignature("GetCumulativeCountFloat", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("GetExemplar", [], [/* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")], true), $.methodSignature("GetUpperBound", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetCumulativeCount", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint64") }], pointerReceiver: true }, { name: "GetCumulativeCountFloat", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "GetExemplar", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar") }], pointerReceiver: true }, { name: "GetUpperBound", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Bucket,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("CumulativeCount", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint64")), [3], 40, true, { tag: "protobuf:\"varint,1,opt,name=cumulative_count,json=cumulativeCount\" json:\"cumulative_count,omitempty\"" }), /* @__PURE__ */ $.structField("CumulativeCountFloat", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [4], 48, true, { tag: "protobuf:\"fixed64,4,opt,name=cumulative_count_float,json=cumulativeCountFloat\" json:\"cumulative_count_float,omitempty\"" }), /* @__PURE__ */ $.structField("UpperBound", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [5], 56, true, { tag: "protobuf:\"fixed64,2,opt,name=upper_bound,json=upperBound\" json:\"upper_bound,omitempty\"" }), /* @__PURE__ */ $.structField("Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar"), [6], 64, true, { tag: "protobuf:\"bytes,3,opt,name=exemplar\" json:\"exemplar,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "CumulativeCount", key: "CumulativeCount", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint64")), tag: "protobuf:\"varint,1,opt,name=cumulative_count,json=cumulativeCount\" json:\"cumulative_count,omitempty\"" }, { name: "CumulativeCountFloat", key: "CumulativeCountFloat", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,4,opt,name=cumulative_count_float,json=cumulativeCountFloat\" json:\"cumulative_count_float,omitempty\"" }, { name: "UpperBound", key: "UpperBound", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,2,opt,name=upper_bound,json=upperBound\" json:\"upper_bound,omitempty\"" }, { name: "Exemplar", key: "Exemplar", type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar"), tag: "protobuf:\"bytes,3,opt,name=exemplar\" json:\"exemplar,omitempty\"" }]
 	)
 }
 
@@ -1526,7 +1517,7 @@ export class BucketSpan {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Offset?: $.VarRef<number> | null, Length?: $.VarRef<number> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Offset: init?.Offset ?? (null! as $.VarRef<number> | null),
@@ -1542,7 +1533,7 @@ export class BucketSpan {
 	public __goscriptAssign(source: BucketSpan): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Offset = values.Offset
@@ -1574,40 +1565,40 @@ export class BucketSpan {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: BucketSpan | $.VarRef<BucketSpan> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 8)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 8)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.BucketSpan", /* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.BucketSpan", /* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.BucketSpan", /* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.BucketSpan", /* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")))
 	}
 
 	public Reset(): void {
 		let x: BucketSpan | $.VarRef<BucketSpan> | null = this;
 		$.assignStruct($.pointerValue<BucketSpan>(x), $.markAsStructValue(new BucketSpan()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 8)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.BucketSpan", /* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 8)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.BucketSpan", /* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: BucketSpan | $.VarRef<BucketSpan> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.BucketSpan", /* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.BucketSpan", /* @__PURE__ */ $.pointerType("io_prometheus_client.BucketSpan")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.BucketSpan",
 		() => new BucketSpan(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetLength", [], [/* @__PURE__ */ $.basicType("uint32")], true), $.methodSignature("GetOffset", [], [/* @__PURE__ */ $.basicType("int32")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetLength", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("uint32") }], pointerReceiver: true }, { name: "GetOffset", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		BucketSpan,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("Offset", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), [3], 40, true, { tag: "protobuf:\"zigzag32,1,opt,name=offset\" json:\"offset,omitempty\"" }), /* @__PURE__ */ $.structField("Length", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint32")), [4], 48, true, { tag: "protobuf:\"varint,2,opt,name=length\" json:\"length,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Offset", key: "Offset", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32")), tag: "protobuf:\"zigzag32,1,opt,name=offset\" json:\"offset,omitempty\"" }, { name: "Length", key: "Length", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("uint32")), tag: "protobuf:\"varint,2,opt,name=length\" json:\"length,omitempty\"" }]
 	)
 }
 
@@ -1671,7 +1662,7 @@ export class Exemplar {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Label?: $.Slice<LabelPair | $.VarRef<LabelPair> | null>, Value?: $.VarRef<number> | null, Timestamp?: timestamppb.Timestamp | $.VarRef<timestamppb.Timestamp> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Label: init?.Label ?? (null! as $.Slice<LabelPair | $.VarRef<LabelPair> | null>),
@@ -1688,7 +1679,7 @@ export class Exemplar {
 	public __goscriptAssign(source: Exemplar): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Label = values.Label
@@ -1728,40 +1719,40 @@ export class Exemplar {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Exemplar | $.VarRef<Exemplar> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 9)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 9)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*io_prometheus_client.Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar"))))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")))
 	}
 
 	public Reset(): void {
 		let x: Exemplar | $.VarRef<Exemplar> | null = this;
 		$.assignStruct($.pointerValue<Exemplar>(x), $.markAsStructValue(new Exemplar()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 9)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 9)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Exemplar | $.VarRef<Exemplar> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Exemplar", /* @__PURE__ */ $.pointerType("io_prometheus_client.Exemplar")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.Exemplar",
 		() => new Exemplar(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetLabel", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair"))], true), $.methodSignature("GetTimestamp", [], [/* @__PURE__ */ $.pointerType("timestamppb.Timestamp")], true), $.methodSignature("GetValue", [], [/* @__PURE__ */ $.basicType("float64")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetLabel", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")) }], pointerReceiver: true }, { name: "GetTimestamp", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("timestamppb.Timestamp") }], pointerReceiver: true }, { name: "GetValue", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("float64") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Exemplar,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("Label", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")), [3], 40, true, { tag: "protobuf:\"bytes,1,rep,name=label\" json:\"label,omitempty\"" }), /* @__PURE__ */ $.structField("Value", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), [4], 64, true, { tag: "protobuf:\"fixed64,2,opt,name=value\" json:\"value,omitempty\"" }), /* @__PURE__ */ $.structField("Timestamp", /* @__PURE__ */ $.pointerType("timestamppb.Timestamp"), [5], 72, true, { tag: "protobuf:\"bytes,3,opt,name=timestamp\" json:\"timestamp,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Label", key: "Label", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")), tag: "protobuf:\"bytes,1,rep,name=label\" json:\"label,omitempty\"" }, { name: "Value", key: "Value", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("float64")), tag: "protobuf:\"fixed64,2,opt,name=value\" json:\"value,omitempty\"" }, { name: "Timestamp", key: "Timestamp", type: /* @__PURE__ */ $.pointerType("timestamppb.Timestamp"), tag: "protobuf:\"bytes,3,opt,name=timestamp\" json:\"timestamp,omitempty\"" }]
 	)
 }
 
@@ -1861,7 +1852,7 @@ export class Metric {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Label?: $.Slice<LabelPair | $.VarRef<LabelPair> | null>, Gauge?: Gauge | $.VarRef<Gauge> | null, Counter?: Counter | $.VarRef<Counter> | null, Summary?: Summary | $.VarRef<Summary> | null, Untyped?: Untyped | $.VarRef<Untyped> | null, Histogram?: Histogram | $.VarRef<Histogram> | null, TimestampMs?: $.VarRef<bigint> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Label: init?.Label ?? (null! as $.Slice<LabelPair | $.VarRef<LabelPair> | null>),
@@ -1882,7 +1873,7 @@ export class Metric {
 	public __goscriptAssign(source: Metric): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Label = values.Label
@@ -1958,40 +1949,40 @@ export class Metric {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: Metric | $.VarRef<Metric> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 10)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 10)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Metric", /* @__PURE__ */ $.pointerType("io_prometheus_client.Metric")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Metric", /* @__PURE__ */ $.pointerType("io_prometheus_client.Metric")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as impl.MessageInfo).MessageOf($.interfaceValue(x, "*io_prometheus_client.Metric", /* @__PURE__ */ $.pointerType("io_prometheus_client.Metric"))) : impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.Metric", /* @__PURE__ */ $.pointerType("io_prometheus_client.Metric"))))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.Metric", /* @__PURE__ */ $.pointerType("io_prometheus_client.Metric")))
 	}
 
 	public Reset(): void {
 		let x: Metric | $.VarRef<Metric> | null = this;
 		$.assignStruct($.pointerValue<Metric>(x), $.markAsStructValue(new Metric()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 10)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Metric", /* @__PURE__ */ $.pointerType("io_prometheus_client.Metric")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 10)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.Metric", /* @__PURE__ */ $.pointerType("io_prometheus_client.Metric")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: Metric | $.VarRef<Metric> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Metric", /* @__PURE__ */ $.pointerType("io_prometheus_client.Metric")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.Metric", /* @__PURE__ */ $.pointerType("io_prometheus_client.Metric")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.Metric",
 		() => new Metric(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetCounter", [], [/* @__PURE__ */ $.pointerType("io_prometheus_client.Counter")], true), $.methodSignature("GetGauge", [], [/* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge")], true), $.methodSignature("GetHistogram", [], [/* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram")], true), $.methodSignature("GetLabel", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair"))], true), $.methodSignature("GetSummary", [], [/* @__PURE__ */ $.pointerType("io_prometheus_client.Summary")], true), $.methodSignature("GetTimestampMs", [], [/* @__PURE__ */ $.basicType("int64")], true), $.methodSignature("GetUntyped", [], [/* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetCounter", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter") }], pointerReceiver: true }, { name: "GetGauge", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge") }], pointerReceiver: true }, { name: "GetHistogram", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram") }], pointerReceiver: true }, { name: "GetLabel", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")) }], pointerReceiver: true }, { name: "GetSummary", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary") }], pointerReceiver: true }, { name: "GetTimestampMs", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int64") }], pointerReceiver: true }, { name: "GetUntyped", args: [], returns: [{ type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		Metric,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("Label", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")), [3], 40, true, { tag: "protobuf:\"bytes,1,rep,name=label\" json:\"label,omitempty\"" }), /* @__PURE__ */ $.structField("Gauge", /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge"), [4], 64, true, { tag: "protobuf:\"bytes,2,opt,name=gauge\" json:\"gauge,omitempty\"" }), /* @__PURE__ */ $.structField("Counter", /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter"), [5], 72, true, { tag: "protobuf:\"bytes,3,opt,name=counter\" json:\"counter,omitempty\"" }), /* @__PURE__ */ $.structField("Summary", /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary"), [6], 80, true, { tag: "protobuf:\"bytes,4,opt,name=summary\" json:\"summary,omitempty\"" }), /* @__PURE__ */ $.structField("Untyped", /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped"), [7], 88, true, { tag: "protobuf:\"bytes,5,opt,name=untyped\" json:\"untyped,omitempty\"" }), /* @__PURE__ */ $.structField("Histogram", /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram"), [8], 96, true, { tag: "protobuf:\"bytes,7,opt,name=histogram\" json:\"histogram,omitempty\"" }), /* @__PURE__ */ $.structField("TimestampMs", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int64")), [9], 104, true, { tag: "protobuf:\"varint,6,opt,name=timestamp_ms,json=timestampMs\" json:\"timestamp_ms,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Label", key: "Label", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.LabelPair")), tag: "protobuf:\"bytes,1,rep,name=label\" json:\"label,omitempty\"" }, { name: "Gauge", key: "Gauge", type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Gauge"), tag: "protobuf:\"bytes,2,opt,name=gauge\" json:\"gauge,omitempty\"" }, { name: "Counter", key: "Counter", type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Counter"), tag: "protobuf:\"bytes,3,opt,name=counter\" json:\"counter,omitempty\"" }, { name: "Summary", key: "Summary", type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Summary"), tag: "protobuf:\"bytes,4,opt,name=summary\" json:\"summary,omitempty\"" }, { name: "Untyped", key: "Untyped", type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Untyped"), tag: "protobuf:\"bytes,5,opt,name=untyped\" json:\"untyped,omitempty\"" }, { name: "Histogram", key: "Histogram", type: /* @__PURE__ */ $.pointerType("io_prometheus_client.Histogram"), tag: "protobuf:\"bytes,7,opt,name=histogram\" json:\"histogram,omitempty\"" }, { name: "TimestampMs", key: "TimestampMs", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int64")), tag: "protobuf:\"varint,6,opt,name=timestamp_ms,json=timestampMs\" json:\"timestamp_ms,omitempty\"" }]
 	)
 }
 
@@ -2073,7 +2064,7 @@ export class MetricFamily {
 
 	constructor(init?: Partial<{state?: protoimpl.MessageState, sizeCache?: protoimpl.SizeCache, unknownFields?: protoimpl.UnknownFields, Name?: $.VarRef<string> | null, Help?: $.VarRef<string> | null, Type?: $.VarRef<MetricType> | null, Metric?: $.Slice<Metric | $.VarRef<Metric> | null>, Unit?: $.VarRef<string> | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			state: init?.state ? init.state.clone() : new impl.MessageState(undefined, true),
+			state: init?.state ?? (undefined as any as protoimpl.MessageState),
 			sizeCache: init?.sizeCache ?? (0 as protoimpl.SizeCache),
 			unknownFields: init?.unknownFields ?? (null! as protoimpl.UnknownFields),
 			Name: init?.Name ?? (null! as $.VarRef<string> | null),
@@ -2092,7 +2083,7 @@ export class MetricFamily {
 	public __goscriptAssign(source: MetricFamily): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.state, values.state)
+		target.state = $.assignFieldValue(target.state, values.state, "impl.MessageState")
 		target.sizeCache = values.sizeCache
 		target.unknownFields = values.unknownFields
 		target.Name = values.Name
@@ -2153,40 +2144,40 @@ export class MetricFamily {
 	public ProtoMessage(): void {
 	}
 
-	public async ProtoReflect(): globalThis.Promise<protoreflect.Message | null> {
+	public ProtoReflect(): protoreflect.Message | null {
 		const x: MetricFamily | $.VarRef<MetricFamily> | null = this;
-		let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 11)
+		let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 11)
 		if (protoimpl.UnsafeEnabled && (x != null)) {
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.MetricFamily", /* @__PURE__ */ $.pointerType("io_prometheus_client.MetricFamily")))
-			if ($.pointerValue<any>(ms).LoadMessageInfo() == null) {
-				$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.MetricFamily", /* @__PURE__ */ $.pointerType("io_prometheus_client.MetricFamily")))
+			if (ms.LoadMessageInfo() == null) {
+				ms.StoreMessageInfo(mi)
 			}
 			return $.interfaceValue<protoreflect.Message | null>(ms, "*impl.messageState", /* @__PURE__ */ $.pointerType("impl.messageState"))
 		}
-		return impl.MessageInfo.prototype.MessageOf.call(mi, $.interfaceValue(x, "*io_prometheus_client.MetricFamily", /* @__PURE__ */ $.pointerType("io_prometheus_client.MetricFamily")))
+		return mi.MessageOf($.interfaceValue(x, "*io_prometheus_client.MetricFamily", /* @__PURE__ */ $.pointerType("io_prometheus_client.MetricFamily")))
 	}
 
 	public Reset(): void {
 		let x: MetricFamily | $.VarRef<MetricFamily> | null = this;
 		$.assignStruct($.pointerValue<MetricFamily>(x), $.markAsStructValue(new MetricFamily()))
 		if (protoimpl.UnsafeEnabled) {
-			let mi: impl.MessageInfo | $.VarRef<impl.MessageInfo> | null = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 11)
-			let ms: impl.messageState | $.VarRef<impl.messageState> | null = $.pointerValue<impl.Export>(protoimpl.X).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.MetricFamily", /* @__PURE__ */ $.pointerType("io_prometheus_client.MetricFamily")))
-			$.pointerValue<any>(ms).StoreMessageInfo(mi)
+			let mi: any = $.indexRef(file_io_prometheus_client_metrics_proto_msgTypes!, 11)
+			let ms: any = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStateOf($.interfaceValue<protoimpl.Pointer | null>(x, "*io_prometheus_client.MetricFamily", /* @__PURE__ */ $.pointerType("io_prometheus_client.MetricFamily")))
+			ms.StoreMessageInfo(mi)
 		}
 	}
 
 	public String(): string {
 		const x: MetricFamily | $.VarRef<MetricFamily> | null = this;
-		return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.MetricFamily", /* @__PURE__ */ $.pointerType("io_prometheus_client.MetricFamily")))
+		return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).MessageStringOf($.interfaceValue<protoreflect.ProtoMessage | null>(x, "*io_prometheus_client.MetricFamily", /* @__PURE__ */ $.pointerType("io_prometheus_client.MetricFamily")))
 	}
 
 	static __typeInfo = $.registerStructType(
 		"io_prometheus_client.MetricFamily",
 		() => new MetricFamily(),
-		() => [$.methodSignature("Descriptor", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int"))], true), $.methodSignature("GetHelp", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetMetric", [], [/* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Metric"))], true), $.methodSignature("GetName", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("GetType", [], [/* @__PURE__ */ $.basicType("int32", "io_prometheus_client.MetricType")], true), $.methodSignature("GetUnit", [], [/* @__PURE__ */ $.basicType("string")], true), $.methodSignature("ProtoMessage", [], [], true), $.methodSignature("ProtoReflect", [], ["protoreflect.Message"], true), $.methodSignature("Reset", [], [], true), $.methodSignature("String", [], [/* @__PURE__ */ $.basicType("string")], true)],
+		() => [{ name: "Descriptor", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("int")) }], pointerReceiver: true }, { name: "GetHelp", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetMetric", args: [], returns: [{ type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Metric")) }], pointerReceiver: true }, { name: "GetName", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "GetType", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("int32", "io_prometheus_client.MetricType") }], pointerReceiver: true }, { name: "GetUnit", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }, { name: "ProtoMessage", args: [], returns: [], pointerReceiver: true }, { name: "ProtoReflect", args: [], returns: [{ type: "protoreflect.Message" }], pointerReceiver: true }, { name: "Reset", args: [], returns: [], pointerReceiver: true }, { name: "String", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("string") }], pointerReceiver: true }],
 		MetricFamily,
-		() => [/* @__PURE__ */ $.structField("state", "impl.MessageState", [0], 0, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("sizeCache", /* @__PURE__ */ $.basicType("int32"), [1], 8, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("unknownFields", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")), [2], 16, false, { pkgPath: "github.com/prometheus/client_model/go" }), /* @__PURE__ */ $.structField("Name", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [3], 40, true, { tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }), /* @__PURE__ */ $.structField("Help", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [4], 48, true, { tag: "protobuf:\"bytes,2,opt,name=help\" json:\"help,omitempty\"" }), /* @__PURE__ */ $.structField("Type", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "io_prometheus_client.MetricType")), [5], 56, true, { tag: "protobuf:\"varint,3,opt,name=type,enum=io.prometheus.client.MetricType\" json:\"type,omitempty\"" }), /* @__PURE__ */ $.structField("Metric", /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Metric")), [6], 64, true, { tag: "protobuf:\"bytes,4,rep,name=metric\" json:\"metric,omitempty\"" }), /* @__PURE__ */ $.structField("Unit", /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), [7], 88, true, { tag: "protobuf:\"bytes,5,opt,name=unit\" json:\"unit,omitempty\"" })]
+		() => [{ name: "state", key: "state", type: "impl.MessageState" }, { name: "sizeCache", key: "sizeCache", type: /* @__PURE__ */ $.basicType("int32") }, { name: "unknownFields", key: "unknownFields", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.basicType("uint8")) }, { name: "Name", key: "Name", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,1,opt,name=name\" json:\"name,omitempty\"" }, { name: "Help", key: "Help", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,2,opt,name=help\" json:\"help,omitempty\"" }, { name: "Type", key: "Type", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("int32", "io_prometheus_client.MetricType")), tag: "protobuf:\"varint,3,opt,name=type,enum=io.prometheus.client.MetricType\" json:\"type,omitempty\"" }, { name: "Metric", key: "Metric", type: /* @__PURE__ */ $.sliceType(/* @__PURE__ */ $.pointerType("io_prometheus_client.Metric")), tag: "protobuf:\"bytes,4,rep,name=metric\" json:\"metric,omitempty\"" }, { name: "Unit", key: "Unit", type: /* @__PURE__ */ $.pointerType(/* @__PURE__ */ $.basicType("string")), tag: "protobuf:\"bytes,5,opt,name=unit\" json:\"unit,omitempty\"" }]
 	)
 }
 
@@ -2221,7 +2212,7 @@ export function MetricType_Enum(x: MetricType): $.VarRef<MetricType> | null {
 }
 
 export function MetricType_String(x: MetricType): string {
-	return await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).EnumStringOf(MetricType_Descriptor(x), $.int(x, 32))
+	return $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).EnumStringOf(MetricType_Descriptor(x), $.int(x, 32))
 }
 
 export function MetricType_Descriptor(recv: MetricType): protoreflect.EnumDescriptor | null {
@@ -2237,7 +2228,7 @@ export function MetricType_Number(x: MetricType): protoreflect.EnumNumber {
 }
 
 export function MetricType_UnmarshalJSON(x: $.VarRef<MetricType> | null, b: $.Slice<number>): $.GoError {
-	let [num, err] = await $.markAsStructValue($.cloneStructValue($.pointerValue<impl.Export>(protoimpl.X))).UnmarshalJSONEnum(MetricType_Descriptor($.pointerValue<MetricType>(x)), b)
+	let [num, err] = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).UnmarshalJSONEnum(MetricType_Descriptor($.pointerValue<MetricType>(x)), b)
 	if (err != null) {
 		return err
 	}
@@ -2275,18 +2266,18 @@ export function __goscript_set_file_io_prometheus_client_metrics_proto_rawDescDa
 
 export async function file_io_prometheus_client_metrics_proto_rawDescGZIP(): globalThis.Promise<$.Slice<number>> {
 	await file_io_prometheus_client_metrics_proto_rawDescOnce.value.Do($.functionValue((): void => {
-		file_io_prometheus_client_metrics_proto_rawDescData = $.pointerValue<impl.Export>(protoimpl.X).CompressGZIP(file_io_prometheus_client_metrics_proto_rawDescData)
+		file_io_prometheus_client_metrics_proto_rawDescData = $.markAsStructValue($.cloneStructValue($.pointerValue<any>(protoimpl.X))).CompressGZIP(file_io_prometheus_client_metrics_proto_rawDescData)
 	}, ({ kind: $.TypeKind.Function, params: [], results: [] } as $.FunctionTypeInfo)))
 	return file_io_prometheus_client_metrics_proto_rawDescData
 }
 
-export let file_io_prometheus_client_metrics_proto_enumTypes: $.Slice<protoimpl.EnumInfo> = $.makeSlice<protoimpl.EnumInfo>(1, undefined, undefined, () => new impl.EnumInfo(undefined, true))
+export let file_io_prometheus_client_metrics_proto_enumTypes: $.Slice<protoimpl.EnumInfo> = $.makeSlice<protoimpl.EnumInfo>(1, undefined, undefined, () => new protoimpl.EnumInfo(undefined, true))
 
 export function __goscript_set_file_io_prometheus_client_metrics_proto_enumTypes(__goscriptValue: $.Slice<protoimpl.EnumInfo>): void {
 	file_io_prometheus_client_metrics_proto_enumTypes = __goscriptValue
 }
 
-export let file_io_prometheus_client_metrics_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(12, undefined, undefined, () => new impl.MessageInfo(undefined, true))
+export let file_io_prometheus_client_metrics_proto_msgTypes: $.Slice<protoimpl.MessageInfo> = $.makeSlice<protoimpl.MessageInfo>(12, undefined, undefined, () => new protoimpl.MessageInfo(undefined, true))
 
 export function __goscript_set_file_io_prometheus_client_metrics_proto_msgTypes(__goscriptValue: $.Slice<protoimpl.MessageInfo>): void {
 	file_io_prometheus_client_metrics_proto_msgTypes = __goscriptValue
@@ -2663,7 +2654,7 @@ export async function file_io_prometheus_client_metrics_proto_init(): globalThis
 			() => []
 		)
 	}
-	let out = await $.markAsStructValue($.cloneStructValue(new filetype.Builder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "io_prometheus_client.x", "io_prometheus_client.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new filedesc.Builder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_io_prometheus_client_metrics_proto_rawDesc, NumEnums: 1, NumMessages: 12, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_io_prometheus_client_metrics_proto_goTypes, DependencyIndexes: file_io_prometheus_client_metrics_proto_depIdxs, EnumInfos: file_io_prometheus_client_metrics_proto_enumTypes, MessageInfos: file_io_prometheus_client_metrics_proto_msgTypes}, true))).Build()
+	let out = await $.markAsStructValue($.cloneStructValue(new protoimpl.TypeBuilder({File: (await (async () => { const __goscriptLiteralField0 = (__goscriptAwait = $.pointerValue<Exclude<reflect.Type, null>>(reflect.TypeOf($.interfaceValue($.markAsStructValue(new x()), "io_prometheus_client.x", "io_prometheus_client.x"))).PkgPath(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait); return new protoimpl.DescBuilder({GoPackagePath: __goscriptLiteralField0, RawDescriptor: file_io_prometheus_client_metrics_proto_rawDesc, NumEnums: 1, NumMessages: 12, NumExtensions: 0, NumServices: 0}, true) })()), GoTypes: file_io_prometheus_client_metrics_proto_goTypes, DependencyIndexes: file_io_prometheus_client_metrics_proto_depIdxs, EnumInfos: file_io_prometheus_client_metrics_proto_enumTypes, MessageInfos: file_io_prometheus_client_metrics_proto_msgTypes}, true))).Build()
 	File_io_prometheus_client_metrics_proto = out.File
 	file_io_prometheus_client_metrics_proto_rawDesc = null
 	file_io_prometheus_client_metrics_proto_goTypes = null

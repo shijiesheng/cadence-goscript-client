@@ -15,12 +15,6 @@ import * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
 
 import * as piface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 
-import * as protowire from "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-
-import * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
-import * as protoreflect from "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
-
 import * as reflect from "@goscript/reflect/index.js"
 
 import * as sync from "@goscript/sync/index.js"
@@ -60,9 +54,6 @@ import "@goscript/sync/atomic/index.js"
 import "@goscript/google.golang.org/protobuf/internal/flags/index.js"
 import "@goscript/google.golang.org/protobuf/proto/index.js"
 import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-import "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/sync/index.js"
 import "./checkinit.gs.ts"
@@ -130,9 +121,9 @@ export class marshalOptions {
 	static __typeInfo = $.registerStructType(
 		"impl.marshalOptions",
 		() => new marshalOptions(),
-		() => [$.methodSignature("Deterministic", [], [/* @__PURE__ */ $.basicType("bool")]), $.methodSignature("Options", [], ["proto.MarshalOptions"]), $.methodSignature("UseCachedSize", [], [/* @__PURE__ */ $.basicType("bool")])],
+		() => [{ name: "Deterministic", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }, { name: "Options", args: [], returns: [{ type: "proto.MarshalOptions" }] }, { name: "UseCachedSize", args: [], returns: [{ type: /* @__PURE__ */ $.basicType("bool") }] }],
 		marshalOptions,
-		() => [/* @__PURE__ */ $.structField("flags", /* @__PURE__ */ $.basicType("uint8"), [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "flags", key: "flags", type: /* @__PURE__ */ $.basicType("uint8") }]
 	)
 }
 

@@ -25,10 +25,6 @@ import * as protobuf from "@goscript/go.uber.org/yarpc/encoding/protobuf/index.j
 
 import * as reflection from "@goscript/go.uber.org/yarpc/encoding/protobuf/reflection/index.js"
 
-import * as types from "@goscript/github.com/gogo/protobuf/types/index.js"
-
-import * as dig from "@goscript/go.uber.org/dig/index.js"
-
 import type * as io from "@goscript/io/index.js"
 
 import * as __goscript_common_pb from "./common.pb.gs.ts"
@@ -47,8 +43,6 @@ import "@goscript/go.uber.org/yarpc/api/transport/index.js"
 import "@goscript/go.uber.org/yarpc/api/x/restriction/index.js"
 import "@goscript/go.uber.org/yarpc/encoding/protobuf/index.js"
 import "@goscript/go.uber.org/yarpc/encoding/protobuf/reflection/index.js"
-import "@goscript/github.com/gogo/protobuf/types/index.js"
-import "@goscript/go.uber.org/dig/index.js"
 import "./common.pb.gs.ts"
 import "./domain.pb.gs.ts"
 import "./service_domain.pb.gs.ts"
@@ -69,7 +63,7 @@ export type DomainAPIYARPCClient = {
 $.registerInterfaceType(
 	"apiv1.DomainAPIYARPCClient",
 	null,
-	[$.methodSignature("DeleteDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.DeleteDomainRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.DeleteDomainResponse"), "error"]), $.methodSignature("DeprecateDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.DeprecateDomainRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.DeprecateDomainResponse"), "error"]), $.methodSignature("DescribeDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.DescribeDomainRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.DescribeDomainResponse"), "error"]), $.methodSignature("FailoverDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.FailoverDomainRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.FailoverDomainResponse"), "error"]), $.methodSignature("ListDomains", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListDomainsRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.ListDomainsResponse"), "error"]), $.methodSignature("ListFailoverHistory", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListFailoverHistoryRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.ListFailoverHistoryResponse"), "error"]), $.methodSignature("RegisterDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.RegisterDomainRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.RegisterDomainResponse"), "error"]), $.methodSignature("UpdateDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.UpdateDomainRequest"), /* @__PURE__ */ $.sliceType("yarpc.CallOption")], [/* @__PURE__ */ $.pointerType("apiv1.UpdateDomainResponse"), "error"])]
+	[{ name: "DeleteDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DeleteDomainResponse") }, { type: "error" }] }, { name: "DeprecateDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DeprecateDomainResponse") }, { type: "error" }] }, { name: "DescribeDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DescribeDomainResponse") }, { type: "error" }] }, { name: "FailoverDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.FailoverDomainResponse") }, { type: "error" }] }, { name: "ListDomains", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListDomainsResponse") }, { type: "error" }] }, { name: "ListFailoverHistory", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListFailoverHistoryResponse") }, { type: "error" }] }, { name: "RegisterDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.RegisterDomainResponse") }, { type: "error" }] }, { name: "UpdateDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.UpdateDomainResponse") }, { type: "error" }] }]
 );
 
 export type DomainAPIYARPCServer = {
@@ -86,7 +80,7 @@ export type DomainAPIYARPCServer = {
 $.registerInterfaceType(
 	"apiv1.DomainAPIYARPCServer",
 	null,
-	[$.methodSignature("DeleteDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.DeleteDomainRequest")], [/* @__PURE__ */ $.pointerType("apiv1.DeleteDomainResponse"), "error"]), $.methodSignature("DeprecateDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.DeprecateDomainRequest")], [/* @__PURE__ */ $.pointerType("apiv1.DeprecateDomainResponse"), "error"]), $.methodSignature("DescribeDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.DescribeDomainRequest")], [/* @__PURE__ */ $.pointerType("apiv1.DescribeDomainResponse"), "error"]), $.methodSignature("FailoverDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.FailoverDomainRequest")], [/* @__PURE__ */ $.pointerType("apiv1.FailoverDomainResponse"), "error"]), $.methodSignature("ListDomains", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListDomainsRequest")], [/* @__PURE__ */ $.pointerType("apiv1.ListDomainsResponse"), "error"]), $.methodSignature("ListFailoverHistory", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.ListFailoverHistoryRequest")], [/* @__PURE__ */ $.pointerType("apiv1.ListFailoverHistoryResponse"), "error"]), $.methodSignature("RegisterDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.RegisterDomainRequest")], [/* @__PURE__ */ $.pointerType("apiv1.RegisterDomainResponse"), "error"]), $.methodSignature("UpdateDomain", ["context.Context", /* @__PURE__ */ $.pointerType("apiv1.UpdateDomainRequest")], [/* @__PURE__ */ $.pointerType("apiv1.UpdateDomainResponse"), "error"])]
+	[{ name: "DeleteDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DeleteDomainResponse") }, { type: "error" }] }, { name: "DeprecateDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DeprecateDomainResponse") }, { type: "error" }] }, { name: "DescribeDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DescribeDomainResponse") }, { type: "error" }] }, { name: "FailoverDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.FailoverDomainResponse") }, { type: "error" }] }, { name: "ListDomains", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListDomainsResponse") }, { type: "error" }] }, { name: "ListFailoverHistory", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListFailoverHistoryResponse") }, { type: "error" }] }, { name: "RegisterDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.RegisterDomainResponse") }, { type: "error" }] }, { name: "UpdateDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.UpdateDomainResponse") }, { type: "error" }] }]
 );
 
 export class buildDomainAPIYARPCProceduresParams {
@@ -135,7 +129,7 @@ export class buildDomainAPIYARPCProceduresParams {
 		() => new buildDomainAPIYARPCProceduresParams(),
 		() => [],
 		buildDomainAPIYARPCProceduresParams,
-		() => [/* @__PURE__ */ $.structField("Server", "apiv1.DomainAPIYARPCServer", [0], 0, true), /* @__PURE__ */ $.structField("AnyResolver", "jsonpb.AnyResolver", [1], 16, true)]
+		() => [{ name: "Server", key: "Server", type: "apiv1.DomainAPIYARPCServer" }, { name: "AnyResolver", key: "AnyResolver", type: "jsonpb.AnyResolver" }]
 	)
 }
 
@@ -181,7 +175,7 @@ export class FxDomainAPIYARPCClientParams {
 
 	constructor(init?: Partial<{In?: fx.In, Provider?: yarpc.ClientConfig | null, AnyResolver?: jsonpb.AnyResolver | null, Restriction?: restriction.Checker | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			In: init?.In ? init.In.clone() : new dig.In(undefined, true),
+			In: init?.In ?? (undefined as any as fx.In),
 			Provider: init?.Provider ?? (null! as yarpc.ClientConfig | null),
 			AnyResolver: init?.AnyResolver ?? (null! as jsonpb.AnyResolver | null),
 			Restriction: init?.Restriction ?? (null! as restriction.Checker | null)
@@ -196,7 +190,7 @@ export class FxDomainAPIYARPCClientParams {
 	public __goscriptAssign(source: FxDomainAPIYARPCClientParams): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.In, values.In)
+		target.In = $.assignFieldValue(target.In, values.In, "dig.In")
 		target.Provider = $.assignFieldValue(target.Provider, values.Provider, "yarpc.ClientConfig")
 		target.AnyResolver = $.assignFieldValue(target.AnyResolver, values.AnyResolver, "jsonpb.AnyResolver")
 		target.Restriction = $.assignFieldValue(target.Restriction, values.Restriction, "restriction.Checker")
@@ -207,7 +201,7 @@ export class FxDomainAPIYARPCClientParams {
 		() => new FxDomainAPIYARPCClientParams(),
 		() => [],
 		FxDomainAPIYARPCClientParams,
-		() => [/* @__PURE__ */ $.structField("In", "dig.In", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Provider", "yarpc.ClientConfig", [1], 0, true), /* @__PURE__ */ $.structField("AnyResolver", "jsonpb.AnyResolver", [2], 16, true, { tag: "name:\"yarpcfx\" optional:\"true\"" }), /* @__PURE__ */ $.structField("Restriction", "restriction.Checker", [3], 32, true, { tag: "optional:\"true\"" })]
+		() => [{ name: "In", key: "In", type: "dig.In", anonymous: true }, { name: "Provider", key: "Provider", type: "yarpc.ClientConfig" }, { name: "AnyResolver", key: "AnyResolver", type: "jsonpb.AnyResolver", tag: "name:\"yarpcfx\" optional:\"true\"" }, { name: "Restriction", key: "Restriction", type: "restriction.Checker", tag: "optional:\"true\"" }]
 	)
 }
 
@@ -235,7 +229,7 @@ export class FxDomainAPIYARPCClientResult {
 
 	constructor(init?: Partial<{Out?: fx.Out, Client?: DomainAPIYARPCClient | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			Out: init?.Out ? init.Out.clone() : new dig.Out(undefined, true),
+			Out: init?.Out ?? (undefined as any as fx.Out),
 			Client: init?.Client ?? (null! as DomainAPIYARPCClient | null)
 		}
 		;(this as any)[$.structValueMarker] = __goscriptValue === true
@@ -248,7 +242,7 @@ export class FxDomainAPIYARPCClientResult {
 	public __goscriptAssign(source: FxDomainAPIYARPCClientResult): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.Out, values.Out)
+		target.Out = $.assignFieldValue(target.Out, values.Out, "dig.Out")
 		target.Client = $.assignFieldValue(target.Client, values.Client, "apiv1.DomainAPIYARPCClient")
 	}
 
@@ -257,7 +251,7 @@ export class FxDomainAPIYARPCClientResult {
 		() => new FxDomainAPIYARPCClientResult(),
 		() => [],
 		FxDomainAPIYARPCClientResult,
-		() => [/* @__PURE__ */ $.structField("Out", "dig.Out", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Client", "apiv1.DomainAPIYARPCClient", [1], 0, true)]
+		() => [{ name: "Out", key: "Out", type: "dig.Out", anonymous: true }, { name: "Client", key: "Client", type: "apiv1.DomainAPIYARPCClient" }]
 	)
 }
 
@@ -294,7 +288,7 @@ export class FxDomainAPIYARPCProceduresParams {
 
 	constructor(init?: Partial<{In?: fx.In, Server?: DomainAPIYARPCServer | null, AnyResolver?: jsonpb.AnyResolver | null}>, __goscriptValue?: boolean) {
 		this._fields = {
-			In: init?.In ? init.In.clone() : new dig.In(undefined, true),
+			In: init?.In ?? (undefined as any as fx.In),
 			Server: init?.Server ?? (null! as DomainAPIYARPCServer | null),
 			AnyResolver: init?.AnyResolver ?? (null! as jsonpb.AnyResolver | null)
 		}
@@ -308,7 +302,7 @@ export class FxDomainAPIYARPCProceduresParams {
 	public __goscriptAssign(source: FxDomainAPIYARPCProceduresParams): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.In, values.In)
+		target.In = $.assignFieldValue(target.In, values.In, "dig.In")
 		target.Server = $.assignFieldValue(target.Server, values.Server, "apiv1.DomainAPIYARPCServer")
 		target.AnyResolver = $.assignFieldValue(target.AnyResolver, values.AnyResolver, "jsonpb.AnyResolver")
 	}
@@ -318,7 +312,7 @@ export class FxDomainAPIYARPCProceduresParams {
 		() => new FxDomainAPIYARPCProceduresParams(),
 		() => [],
 		FxDomainAPIYARPCProceduresParams,
-		() => [/* @__PURE__ */ $.structField("In", "dig.In", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Server", "apiv1.DomainAPIYARPCServer", [1], 0, true), /* @__PURE__ */ $.structField("AnyResolver", "jsonpb.AnyResolver", [2], 16, true, { tag: "name:\"yarpcfx\" optional:\"true\"" })]
+		() => [{ name: "In", key: "In", type: "dig.In", anonymous: true }, { name: "Server", key: "Server", type: "apiv1.DomainAPIYARPCServer" }, { name: "AnyResolver", key: "AnyResolver", type: "jsonpb.AnyResolver", tag: "name:\"yarpcfx\" optional:\"true\"" }]
 	)
 }
 
@@ -355,7 +349,7 @@ export class FxDomainAPIYARPCProceduresResult {
 
 	constructor(init?: Partial<{Out?: fx.Out, Procedures?: $.Slice<transport.Procedure>, ReflectionMeta?: reflection.ServerMeta}>, __goscriptValue?: boolean) {
 		this._fields = {
-			Out: init?.Out ? init.Out.clone() : new dig.Out(undefined, true),
+			Out: init?.Out ?? (undefined as any as fx.Out),
 			Procedures: init?.Procedures ?? (null! as $.Slice<transport.Procedure>),
 			ReflectionMeta: init?.ReflectionMeta ? init.ReflectionMeta.clone() : new reflection.ServerMeta(undefined, true)
 		}
@@ -369,7 +363,7 @@ export class FxDomainAPIYARPCProceduresResult {
 	public __goscriptAssign(source: FxDomainAPIYARPCProceduresResult): void {
 		const target = this._fields
 		const values = source._fields
-		$.assignStruct(target.Out, values.Out)
+		target.Out = $.assignFieldValue(target.Out, values.Out, "dig.Out")
 		target.Procedures = values.Procedures
 		$.assignStruct(target.ReflectionMeta, values.ReflectionMeta)
 	}
@@ -379,7 +373,7 @@ export class FxDomainAPIYARPCProceduresResult {
 		() => new FxDomainAPIYARPCProceduresResult(),
 		() => [],
 		FxDomainAPIYARPCProceduresResult,
-		() => [/* @__PURE__ */ $.structField("Out", "dig.Out", [0], 0, true, { anonymous: true }), /* @__PURE__ */ $.structField("Procedures", /* @__PURE__ */ $.sliceType("transport.Procedure"), [1], 0, true, { tag: "group:\"yarpcfx\"" }), /* @__PURE__ */ $.structField("ReflectionMeta", "reflection.ServerMeta", [2], 24, true, { tag: "group:\"yarpcfx\"" })]
+		() => [{ name: "Out", key: "Out", type: "dig.Out", anonymous: true }, { name: "Procedures", key: "Procedures", type: /* @__PURE__ */ $.sliceType("transport.Procedure"), tag: "group:\"yarpcfx\"" }, { name: "ReflectionMeta", key: "ReflectionMeta", type: "reflection.ServerMeta", tag: "group:\"yarpcfx\"" }]
 	)
 }
 
@@ -536,9 +530,9 @@ export class _DomainAPIYARPCCaller {
 	static __typeInfo = $.registerStructType(
 		"apiv1._DomainAPIYARPCCaller",
 		() => new _DomainAPIYARPCCaller(),
-		() => [$.methodSignature("DeleteDomain", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.DeleteDomainRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.DeleteDomainResponse"), "error"], true), $.methodSignature("DeprecateDomain", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.DeprecateDomainRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.DeprecateDomainResponse"), "error"], true), $.methodSignature("DescribeDomain", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.DescribeDomainRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.DescribeDomainResponse"), "error"], true), $.methodSignature("FailoverDomain", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.FailoverDomainRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.FailoverDomainResponse"), "error"], true), $.methodSignature("ListDomains", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.ListDomainsRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.ListDomainsResponse"), "error"], true), $.methodSignature("ListFailoverHistory", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.ListFailoverHistoryRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.ListFailoverHistoryResponse"), "error"], true), $.methodSignature("RegisterDomain", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.RegisterDomainRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.RegisterDomainResponse"), "error"], true), $.methodSignature("UpdateDomain", [["ctx", "context.Context"], ["request", /* @__PURE__ */ $.pointerType("apiv1.UpdateDomainRequest")], ["options", /* @__PURE__ */ $.sliceType("yarpc.CallOption")]], [/* @__PURE__ */ $.pointerType("apiv1.UpdateDomainResponse"), "error"], true)],
+		() => [{ name: "DeleteDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DeleteDomainResponse") }, { type: "error" }], pointerReceiver: true }, { name: "DeprecateDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DeprecateDomainResponse") }, { type: "error" }], pointerReceiver: true }, { name: "DescribeDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.DescribeDomainResponse") }, { type: "error" }], pointerReceiver: true }, { name: "FailoverDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.FailoverDomainResponse") }, { type: "error" }], pointerReceiver: true }, { name: "ListDomains", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListDomainsResponse") }, { type: "error" }], pointerReceiver: true }, { name: "ListFailoverHistory", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.ListFailoverHistoryResponse") }, { type: "error" }], pointerReceiver: true }, { name: "RegisterDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.RegisterDomainResponse") }, { type: "error" }], pointerReceiver: true }, { name: "UpdateDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: /* @__PURE__ */ $.pointerType("apiv1.UpdateDomainResponse") }, { type: "error" }], pointerReceiver: true }],
 		_DomainAPIYARPCCaller,
-		() => [/* @__PURE__ */ $.structField("streamClient", "protobuf.StreamClient", [0], 0, false, { pkgPath: "github.com/uber/cadence-idl/go/proto/api/v1" })]
+		() => [{ name: "streamClient", key: "streamClient", type: "protobuf.StreamClient" }]
 	)
 }
 
@@ -743,18 +737,19 @@ export class _DomainAPIYARPCHandler {
 	static __typeInfo = $.registerStructType(
 		"apiv1._DomainAPIYARPCHandler",
 		() => new _DomainAPIYARPCHandler(),
-		() => [$.methodSignature("DeleteDomain", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("DeprecateDomain", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("DescribeDomain", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("FailoverDomain", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("ListDomains", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("ListFailoverHistory", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("RegisterDomain", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true), $.methodSignature("UpdateDomain", [["ctx", "context.Context"], ["requestMessage", "proto.Message"]], ["proto.Message", "error"], true)],
+		() => [{ name: "DeleteDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "DeprecateDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "DescribeDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "FailoverDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "ListDomains", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "ListFailoverHistory", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "RegisterDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }, { name: "UpdateDomain", args: [{ type: { kind: $.TypeKind.Basic, name: "unknown" } }, { type: { kind: $.TypeKind.Basic, name: "unknown" } }], returns: [{ type: "proto.Message" }, { type: "error" }], pointerReceiver: true }],
 		_DomainAPIYARPCHandler,
-		() => [/* @__PURE__ */ $.structField("server", "apiv1.DomainAPIYARPCServer", [0], 0, false, { pkgPath: "github.com/uber/cadence-idl/go/proto/api/v1" })]
+		() => [{ name: "server", key: "server", type: "apiv1.DomainAPIYARPCServer" }]
 	)
 }
 
 export async function newDomainAPIYARPCClient(clientConfig: transport.ClientConfig | null, anyResolver: jsonpb.AnyResolver | null, options: $.Slice<protobuf.ClientOption | null>): globalThis.Promise<DomainAPIYARPCClient | null> {
-	return $.interfaceValue<DomainAPIYARPCClient | null>((await (async () => { const __goscriptLiteralField0 = await protobuf.NewStreamClient(new protobuf.ClientParams({ServiceName: "uber.cadence.api.v1.DomainAPI", ClientConfig: clientConfig, AnyResolver: anyResolver, Options: options}, true)); return new _DomainAPIYARPCCaller({streamClient: __goscriptLiteralField0}) })()), "*apiv1._DomainAPIYARPCCaller", /* @__PURE__ */ $.pointerType("apiv1._DomainAPIYARPCCaller"))
+	const streamClient = await protobuf.NewStreamClient(new protobuf.ClientParams({ServiceName: "uber.cadence.api.v1.DomainAPI", ClientConfig: clientConfig, AnyResolver: anyResolver, Options: options}, true))
+	return $.interfaceValue<DomainAPIYARPCClient | null>(new _DomainAPIYARPCCaller({streamClient}), "*apiv1._DomainAPIYARPCCaller", /* @__PURE__ */ $.pointerType("apiv1._DomainAPIYARPCCaller"))
 }
 
 export async function NewDomainAPIYARPCClient(clientConfig: transport.ClientConfig | null, options: $.Slice<protobuf.ClientOption | null>): globalThis.Promise<DomainAPIYARPCClient | null> {
-	return newDomainAPIYARPCClient(clientConfig, null, options)
+	return await newDomainAPIYARPCClient(clientConfig, null, options)
 }
 
 export function buildDomainAPIYARPCProcedures(params: buildDomainAPIYARPCProceduresParams): $.Slice<transport.Procedure> {
@@ -784,7 +779,8 @@ export function NewFxDomainAPIYARPCClient(name: string, options: $.Slice<protobu
 			}
 		}
 
-		return (await (async () => { const __goscriptLiteralField9 = await newDomainAPIYARPCClient(cc, params.AnyResolver, options); return new FxDomainAPIYARPCClientResult({Client: __goscriptLiteralField9}, true) })())
+		const client = await newDomainAPIYARPCClient(cc, params.AnyResolver, options)
+		return new FxDomainAPIYARPCClientResult({Client: client}, true)
 	}, ({ kind: $.TypeKind.Function, params: ["apiv1.FxDomainAPIYARPCClientParams"], results: ["apiv1.FxDomainAPIYARPCClientResult"] } as $.FunctionTypeInfo)), "func(params apiv1.FxDomainAPIYARPCClientParams) apiv1.FxDomainAPIYARPCClientResult", ({ kind: $.TypeKind.Function, params: ["apiv1.FxDomainAPIYARPCClientParams"], results: ["apiv1.FxDomainAPIYARPCClientResult"] } as $.FunctionTypeInfo))
 }
 
@@ -1187,9 +1183,9 @@ export function __goscript_set_yarpcFileDescriptorClosure2e37d15268893114(__gosc
 	yarpcFileDescriptorClosure2e37d15268893114 = __goscriptValue
 }
 
-async function __goscriptInit0(): globalThis.Promise<void> {
-	await yarpc.RegisterClientBuilder($.interfaceValue($.functionValue(async (clientConfig: transport.ClientConfig | null, structField: reflect.StructField): globalThis.Promise<DomainAPIYARPCClient | null> => {
-		return await NewDomainAPIYARPCClient(clientConfig, protobuf.ClientBuilderOptions(clientConfig, structField))
+function __goscriptInit0(): void {
+	yarpc.RegisterClientBuilder($.interfaceValue($.functionValue(async (clientConfig: transport.ClientConfig | null, structField: reflect.StructField): globalThis.Promise<DomainAPIYARPCClient | null> => {
+		return await NewDomainAPIYARPCClient(clientConfig, protobuf.ClientBuilderOptions(clientConfig, $.markAsStructValue($.cloneStructValue(structField))))
 	}, ({ kind: $.TypeKind.Function, params: ["transport.ClientConfig", "reflect.StructField"], results: ["apiv1.DomainAPIYARPCClient"] } as $.FunctionTypeInfo)), "func(clientConfig transport.ClientConfig, structField reflect.StructField) apiv1.DomainAPIYARPCClient", ({ kind: $.TypeKind.Function, params: ["transport.ClientConfig", "reflect.StructField"], results: ["apiv1.DomainAPIYARPCClient"] } as $.FunctionTypeInfo)))
 }
 

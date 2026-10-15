@@ -13,14 +13,6 @@ import * as errors from "@goscript/google.golang.org/protobuf/internal/errors/in
 
 import * as flags from "@goscript/google.golang.org/protobuf/internal/flags/index.js"
 
-import type * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
-import type * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
-
-import * as protoreflect from "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
-
-import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-
 import * as reflect from "@goscript/reflect/index.js"
 
 import * as sync from "@goscript/sync/index.js"
@@ -59,8 +51,6 @@ import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
 import "@goscript/google.golang.org/protobuf/internal/encoding/messageset/index.js"
 import "@goscript/google.golang.org/protobuf/internal/errors/index.js"
 import "@goscript/google.golang.org/protobuf/internal/flags/index.js"
-import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
-import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 import "@goscript/reflect/index.js"
 import "@goscript/sync/index.js"
 import "./checkinit.gs.ts"
@@ -121,7 +111,7 @@ export async function sizeMessageSet(mi: __goscript_message.MessageInfo | $.VarR
 
 export async function marshalMessageSet(mi: __goscript_message.MessageInfo | $.VarRef<__goscript_message.MessageInfo> | null, b: $.Slice<number>, p: __goscript_pointer_reflect.pointer, opts: __goscript_encode.marshalOptions): globalThis.Promise<[$.Slice<number>, $.GoError]> {
 	if (!flags.ProtoLegacy) {
-		return [b, await errors.New("no support for message_set_wire_format", null)]
+		return [b, errors.New("no support for message_set_wire_format", null)]
 	}
 
 	let ext: globalThis.Map<number, __goscript_codec_extension.ExtensionField> | null = $.pointerValue<globalThis.Map<number, __goscript_codec_extension.ExtensionField> | null>($.markAsStructValue($.cloneStructValue((await p.Apply(($.pointerValue<__goscript_message.MessageInfo>(mi).coderMessageInfo.extensionOffset).clone())))).Extensions())
@@ -168,7 +158,7 @@ export async function marshalMessageSet(mi: __goscript_message.MessageInfo | $.V
 		let u = await (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as __goscript_message.MessageInfo).getUnknownBytes(p) : __goscript_message.MessageInfo.prototype.getUnknownBytes.call(mi, p))
 		if (u != null) {
 			let err: $.GoError = null! as $.GoError
-			let __goscriptTuple2: any = await messageset.AppendUnknown(b, $.pointerValue<$.Slice<number>>(u))
+			let __goscriptTuple2: any = messageset.AppendUnknown(b, $.pointerValue<$.Slice<number>>(u))
 			b = __goscriptTuple2[0]
 			err = __goscriptTuple2[1]
 			if (err != null) {
@@ -216,7 +206,7 @@ export async function unmarshalMessageSet(mi: __goscript_message.MessageInfo | $
 	let out: __goscript_decode.unmarshalOutput = new __goscript_decode.unmarshalOutput(undefined, true)
 	let err: $.GoError = null! as $.GoError
 	if (!flags.ProtoLegacy) {
-		return [(out).clone(), await errors.New("no support for message_set_wire_format", null)]
+		return [(out).clone(), errors.New("no support for message_set_wire_format", null)]
 	}
 
 	let ep = $.markAsStructValue($.cloneStructValue((await $.markAsStructValue($.cloneStructValue(p)).Apply(($.pointerValue<__goscript_message.MessageInfo>(mi).coderMessageInfo.extensionOffset).clone())))).Extensions()
@@ -225,7 +215,7 @@ export async function unmarshalMessageSet(mi: __goscript_message.MessageInfo | $
 	}
 	let ext: globalThis.Map<number, __goscript_codec_extension.ExtensionField> | null = $.pointerValue<globalThis.Map<number, __goscript_codec_extension.ExtensionField> | null>(ep)
 	let initialized = true
-	err = await messageset.Unmarshal(b, true, $.functionValue(async (num: protowire.Number, v: $.Slice<number>): globalThis.Promise<$.GoError> => {
+	err = messageset.Unmarshal(b, true, $.functionValue(async (num: protowire.Number, v: $.Slice<number>): globalThis.Promise<$.GoError> => {
 		let [o, __goscriptShadow0] = await (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as __goscript_message.MessageInfo).unmarshalExtension(v, num, 2, ext, (opts).clone()) : __goscript_message.MessageInfo.prototype.unmarshalExtension.call(mi, v, num, 2, ext, (opts).clone()))
 		if ($.comparableEqual(__goscriptShadow0, __goscript_decode.errUnknown)) {
 			let u = await (mi !== null && (mi as any).__isVarRef !== true && (mi as any).__goValue === undefined ? ((mi as any) as __goscript_message.MessageInfo).mutableUnknownBytes((p).clone()) : __goscript_message.MessageInfo.prototype.mutableUnknownBytes.call(mi, (p).clone()))

@@ -17,14 +17,6 @@ import * as protoreflect from "@goscript/google.golang.org/protobuf/reflect/prot
 
 import * as protoregistry from "@goscript/google.golang.org/protobuf/reflect/protoregistry/index.js"
 
-import * as protowire from "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-
-import type * as pragma from "@goscript/google.golang.org/protobuf/internal/pragma/index.js"
-
-import type * as proto from "@goscript/google.golang.org/protobuf/proto/index.js"
-
-import * as protoiface from "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
-
 import * as __goscript_checkinit from "./checkinit.gs.ts"
 
 import * as __goscript_codec_extension from "./codec_extension.gs.ts"
@@ -61,8 +53,6 @@ import "@goscript/sync/index.js"
 import "@goscript/google.golang.org/protobuf/internal/flags/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoreflect/index.js"
 import "@goscript/google.golang.org/protobuf/reflect/protoregistry/index.js"
-import "@goscript/google.golang.org/protobuf/encoding/protowire/index.js"
-import "@goscript/google.golang.org/protobuf/runtime/protoiface/index.js"
 import "./checkinit.gs.ts"
 import "./codec_extension.gs.ts"
 import "./codec_field.gs.ts"
@@ -194,7 +184,7 @@ export class fieldInfo {
 		() => new fieldInfo(),
 		() => [],
 		fieldInfo,
-		() => [/* @__PURE__ */ $.structField("fieldDesc", "protoreflect.FieldDescriptor", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("has", ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: [/* @__PURE__ */ $.basicType("bool")] } as $.FunctionTypeInfo), [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("clear", ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: [] } as $.FunctionTypeInfo), [2], 24, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("get", ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: ["protoreflect.Value"] } as $.FunctionTypeInfo), [3], 32, false, { key: "_get", pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("set", ({ kind: $.TypeKind.Function, params: ["impl.pointer", "protoreflect.Value"], results: [] } as $.FunctionTypeInfo), [4], 40, false, { key: "_set", pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("mutable", ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: ["protoreflect.Value"] } as $.FunctionTypeInfo), [5], 48, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("newMessage", ({ kind: $.TypeKind.Function, params: [], results: ["protoreflect.Message"] } as $.FunctionTypeInfo), [6], 56, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("newField", ({ kind: $.TypeKind.Function, params: [], results: ["protoreflect.Value"] } as $.FunctionTypeInfo), [7], 64, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "fieldDesc", key: "fieldDesc", type: "protoreflect.FieldDescriptor" }, { name: "has", key: "has", type: ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: [/* @__PURE__ */ $.basicType("bool")] } as $.FunctionTypeInfo) }, { name: "clear", key: "clear", type: ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: [] } as $.FunctionTypeInfo) }, { name: "get", key: "_get", type: ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: ["protoreflect.Value"] } as $.FunctionTypeInfo) }, { name: "set", key: "_set", type: ({ kind: $.TypeKind.Function, params: ["impl.pointer", "protoreflect.Value"], results: [] } as $.FunctionTypeInfo) }, { name: "mutable", key: "mutable", type: ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: ["protoreflect.Value"] } as $.FunctionTypeInfo) }, { name: "newMessage", key: "newMessage", type: ({ kind: $.TypeKind.Function, params: [], results: ["protoreflect.Message"] } as $.FunctionTypeInfo) }, { name: "newField", key: "newField", type: ({ kind: $.TypeKind.Function, params: [], results: ["protoreflect.Value"] } as $.FunctionTypeInfo) }]
 	)
 }
 
@@ -244,7 +234,7 @@ export class oneofInfo {
 		() => new oneofInfo(),
 		() => [],
 		oneofInfo,
-		() => [/* @__PURE__ */ $.structField("oneofDesc", "protoreflect.OneofDescriptor", [0], 0, false, { pkgPath: "google.golang.org/protobuf/internal/impl" }), /* @__PURE__ */ $.structField("which", ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: [/* @__PURE__ */ $.basicType("int32", "protowire.Number")] } as $.FunctionTypeInfo), [1], 16, false, { pkgPath: "google.golang.org/protobuf/internal/impl" })]
+		() => [{ name: "oneofDesc", key: "oneofDesc", type: "protoreflect.OneofDescriptor" }, { name: "which", key: "which", type: ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: [/* @__PURE__ */ $.basicType("int32", "protowire.Number")] } as $.FunctionTypeInfo) }]
 	)
 }
 
@@ -267,7 +257,7 @@ export function fieldInfoForMissing(fd: protoreflect.FieldDescriptor | null): fi
 	}, ({ kind: $.TypeKind.Function, params: [], results: ["protoreflect.Message"] } as $.FunctionTypeInfo)), newField: $.functionValue(async (): globalThis.Promise<protoreflect.Value> => {
 		{
 			let v = (((__goscriptAwait = (fd !== null && (fd as any).__isVarRef !== true && (fd as any).__goValue === undefined ? (fd as Exclude<protoreflect.FieldDescriptor, null>) : $.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(fd)).Default(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
-			if (v.IsValid()) {
+			if ($.markAsStructValue($.cloneStructValue(v)).IsValid()) {
 				return (v).clone()
 			}
 		}
@@ -335,7 +325,7 @@ export async function fieldInfoForOneof(fd: protoreflect.FieldDescriptor | null,
 		}
 		rv = $.assignStruct(rv, $.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue($.markAsStructValue($.cloneStructValue(rv)).Elem())).Elem())).Field(0))
 		if (($.markAsStructValue($.cloneStructValue(rv)).Kind() == 22) && $.markAsStructValue($.cloneStructValue(rv)).IsNil()) {
-			$.markAsStructValue($.cloneStructValue(rv)).Set($.markAsStructValue($.cloneStructValue(((__goscriptAwait = (conv !== null && (conv as any).__isVarRef !== true && (conv as any).__goValue === undefined ? (conv as Exclude<__goscript_convert.Converter, null>) : $.pointerValue<Exclude<__goscript_convert.Converter, null>>(conv)).GoValueOf(protoreflect.ValueOfMessage(await $.markAsStructValue($.cloneStructValue(((__goscriptAwait = (conv !== null && (conv as any).__isVarRef !== true && (conv as any).__goValue === undefined ? (conv as Exclude<__goscript_convert.Converter, null>) : $.pointerValue<Exclude<__goscript_convert.Converter, null>>(conv)).New(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message())), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value))))
+			$.markAsStructValue($.cloneStructValue(rv)).Set($.markAsStructValue($.cloneStructValue(((__goscriptAwait = (conv !== null && (conv as any).__isVarRef !== true && (conv as any).__goValue === undefined ? (conv as Exclude<__goscript_convert.Converter, null>) : $.pointerValue<Exclude<__goscript_convert.Converter, null>>(conv)).GoValueOf(protoreflect.ValueOfMessage($.markAsStructValue($.cloneStructValue(((__goscriptAwait = (conv !== null && (conv as any).__isVarRef !== true && (conv as any).__goValue === undefined ? (conv as Exclude<__goscript_convert.Converter, null>) : $.pointerValue<Exclude<__goscript_convert.Converter, null>>(conv)).New(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value))).Message())), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as reflect.Value))))
 		}
 		return (((__goscriptAwait = (conv !== null && (conv as any).__isVarRef !== true && (conv as any).__goValue === undefined ? (conv as Exclude<__goscript_convert.Converter, null>) : $.pointerValue<Exclude<__goscript_convert.Converter, null>>(conv)).PBValueOf($.markAsStructValue($.cloneStructValue(rv))), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait) as protoreflect.Value)).clone()
 	}, ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: ["protoreflect.Value"] } as $.FunctionTypeInfo)), newMessage: $.functionValue(async (): globalThis.Promise<protoreflect.Message | null> => {
@@ -555,7 +545,7 @@ export async function fieldInfoForWeakMessage(fd: protoreflect.FieldDescriptor |
 	let lazyInit: (() => void) | null = $.functionValue(async (): globalThis.Promise<void> => {
 		await once.value.Do($.functionValue(async (): globalThis.Promise<void> => {
 			let messageName = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.MessageDescriptor, null>>((__goscriptAwait = (fd !== null && (fd as any).__isVarRef !== true && (fd as any).__goValue === undefined ? (fd as Exclude<protoreflect.FieldDescriptor, null>) : $.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(fd)).Message(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
-			let __goscriptTuple0: any = await protoregistry.Types.prototype.FindMessageByName.call(protoregistry.GlobalTypes, messageName)
+			let __goscriptTuple0: any = protoregistry.Types.prototype.FindMessageByName.call(protoregistry.GlobalTypes, messageName)
 			messageType = __goscriptTuple0[0]
 			if (messageType == null) {
 				$.panic(await fmt.Sprintf("weak message %v for field %v is not linked in", $.namedValueInterfaceValue<any>(messageName, "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2()), $.namedValueInterfaceValue<any>((__goscriptAwait = (fd !== null && (fd as any).__isVarRef !== true && (fd as any).__goValue === undefined ? (fd as Exclude<protoreflect.FieldDescriptor, null>) : $.pointerValue<Exclude<protoreflect.FieldDescriptor, null>>(fd)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), "protoreflect.FullName", __goscriptStatic0(), __goscriptStatic1(), __goscriptStatic2())))
@@ -584,7 +574,7 @@ export async function fieldInfoForWeakMessage(fd: protoreflect.FieldDescriptor |
 		return protoreflect.ValueOfMessage((__goscriptAwait = (m !== null && (m as any).__isVarRef !== true && (m as any).__goValue === undefined ? (m as Exclude<protoreflect.ProtoMessage, null>) : $.pointerValue<Exclude<protoreflect.ProtoMessage, null>>(m)).ProtoReflect(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))
 	}, ({ kind: $.TypeKind.Function, params: ["impl.pointer"], results: ["protoreflect.Value"] } as $.FunctionTypeInfo)), _set: $.functionValue(async (p: __goscript_pointer_reflect.pointer, v: protoreflect.Value): globalThis.Promise<void> => {
 		void (__goscriptAwait = lazyInit!(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)
-		let m = await v.Message()
+		let m = $.markAsStructValue($.cloneStructValue(v)).Message()
 		if (!$.comparableEqual((__goscriptAwait = (m !== null && (m as any).__isVarRef !== true && (m as any).__goValue === undefined ? (m as Exclude<protoreflect.Message, null>) : $.pointerValue<Exclude<protoreflect.Message, null>>(m)).Descriptor(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait), (__goscriptAwait = (messageType !== null && (messageType as any).__isVarRef !== true && (messageType as any).__goValue === undefined ? (messageType as Exclude<protoreflect.MessageType, null>) : $.pointerValue<Exclude<protoreflect.MessageType, null>>(messageType)).Descriptor(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait))) {
 			{
 				let got = (__goscriptAwait = $.pointerValue<Exclude<protoreflect.MessageDescriptor, null>>((__goscriptAwait = (m !== null && (m as any).__isVarRef !== true && (m as any).__goValue === undefined ? (m as Exclude<protoreflect.Message, null>) : $.pointerValue<Exclude<protoreflect.Message, null>>(m)).Descriptor(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)).FullName(), __goscriptAwait instanceof Promise ? await __goscriptAwait : __goscriptAwait)

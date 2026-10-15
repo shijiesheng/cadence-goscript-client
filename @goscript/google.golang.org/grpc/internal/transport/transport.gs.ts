@@ -273,7 +273,7 @@ export class recvBuffer {
 					id: 0,
 					isSend: true,
 					channel: (b$ as recvBuffer).c,
-					value: $.arrayIndex((b$ as recvBuffer).backlog!, 0),
+					value: $.arrayIndex((b$ as recvBuffer).backlog!, 0).clone(),
 					onSelected: async (__goscriptSelect0Result) => {
 						$.assignStruct($.sliceElems((b$ as recvBuffer).backlog!)[$.sliceSlot((b$ as recvBuffer).backlog!, 0)], new recvMsg(undefined, true));
 						;(b$ as recvBuffer).backlog = $.goSlice((b$ as recvBuffer).backlog, 1, undefined)
