@@ -16,7 +16,3 @@ npm run worker
 ```
 npm run start-workflow -- [name]
 ```
-
-# bugs
-1. [FIXED] await inside sync function
-2. workflow doesn't progress after started
