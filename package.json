@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "worker": "tsx examples/main.ts"
+    "worker": "tsx examples/main.ts",
+    "start-workflow": "tsx examples/start.ts"
   },
   "dependencies": {
     "@noble/ciphers": "2.2.0",

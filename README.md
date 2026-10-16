@@ -11,6 +11,12 @@ GOTOOLCHAIN=go1.27.2 goscript compile --package <path-to-cadence-go-client> --ou
 npm run worker
 ```
 
+# start and wait for a workflow
+
+```
+npm run start-workflow -- [name]
+```
+
 # bugs
 1. [FIXED] await inside sync function
 2. workflow doesn't progress after started

@@ -24,8 +24,38 @@ export type Context = null | {
   Value(key: any): any
 }
 
+// Register Context under the name emitted by generated reflection metadata.
+const contextTypeInfo = $.registerInterfaceType('context.Context', null, [
+  $.methodSignature('Deadline', [], [
+    ['deadline', 'time.Time'],
+    ['ok', $.basicType('bool')],
+  ]),
+  $.methodSignature(
+    'Done',
+    [],
+    [
+      $.channelType(
+        { kind: $.TypeKind.Struct, methods: [], fields: [] },
+        'receive',
+      ),
+    ],
+  ),
+  $.methodSignature('Err', [], ['error']),
+  $.methodSignature(
+    'Value',
+    [['key', { kind: $.TypeKind.Interface, methods: [] }]],
+    [{ kind: $.TypeKind.Interface, methods: [] }],
+  ),
+])
+
 // ContextNonNil is a non-nil context.
 export type ContextNonNil = Exclude<Context, null>
+
+// Tag concrete contexts so reflect.TypeOf reports context.Context and
+// AssignableTo/Call accept them as the interface parameter type.
+function asContext(ctx: ContextNonNil): Context {
+  return $.interfaceValue(ctx, 'context.Context', contextTypeInfo)
+}
 
 // Base implementation for all contexts
 abstract class baseContext implements ContextNonNil {
@@ -260,12 +290,12 @@ const todo = new backgroundContext()
 
 // Background returns a non-nil, empty Context that is never canceled.
 export function Background(): Context {
-  return background
+  return asContext(background)
 }
 
 // TODO returns a non-nil, empty Context.
 export function TODO(): Context {
-  return todo
+  return asContext(todo)
 }
 
 // WithCancel returns a copy of parent with a new Done channel.
@@ -277,7 +307,7 @@ export function WithCancel(parent: Context): [Context, CancelFunc] {
   ctx.propagateCancel()
 
   return [
-    ctx,
+    asContext(ctx),
     () => {
       ctx.cancel(true, Canceled, null)
     },
@@ -293,7 +323,7 @@ export function WithCancelCause(parent: Context): [Context, CancelCauseFunc] {
   ctx.propagateCancel()
 
   return [
-    ctx,
+    asContext(ctx),
     (cause: $.GoError) => {
       ctx.cancel(true, Canceled, cause)
     },
@@ -329,7 +359,7 @@ export function WithDeadlineCause(
   ctx.startTimer()
 
   return [
-    ctx,
+    asContext(ctx),
     () => {
       ctx.cancel(true, Canceled, cause)
     },
@@ -358,7 +388,7 @@ export function WithValue(parent: Context, key: any, val: any): Context {
   if (parent === null) {
     throw new Error('cannot create context from nil parent')
   }
-  return new valueContext(parent, key, val)
+  return asContext(new valueContext(parent, key, val))
 }
 
 // WithoutCancel returns a context that inherits values but not cancellation.
@@ -366,7 +396,7 @@ export function WithoutCancel(parent: Context): Context {
   if (parent === null) {
     throw new Error('cannot create context from nil parent')
   }
-  return new withoutCancelContext(parent)
+  return asContext(new withoutCancelContext(parent))
 }
 
 // Cause returns the underlying cause of the context's cancellation.
